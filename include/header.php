@@ -23,11 +23,11 @@ Email: timamdad@hawk.iit.edu
 
   <!-- Bootstrap -->
 
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 
-  <link href="css/normalize.css" rel="stylesheet">
+  <link href="resources/css/normalize.css" rel="stylesheet">
 
-  <link href="css/style.css" rel="stylesheet">
+  <link href="resources/css/style.css" rel="stylesheet">
 
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed' rel='stylesheet' type='text/css'>

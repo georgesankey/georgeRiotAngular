@@ -1,10 +1,17 @@
 {extends file="layout.html"}
 
-{block name="body"}
+{block name="title"}
+Login
+{/block}
+
+{block name="main"}
 
 <div class="container">
     <div class="col-md-12">
-    	<h1 class="mainhead text-center">Only Make Believe Scheduler <i class="fa fa-clock-o iconcolor fa-lg"></i></h1>
+    	<h1 class="mainhead text-center">
+    		Only Make Believe Scheduler 
+    		<i class="fa fa-clock-o iconcolor fa-lg"></i>
+    	</h1>
     </div>
 </div>
 
@@ -12,26 +19,17 @@
 
 <div class="container content">
 
-  	<div class="page-header">
-
-  	</div>
-
   	<div id="login-overlay" class="modal-dialog">
 
 		<div class="modal-content">
 
-	  	<div class="modal-header">
-
-	      	<h2 class="modal-title text-center" id="myModalLabel">Login</h2>
-
-	  	</div>
+		  	<div class="modal-header">
+		      	<h2 class="modal-title text-center" id="myModalLabel">Login</h2>
+		  	</div>
 
 	  	<div class="modal-body">
-
 	      	<div class="row">
-
 	          	<div class="col-xs-12">
-
 	              	<div class="well">
 
 	                  	<form id="loginForm" method="POST" action="index.php">
@@ -91,5 +89,9 @@
 </div>
 
 <div class="clear">&nbsp;</div> 
+
+<div class="footer">
+    <p class="text-muted">&#169;2015 Only Make Believe. All Rights Reserved.</p>
+</div>
 
 {/block}

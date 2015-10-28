@@ -1,0 +1,95 @@
+{extends file="layout.html"}
+
+{block name="body"}
+
+<div class="container">
+    <div class="col-md-12">
+    	<h1 class="mainhead text-center">Only Make Believe Scheduler <i class="fa fa-clock-o iconcolor fa-lg"></i></h1>
+    </div>
+</div>
+
+<!-- Begin page content -->
+
+<div class="container content">
+
+  	<div class="page-header">
+
+  	</div>
+
+  	<div id="login-overlay" class="modal-dialog">
+
+		<div class="modal-content">
+
+	  	<div class="modal-header">
+
+	      	<h2 class="modal-title text-center" id="myModalLabel">Login</h2>
+
+	  	</div>
+
+	  	<div class="modal-body">
+
+	      	<div class="row">
+
+	          	<div class="col-xs-12">
+
+	              	<div class="well">
+
+	                  	<form id="loginForm" method="POST" action="index.php">
+
+	                      	<div class="form-group">
+
+	                          	<label for="username" class="control-label">Username</label>
+
+	                          	<input type="text" class="form-control" id="username" name="username" value="" title="Please enter you username" placeholder="username or email" required>
+
+	                          	<span class="help-block"></span>
+
+	                      	</div>
+
+	                      	<div class="form-group">
+
+	                          	<label for="password" class="control-label">Password</label>
+
+	                          	<input type="password" class="form-control" id="password" name="password" value="" title="Please enter your password" required>
+
+	                          	<span class="help-block"></span>
+
+	                      	</div>
+
+	                      	<div id="loginErrorMsg" class="alert alert-error hide">Wrong username og password</div>
+
+	                      	<div class="checkbox">
+
+	                          	<label>
+
+	                              	<input type="checkbox" name="remember" id="remember"> Remember login
+
+	                          	</label>
+
+	                          	<p class="help-block">(if this is a private computer)</p>
+
+	                      	</div>
+
+	                      	<button type="submit" class="btn btn-primary btn-block btn-norad">Login</button>
+	                      	<button type="submit" class="btn btn-danger btn-block btn-norad"><i class="fa fa-google fa-lg fa-fw"></i>Sign in with Google</button>
+
+	                      	<button type="reset" class="btn btn-default btn-block btn-norad">Register</button>
+
+	                  	</form>
+
+	              	</div>
+
+	          	</div>
+
+
+	      	</div>
+
+	  	</div>
+
+	</div>
+
+</div>
+
+<div class="clear">&nbsp;</div> 
+
+{/block}

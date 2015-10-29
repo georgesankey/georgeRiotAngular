@@ -4,7 +4,7 @@
  * Database config variables
  */
 <?php
-$db_host = "tameem_imamdad";
+$db_host = ""; // "localhost:9090" or wherever your mysql server is
 $db_name ="";
 $username = "";
 $password = "";

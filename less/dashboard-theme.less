@@ -1,0 +1,66 @@
+
+@import "imports/colors";
+
+// This is the sidebar color
+@sidebar-color: @lighter-black;
+
+// This is main background color
+@background-main-color: @light-gray;
+
+// Sidebar and nav colors
+@nav-active-bord1: @sky-blue;
+@nav-active-bord2: @gold;
+
+@nav-hover-color: #eee;
+@nav-active-color: #e7e7e7;
+
+@nav-inverse-hover-color: #111;
+@nav-inverse-active-color: @black;
+
+// Panel box shadows
+@use-panel-shadow: true;
+@panel-shadow-color: @gray;
+
+// Fonts
+@font-main: ~"Helvetica Neue, Helvetica, sans-serif";
+@font-secondary: ~"Gillsans, Arial, sans-serif";
+@font-serif: ~"Palatino, Corbel, serif";
+
+
+// ----------------------------------------
+// Styles applied past here
+// ----------------------------------------
+
+body {
+    background: @sidebar-color;
+}
+
+#page-wrapper {
+    background: @background-main-color;
+}
+
+#sidebar {
+    .active {
+        border-left:5px solid @nav-active-bord1;
+    }
+    
+    .collapse.in {
+        background:@nav-active-color;
+    }
+    
+    .navbar-inverse .collapse.in {
+        background:@nav-inverse-active-color;
+    }
+}
+
+.navbar li:hover {
+    background:@nav-hover-color;
+}
+
+.navbar-inverse li:hover {
+    background:@nav-inverse-hover-color;
+}
+
+.panel when (@use-panel-shadow = true) {
+    box-shadow: 2px 2px 5px @panel-shadow-color;
+}

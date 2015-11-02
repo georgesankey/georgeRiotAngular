@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2015-10-28 17:50:13
+<?php /* Smarty version 3.1.27, created on 2015-11-02 11:21:08
          compiled from "/var/www/html/onlymakebelieve/include/template/login.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:113174153756314315afff18_08352807%%*/
+/*%%SmartyHeaderCode:170270200856378d74cdb6f9_47423094%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,13 +9,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '073df015d25ce5e816c0f5b7b370a256bc6d5054' => 
     array (
       0 => '/var/www/html/onlymakebelieve/include/template/login.html',
-      1 => 1446069008,
+      1 => 1446069087,
       2 => 'file',
     ),
     '6ad5b1f9cffa3d12ae4cb1fed953f18934aafd10' => 
     array (
       0 => '/var/www/html/onlymakebelieve/include/template/layout.html',
-      1 => 1446068629,
+      1 => 1446069105,
       2 => 'file',
     ),
     'fd15c80849850436ca39f9c7743070308bf3abcb' => 
@@ -30,9 +30,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       1 => 1446068369,
       2 => 'file',
     ),
-    'a88ad94d7c990ebaddde2abd94f6380933dfcd3f' => 
+    '64ae2c5ee51c0f54968f240bcb08994d595e625a' => 
     array (
-      0 => 'a88ad94d7c990ebaddde2abd94f6380933dfcd3f',
+      0 => '64ae2c5ee51c0f54968f240bcb08994d595e625a',
       1 => 0,
       2 => 'string',
     ),
@@ -43,16 +43,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '113174153756314315afff18_08352807',
+  'nocache_hash' => '170270200856378d74cdb6f9_47423094',
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56314315be5512_11024121',
+  'unifunc' => 'content_56378d74d53849_05081122',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56314315be5512_11024121')) {
-function content_56314315be5512_11024121 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_56378d74d53849_05081122')) {
+function content_56378d74d53849_05081122 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '113174153756314315afff18_08352807';
+$_smarty_tpl->properties['nocache_hash'] = '170270200856378d74cdb6f9_47423094';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +62,7 @@ $_smarty_tpl->properties['nocache_hash'] = '113174153756314315afff18_08352807';
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Only Make Believe | <?php
-$_smarty_tpl->properties['nocache_hash'] = '113174153756314315afff18_08352807';
+$_smarty_tpl->properties['nocache_hash'] = '170270200856378d74cdb6f9_47423094';
 ?>
 
 Login
@@ -70,7 +70,7 @@ Login
 
   
   <?php /*  Call merged included template "links.partial.html" */
-echo $_smarty_tpl->getInlineSubTemplate("links.partial.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, '190202230556314315b9abe8_95719997', 'content_56314315b99f86_05509508');
+echo $_smarty_tpl->getInlineSubTemplate("links.partial.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, '78165544256378d74d31c29_23430176', 'content_56378d74d315c9_40680826');
 /*  End of included template "links.partial.html" */?>
 
   
@@ -80,7 +80,7 @@ echo $_smarty_tpl->getInlineSubTemplate("links.partial.html", $_smarty_tpl->cach
   <body>
 
     <?php
-$_smarty_tpl->properties['nocache_hash'] = '113174153756314315afff18_08352807';
+$_smarty_tpl->properties['nocache_hash'] = '170270200856378d74cdb6f9_47423094';
 ?>
 
 
@@ -168,17 +168,15 @@ $_smarty_tpl->properties['nocache_hash'] = '113174153756314315afff18_08352807';
 
 <div class="clear">&nbsp;</div> 
 
+<div class="footer">
+    <p class="text-muted">&#169;2015 Only Make Believe. All Rights Reserved.</p>
+</div>
 
 
-    
-    <div class="footer">
-        <p class="text-muted">&#169;2015 Only Make Believe. All Rights Reserved.</p>
-    </div>
-    
 
     
     <?php /*  Call merged included template "scripts.partial.html" */
-echo $_smarty_tpl->getInlineSubTemplate("scripts.partial.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, '164897444156314315bdc253_64167109', 'content_56314315bdb199_17297871');
+echo $_smarty_tpl->getInlineSubTemplate("scripts.partial.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, '179910955356378d74d4eea0_22660987', 'content_56378d74d4e8c0_72067780');
 /*  End of included template "scripts.partial.html" */?>
 
     
@@ -188,12 +186,12 @@ echo $_smarty_tpl->getInlineSubTemplate("scripts.partial.html", $_smarty_tpl->ca
 <?php }
 }
 ?><?php
-/*%%SmartyHeaderCode:190202230556314315b9abe8_95719997%%*/
-if ($_valid && !is_callable('content_56314315b99f86_05509508')) {
-function content_56314315b99f86_05509508 ($_smarty_tpl) {
+/*%%SmartyHeaderCode:78165544256378d74d31c29_23430176%%*/
+if ($_valid && !is_callable('content_56378d74d315c9_40680826')) {
+function content_56378d74d315c9_40680826 ($_smarty_tpl) {
 ?>
 <?php
-$_smarty_tpl->properties['nocache_hash'] = '190202230556314315b9abe8_95719997';
+$_smarty_tpl->properties['nocache_hash'] = '78165544256378d74d31c29_23430176';
 ?>
 <!-- Bootstrap -->
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
@@ -222,16 +220,16 @@ $_smarty_tpl->properties['nocache_hash'] = '190202230556314315b9abe8_95719997';
 >
 
   <![endif]--><?php
-/*/%%SmartyNocache:190202230556314315b9abe8_95719997%%*/
+/*/%%SmartyNocache:78165544256378d74d31c29_23430176%%*/
 }
 }
 ?><?php
-/*%%SmartyHeaderCode:164897444156314315bdc253_64167109%%*/
-if ($_valid && !is_callable('content_56314315bdb199_17297871')) {
-function content_56314315bdb199_17297871 ($_smarty_tpl) {
+/*%%SmartyHeaderCode:179910955356378d74d4eea0_22660987%%*/
+if ($_valid && !is_callable('content_56378d74d4e8c0_72067780')) {
+function content_56378d74d4e8c0_72067780 ($_smarty_tpl) {
 ?>
 <?php
-$_smarty_tpl->properties['nocache_hash'] = '164897444156314315bdc253_64167109';
+$_smarty_tpl->properties['nocache_hash'] = '179910955356378d74d4eea0_22660987';
 ?>
 	<!-- Bootstrap core JavaScript
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -242,7 +240,7 @@ $_smarty_tpl->properties['nocache_hash'] = '164897444156314315bdc253_64167109';
 	<?php echo '<script'; ?>
  src="resources/js/bootstrap.min.js"><?php echo '</script'; ?>
 ><?php
-/*/%%SmartyNocache:164897444156314315bdc253_64167109%%*/
+/*/%%SmartyNocache:179910955356378d74d4eea0_22660987%%*/
 }
 }
 ?>

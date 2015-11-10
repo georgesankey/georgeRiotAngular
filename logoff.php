@@ -1,10 +1,7 @@
 <?php
-session_start();
-// remove all session variables
-session_unset();
-
-// destroy the session
-session_destroy(); 
+require __DIR__ . '/include/Auth.php';
+$auth = new OMBAuth($cfg);
+$auth->logout();
 
 header('Location: index.php');
 ?>

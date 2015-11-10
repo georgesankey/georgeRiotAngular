@@ -96,8 +96,79 @@ code {
   vertical-align: middle;
   line-height: 100px;
 }
+.navbar-outphish {
+    background-color:#8f1963;
+      border-bottom:solid 3px #2c3e50;
 
+}
+.navbar-outphish p {
+  color:white;
 
+}
+/* title */
+.navbar-outphish .navbar-brand {
+    color: white;
+    margin-left: 50px;
+    margin-right: 20px;
+
+}
+
+.navbar-form {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 100px;
+}
+
+.navbar-outphish .navbar-brand:hover,
+.navbar-outphish .navbar-brand:focus {
+
+}
+/* link */
+.navbar-outphish .navbar-nav > li > a {
+    font-family: 'opensans';
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+   text-align: center;
+  vertical-align: middle;
+  line-height: 90px;
+  text-transform: uppercase;
+
+}
+.navbar-outphish .navbar-nav > li > a:hover,
+.navbar-outphish .navbar-nav > li > a:focus {
+    color: white;
+    background-color: #c78233;
+    border:none;
+}
+.navbar-outphish .navbar-nav > .active > a, 
+.navbar-outphish .navbar-nav > .active > a:hover, 
+.navbar-outphish .navbar-nav > .active > a:focus {
+    color: white;
+    background-color: #c78233;
+}
+.navbar-outphish .navbar-nav > .open > a, 
+.navbar-outphish .navbar-nav > .open > a:hover, 
+.navbar-outphish .navbar-nav > .open > a:focus {
+    color: white;
+    background-color: #c78233;
+}
+/* caret */
+.navbar-outphish .navbar-nav > .dropdown > a .caret {
+    border-top-color: white;
+    border-bottom-color: #777;
+}
+.navbar-outphish .navbar-nav > .dropdown > a:hover .caret,
+.navbar-outphish .navbar-nav > .dropdown > a:focus .caret {
+    border-top-color: #333;
+    border-bottom-color: #333;
+}
+.navbar-outphish .navbar-nav > .open > a .caret, 
+.navbar-outphish .navbar-nav > .open > a:hover .caret, 
+.navbar-outphish .navbar-nav > .open > a:focus .caret {
+    border-top-color: #555;
+    border-bottom-color: #555;
+}
 /* mobile version */
 .navbar-outphish .navbar-toggle {
     border-color: #DDD;
@@ -124,6 +195,67 @@ code {
 .btn-norad {
   border-radius:0 !important;
 }
+.btn-outphish {
+  color: #fff;
+  background-color: #2c3e50;
+
+}
+.btn-outphish:hover,
+.btn-outphish:focus,
+.btn-outphish:active,
+.btn-outphish.active,
+.open > .dropdown-toggle.btn-outphish {
+  color: #fff;
+  background-color: #c9302c;
+}
+.btn-outphish:active,
+.btn-outphish.active,
+.open > .dropdown-toggle.btn-outphish {
+  background-image: none;
+}
+
+.fix {
+    margin-bottom: 5px;
+}
+.subjects {
+    width: 190px !important;
+    border-radius: 0;
+}
+
+.available {
+  color:green;
+  font-weight: bold;
+
+}
+
+.unavailable {
+  color:red;
+  font-weight: bold;
+
+}
+
+#chat-output {
+  height: 150px;
+  overflow-y: scroll;
+}
+
+#my-div
+{
+    width    : 400px;
+    height   : 200px;
+    overflow : hidden;
+    position : relative;
+}
+ 
+#my-iframe
+{
+    position : absolute;
+    top      : -100px;
+    left     : -100px;
+    width    : 1280px;
+    height   : 1200px;
+}
+
 .ratesession {
   text-align: center;
 }
@@ -137,6 +269,111 @@ code {
 
 
 
+/* PROFILE area */
+*{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.well2 {
+    margin-top:-20px;
+    background-color:#007FBD;
+    border:2px solid #0077B2;
+    text-align:center;
+    cursor:pointer;
+    font-size: 25px;
+    padding: 15px;
+    border-radius: 0px !important;
+    color:#fff;
+}
+
+.well2:hover {
+    margin-top:-20px;
+    background-color:#0077B2;
+    border:2px solid #0077B2;
+    text-align:center;
+    cursor:pointer;
+    font-size: 25px;
+    padding: 15px;
+    border-radius: 0px !important;
+    border-bottom : 2px solid rgba(97, 203, 255, 0.65);
+}
+
+
+
+.bg_blur
+{
+    background-image:url('http://www.beckershospitalreview.com/conference/images/Hotels.jpg');
+    height: 300px;
+    background-size: cover;
+}
+
+.follow_btn {
+    text-decoration: none;
+    position: absolute;
+    left: 35%;
+    top: 42.5%;
+    width: 35%;
+    height: 15%;
+    background-color: #007FBE;
+    padding: 10px;
+    padding-top: 6px;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    border: 4px solid #007FBE;
+}
+
+.follow_btn:hover {
+    text-decoration: none;
+    position: absolute;
+    left: 35%;
+    top: 42.5%;
+    width: 35%;
+    height: 15%;
+    background-color: #007FBE;
+    padding: 10px;
+    padding-top: 6px;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    border: 4px solid rgba(255, 255, 255, 0.8);
+}
+
+.header{
+    color : #808080;
+    margin-left:10%;
+    margin-top:70px;
+}
+
+.picture{
+    height:150px;
+    width:150px;
+    position:absolute;
+    top: 75px;
+    left:-75px;
+}
+
+.picture_mob{
+    position: absolute;
+    width: 35%;
+    left: 35%;
+    bottom: 70%;
+}
+
+.btn-style{
+    color: #fff;
+    background-color: #007FBE;
+    border-color: #adadad;
+    width: 33.3%;
+}
+
+.btn-style:hover {
+    color: #333;
+    background-color: #3D5DE0;
+    border-color: #adadad;
+    width: 33.3%;
+   
+}
 
 
 @media (max-width: 767px) {
@@ -151,6 +388,74 @@ code {
     }
 }
 
+
+
+
+/* MISC ?
+/* 
+// Listrap v1.0, by Gustavo Gondim (http://github.com/ggondim)
+// Licenced under MIT License
+// For updates, improvements and issues, see https://github.com/inosoftbr/listrap
+*/
+.listrap {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            cursor: default;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .listrap li {
+            margin: 0;
+            padding: 10px;
+            color:black;
+        }
+
+        .listrap li.active, .listrap li:hover {
+            background-color: #ecf0f1;
+
+        }
+
+        .listrap strong {
+            margin-left: 10px;
+        }
+
+        .listrap .listrap-toggle {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+        }
+
+        .listrap .listrap-toggle span {
+            background-color: #428bca;
+            opacity: 0.8;
+            z-index: 100;
+            width: 60px;
+            height: 60px;
+            display: none;
+            position: absolute;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 60px;
+            vertical-align: middle;
+            color: red;
+            font-weight: bold;
+        }
+
+
+
+        .listrap .listrap-toggle span:before {
+            font-family: 'Glyphicons Halflings';
+            content: "Claimed";
+        }
+
+        .listrap li.active .listrap-toggle span {
+            display: block;
+        }
 
         #login-remember {
           color:black;

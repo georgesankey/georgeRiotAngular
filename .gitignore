@@ -1,5 +1,5 @@
 vendor
 .DS_Store
 *.tmp
-include/template_c/*
+
 include/db/dbconfig.php

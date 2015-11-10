@@ -22,6 +22,13 @@ directory and execute:
 $ composer install
 ```
 
+Then, to fix some templating issues due to Github not retaining permissions,
+you need to run:
+
+```
+$ chmod 777 /include/template_c
+```
+
 ### Aliases ###
 
 I have some aliases in bashrc to help with server management. To add, 

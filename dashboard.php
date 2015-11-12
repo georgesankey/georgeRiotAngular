@@ -175,7 +175,21 @@ if (!empty($_GET['action'])) {
 
                                                 <ul class="nav navbar-nav navbar-right">
 
-                                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Account
+                                    
+                                         <li> 
+                                            <img src="resources/images/OMB.jpg"/>
+                                                            </li>
+                    <li>
+                <a href="#">
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                </a>
+            </li>
+           <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Account
 
                                         <b class="caret"></b></a>
 
@@ -242,10 +256,13 @@ if (!empty($_GET['action'])) {
                                                     </div>
 
                                                 </div>
+                                                </li>
 
-                                            </li>
+                                                </li>
+                                            
 
-                                        </ul>';
+                                        </ul>
+';
 
               }
 
@@ -261,9 +278,18 @@ if (!empty($_GET['action'])) {
 
 
 
-    <div class="container-fluid">
-
-      <div class="row ">
+      <div id="page-wrapper" class="fluid-container">
+      
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h4 class="panel-title">Calendar</h4>
+            </div>
+            <div class="panel-body">
+                <div id="calendar"></div>
+            </div>
+        </div>
+      
+  </div>
 
 
 

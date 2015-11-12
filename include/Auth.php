@@ -9,6 +9,7 @@ $cfg = array(
 		// Username => password
 		"admin" => "admin",
 		"user" => "theHulk",
+		"tameem" => "test",
 	),
 
 	"oauth" => "hybridauth",

@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2015-11-10 16:58:15
+<?php /* Smarty version 3.1.27, created on 2015-11-12 14:43:44
          compiled from "/var/www/html/onlymakebelieve/include/template/login.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:1628486070564268775daf45_09641894%%*/
+/*%%SmartyHeaderCode:9933685245644ebf0b0d7a9_28345178%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,13 +9,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '073df015d25ce5e816c0f5b7b370a256bc6d5054' => 
     array (
       0 => '/var/www/html/onlymakebelieve/include/template/login.html',
-      1 => 1447192684,
+      1 => 1447349811,
       2 => 'file',
     ),
     '6ad5b1f9cffa3d12ae4cb1fed953f18934aafd10' => 
     array (
       0 => '/var/www/html/onlymakebelieve/include/template/layout.html',
-      1 => 1447084351,
+      1 => 1447348585,
       2 => 'file',
     ),
     'fd15c80849850436ca39f9c7743070308bf3abcb' => 
@@ -27,26 +27,32 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '4d8ccebc8e068525522a4b24a65339c006b7c0bf' => 
     array (
       0 => '/var/www/html/onlymakebelieve/include/template/links.partial.html',
-      1 => 1446068369,
+      1 => 1447349727,
       2 => 'file',
     ),
-    'fdcc0db52f484347dea22b2322a4913ffef4bc14' => 
+    '621518958de44e2b961098098b82c86d4a8af65c' => 
     array (
-      0 => 'fdcc0db52f484347dea22b2322a4913ffef4bc14',
+      0 => '621518958de44e2b961098098b82c86d4a8af65c',
+      1 => 0,
+      2 => 'string',
+    ),
+    'f95a9ab41f92e4bd500b654de397c8d6eb06a6d5' => 
+    array (
+      0 => 'f95a9ab41f92e4bd500b654de397c8d6eb06a6d5',
       1 => 0,
       2 => 'string',
     ),
   ),
-  'nocache_hash' => '1628486070564268775daf45_09641894',
+  'nocache_hash' => '9933685245644ebf0b0d7a9_28345178',
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5642687767da86_91741908',
+  'unifunc' => 'content_5644ebf0cabf39_69726537',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5642687767da86_91741908')) {
-function content_5642687767da86_91741908 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5644ebf0cabf39_69726537')) {
+function content_5644ebf0cabf39_69726537 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '1628486070564268775daf45_09641894';
+$_smarty_tpl->properties['nocache_hash'] = '9933685245644ebf0b0d7a9_28345178';
 ?>
 <!DOCTYPE html>
 <html lang="en" ng-app="ScheduleApp">
@@ -56,25 +62,27 @@ $_smarty_tpl->properties['nocache_hash'] = '1628486070564268775daf45_09641894';
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Only Make Believe | <?php
-$_smarty_tpl->properties['nocache_hash'] = '1628486070564268775daf45_09641894';
+$_smarty_tpl->properties['nocache_hash'] = '9933685245644ebf0b0d7a9_28345178';
 ?>
 
 Login
 </title>
 
-  
-  <?php /*  Call merged included template "links.partial.html" */
-echo $_smarty_tpl->getInlineSubTemplate("links.partial.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, '162186369956426877642846_55427417', 'content_56426877641b58_34385153');
-/*  End of included template "links.partial.html" */?>
+  <?php
+$_smarty_tpl->properties['nocache_hash'] = '9933685245644ebf0b0d7a9_28345178';
+?>
 
-  
+<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="resources/css/normalize.css" rel="stylesheet">
+<link href="resources/css/style.css" rel="stylesheet">
+
 
   </head>
 
-  <body>
+  <body ng-controller="RootController">
 
     <?php
-$_smarty_tpl->properties['nocache_hash'] = '1628486070564268775daf45_09641894';
+$_smarty_tpl->properties['nocache_hash'] = '9933685245644ebf0b0d7a9_28345178';
 ?>
 
 
@@ -179,17 +187,19 @@ $_smarty_tpl->properties['nocache_hash'] = '1628486070564268775daf45_09641894';
 <?php }
 }
 ?><?php
-/*%%SmartyHeaderCode:162186369956426877642846_55427417%%*/
-if ($_valid && !is_callable('content_56426877641b58_34385153')) {
-function content_56426877641b58_34385153 ($_smarty_tpl) {
+/*%%SmartyHeaderCode:17623100775644ebf0c572e8_14206916%%*/
+if ($_valid && !is_callable('content_5644ebf0c56d72_94528733')) {
+function content_5644ebf0c56d72_94528733 ($_smarty_tpl) {
 ?>
 <?php
-$_smarty_tpl->properties['nocache_hash'] = '162186369956426877642846_55427417';
+$_smarty_tpl->properties['nocache_hash'] = '17623100775644ebf0c572e8_14206916';
 ?>
 <!-- Bootstrap -->
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 
 <link href="resources/css/normalize.css" rel="stylesheet">
+<link href="resources/css/dashboard.css" rel="stylesheet">
+<link href="resources/css/dashboard-theme.css" rel="stylesheet">
 <link href="resources/css/style.css" rel="stylesheet">
 
 <!-- Fonts -->
@@ -213,7 +223,7 @@ $_smarty_tpl->properties['nocache_hash'] = '162186369956426877642846_55427417';
 >
 
   <![endif]--><?php
-/*/%%SmartyNocache:162186369956426877642846_55427417%%*/
+/*/%%SmartyNocache:17623100775644ebf0c572e8_14206916%%*/
 }
 }
 ?>

@@ -8,8 +8,166 @@
 
 {block name="main"}
 
-<div class="container-fluid" ng-controller="MainController">
-	<div class="ng-view"></div>
+<!-- Top Navbar -->
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+    <div class="container-fluid">
+        
+        <ul class="nav navbar-nav navbar-left">
+            
+            <li id="menu-btn">
+                <a>
+                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                </a>
+            </li>
+            
+        </ul>
+        
+        <ul class="nav navbar-nav navbar-left hidden-xs">
+            
+            <li>
+                <a href="#">
+                    Home
+                </a>
+            </li>
+            <li class="active">
+                <a href="#">
+                    Schedule
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Actors
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Pay
+                </a>
+            </li>
+            
+        </ul>
+        
+        <ul class="nav navbar-nav navbar-right">
+            <li> 
+                <img src="resources/images/OMB.png" height ="50px" />
+            </li>
+            <li>
+                <a href="#">
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                </a>
+            </li>
+            
+            <li class="dropdown">
+            	<a class="dropdown-toggle" data-toggle="dropdown">
+            		{$user}
+            		<b class="caret"></b>
+            	</a>
+          		
+          		<ul class="dropdown-menu">
+                	<li>
+                    <div class="navbar-content">
+                        <div class="row">
+                            
+                            <div class="col-md-5">
+                                <img src="resources/images/tameem.jpg"
+                                    alt="profilepic" class="img-responsive img-thumbnail" />
+                                <p class="text-center small">
+                                	<a href="#">Change Photo</a>
+                                </p>
+                            </div>
+
+                            <div class="col-md-7">
+                                <span>Tameem Imamdad</span>
+                                <p class="text-muted small">
+                                    mail@gmail.com</p>
+                                
+                                <div class="divider"></div>
+
+                                <a href="?action=profile" class="btn btn-outphish btn-sm">View Profile</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="navbar-footer">
+                        <div class="navbar-footer-content">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <a href="?action=setting" class="btn btn-default btn-sm">Settings</a>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <a href="logoff.php" class="btn btn-danger btn-sm pull-right">Sign Out</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    </li>
+                </ul>
+            </li> <!-- End Profile li -->
+           
+        </ul>
+    </div>    
+</div>
+
+<!-- Page content -->
+<div id="wrapper">
+    
+    <div id="sidebar">
+	        
+        <div class="navbar navbar-default navbar-inverse">
+            
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-home"></span>
+                        <span class="hidden-xs">Home</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#" data-toggle="collapse" data-target="#scheduleCollapse" aria-expanded="false">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                        <span class="hidden-xs">Schedule</span>
+                    </a>
+                    
+                    <ul id="scheduleCollapse" class="collapse nav navbar-nav">
+                        <li>
+                            <a>Event</a>
+                        </li>
+                        <li>
+                            <a>Conflicts</a>
+                        </li>
+                    </ul>
+      
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span class="hidden-xs">Actors</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-tags"></span>
+                        <span class="hidden-xs">Pay</span>
+                    </a>
+                </li>
+            </ul>
+            
+        </div>
+        
+    </div>
+    
+	<div id="page-wrapper" class="container-fluid" ng-controller="MainController">
+		<div class="ng-view"></div>
+	</div>
 </div>
 
 {/block}

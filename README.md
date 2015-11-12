@@ -53,6 +53,15 @@ $ sudo php5enmod mcrypt
 $ lamp-restart 
 ```
 
+### LESS ###
+
+For non-frontend folks, you can ignore this section.
+Otherwise, the dashboard theme is setup in LESS. You can get the compiler through Node.js.
+Learning to use LESS is not required because the dashboard theme should not be editted too much.
+
+If you want to edit general css, it should be done in style.css, which will override
+the dashboard theme anyways.
+
 ## Setting up your database conection ##
 
 To set up your database, navigate to include/db/dbconfig.php 

@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2015-11-09 12:14:16
+<?php /* Smarty version 3.1.27, created on 2015-11-12 12:36:57
          compiled from "/var/www/html/onlymakebelieve/include/template/dashboard.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:119036205640d468ae9955_04146916%%*/
+/*%%SmartyHeaderCode:2559053045644ce39531183_57727441%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,13 +9,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b9632138c30a88d22128ae904b36ad5c01e507cc' => 
     array (
       0 => '/var/www/html/onlymakebelieve/include/template/dashboard.html',
-      1 => 1447089246,
+      1 => 1447349779,
       2 => 'file',
     ),
     '6ad5b1f9cffa3d12ae4cb1fed953f18934aafd10' => 
     array (
       0 => '/var/www/html/onlymakebelieve/include/template/layout.html',
-      1 => 1447084351,
+      1 => 1447348585,
       2 => 'file',
     ),
     'c646081bb8df779739172f3b17f3100d7fbec6ee' => 
@@ -27,12 +27,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '4d8ccebc8e068525522a4b24a65339c006b7c0bf' => 
     array (
       0 => '/var/www/html/onlymakebelieve/include/template/links.partial.html',
-      1 => 1446068369,
+      1 => 1447349727,
       2 => 'file',
     ),
-    '2f5f10a9bfc879ab091235579cc6c5934dbeda78' => 
+    '5277ac66dac4bee4d3a08dfd87900c18c25cc495' => 
     array (
-      0 => '2f5f10a9bfc879ab091235579cc6c5934dbeda78',
+      0 => '5277ac66dac4bee4d3a08dfd87900c18c25cc495',
       1 => 0,
       2 => 'string',
     ),
@@ -49,16 +49,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '119036205640d468ae9955_04146916',
+  'nocache_hash' => '2559053045644ce39531183_57727441',
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5640d468b40c32_43865741',
+  'unifunc' => 'content_5644ce395e2f58_60503422',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5640d468b40c32_43865741')) {
-function content_5640d468b40c32_43865741 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5644ce395e2f58_60503422')) {
+function content_5644ce395e2f58_60503422 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '119036205640d468ae9955_04146916';
+$_smarty_tpl->properties['nocache_hash'] = '2559053045644ce39531183_57727441';
 ?>
 <!DOCTYPE html>
 <html lang="en" ng-app="ScheduleApp">
@@ -68,38 +68,197 @@ $_smarty_tpl->properties['nocache_hash'] = '119036205640d468ae9955_04146916';
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Only Make Believe | <?php
-$_smarty_tpl->properties['nocache_hash'] = '119036205640d468ae9955_04146916';
+$_smarty_tpl->properties['nocache_hash'] = '2559053045644ce39531183_57727441';
 ?>
 Dashboard</title>
 
   
   <?php /*  Call merged included template "links.partial.html" */
-echo $_smarty_tpl->getInlineSubTemplate("links.partial.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, '4101787495640d468b16376_14162141', 'content_5640d468b15c94_20962926');
+echo $_smarty_tpl->getInlineSubTemplate("links.partial.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, '14153051885644ce3957cfb5_03531776', 'content_5644ce3957c3b1_69044858');
 /*  End of included template "links.partial.html" */?>
 
   
 
   </head>
 
-  <body>
+  <body ng-controller="RootController">
 
     <?php
-$_smarty_tpl->properties['nocache_hash'] = '119036205640d468ae9955_04146916';
+$_smarty_tpl->properties['nocache_hash'] = '2559053045644ce39531183_57727441';
 ?>
 
 
-<div class="container-fluid" ng-controller="MainController">
-	<div class="ng-view"></div>
+<!-- Top Navbar -->
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+    <div class="container-fluid">
+        
+        <ul class="nav navbar-nav navbar-left">
+            
+            <li id="menu-btn">
+                <a>
+                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                </a>
+            </li>
+            
+        </ul>
+        
+        <ul class="nav navbar-nav navbar-left hidden-xs">
+            
+            <li>
+                <a href="#">
+                    Home
+                </a>
+            </li>
+            <li class="active">
+                <a href="#">
+                    Schedule
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Actors
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Pay
+                </a>
+            </li>
+            
+        </ul>
+        
+        <ul class="nav navbar-nav navbar-right">
+            <li> 
+                <img src="resources/images/OMB.png" height ="50px" />
+            </li>
+            <li>
+                <a href="#">
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                </a>
+            </li>
+            
+            <li class="dropdown">
+            	<a class="dropdown-toggle" data-toggle="dropdown">
+            		<?php echo $_smarty_tpl->tpl_vars['user']->value;?>
+
+            		<b class="caret"></b>
+            	</a>
+          		
+          		<ul class="dropdown-menu">
+                	<li>
+                    <div class="navbar-content">
+                        <div class="row">
+                            
+                            <div class="col-md-5">
+                                <img src="resources/images/tameem.jpg"
+                                    alt="profilepic" class="img-responsive img-thumbnail" />
+                                <p class="text-center small">
+                                	<a href="#">Change Photo</a>
+                                </p>
+                            </div>
+
+                            <div class="col-md-7">
+                                <span>Tameem Imamdad</span>
+                                <p class="text-muted small">
+                                    mail@gmail.com</p>
+                                
+                                <div class="divider"></div>
+
+                                <a href="?action=profile" class="btn btn-outphish btn-sm">View Profile</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="navbar-footer">
+                        <div class="navbar-footer-content">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <a href="?action=setting" class="btn btn-default btn-sm">Settings</a>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <a href="logoff.php" class="btn btn-danger btn-sm pull-right">Sign Out</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    </li>
+                </ul>
+            </li> <!-- End Profile li -->
+           
+        </ul>
+    </div>    
+</div>
+
+<!-- Page content -->
+<div id="wrapper">
+    
+    <div id="sidebar">
+	        
+        <div class="navbar navbar-default navbar-inverse">
+            
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-home"></span>
+                        <span class="hidden-xs">Home</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#" data-toggle="collapse" data-target="#scheduleCollapse" aria-expanded="false">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                        <span class="hidden-xs">Schedule</span>
+                    </a>
+                    
+                    <ul id="scheduleCollapse" class="collapse nav navbar-nav">
+                        <li>
+                            <a>Event</a>
+                        </li>
+                        <li>
+                            <a>Conflicts</a>
+                        </li>
+                    </ul>
+      
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span class="hidden-xs">Actors</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-tags"></span>
+                        <span class="hidden-xs">Pay</span>
+                    </a>
+                </li>
+            </ul>
+            
+        </div>
+        
+    </div>
+    
+	<div id="page-wrapper" class="container-fluid" ng-controller="MainController">
+		<div class="ng-view"></div>
+	</div>
 </div>
 
 
 
     <?php
-$_smarty_tpl->properties['nocache_hash'] = '119036205640d468ae9955_04146916';
+$_smarty_tpl->properties['nocache_hash'] = '2559053045644ce39531183_57727441';
 ?>
 
 <?php /*  Call merged included template "scripts.partial.html" */
-echo $_smarty_tpl->getInlineSubTemplate("scripts.partial.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, '1222439415640d468b3b2f0_62299650', 'content_5640d468b3ad22_83265187');
+echo $_smarty_tpl->getInlineSubTemplate("scripts.partial.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, '15885694595644ce395d7191_75188530', 'content_5644ce395d65c8_22315459');
 /*  End of included template "scripts.partial.html" */?>
 
 
@@ -109,17 +268,19 @@ echo $_smarty_tpl->getInlineSubTemplate("scripts.partial.html", $_smarty_tpl->ca
 <?php }
 }
 ?><?php
-/*%%SmartyHeaderCode:4101787495640d468b16376_14162141%%*/
-if ($_valid && !is_callable('content_5640d468b15c94_20962926')) {
-function content_5640d468b15c94_20962926 ($_smarty_tpl) {
+/*%%SmartyHeaderCode:14153051885644ce3957cfb5_03531776%%*/
+if ($_valid && !is_callable('content_5644ce3957c3b1_69044858')) {
+function content_5644ce3957c3b1_69044858 ($_smarty_tpl) {
 ?>
 <?php
-$_smarty_tpl->properties['nocache_hash'] = '4101787495640d468b16376_14162141';
+$_smarty_tpl->properties['nocache_hash'] = '14153051885644ce3957cfb5_03531776';
 ?>
 <!-- Bootstrap -->
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 
 <link href="resources/css/normalize.css" rel="stylesheet">
+<link href="resources/css/dashboard.css" rel="stylesheet">
+<link href="resources/css/dashboard-theme.css" rel="stylesheet">
 <link href="resources/css/style.css" rel="stylesheet">
 
 <!-- Fonts -->
@@ -143,16 +304,16 @@ $_smarty_tpl->properties['nocache_hash'] = '4101787495640d468b16376_14162141';
 >
 
   <![endif]--><?php
-/*/%%SmartyNocache:4101787495640d468b16376_14162141%%*/
+/*/%%SmartyNocache:14153051885644ce3957cfb5_03531776%%*/
 }
 }
 ?><?php
-/*%%SmartyHeaderCode:1222439415640d468b3b2f0_62299650%%*/
-if ($_valid && !is_callable('content_5640d468b3ad22_83265187')) {
-function content_5640d468b3ad22_83265187 ($_smarty_tpl) {
+/*%%SmartyHeaderCode:15885694595644ce395d7191_75188530%%*/
+if ($_valid && !is_callable('content_5644ce395d65c8_22315459')) {
+function content_5644ce395d65c8_22315459 ($_smarty_tpl) {
 ?>
 <?php
-$_smarty_tpl->properties['nocache_hash'] = '1222439415640d468b3b2f0_62299650';
+$_smarty_tpl->properties['nocache_hash'] = '15885694595644ce395d7191_75188530';
 ?>
 	<!-- Bootstrap core JavaScript
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -174,7 +335,7 @@ $_smarty_tpl->properties['nocache_hash'] = '1222439415640d468b3b2f0_62299650';
 	<?php echo '<script'; ?>
  src="resources/js/main.js"><?php echo '</script'; ?>
 ><?php
-/*/%%SmartyNocache:1222439415640d468b3b2f0_62299650%%*/
+/*/%%SmartyNocache:15885694595644ce395d7191_75188530%%*/
 }
 }
 ?>

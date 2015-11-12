@@ -15,6 +15,11 @@ appModule.config(function($routeProvider) {
 
 });
 
+appModule.controller("RootController", function($scope) {
+	$scope.user = "User";
+});
+
 appModule.controller("MainController", function($scope) {
 	$scope.testing = "Test";
 });
+

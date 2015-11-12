@@ -23,41 +23,56 @@ appModule.controller("MainController", function($scope) {
 	$scope.testing = "Test";
 });
 
+
+appModule.directive('calendar',  ['$rootScope', function($rootScope) {
+return {
+    restrict: 'A',
+    link: function($scope, element) {
+        
+        // Run Code here
+
+        $(element).fullCalendar({
+            //uses my Google Calendar API key for now
+            googleCalendarApiKey: 'AIzaSyBNlYH01_9Hc5S1J9vuFmu2nUqBZJNAXxs ',
+             
+            // Populates US holidays and Example FFG holidays
+            events: {
+                googleCalendarId: 'onlymakebelieve.org_o8mk4ka4mrbo2101de9mfg9f50@group.calendar.google.com',
+                // Think this is OMB API key
+                //   AIzaSyBNlYH01_9Hc5S1J9vuFmu2nUqBZJNAXxs
+                //onlymakebelieve.org_o8mk4ka4mrbo2101de9mfg9f50@group.calendar.google.com
+
+                /* MY key
+                AIzaSyAFKT1d_pETqF40V66ceNUm8TIhypgD-6g
+                tsgforce.com_iuc4u4omg70eiieko6iu7i8p5k@group.calendar.google.com
+                */
+                 
+            },
+            eventClick: function(event) {
+                // opens events in a popup window
+                window.open(event.url, 'gcalevent', 'width=700,height=600');
+                return false;
+            },
+            selectable: true,
+            selectHelper: true,
+            editable: true,
+            eventLimit: true, // allow "more" link when too many events
+            header: {
+                left: 'prev,next,today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            }
+             
+        }); 
+
+        // End code
+
+    }
+};
+}]);
+
 // Inserts the calendar onto the page
 $(document).ready(function() {
-   $("#calendar").fullCalendar({
-       //uses my Google Calendar API key for now
-       googleCalendarApiKey: 'AIzaSyBNlYH01_9Hc5S1J9vuFmu2nUqBZJNAXxs ',
-       
-       // Populates US holidays and Example FFG holidays
-       events: {
-           googleCalendarId: 'onlymakebelieve.org_o8mk4ka4mrbo2101de9mfg9f50@group.calendar.google.com',
-           // Think this is OMB API key
-           //   AIzaSyBNlYH01_9Hc5S1J9vuFmu2nUqBZJNAXxs
-           //onlymakebelieve.org_o8mk4ka4mrbo2101de9mfg9f50@group.calendar.google.com
-           
-           /* MY key
-           AIzaSyAFKT1d_pETqF40V66ceNUm8TIhypgD-6g
-           tsgforce.com_iuc4u4omg70eiieko6iu7i8p5k@group.calendar.google.com
-           */
-           
-       },
-       eventClick: function(event) {
-			// opens events in a popup window
-			window.open(event.url, 'gcalevent', 'width=700,height=600');
-			return false;
-		},
-		selectable: true,
-		selectHelper: true,
-		editable: true,
-		eventLimit: true, // allow "more" link when too many events
-       header: {
-            left: 'prev,next,today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-       }
-       
-   }); 
    
    $("#menu-btn").on("click", function() {
        toggleMenu();

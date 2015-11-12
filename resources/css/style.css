@@ -17,14 +17,11 @@ html {
 }
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
-  background-color: #eff3f3;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 400;
 
   font-size: 14px;
   line-height: 1.42857143;
-  background-color: #F1F1F1;
 }
 body {
   font:13px Helmet, Freesans, sans-serif;
@@ -381,11 +378,6 @@ code {
         text-align : center;
     }
     
-    
-    
-    .nav{
-        margin-top : 30px;
-    }
 }
 
 

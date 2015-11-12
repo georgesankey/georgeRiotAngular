@@ -22,6 +22,13 @@ directory and execute:
 $ composer install
 ```
 
+Then, to fix some templating issues due to Github not retaining permissions,
+you need to run:
+
+```
+$ chmod 777 /include/template_c
+```
+
 ### Aliases ###
 
 I have some aliases in bashrc to help with server management. To add, 
@@ -45,6 +52,15 @@ $ sudo apt-get install php5-mcrypt
 $ sudo php5enmod mcrypt
 $ lamp-restart 
 ```
+
+### LESS ###
+
+For non-frontend folks, you can ignore this section.
+Otherwise, the dashboard theme is setup in LESS. You can get the compiler through Node.js.
+Learning to use LESS is not required because the dashboard theme should not be editted too much.
+
+If you want to edit general css, it should be done in style.css, which will override
+the dashboard theme anyways.
 
 ## Setting up your database conection ##
 

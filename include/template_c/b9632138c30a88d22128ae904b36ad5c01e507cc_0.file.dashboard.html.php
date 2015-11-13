@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2015-11-13 12:05:59
+<?php /* Smarty version 3.1.27, created on 2015-11-13 14:58:18
          compiled from "/var/www/html/onlymakebelieve/include/template/dashboard.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:8598638856461877d87524_45763703%%*/
+/*%%SmartyHeaderCode:362022510564640da68f5a8_88713921%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,13 +9,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b9632138c30a88d22128ae904b36ad5c01e507cc' => 
     array (
       0 => '/var/www/html/onlymakebelieve/include/template/dashboard.html',
-      1 => 1447434313,
+      1 => 1447444687,
       2 => 'file',
     ),
     '6ad5b1f9cffa3d12ae4cb1fed953f18934aafd10' => 
     array (
       0 => '/var/www/html/onlymakebelieve/include/template/layout.html',
-      1 => 1447348585,
+      1 => 1447356880,
       2 => 'file',
     ),
     'c646081bb8df779739172f3b17f3100d7fbec6ee' => 
@@ -27,12 +27,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '4d8ccebc8e068525522a4b24a65339c006b7c0bf' => 
     array (
       0 => '/var/www/html/onlymakebelieve/include/template/links.partial.html',
-      1 => 1447361000,
+      1 => 1447361111,
       2 => 'file',
     ),
-    'e6c0cb347438361726a09141794c025c3081b3e8' => 
+    '3543a2390dafd5d30cd167164761d38abfc62e28' => 
     array (
-      0 => 'e6c0cb347438361726a09141794c025c3081b3e8',
+      0 => '3543a2390dafd5d30cd167164761d38abfc62e28',
       1 => 0,
       2 => 'string',
     ),
@@ -45,20 +45,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ce328caaafb54e8ee3293ac70336ba30b6e22f93' => 
     array (
       0 => '/var/www/html/onlymakebelieve/include/template/scripts.partial.html',
-      1 => 1447359627,
+      1 => 1447359279,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '8598638856461877d87524_45763703',
+  'nocache_hash' => '362022510564640da68f5a8_88713921',
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56461877e629d9_00439270',
+  'unifunc' => 'content_564640da7388b2_36748766',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56461877e629d9_00439270')) {
-function content_56461877e629d9_00439270 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_564640da7388b2_36748766')) {
+function content_564640da7388b2_36748766 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '8598638856461877d87524_45763703';
+$_smarty_tpl->properties['nocache_hash'] = '362022510564640da68f5a8_88713921';
 ?>
 <!DOCTYPE html>
 <html lang="en" ng-app="ScheduleApp">
@@ -68,13 +68,13 @@ $_smarty_tpl->properties['nocache_hash'] = '8598638856461877d87524_45763703';
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Only Make Believe | <?php
-$_smarty_tpl->properties['nocache_hash'] = '8598638856461877d87524_45763703';
+$_smarty_tpl->properties['nocache_hash'] = '362022510564640da68f5a8_88713921';
 ?>
 Dashboard</title>
 
   
   <?php /*  Call merged included template "links.partial.html" */
-echo $_smarty_tpl->getInlineSubTemplate("links.partial.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, '212816494456461877dff4c9_58334309', 'content_56461877dfe826_31650627');
+echo $_smarty_tpl->getInlineSubTemplate("links.partial.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, '751265008564640da6e5756_14789617', 'content_564640da6e4f10_54285245');
 /*  End of included template "links.partial.html" */?>
 
   
@@ -84,7 +84,7 @@ echo $_smarty_tpl->getInlineSubTemplate("links.partial.html", $_smarty_tpl->cach
   <body ng-controller="RootController">
 
     <?php
-$_smarty_tpl->properties['nocache_hash'] = '8598638856461877d87524_45763703';
+$_smarty_tpl->properties['nocache_hash'] = '362022510564640da68f5a8_88713921';
 ?>
 
 
@@ -104,7 +104,7 @@ $_smarty_tpl->properties['nocache_hash'] = '8598638856461877d87524_45763703';
         <ul class="nav navbar-nav navbar-left hidden-xs">
             
             <li ng-class="{active:isPage('')}">
-                <a href="#/">
+                <a href="#/dashboard">
                     Home
                 </a>
             </li>
@@ -259,11 +259,11 @@ $_smarty_tpl->properties['nocache_hash'] = '8598638856461877d87524_45763703';
 
 
     <?php
-$_smarty_tpl->properties['nocache_hash'] = '8598638856461877d87524_45763703';
+$_smarty_tpl->properties['nocache_hash'] = '362022510564640da68f5a8_88713921';
 ?>
 
 <?php /*  Call merged included template "scripts.partial.html" */
-echo $_smarty_tpl->getInlineSubTemplate("scripts.partial.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, '57225838056461877e56861_34577862', 'content_56461877e55801_35713660');
+echo $_smarty_tpl->getInlineSubTemplate("scripts.partial.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, '480637670564640da72e6f5_66565371', 'content_564640da72dec5_13728383');
 /*  End of included template "scripts.partial.html" */?>
 
 
@@ -273,12 +273,12 @@ echo $_smarty_tpl->getInlineSubTemplate("scripts.partial.html", $_smarty_tpl->ca
 <?php }
 }
 ?><?php
-/*%%SmartyHeaderCode:212816494456461877dff4c9_58334309%%*/
-if ($_valid && !is_callable('content_56461877dfe826_31650627')) {
-function content_56461877dfe826_31650627 ($_smarty_tpl) {
+/*%%SmartyHeaderCode:751265008564640da6e5756_14789617%%*/
+if ($_valid && !is_callable('content_564640da6e4f10_54285245')) {
+function content_564640da6e4f10_54285245 ($_smarty_tpl) {
 ?>
 <?php
-$_smarty_tpl->properties['nocache_hash'] = '212816494456461877dff4c9_58334309';
+$_smarty_tpl->properties['nocache_hash'] = '751265008564640da6e5756_14789617';
 ?>
 <!-- Bootstrap -->
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
@@ -311,16 +311,16 @@ $_smarty_tpl->properties['nocache_hash'] = '212816494456461877dff4c9_58334309';
 >
 
   <![endif]--><?php
-/*/%%SmartyNocache:212816494456461877dff4c9_58334309%%*/
+/*/%%SmartyNocache:751265008564640da6e5756_14789617%%*/
 }
 }
 ?><?php
-/*%%SmartyHeaderCode:57225838056461877e56861_34577862%%*/
-if ($_valid && !is_callable('content_56461877e55801_35713660')) {
-function content_56461877e55801_35713660 ($_smarty_tpl) {
+/*%%SmartyHeaderCode:480637670564640da72e6f5_66565371%%*/
+if ($_valid && !is_callable('content_564640da72dec5_13728383')) {
+function content_564640da72dec5_13728383 ($_smarty_tpl) {
 ?>
 <?php
-$_smarty_tpl->properties['nocache_hash'] = '57225838056461877e56861_34577862';
+$_smarty_tpl->properties['nocache_hash'] = '480637670564640da72e6f5_66565371';
 ?>
 	<!-- Bootstrap core JavaScript
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -351,7 +351,7 @@ $_smarty_tpl->properties['nocache_hash'] = '57225838056461877e56861_34577862';
 	<?php echo '<script'; ?>
  type="text/javascript" src="resources/js/main.js"><?php echo '</script'; ?>
 ><?php
-/*/%%SmartyNocache:57225838056461877e56861_34577862%%*/
+/*/%%SmartyNocache:480637670564640da72e6f5_66565371%%*/
 }
 }
 ?>

@@ -11,10 +11,6 @@ Email: timamdad@hawk.iit.edu;
   src: url('../fonts/algoth.ttf') format('truetype');
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
 body {
   /* Margin bottom by footer height */
   font-family: 'Source Sans Pro', sans-serif;
@@ -27,47 +23,41 @@ body {
   font:13px Helmet, Freesans, sans-serif;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 80px;
-  background-color: #8f1963;
-  border-top:solid 2px white;
+@media (min-width: 768px) {
+  #login-overlay {
+    height:235px;
+    width:400px;
+    position:absolute;
+    margin:auto;
+    left:0;right:0;top:0;bottom:0;
+  }
 }
 
-.footer p {
-  color:white;
+.login-footer {
+  position:fixed;
+  bottom:0px;
+  width: 100%;
+  height: 50px;
+  background-color: transparent;
+}
+
+.login-footer p {
+  color:#8f1963;
   margin:5px;
   text-align: center;
-    vertical-align: middle;
-    padding-top: 20px;
 }
 /* Custom page CSS
 -------------------------------------------------- */
-
-
-body > .container {
-  padding: 0px 15px 0;
-
-}
-.container .text-muted {
-  margin: 20px 0;
-}
-
-.footer > .container {
-  padding-right: 15px;
-  padding-left: 15px;
-}
 
 code {
   font-size: 80%;
 }
 
-.content {
+.login-content {
+  position:fixed;
+  height:100%;
+  width:100%;
   background-color: #eff3f3;
-
 }
 
 .clear {

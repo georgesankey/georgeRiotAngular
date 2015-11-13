@@ -12,32 +12,33 @@ Login
 
 {block name="main"}
 
-<div class="container">
+<!-- Begin page content -->
+
+<div class="container login-content">
+
     <div class="col-md-12">
     	<h1 class="mainhead text-center">
     		Only Make Believe Scheduler 
     		<i class="fa fa-clock-o iconcolor fa-lg"></i>
     	</h1>
     </div>
-</div>
-
-<!-- Begin page content -->
-
-<div class="container content">
 
   	<div id="login-overlay" class="modal-dialog">
 
 		<div class="modal-content">
 
+			<!--
 		  	<div class="modal-header">
-		      	<h2 class="modal-title text-center" id="myModalLabel">Login</h2>
+		      	<h3 class="modal-title text-center" id="login-title">
+		      		Only Make Believe Scheduler
+		      	</h3>
 		  	</div>
+		  	-->
 
-	  	<div class="modal-body">
-	      	<div class="row">
-	          	<div class="col-xs-12">
-	              	<div class="well">
-
+		  	<div class="modal-body">
+		      	<div class="row">
+		          	<div class="col-xs-12">
+		              	
 	                  	<form id="loginForm" method="POST" action="login.php">
 
 	                      	<div class="form-group">
@@ -65,38 +66,32 @@ Login
 	                      	<div class="checkbox">
 
 	                          	<label>
-
-	                              	<input type="checkbox" name="remember" id="remember"> Remember login
-
+	                              	<input type="checkbox" name="remember" id="remember"> Remember Me
 	                          	</label>
-
-	                          	<p class="help-block">(if this is a private computer)</p>
 
 	                      	</div>
 
-	                      	<button type="submit" class="btn btn-primary btn-block btn-norad">Login</button>
-	                      	<button type="submit" class="btn btn-danger btn-block btn-norad"><i class="fa fa-google fa-lg fa-fw"></i>Sign in with Google</button>
+	                      	<button type="submit" class="btn btn-primary btn-norad pull-right">Login</button>
+	                      	<button type="submit" class="btn btn-danger btn-norad pull-right"><i class="fa fa-google fa-lg fa-fw"></i>Google</button>
 
-	                      	<button type="reset" class="btn btn-default btn-block btn-norad">Register</button>
-
+	                      	<button type="reset" class="btn btn-default btn-norad pull-left">Register</button>
+	                      	<div class="clear">&nbsp;</div> 
 	                  	</form>
 
-	              	</div>
-
-	          	</div>
+		          	</div>
 
 
-	      	</div>
+		      	</div>
 
-	  	</div>
+		  	</div>
+		  	
+		 </div>
 
 	</div>
 
 </div>
 
-<div class="clear">&nbsp;</div> 
-
-<div class="footer">
+<div class="login-footer">
     <p class="text-muted">&#169;2015 Only Make Believe. All Rights Reserved.</p>
 </div>
 

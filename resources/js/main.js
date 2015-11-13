@@ -97,7 +97,6 @@ return {
 };
 }]);
 
-// Inserts the calendar onto the page
 $(document).ready(function() {
    
    $("#menu-btn").on("click", function() {

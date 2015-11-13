@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2015-11-12 15:43:26
+<?php /* Smarty version 3.1.27, created on 2015-11-13 12:05:59
          compiled from "/var/www/html/onlymakebelieve/include/template/dashboard.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:7162542325644f9ee84c1c5_13514850%%*/
+/*%%SmartyHeaderCode:8598638856461877d87524_45763703%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,7 +9,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b9632138c30a88d22128ae904b36ad5c01e507cc' => 
     array (
       0 => '/var/www/html/onlymakebelieve/include/template/dashboard.html',
-      1 => 1447349779,
+      1 => 1447434313,
       2 => 'file',
     ),
     '6ad5b1f9cffa3d12ae4cb1fed953f18934aafd10' => 
@@ -30,9 +30,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       1 => 1447361000,
       2 => 'file',
     ),
-    '5277ac66dac4bee4d3a08dfd87900c18c25cc495' => 
+    'e6c0cb347438361726a09141794c025c3081b3e8' => 
     array (
-      0 => '5277ac66dac4bee4d3a08dfd87900c18c25cc495',
+      0 => 'e6c0cb347438361726a09141794c025c3081b3e8',
       1 => 0,
       2 => 'string',
     ),
@@ -49,16 +49,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '7162542325644f9ee84c1c5_13514850',
+  'nocache_hash' => '8598638856461877d87524_45763703',
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5644f9ee8ef208_68830908',
+  'unifunc' => 'content_56461877e629d9_00439270',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5644f9ee8ef208_68830908')) {
-function content_5644f9ee8ef208_68830908 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_56461877e629d9_00439270')) {
+function content_56461877e629d9_00439270 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '7162542325644f9ee84c1c5_13514850';
+$_smarty_tpl->properties['nocache_hash'] = '8598638856461877d87524_45763703';
 ?>
 <!DOCTYPE html>
 <html lang="en" ng-app="ScheduleApp">
@@ -68,13 +68,13 @@ $_smarty_tpl->properties['nocache_hash'] = '7162542325644f9ee84c1c5_13514850';
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Only Make Believe | <?php
-$_smarty_tpl->properties['nocache_hash'] = '7162542325644f9ee84c1c5_13514850';
+$_smarty_tpl->properties['nocache_hash'] = '8598638856461877d87524_45763703';
 ?>
 Dashboard</title>
 
   
   <?php /*  Call merged included template "links.partial.html" */
-echo $_smarty_tpl->getInlineSubTemplate("links.partial.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, '21385439905644f9ee89f147_05490526', 'content_5644f9ee89e827_65337930');
+echo $_smarty_tpl->getInlineSubTemplate("links.partial.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, '212816494456461877dff4c9_58334309', 'content_56461877dfe826_31650627');
 /*  End of included template "links.partial.html" */?>
 
   
@@ -84,7 +84,7 @@ echo $_smarty_tpl->getInlineSubTemplate("links.partial.html", $_smarty_tpl->cach
   <body ng-controller="RootController">
 
     <?php
-$_smarty_tpl->properties['nocache_hash'] = '7162542325644f9ee84c1c5_13514850';
+$_smarty_tpl->properties['nocache_hash'] = '8598638856461877d87524_45763703';
 ?>
 
 
@@ -93,39 +93,38 @@ $_smarty_tpl->properties['nocache_hash'] = '7162542325644f9ee84c1c5_13514850';
     <div class="container-fluid">
         
         <ul class="nav navbar-nav navbar-left">
-            
             <li id="menu-btn">
                 <a>
                     <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
                 </a>
             </li>
-            
         </ul>
+        
         
         <ul class="nav navbar-nav navbar-left hidden-xs">
             
-            <li>
-                <a href="#">
+            <li ng-class="{active:isPage('')}">
+                <a href="#/">
                     Home
                 </a>
             </li>
-            <li class="active">
-                <a href="#">
+            <li ng-class="{active:isPage('calendar')}">
+                <a href="#/calendar">
                     Schedule
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li ng-class="{active:isPage('actors')}">
+                <a href="#/actors">
                     Actors
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li ng-class="{active:isPage('pay')}">
+                <a href="#/pay">
                     Pay
                 </a>
             </li>
-            
         </ul>
+        
         
         <ul class="nav navbar-nav navbar-right">
             <li> 
@@ -205,15 +204,18 @@ $_smarty_tpl->properties['nocache_hash'] = '7162542325644f9ee84c1c5_13514850';
 	        
         <div class="navbar navbar-default navbar-inverse">
             
+            
             <ul class="nav navbar-nav">
-                <li>
-                    <a href="#">
+
+                <li ng-class="{active:isPage('')}">
+                    <a href="#/">
                         <span class="glyphicon glyphicon-home"></span>
                         <span class="hidden-xs">Home</span>
                     </a>
                 </li>
-                <li class="active">
-                    <a href="#" data-toggle="collapse" data-target="#scheduleCollapse" aria-expanded="false">
+
+                <li ng-class="{active:isPage('calendar')}">
+                    <a href="#/calendar" data-toggle="collapse" data-target="#scheduleCollapse" aria-expanded="false">
                         <span class="glyphicon glyphicon-calendar"></span>
                         <span class="hidden-xs">Schedule</span>
                     </a>
@@ -228,20 +230,23 @@ $_smarty_tpl->properties['nocache_hash'] = '7162542325644f9ee84c1c5_13514850';
                     </ul>
       
                 </li>
-                <li>
-                    <a href="#">
+
+                <li ng-class="{active:isPage('actors')}">
+                    <a href="#/actors">
                         <span class="glyphicon glyphicon-user"></span>
                         <span class="hidden-xs">Actors</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+
+                <li ng-class="{active:isPage('pay')}">
+                    <a href="#/pay">
                         <span class="glyphicon glyphicon-tags"></span>
                         <span class="hidden-xs">Pay</span>
                     </a>
                 </li>
             </ul>
             
+
         </div>
         
     </div>
@@ -254,11 +259,11 @@ $_smarty_tpl->properties['nocache_hash'] = '7162542325644f9ee84c1c5_13514850';
 
 
     <?php
-$_smarty_tpl->properties['nocache_hash'] = '7162542325644f9ee84c1c5_13514850';
+$_smarty_tpl->properties['nocache_hash'] = '8598638856461877d87524_45763703';
 ?>
 
 <?php /*  Call merged included template "scripts.partial.html" */
-echo $_smarty_tpl->getInlineSubTemplate("scripts.partial.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, '17371754475644f9ee8e58b1_88799887', 'content_5644f9ee8e5091_33662039');
+echo $_smarty_tpl->getInlineSubTemplate("scripts.partial.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, '57225838056461877e56861_34577862', 'content_56461877e55801_35713660');
 /*  End of included template "scripts.partial.html" */?>
 
 
@@ -268,12 +273,12 @@ echo $_smarty_tpl->getInlineSubTemplate("scripts.partial.html", $_smarty_tpl->ca
 <?php }
 }
 ?><?php
-/*%%SmartyHeaderCode:21385439905644f9ee89f147_05490526%%*/
-if ($_valid && !is_callable('content_5644f9ee89e827_65337930')) {
-function content_5644f9ee89e827_65337930 ($_smarty_tpl) {
+/*%%SmartyHeaderCode:212816494456461877dff4c9_58334309%%*/
+if ($_valid && !is_callable('content_56461877dfe826_31650627')) {
+function content_56461877dfe826_31650627 ($_smarty_tpl) {
 ?>
 <?php
-$_smarty_tpl->properties['nocache_hash'] = '21385439905644f9ee89f147_05490526';
+$_smarty_tpl->properties['nocache_hash'] = '212816494456461877dff4c9_58334309';
 ?>
 <!-- Bootstrap -->
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
@@ -306,16 +311,16 @@ $_smarty_tpl->properties['nocache_hash'] = '21385439905644f9ee89f147_05490526';
 >
 
   <![endif]--><?php
-/*/%%SmartyNocache:21385439905644f9ee89f147_05490526%%*/
+/*/%%SmartyNocache:212816494456461877dff4c9_58334309%%*/
 }
 }
 ?><?php
-/*%%SmartyHeaderCode:17371754475644f9ee8e58b1_88799887%%*/
-if ($_valid && !is_callable('content_5644f9ee8e5091_33662039')) {
-function content_5644f9ee8e5091_33662039 ($_smarty_tpl) {
+/*%%SmartyHeaderCode:57225838056461877e56861_34577862%%*/
+if ($_valid && !is_callable('content_56461877e55801_35713660')) {
+function content_56461877e55801_35713660 ($_smarty_tpl) {
 ?>
 <?php
-$_smarty_tpl->properties['nocache_hash'] = '17371754475644f9ee8e58b1_88799887';
+$_smarty_tpl->properties['nocache_hash'] = '57225838056461877e56861_34577862';
 ?>
 	<!-- Bootstrap core JavaScript
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -346,7 +351,7 @@ $_smarty_tpl->properties['nocache_hash'] = '17371754475644f9ee8e58b1_88799887';
 	<?php echo '<script'; ?>
  type="text/javascript" src="resources/js/main.js"><?php echo '</script'; ?>
 ><?php
-/*/%%SmartyNocache:17371754475644f9ee8e58b1_88799887%%*/
+/*/%%SmartyNocache:57225838056461877e56861_34577862%%*/
 }
 }
 ?>

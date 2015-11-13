@@ -6,17 +6,43 @@ appModule.config(function($routeProvider) {
 
 	$routeProvider
 	    .when('/', {
-	      controller:'MainController',
-	      templateUrl:'resources/views/dashboard.html'
+	        controller:'MainController',
+	        templateUrl:'resources/views/dashboard.html'
 	    })
+        .when('/calendar', {
+            controller:'MainController',
+            templateUrl:'resources/views/calendar.html'
+        })
+        .when('/pay', {
+            controller:'MainController',
+            templateUrl:'resources/views/pay.html'
+        })
+        .when('/actors', {
+            controller:'MainController',
+            templateUrl:'resources/views/actors.html'
+        })
 	    .otherwise({
-	      redirectTo:'/'
+	        redirectTo:'/'
 	    });
 
 });
 
-appModule.controller("RootController", function($scope) {
+appModule.controller("RootController", function($scope, $location, $route) {
 	$scope.user = "User";
+    
+    // Track the current page for nav
+    $scope.page = "";
+    $scope.isPage = function(testPage) {return $scope.page == testPage;}
+    $scope.$on('$locationChangeStart', function(evt) {
+        var path = $location.path().split("/");
+        if(path.length == 1) {
+            $scope.page = "";
+        } else {
+            $scope.page = path[1];
+        }
+    });
+
+
 });
 
 appModule.controller("MainController", function($scope) {

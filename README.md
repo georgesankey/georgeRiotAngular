@@ -26,6 +26,7 @@ Then, to fix some templating issues due to Github not retaining permissions,
 you need to run:
 
 ```
+$ mkdir /include/template_c
 $ chmod 777 /include/template_c
 ```
 

@@ -53,6 +53,10 @@ code {
   font-size: 80%;
 }
 
+.panel {
+  border-radius:0px;
+}
+
 .login-content {
   position:fixed;
   height:100%;
@@ -175,6 +179,12 @@ code {
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
         color: #333;
     }
+}
+
+.profile-thumbnail {
+    height:46px;
+    margin-top:2px;
+    border:1px solid #666;
 }
 
 /* BUTTONS */
@@ -453,4 +463,28 @@ code {
   border-bottom:6px solid #8f1963;
   margin-bottom:15px;
 
+}
+
+/* Dashboard View */
+
+#dash-calendar .fc-toolbar, #dash-calendar .fc-more-cell,
+    #dash-calendar .fc-content-skeleton tbody {
+    display:none;
+}
+
+#dash-calendar td, #dash-calendar th {
+    border:none;
+}
+
+#dash-calendar .fc-widget-header {
+    border-bottom:1px solid #ddd;
+    border-right:none;
+}
+
+#dash-calendar .fc-body .fc-row {
+    min-height:20px;
+}
+
+#dash-calendar .fc-scroller {
+    overflow-y:hidden;
 }

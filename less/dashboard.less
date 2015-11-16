@@ -49,13 +49,13 @@ body {
         border-radius:0px;
     }
     
-    .navbar li {
+    .nav > li {
         display:block;
         float:none;
         width:100%;
     }
     
-    .navbar span {
+    .nav > li > span {
         margin-right:5px;
     }
     
@@ -64,7 +64,7 @@ body {
     }
     
     // Sidebar levels:
-    .nav .nav li {
+    .nav .nav > li {
         padding-left:6px;
     }
     
@@ -82,16 +82,16 @@ body {
 
 // Navbar fixes
 
-.navbar li:hover {
+.nav > li:hover {
     background:#e4e4e4;
 }
 
-.navbar-inverse li:hover {
+.navbar-inverse .nav > li:hover {
     background:#111;
 }
 
 /* Fix navbar items for resize */
-.navbar-nav>li>a {
+.navbar-nav > li > a {
     padding-top: 15px;
     padding-bottom: 15px;
 }

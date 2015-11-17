@@ -108,3 +108,37 @@ body {
     }
     
 }
+
+// Cool list look 
+
+.list-sharp {
+    list-style-type:none;
+    margin:10px 5px;
+    padding:0;
+    border:1px solid #999;
+
+    li {
+        padding:5px;
+        border-top:1px dashed lightgrey;
+        cursor:pointer;
+
+        &:first-child {
+            border-top:none;
+        }
+
+        &.divider {
+            height:0px;
+            padding:0px;
+            border-top:1px solid lightgrey;
+        }
+
+        &:hover {
+            background:whitesmoke;
+        }
+
+        &:disabled {
+            color:grey;
+            background:#999;
+        }
+    }    
+}

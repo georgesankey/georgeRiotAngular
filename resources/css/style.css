@@ -482,9 +482,22 @@ code {
 }
 
 #dash-calendar .fc-body .fc-row {
-    min-height:20px;
+    min-height:25px;
 }
 
 #dash-calendar .fc-scroller {
     overflow-y:hidden;
+}
+
+#dash-calendar .fc-highlight {
+    background:#CAFB95;
+}
+
+#dash-calendar .fc-today {
+    background:#A7D6FF;
+    opacity:1;
+}
+
+.list-sharp li:hover {
+    
 }

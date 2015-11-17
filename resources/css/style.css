@@ -488,3 +488,18 @@ code {
 #dash-calendar .fc-scroller {
     overflow-y:hidden;
 }
+/* Pay Period / timesheet csss */
+#PayPeriod{
+  float: left;
+  font-family: 'Open Sans', 'sans-serif';
+  margin-left: 15px;
+  background-color: white;
+
+}
+.pay-sb{
+  width:25%;
+}
+#horizontal-line{
+  border-bottom: 1px solid black;
+  margin-bottom: 8px;
+}

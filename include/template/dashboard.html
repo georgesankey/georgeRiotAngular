@@ -24,7 +24,7 @@
         <ul class="nav navbar-nav navbar-left hidden-xs">
             
             <li ng-class="{active:isPage('')}">
-                <a href="#/dashboard">
+                <a href="#/">
                     Home
                 </a>
             </li>
@@ -50,15 +50,24 @@
             <li> 
                 <img src="resources/images/OMB.png" height ="50px" />
             </li>
+
             <li>
-                <a href="#">
+                <a class="dropdown-toggle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
                 </a>
+
+                <ul class="dropdown-menu">
+                    <li><a>No messages to show.</a></li>
+                </ul>
             </li>
-            <li>
-                <a href="#">
-                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
                 </a>
+
+                <ul class="dropdown-menu">
+                    <li><a>No notifications to show.</a></li>
+                </ul>
             </li>
             
             <li>
@@ -74,11 +83,10 @@
           		
           		<ul class="dropdown-menu">
                     <li>
-                        <a href="#/">
+                        <a href="#/u/1234">
                             View Profile
                         </a>
                     </li>    
-
                     <li>
                         <a href="#/">
                             Settings

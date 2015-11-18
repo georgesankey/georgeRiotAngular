@@ -21,6 +21,22 @@ appModule.config(function($routeProvider) {
             controller:'MainController',
             templateUrl:'resources/views/actors.html'
         })
+        .when('/create/v/', {
+            controller:'MainController',
+            templateUrl:'resources/views/create/create_venue.html'
+        })
+        .when('/create/e/', {
+            controller:'MainController',
+            templateUrl:'resources/views/create/create_event.html'
+        })
+        .when('/v/:id', {
+            controller:'MainController',
+            templateUrl:'resources/views/venue.html'
+        })
+        .when('/e/:id', {
+            controller:'MainController',
+            templateUrl:'resources/views/event.html'
+        })
         .when('/404', {
             templateUrl:'resources/views/404.html'
         })

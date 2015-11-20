@@ -65,11 +65,12 @@ appModule.controller("RootController", function($scope, $location, $route) {
 });
 
 appModule.controller("MainController", function($scope) {
-	$scope.testing = "Test";
+	//$scope.event = {location:"test"};
+
 });
 
 
-appModule.directive('calendar',  ['$rootScope', function($rootScope) {
+appModule.directive('calendar',  ['$rootScope', '$location', function($rootScope, $location) {
 return {
     restrict: 'A',
     link: function($scope, element) {
@@ -95,7 +96,13 @@ return {
             },
             eventClick: function(event) {
                 // opens events in a popup window
-                window.open(event.url, 'gcalevent', 'width=700,height=600');
+                //window.open(event.url, 'gcalevent', 'width=700,height=600');
+
+                $rootScope.$apply(function() {
+                    $rootScope.event = event;
+                    $location.path("/e/"+event.id);
+                });
+
                 return false;
             },
             selectable: true,

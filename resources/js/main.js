@@ -6,7 +6,7 @@ appModule.config(function($routeProvider) {
 
 	$routeProvider
 	    .when('/', {
-	        controller:'MainController',
+	        controller:'DashController',
 	        templateUrl:'resources/views/dashboard.html'
 	    })
         .when('/calendar', {
@@ -46,7 +46,7 @@ appModule.config(function($routeProvider) {
 
 });
 
-appModule.controller("RootController", function($scope, $location, $route) {
+appModule.controller("RootController", function($rootScope, $scope, $location, $route) {
 	$scope.user = "User";
     
     // Track the current page for nav
@@ -62,10 +62,52 @@ appModule.controller("RootController", function($scope, $location, $route) {
     });
 
 
+    $rootScope.events = [];
+
+    $rootScope.notifications = [{
+        type: "alert-danger",
+        text: "You have dropped a show.",
+        id: 71
+    },
+    {
+        type: "alert-warning",
+        text: "A show is missing actors.",
+        id: 72
+    },
+    {
+        type: "alert-info",
+        text: "A show has been modified by another user.",
+        id: 73
+    }];
 });
 
 appModule.controller("MainController", function($scope) {
 	//$scope.event = {location:"test"};
+
+});
+
+appModule.controller("DashController", function($rootScope, $scope) {
+    $scope.upcoming = [{
+        _start: "3:00PM",
+        _end: "4:00PM",
+        title: "Show 1",
+        id: 123
+    },
+    {
+        _start: "4:00PM",
+        _end: "5:00PM",
+        title: "Show 2",
+        id: 124
+    },
+    {
+        divider: true
+    },
+    {
+        _start: "2:00PM",
+        _end: "4:00PM",
+        title: "Show 3",
+        id: 125
+    }];
 
 });
 
@@ -148,10 +190,6 @@ return {
 
                 view.el.find('.fc-day[data-date="' + dateString + '"]')
                     .addClass('fc-highlight');
-            },
-
-            dayRender: function(date, cell) {
-                //cell.addClass("fc-highlight");
             },
         }); 
 

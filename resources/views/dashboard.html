@@ -13,11 +13,13 @@
 				<div id="dash-calendar" minical></div>
 
 				<br/>
+				Upcoming:
 				<ul class="list-sharp">
-					<li><a>Show 1, 4pm Tues.</a></li>
-					<li><a>Show 2, 6pm Tues.</a></li>
-					<li class="divider"></li>
-					<li>Show 3, 3pm Tomorrow</li>
+					<li ng-repeat="evt in upcoming" ng-class="{divider: evt.divider }">
+						<a href="#/e/{{evt.id}}" ng-if="!evt.divider">
+							{{evt.title}}, {{evt._start}} Tues.
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -31,8 +33,15 @@
 			<h4 class="panel-title">Notifications</h4>
 		</div>
 		<div class="panel-body">
-			<ul class="list-sharp">
-				<li>You have no notifications</li>
+			<ul class="list">
+
+				<li ng-hide="notifications.length == 0" ng-repeat="notif in notifications">
+					<div class="alert" ng-class="notif.type">
+						{{notif.text}}
+					</div>
+				</li>
+
+				<li ng-show="notifications.length == 0">You have no notifications</li>
 			</ul>
 		</div>
 		</div>

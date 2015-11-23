@@ -51,6 +51,8 @@
                 <img src="resources/images/OMB.png" height ="50px" />
             </li>
 
+            {literal}
+
             <li>
                 <a class="dropdown-toggle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
@@ -65,10 +67,18 @@
                     <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
                 </a>
 
-                <ul class="dropdown-menu">
-                    <li><a>No notifications to show.</a></li>
+                <ul class="dropdown-menu" ng-repeat="notif in notifications">
+                    <li ng-hide="notifications.length == 0" ng-repeat="notif in notifications">
+                        <a>
+                            {{notif.text}}
+                        </a>
+                    </li>
+
+                    <li ng-show="notifications.length == 0">You have no notifications</li>
                 </ul>
             </li>
+
+            {/literal}
             
             <li>
                 <img src="resources/images/tameem.jpg" class="profile-thumbnail"
@@ -101,6 +111,7 @@
             </li> <!-- End Profile li -->
            
         </ul>
+
     </div>    
 </div>
 

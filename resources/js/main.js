@@ -67,16 +67,19 @@ appModule.controller("RootController", function($rootScope, $scope, $location, $
     $rootScope.notifications = [{
         type: "alert-danger",
         text: "You have dropped a show.",
+        link: "#/e/123",
         id: 71
     },
     {
         type: "alert-warning",
         text: "A show is missing actors.",
+        link: "#/e/243",
         id: 72
     },
     {
         type: "alert-info",
         text: "A show has been modified by another user.",
+        link: "#/e/19",
         id: 73
     }];
 });

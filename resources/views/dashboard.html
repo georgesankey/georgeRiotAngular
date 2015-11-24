@@ -31,9 +31,10 @@
 		<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">Notifications</h4>
+			<span class="pull-right"><a href="#/notifications">View All</a></span>
 		</div>
 		<div class="panel-body">
-			<ul class="list">
+			<ul class="list notifications-list">
 
 				<li ng-hide="notifications.length == 0" ng-repeat="notif in notifications">
 					<div class="alert" ng-class="notif.type">
@@ -52,10 +53,10 @@
 		<div class="col-md-6">
 			<div class="panel panel-default">
 			<div class="panel-heading">
-				<h4 class="panel-title">Placeholder</h4>
+				<h4 class="panel-title">Shows Missing Actors</h4>
 			</div>
 			<div class="panel-body">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis malesuada erat scelerisque cursus. Maecenas efficitur in turpis et elementum...
+				None
 			</div>
 			</div>
 		</div>

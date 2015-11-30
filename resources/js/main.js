@@ -21,8 +21,11 @@ appModule.config(function($routeProvider) {
             controller:'MainController',
             templateUrl:'resources/views/actors.html'
         })
+        .when('/404', {
+            templateUrl:'resources/views/404.html'
+        })
 	    .otherwise({
-	        redirectTo:'/'
+	        redirectTo:'/404'
 	    });
 
 });

@@ -182,9 +182,10 @@ code {
 }
 
 .profile-thumbnail {
-    height:46px;
-    margin-top:2px;
-    border:1px solid #666;
+    height: 40px;
+    margin-top: 6px;
+    border: 2px solid #8E1960;
+    border-radius: 20px;
 }
 
 /* BUTTONS */
@@ -482,12 +483,13 @@ code {
 }
 
 #dash-calendar .fc-body .fc-row {
-    min-height:20px;
+    min-height:25px;
 }
 
 #dash-calendar .fc-scroller {
     overflow-y:hidden;
 }
+
 /* Pay Period / timesheet csss */
 #PayPeriod{
   float: left;
@@ -503,3 +505,18 @@ code {
   border-bottom: 1px solid black;
   margin-bottom: 8px;
 }
+
+
+#dash-calendar .fc-highlight {
+    background:#CAFB95;
+}
+
+#dash-calendar .fc-today {
+    background:#A7D6FF;
+    opacity:1;
+}
+
+.list-sharp li:hover {
+    
+}
+

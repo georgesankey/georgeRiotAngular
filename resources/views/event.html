@@ -1,0 +1,57 @@
+
+<div class="col-md-12">
+	<div class="panel">
+	<div class="panel-body">
+		<h4>
+			{{event.title}}
+		</h4>
+	</div>
+	</div>
+</div>
+
+
+<div class="col-md-4">
+	<div class="panel">
+	<div class="panel-body">
+		Location:
+		<br/>
+		{{event.location}}
+		<p>Map</p>
+	</div>
+	</div>
+
+	<div class="panel">
+	<div class="panel-body">
+		Description:
+		<a href="{{event.url}}" target="_blank">Here</a>
+	</div>
+	</div>
+
+</div>
+
+<div class="col-md-8">
+	<div class="panel">
+	<div class="panel-body">
+		<div>Edit</div>
+		<div>Start: {{event.start._i}}</div>
+		<div>End: {{event.end._i}}</div>
+
+		<div>Venue info</div>
+	</div>
+	</div>
+
+	<div class="panel">
+	<div class="panel-body">
+		<div>Actors</div>
+
+		<input type="text" class="form-control" />
+
+		<ul class="list">
+			<li>Person</li>
+			<li>Person 2</li>
+			<li>Person 3</li>
+		</ul>
+
+	</div>
+	</div>
+</div>

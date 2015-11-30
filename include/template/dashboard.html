@@ -51,6 +51,8 @@
                 <img src="resources/images/OMB.png" height ="50px" />
             </li>
 
+            {literal}
+
             <li>
                 <a class="dropdown-toggle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
@@ -65,10 +67,18 @@
                     <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
                 </a>
 
-                <ul class="dropdown-menu">
-                    <li><a>No notifications to show.</a></li>
+                <ul class="dropdown-menu" ng-repeat="notif in notifications">
+                    <li ng-hide="notifications.length == 0" ng-repeat="notif in notifications">
+                        <a>
+                            {{notif.text}}
+                        </a>
+                    </li>
+
+                    <li ng-show="notifications.length == 0">You have no notifications</li>
                 </ul>
             </li>
+
+            {/literal}
             
             <li>
                 <img src="resources/images/tameem.jpg" class="profile-thumbnail"
@@ -101,6 +111,7 @@
             </li> <!-- End Profile li -->
            
         </ul>
+
     </div>    
 </div>
 
@@ -116,16 +127,16 @@
 
                 <li ng-class="{active:isPage('')}">
                     <a href="#/">
-                        <span class="glyphicon glyphicon-home"></span>&nbsp;
-                        <span class="hidden-xs">Home</span>
+                        <span class="glyphicon glyphicon-home"></span>
+                        <span class="hidden-xs">&nbsp;Home</span>
                     </a>
                 </li>
 
                 <li ng-class="{active:isPage('calendar')}">
 
                     <a href="#/calendar">
-                        <span class="glyphicon glyphicon-calendar"></span>&nbsp;
-                        <span class="hidden-xs">Schedule</span>
+                        <span class="glyphicon glyphicon-calendar"></span>
+                        <span class="hidden-xs">&nbsp;Schedule</span>
                     </a>
 
                     <!--
@@ -148,15 +159,15 @@
 
                 <li ng-class="{active:isPage('actors')}">
                     <a href="#/actors">
-                        <span class="glyphicon glyphicon-user"></span>&nbsp;
-                        <span class="hidden-xs">Actors</span>
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span class="hidden-xs">&nbsp;Actors</span>
                     </a>
                 </li>
 
                 <li ng-class="{active:isPage('pay')}">
                     <a href="#/pay">
-                        <span class="glyphicon glyphicon-tags"></span>&nbsp;
-                        <span class="hidden-xs">Pay</span>
+                        <span class="glyphicon glyphicon-tags"></span>
+                        <span class="hidden-xs">&nbsp;Pay</span>
                     </a>
                 </li>
             </ul>

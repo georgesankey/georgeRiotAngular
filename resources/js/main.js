@@ -37,6 +37,10 @@ appModule.config(function($routeProvider) {
             controller:'MainController',
             templateUrl:'resources/views/event.html'
         })
+        .when('/u/:id', {
+            controller:'MainController',
+            templateUrl:'resources/views/user.html'
+        })
         .when('/404', {
             templateUrl:'resources/views/404.html'
         })
@@ -168,6 +172,8 @@ return {
 };
 }]);
 
+// Directive for mini calendar on home page
+// Note: Directives cannot have spaces or - characters
 appModule.directive('minical',  ['$rootScope', function($rootScope) {
 return {
     restrict: 'A',

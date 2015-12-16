@@ -490,15 +490,6 @@ code {
     overflow-y:hidden;
 }
 
-/* Pay Period / timesheet csss */
-#PayPeriod{
-  float: left;
-  font-family: 'Open Sans', 'sans-serif';
-  margin-left: 15px;
-  background-color: white;
-  width: 60%;
-
-}
 .pay-sb{
   width:25%;
 }
@@ -531,5 +522,36 @@ code {
 .notifications-list .alert-danger,
 .notifications-list .alert-warning {
     background:transparent;
+}
+
+/* Profile section */
+.profile-panel {
+    background:transparent;
+    text-align:center;
+    box-shadow:none;
+    border-bottom:3px ridge whitesmoke;
+    position: relative;
+}
+
+.profile-username {
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    font-size: 30px;
+}
+
+.profile-role {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-style:italic;
+}
+
+.profile-med {
+    width: 100px;
+    height:100px;
+    border-radius:10px;
+    box-shadow: 2px 2px 5px grey;
 }
 

@@ -1,4 +1,6 @@
+
 <?php
+/*
 class DB_Connect {
  
     // constructor
@@ -21,6 +23,46 @@ class DB_Connect {
  
         // return database handler
         return $con;
+    }
+ 
+    // Closing database connection
+    public function close() {
+        mysql_close();
+    }
+ 
+}
+ */
+
+class DB_Connect {
+ 
+
+    // constructor
+    function __construct() {
+         
+    }
+ 
+    // destructor
+    function __destruct() {
+        // $this->close();
+    }
+ 
+    // Connecting to database
+    public function connect() {
+       
+        $db_host = "localhost"; // "localhost:9090" or wherever your mysql server isset(var)
+        $db_name ="omb_db";
+        $db_username = "root";
+        $db_password = "pass";
+            //establish a PDO Database Connection
+        try {
+            $conn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_username, $db_password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  
+
+       } catch (PDOException $e) {
+            die('Could not connect to the DB'. $e);
+       }
+      
+        return $conn;
     }
  
     // Closing database connection

@@ -5,6 +5,7 @@ $cfg = array(
 
 	// Web based authentication
 	"webAuth" => true,
+
 	"users" => array(
 		// Username => password
 		"admin" => "admin",
@@ -87,27 +88,22 @@ class OMBAuth {
      * @return boolean    TRUE on success and FALSE on failure
      */
 	private function __webLogin($username, $password) {
-		
-		$users = $this->config["users"];
 
-		// Emulate normal login
-		if($this->config["DEBUG"]) {
-			print("Using web authentication:<br>");
+		require __DIR__ . '/CallFunctions.php';
+		$encryptedPass = $this->encrypt_pass($password);
+        $loginData = array("action"=>"loginService", "username"=>$username, "password"=>$encryptedPass);
+        $jsonLoginArray =  json_decode(CallAPI("GET", "localhost/onlymakebelieve/api/userdata.php", $loginData), true); 
+        if($jsonLoginArray[0]["authenticated"]) {
+        	$_SESSION["role"] = $jsonLoginArray[0]["role"];
+        	$_SESSION["roleid"] = $jsonLoginArray[0]["roleid"];
+        } 
+	    return $jsonLoginArray[0]["authenticated"];
+	}
 
-			$pw = $this->__hashPassword($password);
+	private function encrypt_pass($text, $salt = "onlymakebelieve!") {
 
-			print("Stored password is: ".$pw);
+    	return trim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $salt, $text, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND))));
 
-			if($this->__validatePassword($password, $pw)) {
-				print("Successfully authenticated.");
-				return true;
-			} else {
-				print("Attempt failed.");
-				return false;
-			}
-		}
-
-		return isset($users[$username]) && $users[$username] == $password;
 	}
 
 	/**

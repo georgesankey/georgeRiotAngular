@@ -38,7 +38,13 @@ Login
 		  	<div class="modal-body">
 		      	<div class="row">
 		          	<div class="col-xs-12">
-		              	
+
+		          		{if $error}
+
+		               	<div id="loginErrorMsg" class="alert alert-danger" align="center">Invalid Credentials</div>
+
+		                 {/if}
+
 	                  	<form id="loginForm" method="POST" action="login.php">
 
 	                      	<div class="form-group">
@@ -61,8 +67,6 @@ Login
 
 	                      	</div>
 
-	                      	<div id="loginErrorMsg" class="alert alert-error hide">Wrong username og password</div>
-
 	                      	<div class="checkbox">
 
 	                          	<label>
@@ -74,10 +78,11 @@ Login
 	                      	<button type="submit" class="btn btn-primary btn-norad pull-right">Login</button>
 	                      	<button type="submit" class="btn btn-danger btn-norad pull-right"><i class="fa fa-google fa-lg fa-fw"></i>Google</button>
 
-	                      	<button type="reset" class="btn btn-default btn-norad pull-left">Register</button>
-	                      	<div class="clear">&nbsp;</div> 
+	                      	<!--<div class="clear">&nbsp;</div>-->
 	                  	</form>
-
+	                  		<form id="registerButton" action="register.php" method="get">
+	                      	<button type="submit"class="btn btn-default btn-norad pull-left">Register</button>
+	                      	</form>
 		          	</div>
 
 

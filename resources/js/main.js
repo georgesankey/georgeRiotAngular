@@ -21,6 +21,10 @@ appModule.config(function($routeProvider) {
             controller:'MainController',
             templateUrl:'resources/views/actors.html'
         })
+        .when('/notifications', {
+            controller:'MainController',
+            templateUrl:'resources/views/notifs.html'
+        })
         .when('/create/v/', {
             controller:'MainController',
             templateUrl:'resources/views/create/create_venue.html'

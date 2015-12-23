@@ -1,0 +1,20 @@
+<div class="panel panel-default">
+<div class="panel-heading">
+All Notifications
+</div>
+
+<div class="panel-body">
+
+	<ul class="list notifications-list">
+
+		<li ng-hide="notifications.length == 0" ng-repeat="notif in notifications">
+			<div class="alert" ng-class="notif.type">
+				{{notif.text}}
+			</div>
+		</li>
+
+		<li ng-show="notifications.length == 0">You have no notifications</li>
+	</ul>
+
+</div>
+</div>

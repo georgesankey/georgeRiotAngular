@@ -34,7 +34,7 @@ function loginService($username, $password){
 	    $authQuery->bindParam(':password', $password);
         $authQuery-> execute();
         $authRows = $authQuery->rowCount();
-        $returnJSON = '';
+
         if($authRows == 1){
         	$authRow = $authQuery->fetch();
         	$roleQuery = $conn->prepare("SELECT role_name FROM ROLE WHERE role_id = :role_id");

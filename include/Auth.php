@@ -22,9 +22,11 @@ session_start();
 class OMBAuth {
 
 	var $config;
+	var $db;
 
-	public function __construct($cfg) {
+	public function __construct($cfg, $db=null) {
 		$this->config = $cfg;
+		$this->db = $db;
 
 		if($this->config["DEBUG"]) {
 			print("Created new OMBAuth with config:<br>");
@@ -58,19 +60,22 @@ class OMBAuth {
 
 			// This section for DB login. Create a new function for this.
 			else {
-				require __DIR__ . '/CallFunctions.php';
-				$encryptedPass = $this->encrypt_pass($password);
-		        $loginData = array("action"=>"loginService", "username"=>$username, "password"=>$encryptedPass);
-		        $jsonLoginArray =  json_decode(CallAPI("GET", "localhost/onlymakebelieve/api/userdata.php", $loginData), true); 
-		        if($jsonLoginArray[0]["authenticated"]) {
-		        	$_SESSION["role"] = $jsonLoginArray[0]["role"];
-		        	$_SESSION["roleid"] = $jsonLoginArray[0]["roleid"];
-		        } 
-			    return $jsonLoginArray[0]["authenticated"];
+
+				if($this->__dbLogin($username, $password)) {
+					$_SESSION["user"]=$username;
+					$_SESSION["loggedIn"]=TRUE;
+
+					$_SESSION["role"] = "Administrator";
+		        	$_SESSION["roleid"] = 1;
+					return true;
+				}
+				return false;
+
 			}
 		}
 
 		// This section for OAuth Login 
+		// Looks like we won't be using this.
 		else {
 			return false;
 		}
@@ -129,6 +134,43 @@ class OMBAuth {
  		}
  
  		return isset($users[$username]) && $users[$username] == $password;
+	}
+
+	/**
+     * Authenticate using data from database
+     * @param: $username
+	 * @param: $password
+     * @return boolean    TRUE on success and FALSE on failure
+     */
+	private function __dbLogin($username, $password) {
+		
+		// Check for working PDO 
+		if(is_null($this->db)) {
+			if($this->config["DEBUG"]) {
+				print("Database not assigned.<br />");
+			}
+			return false;
+		}
+
+		// Merge encryption schemes later
+		$encryptedPass = $this->encrypt_pass($password);
+        
+		// Make database call 
+        $authQuery = $this->db->prepare("SELECT * FROM USER WHERE (username = :usernameOrEmail OR email = :usernameOrEmail) AND password = PASSWORD(:password) AND active = '1'");
+	    $authQuery->bindParam(':usernameOrEmail', $username);
+	    $authQuery->bindParam(':password', $password);
+
+	    if($this->config["DEBUG"]) {
+			print("<br />Query: ");
+			print_r($authQuery);
+		}
+
+        $authQuery-> execute();
+        $authRows = $authQuery->rowCount();
+
+        print("<br/>".$authRows);
+        if($authRows == 1) return true;
+
 	}
 
 	private function encrypt_pass($text, $salt = "onlymakebelieve!") {

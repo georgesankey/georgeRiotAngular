@@ -10,9 +10,9 @@ $smarty->setCompileDir(__DIR__ . '/include/template_c');
 
 if(isset($_POST["username"]) && isset($_POST["password"])) {
 	
-
+	require_once __DIR__ . '/include/db/dbconfig.php';
 	require __DIR__ . '/include/Auth.php';
-	$auth = new OMBAuth($cfg);
+	$auth = new OMBAuth($cfg, $dbh);
 
     //do the initial log-in 
  	if($auth->login($_POST["username"], $_POST["password"])) {

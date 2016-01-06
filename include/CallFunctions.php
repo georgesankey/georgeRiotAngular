@@ -1,7 +1,12 @@
 <?php
+
+// File deprecated, should only use CURL for external requests
+
+
 // Method: POST, PUT, GET etc
 // Data: array("param" => "value") ==> index.php?param=value
 
+/*
 function CallAPI($method, $url, $data = false)
 {
     $curl = curl_init();
@@ -34,6 +39,6 @@ function CallAPI($method, $url, $data = false)
     curl_close($curl);
 
     return $result;
-}
+}*/
 
 ?>

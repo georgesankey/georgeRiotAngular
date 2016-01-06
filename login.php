@@ -25,6 +25,9 @@ if(isset($_POST["username"]) && isset($_POST["password"])) {
 	}
       
 } else {
+	require __DIR__ . '/include/Auth.php';
+	$auth = new OMBAuth($cfg);
+
 	$smarty->assign("error", false);
 	$smarty->display("login.html");
 }

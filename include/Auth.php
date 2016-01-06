@@ -1,10 +1,10 @@
 <?php
 
 $cfg = array(
-	"DEBUG" => false,
+	"DEBUG" => true,
 
 	// Web based authentication
-	"webAuth" => true,
+	"webAuth" => false,
 
 	"users" => array(
 		// Username => password
@@ -22,9 +22,11 @@ session_start();
 class OMBAuth {
 
 	var $config;
+	var $db;
 
-	public function __construct($cfg) {
+	public function __construct($cfg, $db=null) {
 		$this->config = $cfg;
+		$this->db = $db;
 
 		if($this->config["DEBUG"]) {
 			print("Created new OMBAuth with config:<br>");
@@ -48,10 +50,34 @@ class OMBAuth {
 				if($this->__webLogin($username, $password)) {
 					$_SESSION["user"]=$username;
 					$_SESSION["loggedIn"]=TRUE;
+
+					$_SESSION["role"] = "Administrator";
+		        	$_SESSION["roleid"] = 1;
 					return true;
 				}
 				return false;
 			}
+
+			// This section for DB login. Create a new function for this.
+			else {
+
+				if($this->__dbLogin($username, $password)) {
+					$_SESSION["user"]=$username;
+					$_SESSION["loggedIn"]=TRUE;
+
+					$_SESSION["role"] = "Administrator";
+		        	$_SESSION["roleid"] = 1;
+					return true;
+				}
+				return false;
+
+			}
+		}
+
+		// This section for OAuth Login 
+		// Looks like we won't be using this.
+		else {
+			return false;
 		}
 
 	}
@@ -82,28 +108,165 @@ class OMBAuth {
 	}
 
 	/**
+	 * Register the user with the service
+	 * Currently uses lots of $_POST stuff, but should only use a few fields in the future
+	 * 
+	 * @return $this->login()
+	 */
+	public function register() {
+
+		// Check the PDO
+		if(is_null($this->db)) {
+			if($this->config["DEBUG"]) {
+				print("Database not assigned.<br />");
+			}
+			return false;
+		}
+
+		$roleQuery = $this->db->prepare("SELECT role_id FROM ROLE WHERE role_name = :role_name");
+		$roleQuery->bindParam(':role_name', $_POST["useraccess"]);
+		$roleQuery->execute();
+		$roleRow = $roleQuery->fetch();
+
+		$insertQuery = $this->db->prepare("INSERT INTO USER (username, password, first_name, last_name, role_id, email, address_1, city, state, zipcode, phone_number) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+		$insertQuery->bindParam(1, $_POST["username"]); 
+		$insertQuery->bindParam(2, $this->__hashPassword($_POST["password"])); 
+		$insertQuery->bindParam(3, $_POST["firstname"]); 
+		$insertQuery->bindParam(4, $_POST["lastname"]); 
+		$insertQuery->bindParam(5, $roleRow["role_id"]); 
+		$insertQuery->bindParam(6, $_POST["email"]); 
+		$insertQuery->bindParam(7, $_POST["address"]); 
+		$insertQuery->bindParam(8, $_POST["city"]); 
+		$insertQuery->bindParam(9, $_POST["state"]); 
+		$insertQuery->bindParam(10, $_POST["zipcode"]); 
+		$insertQuery->bindParam(11, $_POST["phonenumber"]); 
+ 
+		$insertQuery->execute();
+
+		return $this->login($_POST["username"], $_POST["password"]);
+	}
+
+	//------------------------------------------------
+	// Private functions
+	//------------------------------------------------
+
+	/**
+	 * Checks if the user is in the system
+	 * @param: $username
+	 * @return boolean
+	 */
+	public function __usernameExists($username) {
+	
+		// Check the PDO
+		if(is_null($this->db)) {
+			if($this->config["DEBUG"]) {
+				print("Database not assigned.<br />");
+			}
+			return false;
+		}
+
+		$regQuery = $this->db->prepare("SELECT * FROM USER WHERE username = :username");
+		$regQuery->bindParam(':username', $username);
+		$regQuery->execute();
+
+		$regRows = $regQuery->rowCount();
+		return $regRows > 0;
+	}
+
+	/**
+	 * Checks if the email is in the system
+	 * @param: $email
+	 * @return boolean
+	 */
+	public function __emailExists($email) {
+	
+		// Check the PDO
+		if(is_null($this->db)) {
+			if($this->config["DEBUG"]) {
+				print("Database not assigned.<br />");
+			}
+			return false;
+		}
+
+		$regQuery = $this->db->prepare("SELECT * FROM USER WHERE email = :email");
+		$regQuery->bindParam(':email', $email);
+		$regQuery->execute();
+
+		$regRows = $regQuery->rowCount();
+		return $regRows > 0;
+	}
+
+	/**
      * Bypass normal authentication when no database
      * @param: $username
 	 * @param: $password
      * @return boolean    TRUE on success and FALSE on failure
      */
 	private function __webLogin($username, $password) {
+		$users = $this->config["users"];
+ 
+ 		// Emulate normal login
+ 		if($this->config["DEBUG"]) {
+ 			print("Using web authentication:<br>");
+ 
+ 			$pw = $this->__hashPassword($password);
+ 
+ 			print("Stored password is: ".$pw);
+ 
+ 			if($this->__validatePassword($password, $pw)) {
+ 				print("Successfully authenticated.");
+ 				return true;
+ 			} else {
+ 				print("Attempt failed.");
+ 				return false;
+ 			}
+ 		}
+ 
+ 		return isset($users[$username]) && $users[$username] == $password;
+	}
 
-		require __DIR__ . '/CallFunctions.php';
-		$encryptedPass = $this->encrypt_pass($password);
-        $loginData = array("action"=>"loginService", "username"=>$username, "password"=>$encryptedPass);
-        $jsonLoginArray =  json_decode(CallAPI("GET", "localhost/onlymakebelieve/api/userdata.php", $loginData), true); 
-        if($jsonLoginArray[0]["authenticated"]) {
-        	$_SESSION["role"] = $jsonLoginArray[0]["role"];
-        	$_SESSION["roleid"] = $jsonLoginArray[0]["roleid"];
-        } 
-	    return $jsonLoginArray[0]["authenticated"];
+	/**
+     * Authenticate using data from database
+     * @param: $username
+	 * @param: $password
+     * @return boolean    TRUE on success and FALSE on failure
+     */
+	private function __dbLogin($username, $password) {
+		
+		// Check for working PDO 
+		if(is_null($this->db)) {
+			if($this->config["DEBUG"]) {
+				print("Database not assigned.<br />");
+			}
+			return false;
+		}
+        
+		// Make database call 
+        $authQuery = $this->db->prepare("SELECT * FROM USER WHERE (username = :usernameOrEmail OR email = :usernameOrEmail) AND active = '1'");
+	    $authQuery->bindParam(':usernameOrEmail', $username);
+
+	    if($this->config["DEBUG"]) {
+			print("<br />Query: ");
+			print_r($authQuery);
+		}
+
+        $authQuery-> execute();
+        $authRows = $authQuery->rowCount();
+
+        if($authRows == 1) {
+        	$authRow = $authQuery->fetch();
+
+        	if($this->config["DEBUG"]) {
+				print("<br /><b>Data: </b>");
+				print_r($authRow);
+			}
+
+        	return $this->__validatePassword($password, $authRow["password"]);
+        }
 	}
 
 	private function encrypt_pass($text, $salt = "onlymakebelieve!") {
-
     	return trim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $salt, $text, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND))));
-
 	}
 
 	/**

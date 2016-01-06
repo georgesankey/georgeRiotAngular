@@ -52,7 +52,7 @@ class DB_Connect {
         $db_host = "localhost"; // "localhost:9090" or wherever your mysql server isset(var)
         $db_name ="omb_db";
         $db_username = "root";
-        $db_password = "pass";
+        $db_password = "";
             //establish a PDO Database Connection
         try {
             $conn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_username, $db_password);

@@ -1,9 +1,9 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 19, 2015 at 07:03 PM
+-- Generation Time: Jan 06, 2016 at 03:44 PM
 -- Server version: 5.5.46-0ubuntu0.14.04.2
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -291,7 +291,7 @@ CREATE TABLE IF NOT EXISTS `SHOW_USER_LOGS` (
 CREATE TABLE IF NOT EXISTS `USER` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
-  `password` varchar(50) CHARACTER SET latin1 COLLATE latin1_bin NOT NULL,
+  `password` varchar(200) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `role_id` int(11) NOT NULL,
@@ -305,39 +305,40 @@ CREATE TABLE IF NOT EXISTS `USER` (
   `active` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `role_id` (`role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
 
 --
 -- Dumping data for table `USER`
 --
 
 INSERT INTO `USER` (`id`, `username`, `password`, `first_name`, `last_name`, `role_id`, `email`, `address_1`, `address_2`, `city`, `state`, `zipcode`, `phone_number`, `active`) VALUES
-(1, 'raihahmed', '*A0F6B35C825FF4ED1D4E03601BB97A1361E15FB7', 'Raihan', 'Ahmed', 1, 'raymanahmed@gmail.com', '123 Memory Lane', NULL, 'New York', 'NY', 11432, '(917)775-3732', 1),
-(2, 'tameem_imamdad', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Tameem', 'Imamdad', 1, 'tameem.imamdad@Jpmorgan.com', '123 Memory Lane', NULL, 'Jersey City', 'NY', 11111, '(555)555-5555', 1),
-(3, 'connie_chen', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Connie', 'Chen', 1, 'connie.g.chen@jpmchase.com', '500 Alohmora Lane', NULL, 'London', 'UK', 22222, '(555)555-5555', 0),
-(4, 'camille_pons', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Camille', 'Pons', 4, 'camille_pons@gmail.com', '235 Maple Road', NULL, 'Albany', 'NY', 12230, '(345)344-3434', 0),
-(5, 'jeremiah_brook', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Jeremiah', 'Brook', 4, 'jeremiah_brook@gmail.com', '235 Williamsburg', NULL, 'Brooklyn', 'NY', 12230, '(345)344-3434', 0),
-(6, 'donald_duck', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Donald', 'Duck', 4, 'donald_duck@gmail.com', '235 Duck Dynasty', NULL, 'Duckland  County', 'NY', 12230, '(345)344-3433', 0),
-(7, 'filet_minyon', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Filet', 'Minyon', 4, 'filet_minyon@gmail.com', '235 Steak', NULL, 'Steakland', 'NY', 12235, '(345)344-3499', 0),
-(8, 'noboru_wattaya', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Noboru', 'Wattaya', 4, 'noboru_wattaya@gmail.com', '200 Windup way', NULL, 'Haruki', 'NY', 13123, '(456)234-4354', 0),
-(9, 'leonardo_dicaprio', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Leonardo', 'Dicaprio', 2, 'leonardo_dicaprio@gmail.com', '456 Titanic Boulevard', NULL, 'Buffalo', 'NY', 12234, '(344)345-6778', 0),
-(10, 'johnny_depp', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Johnny', 'Depp', 2, 'johnny_depp@gmail.com', '423 Edward Road', NULL, 'Upstate', 'NY', 12232, '(344)345-6723', 0),
-(11, 'anne_hathaway', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Anne', 'Hathaway', 2, 'anne_hathaway@gmail.com', '320 Catwoman Lane', NULL, 'Gotham', 'NY', 10000, '(234)323-2434', 0),
-(12, 'meryl_streep', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Meryl', 'Streep', 2, 'meryl_streep@gmail.com', '200 Meryl Road', NULL, 'Meryl', 'NY', 21314, '(242)242-2323', 0),
-(13, 'emma_watson', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Emma', 'Watson', 2, 'emma_watson@gmail.com', 'Emma Road', NULL, 'London', 'NY', 12203, '(342)243-3524', 0),
-(14, 'jennifer_lawrence', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Jennifer', 'Lawrence', 2, 'jennifer_lawrence@gmail.com', 'Silver Linings Road', NULL, 'Birmingham', 'NY', 12204, '(342)243-3520', 0),
-(15, 'jay_z', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Jay', 'Z', 2, 'jay_z@gmail.com', 'Hova Road', NULL, 'Brooklyn', 'NY', 12203, '(342)243-3900', 1),
-(16, 'morgan_freeman', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Morgan', 'Freeman', 2, 'morgan_freeman@gmail.com', 'Free Road', NULL, 'New York', 'NY', 43244, '(234)234-4554', 0),
-(17, 'samuel_jackson', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Samuel', 'Jackson', 2, 'samuel_jackson@gmail.com', 'Jackson Road', NULL, 'Bronx', 'NY', 43242, '(234)234-4502', 0),
-(18, 'matthew_perry', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Matthew ', 'Perry', 2, 'matthew_perry@gmail.com', 'Friends Road', NULL, 'Manhattan', 'NY', 43242, '(234)234-4524', 0),
-(19, 'kit_harrington', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Kit', 'Harrington', 2, 'kit_harrington@gmail.com', 'Snow Road', NULL, 'North of the Wall', 'NY', 43223, '(234)234-4203', 0),
-(20, 'ramzy_bolton', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Ramzy', 'Bolton', 2, 'ramzy_bolton@gmail.com', 'Hanging Man Road', NULL, 'The North', 'NY', 43209, '(234)234-4200', 0),
-(21, 'ned_stark', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Ned', 'Stark', 2, 'ned_stark@gmail.com', 'Direwolf Lane', NULL, 'The North', 'NY', 43209, '(234)234-4210', 0),
-(22, 'cersei_lannister', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Cersei', 'Lannister', 2, 'cersei_lannister@gmail.com', 'Lion Lane', NULL, 'Casterly Rock', 'NY', 43340, '(234)234-2344', 0),
-(23, 'tyrion_lannister', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Tyrion', 'Lannister', 2, 'tyrion_lannister@gmail.com', 'Shae Way', NULL, 'Casterly Rock', 'NY', 43340, '(234)234-0000', 0),
-(32, 'roose_bolton', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Roose', 'Bolton', 1, 'roose_bolton@gmail.com', '542 The North', NULL, 'Westeros', 'AL', 11355, '555-445-3453', 0),
-(33, 'kobe_bryant', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Kobe', 'Bryant', 1, 'kobe_bryant@gmail.com', 'Ball Lane', NULL, 'Los Angeles', 'AL', 12345, '555-445-3453', 0),
-(34, 'shaq_oneal', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'Shaq', 'O''Neal', 1, 'shaq@gmail.com', '432 Shaq Way', NULL, 'Los Angeles', 'AL', 12345, '555-445-3453', 0);
+(1, 'raihahmed', '0c5a7d1c8dd69398dd851382e169e366656b7bba4efafeafb0b7253b953b0dfcb08052f8ffed52f49238bb3cf52c8c25', 'Raihan', 'Ahmed', 1, 'raymanahmed@gmail.com', '123 Memory Lane', NULL, 'New York', 'NY', 11432, '(917)775-3732', 1),
+(2, 'tameem_imamdad', '5ecaf34c43cd885cdc8e67022427a78d9aa2b4881e9c69f814469bac18166ace601aae163ab647fc883846d1c2e42378', 'Tameem', 'Imamdad', 1, 'tameem.imamdad@Jpmorgan.com', '123 Memory Lane', NULL, 'Jersey City', 'NY', 11111, '(555)555-5555', 1),
+(3, 'connie_chen', '7c829f61e36742b6c5681f00013d34ab39e26f0802ebefd117aa0bdc509f57ad6e2e9ddc6e7dd68cc719ade4d637d2ac', 'Connie', 'Chen', 1, 'connie.g.chen@jpmchase.com', '500 Alohmora Lane', NULL, 'London', 'UK', 22222, '(555)555-5555', 0),
+(4, 'camille_pons', '3bf51fb9175f6b7340e06d8496a0a9d8182acdbf391e221e9dce9c0a2b6764d2202570793405c69f6352dffa2bf40a2b', 'Camille', 'Pons', 4, 'camille_pons@gmail.com', '235 Maple Road', NULL, 'Albany', 'NY', 12230, '(345)344-3434', 0),
+(5, 'jeremiah_brook', '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 'Jeremiah', 'Brook', 4, 'jeremiah_brook@gmail.com', '235 Williamsburg', NULL, 'Brooklyn', 'NY', 12230, '(345)344-3434', 0),
+(6, 'donald_duck', '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 'Donald', 'Duck', 4, 'donald_duck@gmail.com', '235 Duck Dynasty', NULL, 'Duckland  County', 'NY', 12230, '(345)344-3433', 0),
+(7, 'filet_minyon', '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 'Filet', 'Minyon', 4, 'filet_minyon@gmail.com', '235 Steak', NULL, 'Steakland', 'NY', 12235, '(345)344-3499', 0),
+(8, 'noboru_wattaya', '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 'Noboru', 'Wattaya', 4, 'noboru_wattaya@gmail.com', '200 Windup way', NULL, 'Haruki', 'NY', 13123, '(456)234-4354', 0),
+(9, 'leonardo_dicaprio', '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 'Leonardo', 'Dicaprio', 2, 'leonardo_dicaprio@gmail.com', '456 Titanic Boulevard', NULL, 'Buffalo', 'NY', 12234, '(344)345-6778', 0),
+(10, 'johnny_depp', '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 'Johnny', 'Depp', 2, 'johnny_depp@gmail.com', '423 Edward Road', NULL, 'Upstate', 'NY', 12232, '(344)345-6723', 0),
+(11, 'anne_hathaway', '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 'Anne', 'Hathaway', 2, 'anne_hathaway@gmail.com', '320 Catwoman Lane', NULL, 'Gotham', 'NY', 10000, '(234)323-2434', 0),
+(12, 'meryl_streep', '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 'Meryl', 'Streep', 2, 'meryl_streep@gmail.com', '200 Meryl Road', NULL, 'Meryl', 'NY', 21314, '(242)242-2323', 0),
+(13, 'emma_watson', '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 'Emma', 'Watson', 2, 'emma_watson@gmail.com', 'Emma Road', NULL, 'London', 'NY', 12203, '(342)243-3524', 0),
+(14, 'jennifer_lawrence', '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 'Jennifer', 'Lawrence', 2, 'jennifer_lawrence@gmail.com', 'Silver Linings Road', NULL, '', 'NY', 12204, '(342)243-3520', 0),
+(15, 'jay_z', '', 'Jay', 'Z', 2, 'jay_z@gmail.com', 'Hova Road', NULL, 'Brooklyn', 'NY', 12203, '(342)243-3900', 1),
+(16, 'morgan_freeman', '', 'Morgan', 'Freeman', 2, 'morgan_freeman@gmail.com', 'Free Road', NULL, 'New York', 'NY', 43244, '(234)234-4554', 0),
+(17, 'samuel_jackson', '', 'Samuel', 'Jackson', 2, 'samuel_jackson@gmail.com', 'Jackson Road', NULL, 'Bronx', 'NY', 43242, '(234)234-4502', 0),
+(18, 'matthew_perry', '', 'Matthew ', 'Perry', 2, 'matthew_perry@gmail.com', 'Friends Road', NULL, 'Manhattan', 'NY', 43242, '(234)234-4524', 0),
+(19, 'kit_harrington', '', 'Kit', 'Harrington', 2, 'kit_harrington@gmail.com', 'Snow Road', NULL, 'North of the Wall', 'NY', 43223, '(234)234-4203', 0),
+(20, 'ramzy_bolton', '', 'Ramzy', 'Bolton', 2, 'ramzy_bolton@gmail.com', 'Hanging Man Road', NULL, 'The North', 'NY', 43209, '(234)234-4200', 0),
+(21, 'ned_stark', '', 'Ned', 'Stark', 2, 'ned_stark@gmail.com', 'Direwolf Lane', NULL, 'The North', 'NY', 43209, '(234)234-4210', 0),
+(22, 'cersei_lannister', '', 'Cersei', 'Lannister', 2, 'cersei_lannister@gmail.com', 'Lion Lane', NULL, 'Casterly Rock', 'NY', 43340, '(234)234-2344', 0),
+(23, 'tyrion_lannister', '', 'Tyrion', 'Lannister', 2, 'tyrion_lannister@gmail.com', 'Shae Way', NULL, 'Casterly Rock', 'NY', 43340, '(234)234-0000', 0),
+(32, 'roose_bolton', '', 'Roose', 'Bolton', 1, 'roose_bolton@gmail.com', '542 The North', NULL, 'Westeros', 'AL', 11355, '555-445-3453', 0),
+(33, 'kobe_bryant', '', 'Kobe', 'Bryant', 1, 'kobe_bryant@gmail.com', 'Ball Lane', NULL, 'Los Angeles', 'AL', 12345, '555-445-3453', 0),
+(34, 'shaq_oneal', '', 'Shaq', 'O''Neal', 1, 'shaq@gmail.com', '432 Shaq Way', NULL, 'Los Angeles', 'AL', 12345, '555-445-3453', 0),
+(35, 'charlie', '98ca4fb0df3f398a29beda6c8e1b5acab3f94624cb467199632b54a91e04cdbb72689f614453dcdc05edb6dadf2e5e7b', 'c', 'c', 1, 'a@bc.com', 'c', NULL, 'c', 'CA', 1, '123', 1);
 
 -- --------------------------------------------------------
 

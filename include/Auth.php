@@ -23,10 +23,14 @@ class OMBAuth {
 
 	var $config;
 	var $db;
+	var $error;
+	var $errorMessage;
 
 	public function __construct($cfg, $db=null) {
 		$this->config = $cfg;
 		$this->db = $db;
+		$this->error = null;
+		$this->errorMessage = "";
 
 		if($this->config["DEBUG"]) {
 			print("Created new OMBAuth with config:<br>");
@@ -55,6 +59,8 @@ class OMBAuth {
 		        	$_SESSION["roleid"] = 1;
 					return true;
 				}
+				$this->error = 2;
+				$this->errorMessage = "Invalid Credentails";
 				return false;
 			}
 
@@ -77,6 +83,8 @@ class OMBAuth {
 		// This section for OAuth Login 
 		// Looks like we won't be using this.
 		else {
+			$this->error = 404;
+			$this->errorMessage = "Login Scheme Not Supported";
 			return false;
 		}
 
@@ -120,6 +128,22 @@ class OMBAuth {
 			if($this->config["DEBUG"]) {
 				print("Database not assigned.<br />");
 			}
+			$this->error = 1;
+			$this->errorMessage = "Database Not Assigned";
+			return false;
+		}
+
+		// Check for existing username
+		if($this->__usernameExists($_POST["username"])) {
+			$this->error = 5;
+			$this->errorMessage = "Username already exists";
+			return false;
+		}
+
+		// Check for existing email
+		if($this->__emailExists($_POST["email"])) {
+			$this->error = 6;
+			$this->errorMessage = "Email already exists";
 			return false;
 		}
 
@@ -155,13 +179,15 @@ class OMBAuth {
 	 * @param: $username
 	 * @return boolean
 	 */
-	public function __usernameExists($username) {
+	private function __usernameExists($username) {
 	
 		// Check the PDO
 		if(is_null($this->db)) {
 			if($this->config["DEBUG"]) {
 				print("Database not assigned.<br />");
 			}
+			$this->error = 1;
+			$this->errorMessage = "Database Not Assigned";
 			return false;
 		}
 
@@ -178,13 +204,15 @@ class OMBAuth {
 	 * @param: $email
 	 * @return boolean
 	 */
-	public function __emailExists($email) {
+	private function __emailExists($email) {
 	
 		// Check the PDO
 		if(is_null($this->db)) {
 			if($this->config["DEBUG"]) {
 				print("Database not assigned.<br />");
 			}
+			$this->error = 1;
+			$this->errorMessage = "Database Not Assigned";
 			return false;
 		}
 
@@ -238,6 +266,8 @@ class OMBAuth {
 			if($this->config["DEBUG"]) {
 				print("Database not assigned.<br />");
 			}
+			$this->error = 1;
+			$this->errorMessage= "Database Not Assigned";
 			return false;
 		}
         
@@ -261,13 +291,19 @@ class OMBAuth {
 				print_r($authRow);
 			}
 
-        	return $this->__validatePassword($password, $authRow["password"]);
+        	if($this->__validatePassword($password, $authRow["password"])) {
+        		return true;
+        	}
         }
+
+    	$this->error = 2;
+		$this->errorMessage = "Invalid Credentials";
+		return false;
 	}
 
-	private function encrypt_pass($text, $salt = "onlymakebelieve!") {
-    	return trim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $salt, $text, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND))));
-	}
+	// private function encrypt_pass($text, $salt = "onlymakebelieve!") {
+ //    	return trim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $salt, $text, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND))));
+	// }
 
 	/**
 	 * Takes a password and returns a salted hash

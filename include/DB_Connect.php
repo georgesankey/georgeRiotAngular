@@ -1,5 +1,8 @@
 
 <?php
+
+// Deprecated. See /include/db/dbconfig.php
+
 /*
 class DB_Connect {
  
@@ -32,7 +35,7 @@ class DB_Connect {
  
 }
  */
-
+/*
 class DB_Connect {
  
 
@@ -71,5 +74,5 @@ class DB_Connect {
     }
  
 }
- 
+ */
 ?>

@@ -1,7 +1,7 @@
 <?php
 
 $cfg = array(
-	"DEBUG" => true,
+	"DEBUG" => false,
 
 	// Web based authentication
 	"webAuth" => false,

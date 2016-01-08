@@ -1,63 +1,74 @@
 <?php
 
-/* USED FOR THE SESSION USER DATA AS WELL AS AUTHENTICATION*/
+/* API for obtaining user data */
 
+// For Dev
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+// Authenticate use of API:
+require_once __DIR__ . '/../include/db/dbconfig.php';
+require __DIR__ . '/../include/Auth.php';
+$auth = new OMBAuth($cfg, $dbh);
+
+if(!$auth->loggedIn()) {
+	die("403 Forbidden");
+}
+
+
+// Route calls by action
 $returnValue = 'An error has occured';
 
-$switchValue = isset($_GET["action"]) ? $_GET["action"] : $_POST["action"];
+function getUserData($user=null) {
 
-switch($switchValue){
-	case 'loginService': 
-		$decryptPass = decrypt_pass($_GET["password"]);
-		$returnValue = loginService($_GET["username"], $decryptPass);
- 		break;
- 	case 'checkEmail':
- 		$returnValue = checkEmail($_GET["email"]);
- 		break;	
- 	case 'checkUsername':
-		$returnValue = checkUsername($_GET["username"]);
-		break;
- 	case 'addAccountRequest':
-		addAccountRequest();
-		break;		
- 	default:
- 	echo 'defaultService';
- 		break;
+	global $dbh;
 
+	if(empty($user)) {
+		$authQuery = $dbh->prepare("
+			SELECT u.username, u.email, u.first_name, u.last_name, r.role_name, u.phone_number FROM USER AS u  
+			INNER JOIN ROLE as r ON r.role_id = u.role_id WHERE (u.username = :user)
+		");
+	    $authQuery->bindParam(':user', $_SESSION['user']);
+	    $authQuery->execute();
+	    $authRows = $authQuery->rowCount();
+
+	    if($authRows == 1) {
+	    	return $authQuery->fetch(PDO::FETCH_ASSOC);
+	    }
+	}
+
+	// Validate Credentials
+	// For now, we haven't created access levels yet
+	// So using weird fix for now
+
+	if($user != $_SESSION["user"]) {
+
+		// Get personal data
+		$data = getUserData();
+
+		// Vet role
+		if($data["role_name"] == "Administrator") {
+			$authQuery = $dbh->prepare("
+				SELECT u.username, u.email, u.first_name, u.last_name, r.role_name, u.phone_number FROM USER AS u  
+				INNER JOIN ROLE as r ON r.role_id = u.role_id WHERE (u.username = :user)
+			");
+		} else {
+			$authQuery = $dbh->prepare("SELECT u.username, u.first_name, u.last_name, u.phone_number FROM USER AS u WHERE (u.username = :user)");
+		}
+
+	    $authQuery->bindParam(':user', $user);
+	    $authQuery->execute();
+	    $authRows = $authQuery->rowCount();
+
+	    if($authRows == 1) {
+	    	return $authQuery->fetch(PDO::FETCH_ASSOC);
+	    }
+
+	}
 }
 
-function loginService($username, $password){
-	    require __DIR__ . '/../include/DB_Connect.php';
-		$conn = (new DB_Connect())-> connect();
-		$authQuery = $conn->prepare("SELECT * FROM USER WHERE (username = :usernameOrEmail OR email = :usernameOrEmail) AND password = PASSWORD(:password) AND active = '1'");
-	    $authQuery->bindParam(':usernameOrEmail', $username);
-	    $authQuery->bindParam(':password', $password);
-        $authQuery-> execute();
-        $authRows = $authQuery->rowCount();
-
-        if($authRows == 1){
-        	$authRow = $authQuery->fetch();
-        	$roleQuery = $conn->prepare("SELECT role_name FROM ROLE WHERE role_id = :role_id");
-        	$roleQuery->bindParam('role_id', $authRow["role_id"]);
-        	$roleQuery->execute();
-        	$roleNameRow = $roleQuery->fetch();
-        	$returnJSON = array(
-        			(object) array(
-        				'authenticated' => true,
-        				 'role' => $roleNameRow["role_name"],
-        				 'roleid'=> $authRow["role_id"]
-        				)
-        			);
-        } else {
-        	$returnJSON = array(
-        		    (object) array(
-        				'authenticated' => false
-        				)
-        			);
-        }
-        //$conn->close();
-        return $returnJSON;
-}
+$userParam = isset($_GET["user"]) ? $_GET["user"] : null;
+$returnValue = getUserData();
 
 
 exit(json_encode($returnValue));

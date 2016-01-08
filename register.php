@@ -16,26 +16,25 @@ if(isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["email
 	require __DIR__ . '/include/Auth.php';
 	$registerAcc = new OMBAuth($cfg, $dbh);
 
-    //check if the username exists
- 	if($registerAcc->__usernameExists($_POST["username"])) {
+    $registerAcc->register();
 
-		$smarty->assign("error", true);
-		$smarty->assign("errorMessage", "That username already has an account! Please provide another.");		
+    if($registerAcc->error) {
+    	$smarty->assign("error", true);
+    	print($registerAcc->error);
+    	if($registerAcc->error == 5) {
+    		$smarty->assign("errorMessage", "That username already has an account! Please provide another.");
+    	} else {
+    		$smarty->assign("errorMessage", "That email already has an account! Please provide another.");
+    	}
 		$smarty->display("register.html");
-
-	} else if($registerAcc->__emailExists($_POST["email"])) {
-		//check if the email exists
-		$smarty->assign("error", true);
-		$smarty->assign("errorMessage", "That email already has an account! Please provide another.");		
-		$smarty->display("register.html");
-	} else {
-		//otherwise, this is a valid account, add request to the DB
-        $registerAcc->register();
-		
-		//$smarty->assign("success", true);
-		//$smarty->assign("error", false);
-		//echo "<script type='text/javascript'>alert('Your account request has been submitted! Please wait for an email notification regarding approval.');</script>";
-    	header('Location: login.php');
+    }
+	
+	//$smarty->assign("success", true);
+	//$smarty->assign("error", false);
+	//echo "<script type='text/javascript'>alert('Your account request has been submitted! Please wait for an email notification regarding approval.');</script>";
+	else {
+		// Registration successful, redirect
+		header('Location: login.php');
 	}
       
 } else {

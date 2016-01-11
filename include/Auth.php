@@ -55,8 +55,8 @@ class OMBAuth {
 					$_SESSION["user"]=$username;
 					$_SESSION["loggedIn"]=TRUE;
 
-					$_SESSION["role"] = "Administrator";
-		        	$_SESSION["roleid"] = 1;
+					//$_SESSION["role"] = "Administrator";
+		        	//$_SESSION["roleid"] = 1;
 					return true;
 				}
 				$this->error = 2;
@@ -71,8 +71,8 @@ class OMBAuth {
 					$_SESSION["user"]=$username;
 					$_SESSION["loggedIn"]=TRUE;
 
-					//$_SESSION["role"] = "Administrator";
-		        	//$_SESSION["roleid"] = 1;
+					$_SESSION["role"] = "Administrator";
+		        	$_SESSION["roleid"] = 1;
 					return true;
 				}
 				return false;

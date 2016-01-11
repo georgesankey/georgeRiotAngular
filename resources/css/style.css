@@ -490,6 +490,15 @@ code {
     overflow-y:hidden;
 }
 
+.pay-sb{
+  width:25%;
+}
+#horizontal-line{
+  border-bottom: 1px solid black;
+  margin-bottom: 8px;
+}
+
+
 #dash-calendar .fc-highlight {
     background:#CAFB95;
 }
@@ -502,7 +511,6 @@ code {
 .list-sharp li:hover {
     
 }
-
 .notifications-list .alert {
     margin-bottom:5px;
     cursor:pointer;
@@ -546,3 +554,4 @@ code {
     border-radius:10px;
     box-shadow: 2px 2px 5px grey;
 }
+

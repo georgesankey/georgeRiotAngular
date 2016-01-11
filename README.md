@@ -68,3 +68,4 @@ the dashboard theme anyways.
 To set up your database, navigate to include/db/dbconfig.php 
 and put in your database settings there.
 This file is set up to not commit to the server.
+# OMB_Resources

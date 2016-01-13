@@ -122,6 +122,12 @@ appModule.controller("DashController", function($rootScope, $scope) {
 
 });
 
+appModule.factory('UserService', function($rootScope) {
+    return {
+        
+    };
+});
+
 
 appModule.directive('calendar',  ['$rootScope', '$location', function($rootScope, $location) {
 return {

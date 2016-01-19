@@ -45,14 +45,14 @@ class OMBAuth {
 	 * @param: $type - type of login
      * @return boolean    TRUE on success and FALSE on failure
      */
-	public function login($username, $password, $type="normal") {
+	public function login($email, $password, $type="normal") {
 
 		if($type=="normal") {
 
 			// Use web authentication for dev
 			if($this->config["webAuth"]) {
-				if($this->__webLogin($username, $password)) {
-					$_SESSION["user"]=$username;
+				if($this->__webLogin($email, $password)) {
+					$_SESSION["user"]=$email;
 					$_SESSION["loggedIn"]=TRUE;
 
 					//$_SESSION["role"] = "Administrator";
@@ -67,8 +67,8 @@ class OMBAuth {
 			// This section for DB login. Create a new function for this.
 			else {
 
-				if($this->__dbLogin($username, $password)) {
-					$_SESSION["user"]=$username;
+				if($this->__dbLogin($email, $password)) {
+					$_SESSION["user"]=$email;
 					$_SESSION["loggedIn"]=TRUE;
 
 					$_SESSION["role"] = "Administrator";
@@ -132,14 +132,14 @@ class OMBAuth {
 			$this->errorMessage = "Database Not Assigned";
 			return false;
 		}
-
+/*
 		// Check for existing username
 		if($this->__usernameExists($_POST["username"])) {
 			$this->error = 5;
 			$this->errorMessage = "Username already exists";
 			return false;
 		}
-
+*/
 		// Check for existing email
 		if($this->__emailExists($_POST["email"])) {
 			$this->error = 6;
@@ -167,7 +167,7 @@ class OMBAuth {
  
 		$insertQuery->execute();
 
-		return $this->login($_POST["username"], $_POST["password"]);
+		return $this->login($_POST["email"], $_POST["password"]);
 	}
 
 	//------------------------------------------------
@@ -179,6 +179,7 @@ class OMBAuth {
 	 * @param: $username
 	 * @return boolean
 	 */
+	/*
 	private function __usernameExists($username) {
 	
 		// Check the PDO
@@ -198,7 +199,7 @@ class OMBAuth {
 		$regRows = $regQuery->rowCount();
 		return $regRows > 0;
 	}
-
+*/
 	/**
 	 * Checks if the email is in the system
 	 * @param: $email
@@ -230,7 +231,7 @@ class OMBAuth {
 	 * @param: $password
      * @return boolean    TRUE on success and FALSE on failure
      */
-	private function __webLogin($username, $password) {
+	private function __webLogin($email, $password) {
 		$users = $this->config["users"];
  
  		// Emulate normal login
@@ -250,7 +251,7 @@ class OMBAuth {
  			}
  		}
  
- 		return isset($users[$username]) && $users[$username] == $password;
+ 		return isset($users[$email]) && $users[$email] == $password;
 	}
 
 	/**
@@ -259,7 +260,7 @@ class OMBAuth {
 	 * @param: $password
      * @return boolean    TRUE on success and FALSE on failure
      */
-	private function __dbLogin($username, $password) {
+	private function __dbLogin($email, $password) {
 		
 		// Check for working PDO 
 		if(is_null($this->db)) {
@@ -272,8 +273,8 @@ class OMBAuth {
 		}
         
 		// Make database call 
-        $authQuery = $this->db->prepare("SELECT * FROM USER WHERE (username = :usernameOrEmail OR email = :usernameOrEmail) AND active = '1'");
-	    $authQuery->bindParam(':usernameOrEmail', $username);
+        $authQuery = $this->db->prepare("SELECT * FROM USER WHERE (email = :email) AND active = '1'");
+	    $authQuery->bindParam(':email', $email);
 
 	    if($this->config["DEBUG"]) {
 			print("<br />Query: ");

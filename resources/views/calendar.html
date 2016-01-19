@@ -7,69 +7,94 @@
         $(document).ready(function () {
             var appointments = new Array();
             var appointment1 = {
-                id: "id1",
+                id: "1",
                 showName: "Aladdin",
-                location: "",
+                place: "Metrotech Center",
+                address: "Narnia 500",
+                contactPerson: "Scrooge",
+                contactEmail: "scrooge@gmail.com",
+                contactPhoneNumber: "(555)555-5555",
                 description: "This is the Description.",
-                calendar: "Room 1",
                 start: new Date(2015, 10, 23, 9, 0, 0),
                 end: new Date(2015, 10, 23, 16, 0, 0),
-                admin: "Raihan Ahmed"
+                admin: "Raihan Ahmed",
+                showStatus: "Confirmed",
+                repeatStatus: "Weekly"
             }
             var appointment2 = {
-                id: "id2",
+                id: "2",
                 showName: "Wicked",
-                location: "",
+                place: "Broadway Theater",
+                address: "Narnia 500",
+                contactPerson: "Scrooge",
+                contactEmail: "scrooge@gmail.com",
+                contactPhoneNumber: "(555)555-5555",                
                 description: "This is the Description.",
-                calendar: "Room 2",
                 start: new Date(2015, 10, 24, 10, 0, 0),
                 end: new Date(2015, 10, 24, 15, 0, 0),
-                admin: "Raihan Ahmed"
-
+                admin: "Raihan Ahmed",
+                showStatus: "Deferred", 
+                repeatStatus: "Daily"              
             }
             var appointment3 = {
-                id: "id3",
+                id: "3",
                 showName: "Lion King",
-                location: "",
+                place: "Union Square Theater",                                             
+                address: "Narnia 500",   
+                contactPerson: "Scrooge",
+                contactEmail: "scrooge@gmail.com",
+                contactPhoneNumber: "(555)555-5555",                             
                 description: "This is the Description.",
-                calendar: "Room 3",
                 start: new Date(2015, 10, 27, 11, 0, 0),
                 end: new Date(2015, 10, 27, 13, 0, 0),
-                admin: "Raihan Ahmed"
-
+                admin: "Raihan Ahmed",
+                showStatus: "Tentative",
+                repeatStatus: "Monthly"                             
             }
             var appointment4 = {
-                id: "id4",
+                id: "4",
                 showName: "Up",
-                location: "",
+                place: "CNN",
+                address: "Narnia 500", 
+                contactPerson: "Scrooge",
+                contactEmail: "scrooge@gmail.com",
+                contactPhoneNumber: "(555)555-5555",                                              
                 description: "This is the Description.",
-                calendar: "Room 2",
                 start: new Date(2015, 10, 23, 16, 0, 0),
                 end: new Date(2015, 10, 23, 18, 0, 0),
-                admin: "Raihan Ahmed"
-
+                admin: "Raihan Ahmed",
+                showStatus: "Confirmed",
+                repeatStatus: "Yearly"              
             }
             var appointment5 = {
-                id: "id5",
+                id: "5",
                 showName: "Finding Nemo",
-                location: "",
+                place: "FOX",
+                address: "Narnia 500", 
+                contactPerson: "Scrooge",
+                contactEmail: "scrooge@gmail.com",
+                contactPhoneNumber: "(555)555-5555",                                               
                 description: "This is the Description.",
-                calendar: "Room 1",
                 start: new Date(2015, 10, 25, 15, 0, 0),
                 end: new Date(2015, 10, 25, 17, 0, 0),
-                admin: "Raihan Ahmed"
-               
+                admin: "Raihan Ahmed",
+                showStatus: "Confirmed",
+                repeatStatus: "Never"                                            
             }
             var appointment6 = {
-                id: "id6",
+                id: "6",
                 showName: "Wizard",
-                location: "",
+                place: "NBC",
+                address: "Narnia 500", 
+                contactPerson: "Scrooge",
+                contactEmail: "scrooge@gmail.com",
+                contactPhoneNumber: "(555)555-5555",                                               
                 description: "This is the Description.",
-                calendar: "Room 4",
                 start: new Date(2015, 10, 26, 14, 0, 0),
                 end: new Date(2015, 10, 26, 16, 0, 0),
-                admin: "Raihan Ahmed"
-               
+                admin: "Raihan Ahmed",
+                showStatus: "Deferred",
+                repeatStatus: "Never"                              
             }
             appointments.push(appointment1);
             appointments.push(appointment2);
@@ -83,38 +108,38 @@
                 dataType: "array",
                 dataFields: [
                     { name: 'id', type: 'string' },
-                    { name: 'description', type: 'string' },
-                    { name: 'location', type: 'string' },
                     { name: 'showName', type: 'string' },
-                    { name: 'calendar', type: 'string' },
+                    { name: 'place', type: 'string' },
+                    { name: 'address', type: 'string'},
+                    { name: 'contactPerson', type: 'string' },
+                    { name: 'contactEmail', type: 'string' },
+                    { name: 'contactPhoneNumber', type: 'string'},                    
+                    { name: 'description', type: 'string' },                   
                     { name: 'start', type: 'date' },
                     { name: 'end', type: 'date' },
-                    { name: 'admin', type: 'string'}
+                    { name: 'admin', type: 'string'},
+                    { name: 'showStatus', type: 'string'},
+                    { name: 'repeatStatus', type: 'string'}
                 ],
                 id: 'id',
                 localData: appointments
             };
             var adapter = new $.jqx.dataAdapter(source);
-            var addActorsButton = null;
-            var addStaffButton = null;
-            var statusList = null;
-            var pocName = null;
-            var pocInfo = null;
-            var adminField = null;
-
-
+		
             $("#scheduler").jqxScheduler({
                 date: new $.jqx.date(new Date()),
                 width: '100%',
                 height: 900,
                 source: adapter,
                 view: 'weekView',
-                showLegend: false,
+                showLegend: true,
                 editDialog: true,
+                enableHover: true,
                 ready: function () {
-                    $("#scheduler").jqxScheduler('ensureAppointmentVisible', 'id1');
+                    $("#scheduler").jqxScheduler('ensureAppointmentVisible', '1');
                 },
                 editDialogCreate: function(dialog, fields, editAppointment){
+					//editing the default fields
                 	fields.subjectLabel.html("Show Name");
                 	fields.fromLabel.html("Start Time");
                 	fields.toLabel.html("End Time");
@@ -124,31 +149,101 @@
                 	fields.statusContainer.hide();
                 	fields.colorContainer.hide();
                 	fields.resourceContainer.hide();
-                	//fields.adminLabel.html("Administrator");
+                	fields.locationContainer.hide();
+                	fields.resetExceptionsContainer.hide();
+                	//adding in the location field
+                	var mainContainer = $(
+                		"<div id='mainContainer'>" +
+                		"<div id='placeContainer'><div class='jqx-scheduler-edit-dialog-label'>Location</div><div class='jqx-scheduler-edit-dialog-field'><input type='text'  id='placeText' value='" +  editAppointment.place + "' /></div></div>" + 
+                		"<div id='addressContainer'><div class='jqx-scheduler-edit-dialog-label'>Address</div><div class='jqx-scheduler-edit-dialog-field'><input type='text'  id='addressText' value='" +  editAppointment.address + "' /></div></div>" + 
+                		"<div id='contactPersonContainer'><div class='jqx-scheduler-edit-dialog-label'>Contact Name</div><div class='jqx-scheduler-edit-dialog-field'><input type='text'  id='contactPersonText' value='" +  editAppointment.contactPerson + "' /></div></div>" + 
+                		"<div id='contactEmailContainer'><div class='jqx-scheduler-edit-dialog-label'>Contact Email</div><div class='jqx-scheduler-edit-dialog-field'><input type='text'  id='contactEmailText' value='" +  editAppointment.contactEmail + "' /></div></div>" + 
+                		"<div id='contactPhoneNumberContainer'><div class='jqx-scheduler-edit-dialog-label'>Contact #</div><div class='jqx-scheduler-edit-dialog-field'><input type='text'  id='contactPhoneNumberText' value='" +  editAppointment.contactPhoneNumber + "' /></div></div>" + 
+                		"<div id='adminContainer'><div class='jqx-scheduler-edit-dialog-label'>Administrator</div><div class='jqx-scheduler-edit-dialog-field'><input type='text'  id='adminTextValue' readOnly='readOnly' value='" +  editAppointment.admin + "' /></div></div>" + 
+                		"<div id='showStatusContainer'><div class='jqx-scheduler-edit-dialog-label'>Show Status</div><div class='jqx-scheduler-edit-dialog-field'><select id='showStatusValue'><option value='Confirmed'" + (editAppointment.showStatus === 'Confirmed'? "selected": "") + ">Confirmed</option><option value='Tentative'" + (editAppointment.showStatus === 'Tentative'? "selected": "") +  ">Tentative</option><option value='Deferred'" + 
+                		(editAppointment.showStatus === 'Deferred'? "selected": "") + ">Deferred</option></select></div></div>" + 
+                		"</div>");
 
-                	addActorsButton = $("<button style='margin-left: 5px; float:right;'>Add Actors</button>");
+                	$('#dialogscheduler div:eq(0)').after(mainContainer.html());	  
+
+                	$('#dialogscheduler div input, select').css('width', '100%');
+                	$('#dialogscheduler div input, select').css('height', '25px');
+
+
+                	/* These are the buttons for Adding Actors/Staff Members */
+                	var addActorsButton = $("<button id='addActorsButton' style='margin-left: 5px; float:right;'>Add Actors</button>");
             		fields.buttons.append(addActorsButton);
             		addActorsButton.jqxButton({ theme: this.theme });
 
-               		addStaffButton = $("<button style='margin-left: 5px; float:right;'>Add Staff</button>");
+               		var addStaffButton = $("<button id='addStaffButton' style='margin-left: 5px; float:right;'>Add Staff</button>");
             		fields.buttons.append(addStaffButton);
             		addStaffButton.jqxButton({ theme: this.theme });
 
-            		//$("#scheduler").children().last().before($("#AdminContainer").html());
+            		$("#scheduler").jqxScheduler('focus');
 
-         //   		$("#scheduler").on('appointmentChange', function(event) {
-          //  			var args = event.args;
-           // 			var appointment = args.appointment;
-            //			appointment.admin = $("#adminValue").val();
-             //		});
                 },
                 editDialogOpen: function(dialog, fields, editAppointment) {
-                	//$("#adminValue").val(editAppointment.admin);
+                	$('#adminTextValue').val(editAppointment.admin);
+                	$('#placeText').val(editAppointment.place);
+                	$('#addressText').val(editAppointment.address);
+                	$('#contactPersonText').val(editAppointment.contactPerson);
+                	$('#contactEmailText').val(editAppointment.contactEmail);
+                	$('#contactPhoneNumberText').val(editAppointment.contactPhoneNumber);
+                	$('#showStatusValue').val(editAppointment.showStatus);   
+                    $('#scheduler').on('appointmentChange', function(event) {
+                            var args = event.args;
+                            var appointment = args.appointment;
+                            appointment.admin = $('#adminTextValue').val();
+                            appointment.place = $('#placeText').val();  
+                            appointment.address = $('#addressText').val(); 
+                            appointment.contactPerson = $('#contactPersonText').val();
+                            appointment.contactEmail = $('#contactEmailText').val();
+                            appointment.contactPhoneNumber = $('#contactPhoneNumberText').val();  
+                            appointment.showStatus = $('#showStatusValue').val();
+                    });
+                    $('#addActorsButton').on('click', function(event) {
+                    		//$("#actorsWindow").css('display', "");
+                    		$("#actorsWindow").jqxWindow({
+                    			width: '100%',
+                    			height: '100%',
+                    			theme: 'summer',
+                    			autoOpen: false,
+                    			isModal: true
+                    		});
+
+                   		$("#currentActorsTable").dataTable();
+                   		//$("[name='switch']").bootstrapSwitch();                		
+                    	$("#actorsWindow").jqxWindow('open');
+                    }); 
+                    $('#addStaffButton').on('click', function(event) {
+                    		//$("#actorsWindow").css('display', "");
+                    		$("#staffWindow").jqxWindow({
+                    			width: '100%',
+                    			height: '100%',
+                    			theme: 'summer',
+                    			autoOpen: false,
+                    			isModal: true
+                    		});
+
+                   		$("#currentStaffTable").dataTable();                		
+                    	$("#staffWindow").jqxWindow('open');
+                    });                    
+                },
+                editDialogClose: function(dialog, fields, editAppointment) {
+                	//$("div.jqx-scheduler-selected-appointment").css('background', 
+                		//(editAppointment.calendar === 'Confirmed'? '#008000' : 
+                			//(editAppointment.calendar === 'Tentative'? '#FF0000' : '#FFFF00')));
+						//console.log($("#scheduler"));	
+						//$(this).jqxScheduler({ 
+						//	source: new $.jqx.dataAdapter(source)
+						//	 });
+                        
+
                 },
                 resources:
                 {
-                    colorScheme: "scheme05",
-                    dataField: "calendar",
+                    colorScheme: "scheme03",
+                    dataField: "showStatus",
                     source: new $.jqx.dataAdapter(source)
                 },
                 appointmentDataFields:
@@ -157,10 +252,16 @@
                     to: "end",
                     id: "id",
                     description: "description",
-                    location: "place",
+                    place: "place",
                     subject: "showName",
-                    resourceId: "calendar",
-                    admin: "admin"
+                    resourceId: "showStatus",
+                    admin: "admin",
+                    address: "address",
+                    contactEmail: "contactEmail",
+                    contactPerson: "contactPerson",
+                    contactPhoneNumber: "contactPhoneNumber",
+                    showStatus: "showStatus",
+                    repeatStatus: "repeatStatus"
                 },
                 views:
                 [
@@ -173,9 +274,53 @@
 	</script>
      <div class="panel-body">
         <div id="scheduler"></div>
-       <!-- <div id="AdminContainer">
-        <div class="jqx-scheduler-edit-dialog-label">Administrator</div>	
-        <div class="jqx-scheduler-edit-dialog-field"><input type="text" id="adminValue" /></div>	
-        </div> -->
+        <div id="actorsWindow" style="display:none;">
+	        <div>Add Actors</div>	
+	        <div>
+	        <table id="currentActorsTable">
+	        <thead>
+	        	<th>First Name</th>
+	        	<th>Last Name</th>
+	        	<th>Check This</th>
+	        </thead>
+	        <tbody>
+	        	<tr>
+	        	<td>Raihan</td>
+	        	<td>Ahmed</td>
+	        	<td><input name='switch' type='checkbox' checked></td>
+	        	</tr>
+	         	<tr>
+	        	<td>Geoffrey</td>
+	        	<td>Churchill</td>
+	        	<td>Check</td>
+	        	</tr> 	        	      	
+	        </tbody>
+	        </table>	
+	        </div>
+	    </div>
+        <div id="staffWindow" style="display:none;">
+	        <div>Add Staff</div>	
+	        <div>
+	        <table id="currentStaffTable">
+	        <thead>
+	        	<th>First Name</th>
+	        	<th>Last Name</th>
+	        	<th>Check This</th>
+	        </thead>
+	        <tbody>
+	        	<tr>
+	        	<td>Raihan</td>
+	        	<td>Ahmed</td>
+	        	<td>Check</td>
+	        	</tr>
+	         	<tr>
+	        	<td>Geoffrey</td>
+	        	<td>Churchill</td>
+	        	<td>Check</td>
+	        	</tr> 	        	      	
+	        </tbody>
+	        </table>	
+	        </div>
+	    </div>
     </div>
 </div>

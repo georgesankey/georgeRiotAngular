@@ -1,6 +1,6 @@
 <!-- Display calendar related information and filters  -->
 <div class="panel panel-info">
-	<div class="panel-heading">
+    <div class="panel-heading">
         <h4 class="panel-title">Calendar</h4>
     </div>
     <script type="text/javascript">
@@ -139,6 +139,7 @@
                     $("#scheduler").jqxScheduler('ensureAppointmentVisible', '1');
                 },
                 editDialogCreate: function(dialog, fields, editAppointment){
+<<<<<<< HEAD
 					//editing the default fields
                 	fields.subjectLabel.html("Show Name");
                 	fields.fromLabel.html("Start Time");
@@ -239,6 +240,37 @@
 						//	 });
                         
 
+=======
+                    fields.subjectLabel.html("Show Name");
+                    fields.fromLabel.html("Start Time");
+                    fields.toLabel.html("End Time");
+                    fields.timeZoneContainer.hide();
+                    fields.descriptionLabel.html("Comments");
+                    fields.allDayContainer.hide();
+                    fields.statusContainer.hide();
+                    fields.colorContainer.hide();
+                    fields.resourceContainer.hide();
+                    //fields.adminLabel.html("Administrator");
+
+                    addActorsButton = $("<button style='margin-left: 5px; float:right;'>Add Actors</button>");
+                    fields.buttons.append(addActorsButton);
+                    addActorsButton.jqxButton({ theme: this.theme });
+
+                    addStaffButton = $("<button style='margin-left: 5px; float:right;'>Add Staff</button>");
+                    fields.buttons.append(addStaffButton);
+                    addStaffButton.jqxButton({ theme: this.theme });
+
+                    //$("#scheduler").children().last().before($("#AdminContainer").html());
+
+         //         $("#scheduler").on('appointmentChange', function(event) {
+          //            var args = event.args;
+           //           var appointment = args.appointment;
+            //          appointment.admin = $("#adminValue").val();
+             //     });
+                },
+                editDialogOpen: function(dialog, fields, editAppointment) {
+                    //$("#adminValue").val(editAppointment.admin);
+>>>>>>> e42d7a30bf7cdfba37201c61c9d8ca5ccc3bb390
                 },
                 resources:
                 {
@@ -271,9 +303,10 @@
                 ]
             });
         });
-	</script>
+    </script>
      <div class="panel-body">
         <div id="scheduler"></div>
+<<<<<<< HEAD
         <div id="actorsWindow" style="display:none;">
 	        <div>Add Actors</div>	
 	        <div>
@@ -322,5 +355,11 @@
 	        </table>	
 	        </div>
 	    </div>
+=======
+       <!-- <div id="AdminContainer">
+        <div class="jqx-scheduler-edit-dialog-label">Administrator</div>    
+        <div class="jqx-scheduler-edit-dialog-field"><input type="text" id="adminValue" /></div>    
+        </div> -->
+>>>>>>> e42d7a30bf7cdfba37201c61c9d8ca5ccc3bb390
     </div>
 </div>

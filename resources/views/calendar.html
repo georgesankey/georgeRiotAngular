@@ -171,15 +171,15 @@
 
 
                 	/* These are the buttons for Adding Actors/Staff Members */
-                	var addActorsButton = $("<button id='addActorsButton' style='margin-left: 5px; float:right;'>Add Actors</button>");
+                	var addActorsButton = $("<button id='addActorsButton' style='margin-left: 5px; float:right;'>Actors</button>");
             		fields.buttons.append(addActorsButton);
             		addActorsButton.jqxButton({ theme: this.theme });
 
-               		var addStaffButton = $("<button id='addStaffButton' style='margin-left: 5px; float:right;'>Add Staff</button>");
+               		var addStaffButton = $("<button id='addStaffButton' style='margin-left: 5px; float:right;'>Staff</button>");
             		fields.buttons.append(addStaffButton);
             		addStaffButton.jqxButton({ theme: this.theme });
 
-            		$("#scheduler").jqxScheduler('focus');
+            		//$("#scheduler").jqxScheduler('focus');
 
                 },
                 editDialogOpen: function(dialog, fields, editAppointment) {
@@ -211,7 +211,7 @@
                     			isModal: true
                     		});
 
-                   		$("#currentActorsTable").dataTable();
+                   		$("#currentActorsTable, #addActorsTable").dataTable();
                    		//$("[name='switch']").bootstrapSwitch();                		
                     	$("#actorsWindow").jqxWindow('open');
                     }); 
@@ -225,49 +225,12 @@
                     			isModal: true
                     		});
 
-                   		$("#currentStaffTable").dataTable();                		
+                   		$("#currentStaffTable, #addStaffTable").dataTable();                		
                     	$("#staffWindow").jqxWindow('open');
                     });                    
                 },
                 editDialogClose: function(dialog, fields, editAppointment) {
-                	//$("div.jqx-scheduler-selected-appointment").css('background', 
-                		//(editAppointment.calendar === 'Confirmed'? '#008000' : 
-                			//(editAppointment.calendar === 'Tentative'? '#FF0000' : '#FFFF00')));
-						//console.log($("#scheduler"));	
-						//$(this).jqxScheduler({ 
-						//	source: new $.jqx.dataAdapter(source)
-						//	 });
-                        
-
-                    fields.subjectLabel.html("Show Name");
-                    fields.fromLabel.html("Start Time");
-                    fields.toLabel.html("End Time");
-                    fields.timeZoneContainer.hide();
-                    fields.descriptionLabel.html("Comments");
-                    fields.allDayContainer.hide();
-                    fields.statusContainer.hide();
-                    fields.colorContainer.hide();
-                    fields.resourceContainer.hide();
-                    //fields.adminLabel.html("Administrator");
-
-                    addActorsButton = $("<button style='margin-left: 5px; float:right;'>Add Actors</button>");
-                    fields.buttons.append(addActorsButton);
-                    addActorsButton.jqxButton({ theme: this.theme });
-
-                    addStaffButton = $("<button style='margin-left: 5px; float:right;'>Add Staff</button>");
-                    fields.buttons.append(addStaffButton);
-                    addStaffButton.jqxButton({ theme: this.theme });
-
-                    //$("#scheduler").children().last().before($("#AdminContainer").html());
-
-         //         $("#scheduler").on('appointmentChange', function(event) {
-          //            var args = event.args;
-           //           var appointment = args.appointment;
-            //          appointment.admin = $("#adminValue").val();
-             //     });
-                },
-                editDialogOpen: function(dialog, fields, editAppointment) {
-                    //$("#adminValue").val(editAppointment.admin);
+ 
                 },
                 resources:
                 {
@@ -304,53 +267,141 @@
      <div class="panel-body">
         <div id="scheduler"></div>
         <div id="actorsWindow" style="display:none;">
-	        <div>Add Actors</div>	
+	        <div>Actor Management</div>	
 	        <div>
-	        <table id="currentActorsTable">
-	        <thead>
-	        	<th>First Name</th>
-	        	<th>Last Name</th>
-	        	<th>Check This</th>
-	        </thead>
-	        <tbody>
-	        	<tr>
-	        	<td>Raihan</td>
-	        	<td>Ahmed</td>
-	        	<td><input name='switch' type='checkbox' checked></td>
-	        	</tr>
-	         	<tr>
-	        	<td>Geoffrey</td>
-	        	<td>Churchill</td>
-	        	<td>Check</td>
-	        	</tr> 	        	      	
-	        </tbody>
-	        </table>	
-	        </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Current Actors</h4>
+                    </div>
+
+	            <table id="currentActorsTable">
+    	        <thead>
+    	        	<th>First Name</th>
+    	        	<th>Last Name</th>
+    	        	<th>Check This</th>
+    	        </thead>
+    	        <tbody>
+    	        	<tr>
+        	        	<td>Raihan</td>
+        	        	<td>Ahmed</td>
+        	        	<td><input name='switch' type='checkbox' checked></td>
+    	        	</tr>
+    	         	<tr>
+        	        	<td>Geoffrey</td>
+        	        	<td>Churchill</td>
+        	        	<td>Check</td>                
+                    </tr>                                                                             	        	      	
+    	        </tbody>                
+    	        </table>	
+    	        </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Add Actors</h4>
+                    </div>
+                <div class="container">
+                    <div class="row">
+                        <br>
+                            <div class="col-md-3 col-md-offset-2">
+                                <form action="" class="search-form">
+                                    <div class="form-group has-feedback">
+                                        <label for="search" class="sr-only">Search</label>
+                                        <input type="text" class="form-control" name="search" id="search" placeholder="search">
+                                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                    </div>
+                                </form>
+                            </div>
+                    </div>
+                </div>                    
+                <table id="addActorsTable">
+                <thead>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Check This</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Raihan</td>
+                        <td>Ahmed</td>
+                        <td><input name='switch' type='checkbox' checked></td>
+                    </tr>
+                    <tr>
+                        <td>Geoffrey</td>
+                        <td>Churchill</td>
+                        <td>Check</td>
+                    </tr>                       
+                </tbody>
+                </table>    
+                </div>                
+            </div>
 	    </div>
         <div id="staffWindow" style="display:none;">
-	        <div>Add Staff</div>	
-	        <div>
-	        <table id="currentStaffTable">
-	        <thead>
-	        	<th>First Name</th>
-	        	<th>Last Name</th>
-	        	<th>Check This</th>
-	        </thead>
-	        <tbody>
-	        	<tr>
-	        	<td>Raihan</td>
-	        	<td>Ahmed</td>
-	        	<td>Check</td>
-	        	</tr>
-	         	<tr>
-	        	<td>Geoffrey</td>
-	        	<td>Churchill</td>
-	        	<td>Check</td>
-	        	</tr> 	        	      	
-	        </tbody>
-	        </table>	
-	        </div>
-	    </div>
+            <div>Staff Management</div>   
+            <div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Current Staff</h4>
+                    </div>
+
+                <table id="currentStaffTable">
+                <thead>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Check This</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Raihan</td>
+                        <td>Ahmed</td>
+                        <td><input name='switch' type='checkbox' checked></td>
+                    </tr>
+                    <tr>
+                        <td>Geoffrey</td>
+                        <td>Churchill</td>
+                        <td>Check</td>                
+                    </tr>                                                                                                   
+                </tbody>                
+                </table>    
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Add Staff</h4>
+                    </div>
+                <div class="container">
+                    <div class="row">
+                        <br>
+                            <div class="col-md-3 col-md-offset-2">
+                                <form action="" class="search-form">
+                                    <div class="form-group has-feedback">
+                                        <label for="search" class="sr-only">Search</label>
+                                        <input type="text" class="form-control" name="search" id="search" placeholder="search">
+                                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                    </div>
+                                </form>
+                            </div>
+                    </div>
+                </div>                    
+                <table id="addStaffTable">
+                <thead>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Check This</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Raihan</td>
+                        <td>Ahmed</td>
+                        <td><input name='switch' type='checkbox' checked></td>
+                    </tr>
+                    <tr>
+                        <td>Geoffrey</td>
+                        <td>Churchill</td>
+                        <td>Check</td>
+                    </tr>                       
+                </tbody>
+                </table>    
+                </div>                
+            </div>
+        </div>
        <!-- <div id="AdminContainer">
         <div class="jqx-scheduler-edit-dialog-label">Administrator</div>    
         <div class="jqx-scheduler-edit-dialog-field"><input type="text" id="adminValue" /></div>    

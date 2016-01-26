@@ -67,14 +67,17 @@ class OMBAuth {
 			else {
 
 				if($this->__dbLogin($email, $password)) {
+
+					require_once __DIR__ . '/api/userdata.php';
+					$userObj = getUserData($email);
 					$_SESSION["user"]=$email;
+					$_SESSION["role"] = $userObj['role_name'] . 'bro';
 					$_SESSION["loggedIn"]=TRUE;
 
-					$_SESSION["role"] = "Administrator";
 					return true;
 				}
-				return false;
 
+				return false;
 			}
 		}
 

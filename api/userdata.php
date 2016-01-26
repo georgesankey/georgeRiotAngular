@@ -25,7 +25,7 @@ function getUserData($user=null) {
 
 	if(empty($user)) {
 		$authQuery = $dbh->prepare("
-			SELECT u.email, c.first_name, c.last_name, r.role_name, c.phone_number FROM USER AS u, ROLE AS r, CONTACT as c,   
+			SELECT u.email, c.first_name, c.last_name, r.role_name, c.phone_number FROM USER u, ROLE r, CONTACT c
 			WHERE u.email = :user AND u.id = c.user_id AND r.role_id = u.role_id
 		");
 	    $authQuery->bindParam(':user', $_SESSION['user']);
@@ -49,12 +49,12 @@ function getUserData($user=null) {
 		// Vet role
 		if($data["role_name"] == "Administrator") {
 			$authQuery = $dbh->prepare("
-				SELECT u.email, c.first_name, c.last_name, r.role_name, c.phone_number FROM USER AS u, ROLE AS r, CONTACT as c,   
+				SELECT u.email, c.first_name, c.last_name, r.role_name, c.phone_number FROM USER AS u, ROLE AS r, CONTACT as c  
 				WHERE u.email = :user AND u.id = c.user_id AND r.role_id = u.role_id
 			");
 		} else {
 			$authQuery = $dbh->prepare("
-				SELECT u.email, c.first_name, c.last_name, c.phone_number FROM USER AS u, CONTACT as c,   
+				SELECT u.email, c.first_name, c.last_name, c.phone_number FROM USER AS u, CONTACT as c   
 				WHERE u.email = :user AND u.id = c.user_id
 			");
 		}
@@ -70,8 +70,8 @@ function getUserData($user=null) {
 	}
 }
 
-$userParam = isset($_GET["user"]) ? $_GET["user"] : null;
-$returnValue = getUserData();
+$user = isset($_GET["user"]) ? $_GET["user"] : null;
+$returnValue = getUserData($user);
 
 
 exit(json_encode($returnValue));

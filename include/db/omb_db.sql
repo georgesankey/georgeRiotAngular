@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 19, 2016 at 04:03 PM
+-- Generation Time: Jan 26, 2016 at 02:28 PM
 -- Server version: 5.5.46-0ubuntu0.14.04.2
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -52,7 +52,15 @@ CREATE TABLE IF NOT EXISTS `CONTACT` (
   `details` text NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `CONTACT`
+--
+
+INSERT INTO `CONTACT` (`id`, `first_name`, `last_name`, `phone_number`, `details`, `user_id`) VALUES
+(1, 'Raihan', 'Ahmed', '9177753732', 'This is Raihan''s contact information.', 1),
+(2, 'Tameem', 'Imamdad', '(555) 555-5555', 'Tameem''s details.', 2);
 
 -- --------------------------------------------------------
 
@@ -105,8 +113,7 @@ CREATE TABLE IF NOT EXISTS `ROLE` (
 INSERT INTO `ROLE` (`role_id`, `role_name`) VALUES
 (1, 'Administrator'),
 (2, 'Actor'),
-(3, 'Staff'),
-(4, 'Blah');
+(3, 'Staff');
 
 -- --------------------------------------------------------
 
@@ -143,13 +150,13 @@ CREATE TABLE IF NOT EXISTS `USER` (
 
 INSERT INTO `USER` (`id`, `password`, `role_id`, `active`, `email`) VALUES
 (1, '0c5a7d1c8dd69398dd851382e169e366656b7bba4efafeafb0b7253b953b0dfcb08052f8ffed52f49238bb3cf52c8c25', 1, 1, 'raymanahmed@gmail.com'),
-(2, '5ecaf34c43cd885cdc8e67022427a78d9aa2b4881e9c69f814469bac18166ace601aae163ab647fc883846d1c2e42378', 1, 1, ''),
+(2, '5ecaf34c43cd885cdc8e67022427a78d9aa2b4881e9c69f814469bac18166ace601aae163ab647fc883846d1c2e42378', 1, 1, 'tameem_imamdad@gmail.com'),
 (3, '7c829f61e36742b6c5681f00013d34ab39e26f0802ebefd117aa0bdc509f57ad6e2e9ddc6e7dd68cc719ade4d637d2ac', 1, 0, ''),
-(4, '3bf51fb9175f6b7340e06d8496a0a9d8182acdbf391e221e9dce9c0a2b6764d2202570793405c69f6352dffa2bf40a2b', 4, 0, ''),
-(5, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 4, 0, ''),
-(6, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 4, 0, ''),
-(7, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 4, 0, ''),
-(8, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 4, 0, ''),
+(4, '3bf51fb9175f6b7340e06d8496a0a9d8182acdbf391e221e9dce9c0a2b6764d2202570793405c69f6352dffa2bf40a2b', 3, 0, ''),
+(5, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 3, 0, ''),
+(6, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 3, 0, ''),
+(7, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 3, 0, ''),
+(8, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 3, 0, ''),
 (9, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 2, 0, ''),
 (10, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 2, 0, ''),
 (11, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 2, 0, ''),

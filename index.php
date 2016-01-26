@@ -18,7 +18,7 @@ $smarty->setTemplateDir(__DIR__ . '/include/template');
 $smarty->setCompileDir(__DIR__ . '/include/template_c');
 
 $smarty->assign("user", $_SESSION["user"]);
-$smarty->assign("role",  "Administrator"); //$_SESSION["role"]);
+$smarty->assign("role",  $_SESSION["role"]); 
 $smarty->display("dashboard.html");
 
 ?>

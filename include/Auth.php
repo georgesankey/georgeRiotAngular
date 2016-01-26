@@ -40,7 +40,7 @@ class OMBAuth {
 
 	/**
      * Checks credentials and logs in the user
-     * @param: $username
+     * @param: $email
 	 * @param: $password
 	 * @param: $type - type of login
      * @return boolean    TRUE on success and FALSE on failure
@@ -55,8 +55,7 @@ class OMBAuth {
 					$_SESSION["user"]=$email;
 					$_SESSION["loggedIn"]=TRUE;
 
-					//$_SESSION["role"] = "Administrator";
-		        	//$_SESSION["roleid"] = 1;
+
 					return true;
 				}
 				$this->error = 2;
@@ -72,7 +71,6 @@ class OMBAuth {
 					$_SESSION["loggedIn"]=TRUE;
 
 					$_SESSION["role"] = "Administrator";
-		        	$_SESSION["roleid"] = 1;
 					return true;
 				}
 				return false;
@@ -132,14 +130,6 @@ class OMBAuth {
 			$this->errorMessage = "Database Not Assigned";
 			return false;
 		}
-/*
-		// Check for existing username
-		if($this->__usernameExists($_POST["username"])) {
-			$this->error = 5;
-			$this->errorMessage = "Username already exists";
-			return false;
-		}
-*/
 		// Check for existing email
 		if($this->__emailExists($_POST["email"])) {
 			$this->error = 6;
@@ -174,32 +164,6 @@ class OMBAuth {
 	// Private functions
 	//------------------------------------------------
 
-	/**
-	 * Checks if the user is in the system
-	 * @param: $username
-	 * @return boolean
-	 */
-	/*
-	private function __usernameExists($username) {
-	
-		// Check the PDO
-		if(is_null($this->db)) {
-			if($this->config["DEBUG"]) {
-				print("Database not assigned.<br />");
-			}
-			$this->error = 1;
-			$this->errorMessage = "Database Not Assigned";
-			return false;
-		}
-
-		$regQuery = $this->db->prepare("SELECT * FROM USER WHERE username = :username");
-		$regQuery->bindParam(':username', $username);
-		$regQuery->execute();
-
-		$regRows = $regQuery->rowCount();
-		return $regRows > 0;
-	}
-*/
 	/**
 	 * Checks if the email is in the system
 	 * @param: $email
@@ -301,10 +265,6 @@ class OMBAuth {
 		$this->errorMessage = "Invalid Credentials";
 		return false;
 	}
-
-	// private function encrypt_pass($text, $salt = "onlymakebelieve!") {
- //    	return trim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $salt, $text, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND))));
-	// }
 
 	/**
 	 * Takes a password and returns a salted hash

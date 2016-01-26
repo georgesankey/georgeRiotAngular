@@ -25,8 +25,8 @@ function getUserData($user=null) {
 
 	if(empty($user)) {
 		$authQuery = $dbh->prepare("
-			SELECT u.username, u.email, u.first_name, u.last_name, r.role_name, u.phone_number FROM USER AS u  
-			INNER JOIN ROLE as r ON r.role_id = u.role_id WHERE (u.username = :user)
+			SELECT u.email, c.first_name, c.last_name, r.role_name, c.phone_number FROM USER AS u, ROLE AS r, CONTACT as c,   
+			WHERE u.email = :user AND u.id = c.user_id AND r.role_id = u.role_id
 		");
 	    $authQuery->bindParam(':user', $_SESSION['user']);
 	    $authQuery->execute();
@@ -49,11 +49,14 @@ function getUserData($user=null) {
 		// Vet role
 		if($data["role_name"] == "Administrator") {
 			$authQuery = $dbh->prepare("
-				SELECT u.username, u.email, u.first_name, u.last_name, r.role_name, u.phone_number FROM USER AS u  
-				INNER JOIN ROLE as r ON r.role_id = u.role_id WHERE (u.username = :user)
+				SELECT u.email, c.first_name, c.last_name, r.role_name, c.phone_number FROM USER AS u, ROLE AS r, CONTACT as c,   
+				WHERE u.email = :user AND u.id = c.user_id AND r.role_id = u.role_id
 			");
 		} else {
-			$authQuery = $dbh->prepare("SELECT u.username, u.first_name, u.last_name, u.phone_number FROM USER AS u WHERE (u.username = :user)");
+			$authQuery = $dbh->prepare("
+				SELECT u.email, c.first_name, c.last_name, c.phone_number FROM USER AS u, CONTACT as c,   
+				WHERE u.email = :user AND u.id = c.user_id
+			");
 		}
 
 	    $authQuery->bindParam(':user', $user);

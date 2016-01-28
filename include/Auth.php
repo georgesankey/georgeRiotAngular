@@ -40,23 +40,22 @@ class OMBAuth {
 
 	/**
      * Checks credentials and logs in the user
-     * @param: $username
+     * @param: $email
 	 * @param: $password
 	 * @param: $type - type of login
      * @return boolean    TRUE on success and FALSE on failure
      */
-	public function login($username, $password, $type="normal") {
+	public function login($email, $password, $type="normal") {
 
 		if($type=="normal") {
 
 			// Use web authentication for dev
 			if($this->config["webAuth"]) {
-				if($this->__webLogin($username, $password)) {
-					$_SESSION["user"]=$username;
+				if($this->__webLogin($email, $password)) {
+					$_SESSION["user"]=$email;
 					$_SESSION["loggedIn"]=TRUE;
 
-					//$_SESSION["role"] = "Administrator";
-		        	//$_SESSION["roleid"] = 1;
+
 					return true;
 				}
 				$this->error = 2;
@@ -67,16 +66,21 @@ class OMBAuth {
 			// This section for DB login. Create a new function for this.
 			else {
 
-				if($this->__dbLogin($username, $password)) {
-					$_SESSION["user"]=$username;
+				if($this->__dbLogin($email, $password)) {
+
+					$_SESSION["user"]=$email;
+
+					include_once __DIR__ . '/functions/userdata.php'; 
+					$userData = getUserData();
+					$_SESSION["role"] = $userData['role_name'];
+					$_SESSION["firstName"] = $userData['first_name'];	
+					$_SESSION["lastName"] = $userData['last_name'];										
 					$_SESSION["loggedIn"]=TRUE;
 
-					$_SESSION["role"] = "Administrator";
-		        	$_SESSION["roleid"] = 1;
 					return true;
 				}
-				return false;
 
+				return false;
 			}
 		}
 
@@ -132,14 +136,6 @@ class OMBAuth {
 			$this->errorMessage = "Database Not Assigned";
 			return false;
 		}
-
-		// Check for existing username
-		if($this->__usernameExists($_POST["username"])) {
-			$this->error = 5;
-			$this->errorMessage = "Username already exists";
-			return false;
-		}
-
 		// Check for existing email
 		if($this->__emailExists($_POST["email"])) {
 			$this->error = 6;
@@ -152,52 +148,41 @@ class OMBAuth {
 		$roleQuery->execute();
 		$roleRow = $roleQuery->fetch();
 
-		$insertQuery = $this->db->prepare("INSERT INTO USER (username, password, first_name, last_name, role_id, email, address_1, city, state, zipcode, phone_number) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
-		$insertQuery->bindParam(1, $_POST["username"]); 
-		$insertQuery->bindParam(2, $this->__hashPassword($_POST["password"])); 
-		$insertQuery->bindParam(3, $_POST["firstname"]); 
-		$insertQuery->bindParam(4, $_POST["lastname"]); 
-		$insertQuery->bindParam(5, $roleRow["role_id"]); 
-		$insertQuery->bindParam(6, $_POST["email"]); 
-		$insertQuery->bindParam(7, $_POST["address"]); 
-		$insertQuery->bindParam(8, $_POST["city"]); 
-		$insertQuery->bindParam(9, $_POST["state"]); 
-		$insertQuery->bindParam(10, $_POST["zipcode"]); 
-		$insertQuery->bindParam(11, $_POST["phonenumber"]); 
- 
+		$insertQuery = $this->db->prepare("INSERT INTO USER (password, email, role_id) VALUES (?,?,?)");
+		$hashedPW = $this->__hashPassword($_POST["password"]);
+		$insertQuery->bindParam(1, $hashedPW); 
+		$insertQuery->bindParam(2, $_POST["email"]);
+		$insertQuery->bindParam(3, $roleRow["role_id"]); 
 		$insertQuery->execute();
 
-		return $this->login($_POST["username"], $_POST["password"]);
+		$getUserIdQuery = $this->db->prepare("SELECT id FROM USER WHERE email = :email");
+		$getUserIdQuery->bindParam(":email", $_POST["email"]);
+		$getUserIdQuery-> execute();
+		$userIdRow = $getUserIdQuery->fetch();
+		$userId = $userIdRow["id"];
+
+		$insertQuery = $this->db->prepare("INSERT INTO CONTACT (user_id, phone_number, first_name, last_name) VALUES (?,?,?,?)");
+		$insertQuery->bindParam(1, $userId); 
+		$insertQuery->bindParam(2, $_POST["phonenumber"]);
+		$insertQuery->bindParam(3, $_POST["firstname"]); 
+		$insertQuery->bindParam(4, $_POST["lastname"]); 
+		$insertQuery->execute();
+
+		$insertQuery = $this->db->prepare("INSERT INTO ADDRESS (street_1, city, state, zipcode, owner, owner_type) VALUES (?,?,?,?,?,?)");
+		$insertQuery->bindParam(1, $_POST["address"]); 
+		$insertQuery->bindParam(2, $_POST["city"]);
+		$insertQuery->bindParam(3, $_POST["state"]); 
+		$insertQuery->bindParam(4, $_POST["zipcode"]); 
+		$insertQuery->bindParam(5, $userId); 
+		$insertQuery->bindParam(6, $_POST["useraccess"]); 		
+		$insertQuery->execute();
+
+		return true;
 	}
 
 	//------------------------------------------------
 	// Private functions
 	//------------------------------------------------
-
-	/**
-	 * Checks if the user is in the system
-	 * @param: $username
-	 * @return boolean
-	 */
-	private function __usernameExists($username) {
-	
-		// Check the PDO
-		if(is_null($this->db)) {
-			if($this->config["DEBUG"]) {
-				print("Database not assigned.<br />");
-			}
-			$this->error = 1;
-			$this->errorMessage = "Database Not Assigned";
-			return false;
-		}
-
-		$regQuery = $this->db->prepare("SELECT * FROM USER WHERE username = :username");
-		$regQuery->bindParam(':username', $username);
-		$regQuery->execute();
-
-		$regRows = $regQuery->rowCount();
-		return $regRows > 0;
-	}
 
 	/**
 	 * Checks if the email is in the system
@@ -230,7 +215,7 @@ class OMBAuth {
 	 * @param: $password
      * @return boolean    TRUE on success and FALSE on failure
      */
-	private function __webLogin($username, $password) {
+	private function __webLogin($email, $password) {
 		$users = $this->config["users"];
  
  		// Emulate normal login
@@ -250,7 +235,7 @@ class OMBAuth {
  			}
  		}
  
- 		return isset($users[$username]) && $users[$username] == $password;
+ 		return isset($users[$email]) && $users[$email] == $password;
 	}
 
 	/**
@@ -259,7 +244,7 @@ class OMBAuth {
 	 * @param: $password
      * @return boolean    TRUE on success and FALSE on failure
      */
-	private function __dbLogin($username, $password) {
+	private function __dbLogin($email, $password) {
 		
 		// Check for working PDO 
 		if(is_null($this->db)) {
@@ -272,8 +257,8 @@ class OMBAuth {
 		}
         
 		// Make database call 
-        $authQuery = $this->db->prepare("SELECT * FROM USER WHERE (username = :usernameOrEmail OR email = :usernameOrEmail) AND active = '1'");
-	    $authQuery->bindParam(':usernameOrEmail', $username);
+        $authQuery = $this->db->prepare("SELECT * FROM USER WHERE (email = :email) AND active = '1'");
+	    $authQuery->bindParam(':email', $email);
 
 	    if($this->config["DEBUG"]) {
 			print("<br />Query: ");
@@ -301,10 +286,6 @@ class OMBAuth {
 		return false;
 	}
 
-	// private function encrypt_pass($text, $salt = "onlymakebelieve!") {
- //    	return trim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $salt, $text, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND))));
-	// }
-
 	/**
 	 * Takes a password and returns a salted hash
 	 * @param: $password - the password to hash
@@ -329,7 +310,7 @@ class OMBAuth {
 		$validHash = substr($correctHash, 32, 128); //the SHA256
 
 		$testHash = hash("sha256", $salt . $password); //hash the password being tested
-		
+
 		//if the hashes are exactly the same, the password is valid
 		return $testHash === $validHash;
 	}

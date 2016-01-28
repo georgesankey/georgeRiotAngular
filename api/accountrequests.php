@@ -1,6 +1,6 @@
 <?php
 
-/* API for obtaining user data */
+/* API for obtaining account requests */
 
 // For Dev
 ini_set('display_errors', 1);
@@ -9,7 +9,7 @@ error_reporting(E_ALL);
 // Authenticate use of API:
 require_once __DIR__ . '/../include/db/dbconfig.php';
 require __DIR__ . '/../include/Auth.php';
-require __DIR__ . '/../include/functions/userdata.php';
+require __DIR__ . '/../include/functions/accountrequests.php';
 $auth = new OMBAuth($cfg, $dbh);
 
 if(!$auth->loggedIn()) {
@@ -19,8 +19,8 @@ if(!$auth->loggedIn()) {
 // Route calls by action
 $returnValue = 'An error has occured';
 
-$userParam = isset($_GET["user"]) ? $_GET["user"] : null;
-$returnValue = getUserData($userParam);
+//$userParam = isset($_GET["user"]) ? $_GET["user"] : null;
+$returnValue = getAllAccountRequests();
 
 exit(json_encode($returnValue));
 

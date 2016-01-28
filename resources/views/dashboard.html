@@ -1,6 +1,7 @@
+
 <div class="panel panel-info">
-    <div class="panel-heading">
-        <h4 class="panel-title"> Welcome, User</h4>
+    <div class="panel-heading" ng-controller="UserController">
+        <h4 class="panel-title">Welcome, {{user.first_name}} {{user.last_name}} ({{user.email}})</h4>
     </div>
 <div class="row">
 
@@ -64,7 +65,7 @@
 			</div>
 		</div>
 
-		<div class="col-md-6">
+		<div class="col-md-6" ng-controller="AccountRequestController">
 			<div class="panel panel-default">
 			<div class="panel-heading">
 				<h4 class="panel-title">Placeholder 2</h4>

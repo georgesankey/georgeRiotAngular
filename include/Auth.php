@@ -68,10 +68,13 @@ class OMBAuth {
 
 				if($this->__dbLogin($email, $password)) {
 
-					require_once __DIR__ . '/api/userdata.php';
-					$userObj = getUserData($email);
 					$_SESSION["user"]=$email;
-					$_SESSION["role"] = $userObj['role_name'] . 'bro';
+
+					include_once __DIR__ . '/functions/userdata.php'; 
+					$userData = getUserData();
+					$_SESSION["role"] = $userData['role_name'];
+					$_SESSION["firstName"] = $userData['first_name'];	
+					$_SESSION["lastName"] = $userData['last_name'];										
 					$_SESSION["loggedIn"]=TRUE;
 
 					return true;
@@ -145,22 +148,36 @@ class OMBAuth {
 		$roleQuery->execute();
 		$roleRow = $roleQuery->fetch();
 
-		$insertQuery = $this->db->prepare("INSERT INTO USER (username, password, first_name, last_name, role_id, email, address_1, city, state, zipcode, phone_number) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
-		$insertQuery->bindParam(1, $_POST["username"]); 
-		$insertQuery->bindParam(2, $this->__hashPassword($_POST["password"])); 
-		$insertQuery->bindParam(3, $_POST["firstname"]); 
-		$insertQuery->bindParam(4, $_POST["lastname"]); 
-		$insertQuery->bindParam(5, $roleRow["role_id"]); 
-		$insertQuery->bindParam(6, $_POST["email"]); 
-		$insertQuery->bindParam(7, $_POST["address"]); 
-		$insertQuery->bindParam(8, $_POST["city"]); 
-		$insertQuery->bindParam(9, $_POST["state"]); 
-		$insertQuery->bindParam(10, $_POST["zipcode"]); 
-		$insertQuery->bindParam(11, $_POST["phonenumber"]); 
- 
+		$insertQuery = $this->db->prepare("INSERT INTO USER (password, email, role_id) VALUES (?,?,?)");
+		$hashedPW = $this->__hashPassword($_POST["password"]);
+		$insertQuery->bindParam(1, $hashedPW); 
+		$insertQuery->bindParam(2, $_POST["email"]);
+		$insertQuery->bindParam(3, $roleRow["role_id"]); 
 		$insertQuery->execute();
 
-		return $this->login($_POST["email"], $_POST["password"]);
+		$getUserIdQuery = $this->db->prepare("SELECT id FROM USER WHERE email = :email");
+		$getUserIdQuery->bindParam(":email", $_POST["email"]);
+		$getUserIdQuery-> execute();
+		$userIdRow = $getUserIdQuery->fetch();
+		$userId = $userIdRow["id"];
+
+		$insertQuery = $this->db->prepare("INSERT INTO CONTACT (user_id, phone_number, first_name, last_name) VALUES (?,?,?,?)");
+		$insertQuery->bindParam(1, $userId); 
+		$insertQuery->bindParam(2, $_POST["phonenumber"]);
+		$insertQuery->bindParam(3, $_POST["firstname"]); 
+		$insertQuery->bindParam(4, $_POST["lastname"]); 
+		$insertQuery->execute();
+
+		$insertQuery = $this->db->prepare("INSERT INTO ADDRESS (street_1, city, state, zipcode, owner, owner_type) VALUES (?,?,?,?,?,?)");
+		$insertQuery->bindParam(1, $_POST["address"]); 
+		$insertQuery->bindParam(2, $_POST["city"]);
+		$insertQuery->bindParam(3, $_POST["state"]); 
+		$insertQuery->bindParam(4, $_POST["zipcode"]); 
+		$insertQuery->bindParam(5, $userId); 
+		$insertQuery->bindParam(6, $_POST["useraccess"]); 		
+		$insertQuery->execute();
+
+		return true;
 	}
 
 	//------------------------------------------------
@@ -293,7 +310,7 @@ class OMBAuth {
 		$validHash = substr($correctHash, 32, 128); //the SHA256
 
 		$testHash = hash("sha256", $salt . $password); //hash the password being tested
-		
+
 		//if the hashes are exactly the same, the password is valid
 		return $testHash === $validHash;
 	}

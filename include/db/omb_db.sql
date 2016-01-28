@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 28, 2016 at 10:18 AM
+-- Generation Time: Jan 28, 2016 at 03:40 PM
 -- Server version: 5.5.46-0ubuntu0.14.04.2
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -36,14 +36,16 @@ CREATE TABLE IF NOT EXISTS `ADDRESS` (
   `owner` int(11) NOT NULL,
   `owner_type` varchar(100) NOT NULL,
   PRIMARY KEY (`address_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `ADDRESS`
 --
 
 INSERT INTO `ADDRESS` (`address_id`, `street_1`, `street_2`, `city`, `state`, `zipcode`, `owner`, `owner_type`) VALUES
-(2, '17 Warriors Street', '', 'Golden State', 'AL', '777777', 41, 'Administrator');
+(2, '17 Warriors Street', '', 'Golden State', 'AL', '777777', 41, 'Administrator'),
+(3, '17 Warriors Street', '', 'Golden State', 'AL', '777777', 42, 'Administrator'),
+(4, '17 Warriors Street', '', 'Golden State', 'AL', '7777', 43, 'Administrator');
 
 -- --------------------------------------------------------
 
@@ -59,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `CONTACT` (
   `details` text NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `CONTACT`
@@ -69,7 +71,9 @@ INSERT INTO `CONTACT` (`id`, `first_name`, `last_name`, `phone_number`, `details
 (1, 'Raihan', 'Ahmed', '9177753732', 'This is Raihan''s contact information.', 1),
 (2, 'Tameem', 'Imamdad', '(555) 555-5555', 'Tameem''s details.', 2),
 (3, 'Actor', 'Actor', '555-555-5555', 'Actor''s Contact Info', 13),
-(7, 'Stef', 'Curry', '777-777-7777', '', 41);
+(7, 'Stef', 'Curry', '777-777-7777', '', 41),
+(8, 'Stef', 'Curry', '777-777-7777', '', 42),
+(9, 'Stef', 'Curry', '77777', '', 43);
 
 -- --------------------------------------------------------
 
@@ -151,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `USER` (
   `email` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `role_id_2` (`role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44 ;
 
 --
 -- Dumping data for table `USER`
@@ -160,32 +164,7 @@ CREATE TABLE IF NOT EXISTS `USER` (
 INSERT INTO `USER` (`id`, `password`, `role_id`, `active`, `email`) VALUES
 (1, '0c5a7d1c8dd69398dd851382e169e366656b7bba4efafeafb0b7253b953b0dfcb08052f8ffed52f49238bb3cf52c8c25', 1, 1, 'raymanahmed@gmail.com'),
 (2, '5ecaf34c43cd885cdc8e67022427a78d9aa2b4881e9c69f814469bac18166ace601aae163ab647fc883846d1c2e42378', 1, 1, 'tameem_imamdad@gmail.com'),
-(3, '7c829f61e36742b6c5681f00013d34ab39e26f0802ebefd117aa0bdc509f57ad6e2e9ddc6e7dd68cc719ade4d637d2ac', 1, 0, ''),
-(4, '3bf51fb9175f6b7340e06d8496a0a9d8182acdbf391e221e9dce9c0a2b6764d2202570793405c69f6352dffa2bf40a2b', 3, 0, ''),
-(5, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 3, 0, ''),
-(6, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 3, 0, ''),
-(7, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 3, 1, 'poo@gmail.com'),
-(8, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 3, 0, ''),
-(9, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 2, 0, ''),
-(10, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 2, 0, ''),
-(11, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 2, 0, ''),
-(12, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 2, 0, ''),
-(13, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 2, 1, 'actor@gmail.com'),
-(14, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 2, 0, ''),
-(15, '', 2, 1, ''),
-(16, '', 2, 0, ''),
-(17, '', 2, 0, ''),
-(18, '', 2, 0, ''),
-(19, '', 2, 0, ''),
-(20, '', 2, 0, ''),
-(21, '', 2, 0, ''),
-(22, '', 2, 0, ''),
-(23, '', 2, 0, ''),
-(32, '', 1, 0, ''),
-(33, '', 1, 0, ''),
-(34, '', 1, 0, ''),
-(35, '98ca4fb0df3f398a29beda6c8e1b5acab3f94624cb467199632b54a91e04cdbb72689f614453dcdc05edb6dadf2e5e7b', 1, 1, ''),
-(41, '718b6e71c85a644228916abf1b2266a0977967acf5ec50bfacead959d9a128c22002c49f49fb39170069eacc10453246', 1, 1, 'stefcurry@gmail.com');
+(43, '657be7e9fd7fcdde684be28753cd8374d5d4def84a02b252f7455295c81c5ee0d9a4ce343fd335e480a4ede3e407d6f9', 1, 0, 'stef_curry@gmail.com');
 
 -- --------------------------------------------------------
 

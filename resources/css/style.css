@@ -466,7 +466,7 @@ code {
 
 }
 
-/* Dashboard View */
+
 
 #dash-calendar .fc-toolbar, #dash-calendar .fc-more-cell,
     #dash-calendar .fc-content-skeleton tbody {
@@ -525,28 +525,27 @@ code {
 }
 
 /* Profile section */
-.profile h4 {
-    margin-top:3px;
-}
-
-.profile-main {
-    background: #FBFBFB;
+.profile-panel {
+    background:transparent;
+    text-align:center;
+    box-shadow:none;
+    border-bottom:3px ridge whitesmoke;
     position: relative;
 }
 
 .profile-username {
-    display:inline-block;
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
     font-size: 30px;
 }
 
 .profile-role {
-    display:inline-block;
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
     font-size: 24px;
     font-style:italic;
-}
-
-.profile-img {
-    display:inline-block;
 }
 
 .profile-med {
@@ -556,6 +555,14 @@ code {
     box-shadow: 2px 2px 5px grey;
 }
 
-.profile-body {
-    background:#e4e4e4;
+#daterange{
+  width:275px;
+  margin-right: 20px;
+}
+#half{
+width:100%;
+
+}
+#example{
+  width: 100%
 }

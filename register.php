@@ -21,11 +21,9 @@ if(isset($_POST["email"]) && isset($_POST["password"])) {
     if($registerAcc->error) {
     	$smarty->assign("error", true);
     	print($registerAcc->error);
-    	if($registerAcc->error == 5) {
-    		$smarty->assign("errorMessage", "That username already has an account! Please provide another.");
-    	} else {
+    	if($registerAcc->error == 6) {
     		$smarty->assign("errorMessage", "That email already has an account! Please provide another.");
-    	}
+    	} 
 		$smarty->display("register.html");
     }
 	

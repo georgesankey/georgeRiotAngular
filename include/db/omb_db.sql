@@ -3,7 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
+<<<<<<< HEAD
 -- Generation Time: Jan 26, 2016 at 02:28 PM
+=======
+-- Generation Time: Jan 28, 2016 at 10:18 AM
+>>>>>>> acf831a3724fd6ecacfaa6a95415f1c0dad319dd
 -- Server version: 5.5.46-0ubuntu0.14.04.2
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -34,9 +38,16 @@ CREATE TABLE IF NOT EXISTS `ADDRESS` (
   `state` varchar(50) NOT NULL,
   `zipcode` varchar(100) NOT NULL,
   `owner` int(11) NOT NULL,
-  `owner_type` int(11) NOT NULL,
+  `owner_type` varchar(100) NOT NULL,
   PRIMARY KEY (`address_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `ADDRESS`
+--
+
+INSERT INTO `ADDRESS` (`address_id`, `street_1`, `street_2`, `city`, `state`, `zipcode`, `owner`, `owner_type`) VALUES
+(2, '17 Warriors Street', '', 'Golden State', 'AL', '777777', 41, 'Administrator');
 
 -- --------------------------------------------------------
 
@@ -52,7 +63,11 @@ CREATE TABLE IF NOT EXISTS `CONTACT` (
   `details` text NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+=======
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+>>>>>>> acf831a3724fd6ecacfaa6a95415f1c0dad319dd
 
 --
 -- Dumping data for table `CONTACT`
@@ -60,7 +75,13 @@ CREATE TABLE IF NOT EXISTS `CONTACT` (
 
 INSERT INTO `CONTACT` (`id`, `first_name`, `last_name`, `phone_number`, `details`, `user_id`) VALUES
 (1, 'Raihan', 'Ahmed', '9177753732', 'This is Raihan''s contact information.', 1),
+<<<<<<< HEAD
 (2, 'Tameem', 'Imamdad', '(555) 555-5555', 'Tameem''s details.', 2);
+=======
+(2, 'Tameem', 'Imamdad', '(555) 555-5555', 'Tameem''s details.', 2),
+(3, 'Actor', 'Actor', '555-555-5555', 'Actor''s Contact Info', 13),
+(7, 'Stef', 'Curry', '777-777-7777', '', 41);
+>>>>>>> acf831a3724fd6ecacfaa6a95415f1c0dad319dd
 
 -- --------------------------------------------------------
 
@@ -104,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `ROLE` (
   `role_id` int(11) NOT NULL AUTO_INCREMENT,
   `role_name` varchar(50) NOT NULL,
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `ROLE`
@@ -142,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `USER` (
   `email` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `role_id_2` (`role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
 
 --
 -- Dumping data for table `USER`
@@ -155,13 +176,17 @@ INSERT INTO `USER` (`id`, `password`, `role_id`, `active`, `email`) VALUES
 (4, '3bf51fb9175f6b7340e06d8496a0a9d8182acdbf391e221e9dce9c0a2b6764d2202570793405c69f6352dffa2bf40a2b', 3, 0, ''),
 (5, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 3, 0, ''),
 (6, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 3, 0, ''),
+<<<<<<< HEAD
 (7, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 3, 0, ''),
+=======
+(7, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 3, 1, 'poo@gmail.com'),
+>>>>>>> acf831a3724fd6ecacfaa6a95415f1c0dad319dd
 (8, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 3, 0, ''),
 (9, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 2, 0, ''),
 (10, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 2, 0, ''),
 (11, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 2, 0, ''),
 (12, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 2, 0, ''),
-(13, 'password', 2, 0, ''),
+(13, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 2, 1, 'actor@gmail.com'),
 (14, '504b6c1da4281f18a399948e1a3bcc734225e3c32d352a43a62bc108413cad4306eafdc41cf7a53812079b67638ca432', 2, 0, ''),
 (15, '', 2, 1, ''),
 (16, '', 2, 0, ''),
@@ -175,7 +200,8 @@ INSERT INTO `USER` (`id`, `password`, `role_id`, `active`, `email`) VALUES
 (32, '', 1, 0, ''),
 (33, '', 1, 0, ''),
 (34, '', 1, 0, ''),
-(35, '98ca4fb0df3f398a29beda6c8e1b5acab3f94624cb467199632b54a91e04cdbb72689f614453dcdc05edb6dadf2e5e7b', 1, 1, '');
+(35, '98ca4fb0df3f398a29beda6c8e1b5acab3f94624cb467199632b54a91e04cdbb72689f614453dcdc05edb6dadf2e5e7b', 1, 1, ''),
+(41, '718b6e71c85a644228916abf1b2266a0977967acf5ec50bfacead959d9a128c22002c49f49fb39170069eacc10453246', 1, 1, 'stefcurry@gmail.com');
 
 -- --------------------------------------------------------
 

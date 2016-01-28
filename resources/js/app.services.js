@@ -10,3 +10,12 @@ appModule.factory('currentUserService', function($http) {
     };
 });
 
+appModule.factory('accountRequestService', function($http) {
+    return {
+        getAllAccountRequests: function(){
+
+        	var url = "/onlymakebelieve/api/accountrequests.php";
+        	return $http.get(url);
+        }
+    };
+});

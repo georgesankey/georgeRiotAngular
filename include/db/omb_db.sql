@@ -1,9 +1,9 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 28, 2016 at 03:40 PM
+-- Generation Time: Jan 29, 2016 at 02:20 PM
 -- Server version: 5.5.46-0ubuntu0.14.04.2
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -125,8 +125,8 @@ CREATE TABLE IF NOT EXISTS `ROLE` (
 
 INSERT INTO `ROLE` (`role_id`, `role_name`) VALUES
 (1, 'Administrator'),
-(2, 'Actor'),
-(3, 'Staff');
+(2, 'Staff'),
+(3, 'Actor');
 
 -- --------------------------------------------------------
 
@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `USER` (
   `email` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `role_id_2` (`role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
 
 --
 -- Dumping data for table `USER`
@@ -164,6 +164,7 @@ CREATE TABLE IF NOT EXISTS `USER` (
 INSERT INTO `USER` (`id`, `password`, `role_id`, `active`, `email`) VALUES
 (1, '0c5a7d1c8dd69398dd851382e169e366656b7bba4efafeafb0b7253b953b0dfcb08052f8ffed52f49238bb3cf52c8c25', 1, 1, 'raymanahmed@gmail.com'),
 (2, '5ecaf34c43cd885cdc8e67022427a78d9aa2b4881e9c69f814469bac18166ace601aae163ab647fc883846d1c2e42378', 1, 1, 'tameem_imamdad@gmail.com'),
+(3, '0984196b975cfb4660f50c9be5911d3fa5a595220987a1c6820f1e1253a1eae5ab94db02af53d0d1916448c0f4eadd54', 1, 1, 'charlie'),
 (43, '657be7e9fd7fcdde684be28753cd8374d5d4def84a02b252f7455295c81c5ee0d9a4ce343fd335e480a4ede3e407d6f9', 1, 0, 'stef_curry@gmail.com');
 
 -- --------------------------------------------------------

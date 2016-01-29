@@ -54,8 +54,6 @@ class OMBAuth {
 				if($this->__webLogin($email, $password)) {
 					$_SESSION["user"]=$email;
 					$_SESSION["loggedIn"]=TRUE;
-
-
 					return true;
 				}
 				$this->error = 2;
@@ -68,13 +66,7 @@ class OMBAuth {
 
 				if($this->__dbLogin($email, $password)) {
 
-					$_SESSION["user"]=$email;
-
-					include_once __DIR__ . '/functions/userdata.php'; 
-					$userData = getUserData();
-					$_SESSION["role"] = $userData['role_name'];
-					$_SESSION["firstName"] = $userData['first_name'];	
-					$_SESSION["lastName"] = $userData['last_name'];										
+					$_SESSION["user"]=$email;										
 					$_SESSION["loggedIn"]=TRUE;
 
 					return true;
@@ -143,16 +135,11 @@ class OMBAuth {
 			return false;
 		}
 
-		$roleQuery = $this->db->prepare("SELECT role_id FROM ROLE WHERE role_name = :role_name");
-		$roleQuery->bindParam(':role_name', $_POST["useraccess"]);
-		$roleQuery->execute();
-		$roleRow = $roleQuery->fetch();
-
 		$insertQuery = $this->db->prepare("INSERT INTO USER (password, email, role_id) VALUES (?,?,?)");
 		$hashedPW = $this->__hashPassword($_POST["password"]);
 		$insertQuery->bindParam(1, $hashedPW); 
 		$insertQuery->bindParam(2, $_POST["email"]);
-		$insertQuery->bindParam(3, $roleRow["role_id"]); 
+		$insertQuery->bindParam(3, $_POST["useraccess"]); 
 		$insertQuery->execute();
 
 		$getUserIdQuery = $this->db->prepare("SELECT id FROM USER WHERE email = :email");

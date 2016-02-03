@@ -16,7 +16,7 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 400;
 
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.42857143;
 }
 body {
@@ -565,4 +565,40 @@ width:100%;
 }
 #example{
   width: 100%
+}
+
+.all-notifications {
+  padding:15px;
+  margin-bottom:5px;
+  border-bottom:1px solid lightgray;
+}
+.all-notifications:hover {
+  background-color:#e0ebd9;
+}
+
+.notif-text {
+  margin-right:20px;
+
+}
+
+.notif-icon {
+  padding-right:15px;
+}
+
+.notification-table {
+
+}
+.notification-table tr:hover {
+}
+
+.notification-table th {
+}
+
+.notification-table input {
+
+  margin-left:10px;
+}
+
+.notif-date {
+  float:right;
 }

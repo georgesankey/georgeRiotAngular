@@ -17,30 +17,14 @@ appModule.factory('NotifService', function($http, $q) {
             return deferred.promise;
     };
 
- var acceptAccountRequest = function(rowId) {
+ var accountRequestManagement = function(service, rowId) {
         var deferred = $q.defer();
         var accountRequests;
+        var user = encodeURIComponent(rowId);
+        var serviceParam = (service == 'accept' ? encodeURIComponent('accept'): encodeURIComponent('reject'));
         var params = {
-            'user': rowId,
-            'service' : 'accept'
-        };
-        $http({
-            method: 'POST',
-            url: "/onlymakebelieve/api/accountrequests.php",
-            data: params
-        }).success(function (data, status) {
-            accountRequests = data;
-            deferred.resolve(accountRequests);
-        });
-        return deferred.promise;
-   };
-
- var rejectAccountRequest = function(rowId) {
-        var deferred = $q.defer();
-        var accountRequests;
-        var params = {
-            'user': rowId,
-            'service': 'reject'
+            'user': user,
+            'service' : serviceParam
         };
         $http({
             method: 'POST',
@@ -55,7 +39,6 @@ appModule.factory('NotifService', function($http, $q) {
 
     return {
         getAllAccountRequests: getAllAccountRequests,
-        acceptAccountRequest: acceptAccountRequest,
-        rejectAccountRequest: rejectAccountRequest
+        accountRequestManagement: accountRequestManagement
     };
 });

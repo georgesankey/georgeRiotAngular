@@ -25,6 +25,5 @@ $returnValue = isset($request->service) ?
 	 ($request->service == 'accept'?
 	 	 acceptAccountRequest($request->user) : rejectAccountRequest($request->user)) : getAllAccountRequests();
 
-//$returnValue = getAllAccountRequests();
 exit(json_encode($returnValue));
 ?>

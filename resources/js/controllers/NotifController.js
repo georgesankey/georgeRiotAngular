@@ -7,31 +7,8 @@ var appModule = window.appModule ||
  */
 appModule.controller('NotifController', ['NotifService', '$scope', function(NotifService, $scope) {
 
-
-	NotifService.getAllAccountRequests().then(function(accountRequests){
-
-		$scope.accountRequests = accountRequests;
-
-	});	
-
-	$scope.acceptAccountRequest = function () {
-		 NotifService.acceptAccountRequest($scope.selectedAccountRequest.id).then(function(accountRequests) {
-		 	$scope.accountRequests = accountRequests;
-		 	$scope.accountRequestWindowSettings.apply('close');
-		 });
-	}
-
-	$scope.rejectAccountRequest = function() {
-		 NotifService.rejectAccountRequest($scope.selectedAccountRequest.id).then(function(accountRequests) {
-		 	$scope.accountRequests = accountRequests;
-		 	console.log('acctRequest: ' + accountRequests);
-		 	$scope.accountRequestWindowSettings.apply('close');
-		 });	
-	}
-
 	$scope.accountRequestGrid = {};
 	$scope.accountRequestWindow = {};
-
 
 	$scope.accountRequestWindowSettings = {
 		height: 150,
@@ -74,4 +51,18 @@ appModule.controller('NotifController', ['NotifService', '$scope', function(Noti
 		$scope.accountRequestWindowSettings.apply('open');
 	    }	
 	};
+
+	NotifService.getAllAccountRequests().then(function(accountRequests){
+
+		$scope.accountRequests = accountRequests;
+
+	});	
+
+	$scope.accountRequestManagement = function (service) {
+		 NotifService.accountRequestManagement(service, $scope.selectedAccountRequest.id).then(function(accountRequests) {
+		 	$scope.accountRequests = accountRequests;
+		 	$scope.accountRequestWindowSettings.apply('close');
+		 });
+	}
+
 }]);

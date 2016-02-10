@@ -1,20 +1,69 @@
-<div class="panel panel-default">
-<div class="panel-heading">
-All Notifications
+<div class="col-md-12">
+	<div class="col-md-8">
+		<div class="panel panel-default">
+		<div class="panel-heading">
+		<h4>Notifications</h4> 
+		</div>
+
+		<div class="panel-body">
+			<p> You received the following notices recently. </p>
+			<hr>
+			<ul class="list allNotifications-list">
+
+				<li class="all-notifications" ng-hide="allNotifications.length == 0" ng-repeat="notif in allNotifications">
+				<i class="fa notif-icon" ng-class="notif.icon"></i>
+						<span class="notif-text">{{notif.text}} <small class="text-muted notif-date">{{notif.date}}</small></span>
+				</li>
+
+				<li ng-show="allNotifications.length == 0">You have no notifications</li>
+			</ul>
+
+		</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="panel panel-default">
+		<div class="panel-heading">
+		<h4>Notification Settings</h4> 
+		</div>
+			<table class="table notification-table table-striped">
+				<tr>
+					<th> Notification Type </th>
+					<th> Email </th>
+					<th> SMS </th>
+					<tr>
+				
+				<tr>
+					<td> I am assigned a new show </td>
+					<td><input type="checkbox" checked value=""></td>
+					<td><input type="checkbox" value=""></td>
+				</tr>
+				<tr>
+					<td> A show I am assigned to is updated</td>
+					<td><input type="checkbox" checked value=""></td>
+					<td><input type="checkbox" value=""></td>
+				</tr>
+				<tr> 
+					<td> Upcoming events/shows </td>
+					<td><input type="checkbox" checked value=""></td>
+					<td><input type="checkbox" checked value=""></td>
+				</tr>
+				<tr>
+					<td> Show reminders </td>
+					<td><input type="checkbox" checked value=""></td>
+					<td><input type="checkbox" checked value=""></td>
+				</tr>
+				<tr>
+					<td> A change has affected the next 24 hours of my schedule </td>
+					<td><input type="checkbox" value=""></td>
+					<td><input type="checkbox" checked value=""></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
 </div>
 
-<div class="panel-body">
-
-	<ul class="list notifications-list">
-
-		<li ng-hide="notifications.length == 0" ng-repeat="notif in notifications">
-			<div class="alert" ng-class="notif.type">
-				{{notif.text}}
-			</div>
-		</li>
-
-		<li ng-show="notifications.length == 0">You have no notifications</li>
-	</ul>
-
-</div>
-</div>
+					
+					
+					

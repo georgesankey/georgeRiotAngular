@@ -42,6 +42,8 @@
 
 				<li ng-hide="notifications.length == 0" ng-repeat="notif in notifications">
 					<div class="alert" ng-class="notif.type">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+
 						{{notif.text}}
 					</div>
 				</li>

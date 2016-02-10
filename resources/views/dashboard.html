@@ -1,11 +1,10 @@
 
 <div class="panel panel-info">
     <div class="panel-heading">
-        <h4 class="panel-title">Welcome, {{user.first_name}} {{user.last_name}} ({{user.email}})</h4>
+        <h4 class="panel-title" style="background-color: #E0E9F5">Welcome, {{user.first_name}} {{user.last_name}} ({{user.role_name}})</h4>
     </div>
 </div>
 <div class="row">
-
 	<div class="col-md-4">
 		<div class="panel panel-default">
 
@@ -68,49 +67,41 @@
 			</div>
 		</div>
 		</div>
+
 		<div class="row">
-		<div class="col-md-12" ng-controller="AccountRequestController">
-			<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4 class="panel-title">Account Requests</h4>
-			</div>
-			<div class="panel-body">
-			
-				<table id="accountRequestsTable">
-    	        <thead>
-    	        	<th>First Name</th>
-    	        	<th>Last Name</th>
-    	        	<th>Email</th>
-    	        	<th>User Access</th>
-    	        	<th>Accept</th>
-    	        	<th>Reject</th>    	        	
-    	        </thead>
-    	        <tbody>
-    	        	<tr ng-repeat="request in requests">
-        	        	<td>{{request.first_name}}</td>
-        	        	<td>{{request.last_name}}</td>
-        	        	<td>{{request.email}}</td>
-        	        	<td>{{request.role_name}}</td>
-        	        	<td>ACCEPT</td>
-        	        	<td>REJECT</td>
-
-                    </tr>                                                                             	        	      	
-    	        </tbody>                
-    	        </table>
-    	    -   
+		<div class="col-md-12">
+		<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">Account Requests</h4>
+		</div>
+		<div class="panel-body" ng-controller="NotifController" style="width: 100%">	
+			<jqx-grid id="accountRequestGrid" jqx-source="accountRequests" jqx-instance="accountRequestGrid" jqx-settings="accountRequestGridSettings"></jqx-grid>	
+			<jqx-window id="accountRequestWindow" jqx-instance="accountRequestWindow" jqx-settings="accountRequestWindowSettings">
+			<div>Approval Prompt</div>
+			<div>
+			<h5>Do you want to approve or reject {{selectedAccountRequest.first_name}} {{selectedAccountRequest.last_name}}'s account request?</h5>
+			<div align="center">
+			<jqx-button ng-click="accountRequestManagement('accept')" jqx-settings="jqxButtonNotifSettings">Accept</jqx-button>&nbsp;&nbsp;
+			<jqx-button ng-click="accountRequestManagement('reject')" jqx-settings="jqxButtonNotifSettings">Reject</jqx-button>
 			</div>
 			</div>
-			<script> $('#accountRequestsTable').dataTable(); </script>
+			</jqx-window>
+			<!--<ul>
+				<li ng-repeat="req in accountRequests">
+					<div>
+						{{req.first_name}}
+					</div>
+				</li>
+			</ul>-->
+		</div>	 
 		</div>
 		</div>
+		<div><script></script></div>
 		</div>
-
 	</div>
-
 </div>
 
 
 
    
-</div>
 

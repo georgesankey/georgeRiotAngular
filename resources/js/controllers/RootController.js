@@ -1,16 +1,22 @@
 // Define App
 var appModule = window.appModule || 
-	angular.module("ScheduleApp", ['ngRoute']);
+	angular.module("ScheduleApp", ['ngRoute', 'jqwidgets']);
 
 /**
  * Controller for entire page
  * Can access areas from Smarty
  */
 appModule.controller("RootController", function($rootScope, $scope, $location, $route, UserService) {
-	$scope.user = "user";
-    UserService.getUserData().then(function(user) {
+	$scope.user = "User";
+    $scope.searchedUser = "searchedUser";
+	
+	UserService.getSessionUserData().then(function(user){
         $scope.user = user;
     });
+
+    //UserService.getSearchedUserData(searchedUserArgument).then(function(searchedUser){
+     //  $scope.searchedUser = searchedUser;
+    //});
     
     // Track the current page for nav
     $scope.page = "";

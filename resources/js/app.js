@@ -1,7 +1,7 @@
 
 // Initialize app
 var appModule = window.appModule || 
-    angular.module("ScheduleApp", ['ngRoute']);
+    angular.module("ScheduleApp", ["ngRoute", "jqwidgets"]);
 
 // Route the app
 appModule.config(function($routeProvider) {
@@ -13,7 +13,7 @@ appModule.config(function($routeProvider) {
 	    })
         .when('/calendar', {
             controller:'MainController',
-            templateUrl:'resources/views/calendar.html'
+            templateUrl:'resources/views/scheduler.html'
         })
         .when('/pay', {
             controller:'MainController',

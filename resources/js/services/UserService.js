@@ -7,9 +7,10 @@ var appModule = window.appModule ||
  */
 appModule.factory('UserService', function($http, $q) {
 
+    var sessionUser;
+
     var getSessionUserData = function(){
-        var deferred = $q.defer();
-        var sessionUser;    
+        var deferred = $q.defer();   
         if(sessionUser !== undefined){
             deferred.resolve(sessionUser);
         } else {
@@ -18,7 +19,7 @@ appModule.factory('UserService', function($http, $q) {
                 deferred.resolve(sessionUser);
             });
         }
-            return deferred.promise;
+        return deferred.promise;
     };
 
     return {

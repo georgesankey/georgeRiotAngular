@@ -1,22 +1,12 @@
 
+
 <div class="col-md-12">
 
-<div class="panel profile-panel">
-	<div class="panel-body">
-
-		<div class="profile-username">
-			{{user.email}}
-		</div>
-
-		<div class="profile-role">
-			Admin
-		</div>
-
-		<div class="profile-img">
+<div class="profile-header text-center">
+	<div class="profile-name">{{user.email}}</div>
+	<div class="profile-img">
 		<img class="profile-med" 
 			src="resources/images/tameem.jpg" alt="Profile Picture" />
-		</div>
-
 	</div>
 </div>
 
@@ -24,10 +14,22 @@
 
 <div class="col-md-4">
 
-<div class="panel">
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<div class="panel-title">Info</div>
+	</div>
 	<div class="panel-body">
-		
-		<h4>Scripts</h4>
+
+		Email: {{user.email}}
+
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title">Scripts</div>
+	</div>
+	<div class="panel-body">
 
 		<ul class="list-sharp">
 			<li>
@@ -44,11 +46,13 @@
 </div>
 
 <div class="col-md-8">
-<div class="panel">
+<div class="panel panel-success">
 
-		<div class="panel-body">
+	<div class="panel-heading">
+		<div class="panel-title">Upcoming Events</div>
+	</div>
 
-		<h4>Upcoming Events</h4>
+	<div class="panel-body">
 
 		<ul class="list-sharp">
 			<li>
@@ -63,11 +67,13 @@
 
 </div>
 
-<div class="panel">
+<div class="panel panel-warning">
 
-		<div class="panel-body">
-
-		<h4>Past Events</h4>
+	<div class="panel-heading">
+		<div class="panel-title">Past Events</div>
+	</div>
+	
+	<div class="panel-body">
 
 		<ul class="list-sharp">
 			<li>

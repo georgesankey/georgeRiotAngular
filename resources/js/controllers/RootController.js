@@ -7,9 +7,8 @@ var appModule = window.appModule ||
  * Can access areas from Smarty
  */
 appModule.controller("RootController", function($rootScope, $scope, $location, $route, UserService) {
-	$scope.user = "User";
-	// Fix this
-	UserService.getUserData().success(function(user){
+	$scope.user = "user";
+    UserService.getUserData().then(function(user) {
         $scope.user = user;
     });
     

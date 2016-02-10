@@ -5,12 +5,23 @@ var appModule = window.appModule ||
 /**
  * Use this Service to get information on self or other users
  */
-appModule.factory('UserService', function($http) {
+appModule.factory('UserService', function($http, $q) {
     return {
+    	user: null,
         getUserData: function(){
-
-        	var url = "/onlymakebelieve/api/userdata.php";
-        	return $http.get(url);
+        	var deferred = $q.defer();
+        	var context=this;
+        	if(this.user !== null) {
+        		deferred.resolve(this.user);
+        	} else {
+        		var url = "/onlymakebelieve/api/userdata.php";
+        		$http.get(url).success(function(data, status) {
+        			context.user = data;
+        			console.log(context.user);
+        			deferred.resolve(context.user);
+        		});
+        	}
+        	return deferred.promise;
         }
     };
 });

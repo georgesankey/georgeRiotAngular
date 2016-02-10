@@ -19,9 +19,12 @@ if(!$auth->loggedIn()) {
 // Route calls by action
 $returnValue = 'An error has occured';
 
-//$userParam = isset($_GET["user"]) ? $_GET["user"] : null;
-$returnValue = getAllAccountRequests();
+$request = json_decode(file_get_contents("php://input"));
 
+$returnValue = isset($request->service) ?
+	 ($request->service == 'accept'?
+	 	 acceptAccountRequest($request->user) : rejectAccountRequest($request->user)) : getAllAccountRequests();
+
+//$returnValue = getAllAccountRequests();
 exit(json_encode($returnValue));
-
 ?>

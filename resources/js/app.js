@@ -1,7 +1,7 @@
 
 // Initialize app
 var appModule = window.appModule || 
-    angular.module("ScheduleApp", ['ngRoute']);
+    angular.module("ScheduleApp", ["ngRoute", "jqwidgets"]);
 
 // Route the app
 appModule.config(function($routeProvider) {

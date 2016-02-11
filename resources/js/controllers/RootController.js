@@ -7,7 +7,7 @@ var appModule = window.appModule ||
  * Can access areas from Smarty
  */
 appModule.controller("RootController", function($rootScope, $scope, $location, $route, UserService) {
-	$rootScope.user = "User";
+	$rootScope.user = null;
 	
 	UserService.getSessionUserData().then(function(user){
         $rootScope.user = user;

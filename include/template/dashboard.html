@@ -76,8 +76,6 @@
                     <li ng-show="notifications.length == 0">You have no notifications</li>
                 </ul>
             </li>
-
-            {/literal}
             
             <li>
                 <img src="resources/images/tameem.jpg" class="profile-thumbnail"
@@ -86,13 +84,15 @@
 
             <li class="dropdown">
             	<a class="dropdown-toggle" data-toggle="dropdown">
-            		{$user}
+                    
+            		<span ng-bind="user.first_name"></span>
+                    <span ng-if="!user.first_name" ng-bind="user.email"></span>
+    
             		<b class="caret"></b>
             	</a>
-          		
           		<ul class="dropdown-menu">
                     <li>
-                        <a href="#/u/1234">
+                        <a href="#/u/{{user.id}}">
                             View Profile
                         </a>
                     </li>    
@@ -107,6 +107,7 @@
                         </a>
                     </li>
                 </ul>
+                {/literal}
             </li> <!-- End Profile li -->
            
         </ul>

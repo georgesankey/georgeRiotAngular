@@ -9,7 +9,7 @@ function getUserData($user=null) {
 
 	if(empty($user)) {
 		$authQuery = $dbh->prepare("
-			SELECT u.email, c.first_name, c.last_name, r.role_name, c.phone_number 
+			SELECT u.id, u.email, c.first_name, c.last_name, r.role_name, c.phone_number 
 			FROM USER u
 			LEFT JOIN ROLE r ON u.role_id = r.role_id
 			LEFT JOIN CONTACT c ON u.id = c.user_id
@@ -36,7 +36,7 @@ function getUserData($user=null) {
 		// Vet role
 		if($data["role_name"] == "Administrator") {
 			$authQuery = $dbh->prepare("
-				SELECT u.email, c.first_name, c.last_name, r.role_name, c.phone_number 
+				SELECT u.id, u.email, c.first_name, c.last_name, r.role_name, c.phone_number 
 				FROM USER AS u
 				LEFT JOIN ROLE AS r ON u.role_id=r.role_id 
 				LEFT JOIN CONTACT AS c ON u.id = c.user_id 
@@ -44,7 +44,7 @@ function getUserData($user=null) {
 			");
 		} else {
 			$authQuery = $dbh->prepare("
-				SELECT u.email, c.first_name, c.last_name, c.phone_number 
+				SELECT u.id, u.email, c.first_name, c.last_name, c.phone_number 
 				FROM USER AS u 
 				LEFT JOIN CONTACT AS c ON u.id = c.user_id  
 				WHERE u.id = :user 

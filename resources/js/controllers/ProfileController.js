@@ -9,7 +9,6 @@ appModule.controller("ProfileController", function($rootScope, $scope, $routePar
 
 	UserService.getUser($scope.userId).then(function(user) {
         $scope.user = user;
-        console.log(user);
     });
 
 });

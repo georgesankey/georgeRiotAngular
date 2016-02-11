@@ -49,7 +49,7 @@ appModule.config(function($routeProvider) {
             templateUrl:'resources/views/event.html'
         })
         .when('/u/:id', {
-            controller:'MainController',
+            controller:'ProfileController',
             templateUrl:'resources/views/user.html'
         })
         .when('/404', {

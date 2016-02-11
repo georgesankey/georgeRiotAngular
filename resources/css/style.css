@@ -11,6 +11,10 @@ Email: timamdad@hawk.iit.edu;
   src: url('../fonts/Montserrat-Light.ttf') format('truetype');
 }
 @font-face {
+  font-family:"montserrat-thin";
+  src: url('../fonts/Montserrat-Thin.ttf') format('truetype');
+}
+@font-face {
   font-family:"algoth";
   src: url('../fonts/algoth.ttf') format('truetype');
 }
@@ -512,9 +516,6 @@ code {
     opacity:1;
 }
 
-.list-sharp li:hover {
-    
-}
 .notifications-list .alert {
     margin-bottom:5px;
     cursor:pointer;
@@ -533,14 +534,18 @@ code {
     margin:20px 0;
 }
 
+.profile-body {
+    font-size:14px;
+}
+
 .profile-name {
     display:inline-block;
-    max-width:300px;
-    padding:15px 30px;
+    max-width:600px;
+    padding:10px 30px;
 
-    font-size:41px;
-    font-family:montserrat, Helvetica, sans-serif;
-    font-weight:100;
+    font-size:44px;
+    font-family:montserrat-thin, montserrat, Helvetica, sans-serif;
+    font-weight:bold;
 }
 
 .profile-img {
@@ -548,11 +553,22 @@ code {
 }
 
 .profile-med {
-    margin-top:-20px;
+    margin-top:-25px;
     width:100px;
     height:100px;
     border-radius:10px;
     box-shadow: 2px 2px 5px grey;
+}
+
+.list-min li {
+    padding:5px;
+    cursor:pointer;
+    font-family:montserrat, opensans, arial;
+    border-bottom:1px solid lightblue;
+}
+
+.list-min li:hover {
+    text-decoration:underline;
 }
 
 #daterange{

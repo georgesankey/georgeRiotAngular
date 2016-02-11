@@ -3,7 +3,10 @@
 <div class="col-md-12">
 
 <div class="profile-header text-center">
-	<div class="profile-name">{{user.email}}</div>
+	
+	<div class="profile-name" ng-if="user.first_name == null">{{user.email}}</div>
+	<div class="profile-name" ng-if="user.first_name">{{user.first_name}} {{user.last_name}}</div>
+	
 	<div class="profile-img">
 		<img class="profile-med" 
 			src="resources/images/tameem.jpg" alt="Profile Picture" />
@@ -18,9 +21,11 @@
 	<div class="panel-heading">
 		<div class="panel-title">Info</div>
 	</div>
-	<div class="panel-body">
+	<div class="panel-body profile-body">
 
-		Email: {{user.email}}
+		<p><strong>Email:</strong> {{user.email}}</p>
+		<p ng-if="user.phone_number"><strong>Number:</strong> {{user.phone_number}}</p>
+		<p>{{user.role_name}}</p>
 
 	</div>
 </div>
@@ -31,7 +36,7 @@
 	</div>
 	<div class="panel-body">
 
-		<ul class="list-sharp">
+		<ul class="list-min">
 			<li>
 				Script 1
 			</li>
@@ -54,7 +59,7 @@
 
 	<div class="panel-body">
 
-		<ul class="list-sharp">
+		<ul class="list-min">
 			<li>
 				Event 1
 			</li>
@@ -75,7 +80,7 @@
 	
 	<div class="panel-body">
 
-		<ul class="list-sharp">
+		<ul class="list-min">
 			<li>
 				Event 1
 			</li>

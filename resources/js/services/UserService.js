@@ -22,8 +22,17 @@ appModule.factory('UserService', function($http, $q) {
         return deferred.promise;
     };
 
+    var getUser = function(userId){
+        var deferred = $q.defer();   
+        $http.get("/onlymakebelieve/api/userdata.php?user="+userId).success(function (data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    };
+
     return {
-        getSessionUserData: getSessionUserData
+        getSessionUserData: getSessionUserData,
+        getUser: getUser
     };  
         
         //,

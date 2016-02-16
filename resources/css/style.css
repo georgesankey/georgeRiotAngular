@@ -30,6 +30,9 @@ body {
 body {
   font:13px Helmet, Freesans, sans-serif;
 }
+body {
+    font-family: 'Open Sans', sans-serif;
+}
 
 @media (min-width: 768px) {
   #login-overlay {
@@ -273,12 +276,6 @@ code {
   color:#FFCE54;
 }
 
-
-
-/* PROFILE area */
-*{
-    font-family: 'Open Sans', sans-serif;
-}
 
 .well2 {
     margin-top:-20px;
@@ -562,12 +559,17 @@ code {
 
 .list-min li {
     padding:5px;
-    cursor:pointer;
+    cursor:default;
     font-family:montserrat, opensans, arial;
     border-bottom:1px solid lightblue;
 }
 
-.list-min li:hover {
+.list-min a {
+    text-decoration:none;
+    color:#333;
+}
+
+.list-min a:hover {
     text-decoration:underline;
 }
 

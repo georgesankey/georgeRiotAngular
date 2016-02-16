@@ -62,9 +62,4 @@ function getUserData($user=null) {
 	}
 }
 
-
-
-
-
-
 ?>

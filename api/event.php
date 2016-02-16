@@ -15,4 +15,13 @@ if(!$auth->loggedIn()) {
 	die("403 Forbidden");
 }
 
+$returnValue = 'An error has occured';
+
+// Getting event by id
+if(isset($_GET["id"])) {
+	$returnValue = getUserData($userParam);
+}
+
+exit(json_encode($returnValue));
+
 ?>

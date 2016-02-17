@@ -27,9 +27,9 @@ appModule.config(function($routeProvider) {
             controller:'MainController',
             templateUrl:'resources/views/notifs.html'
         })
-        .when('/message',{
+        .when('/messages',{
             controller:'MainController',
-            templateUrl: 'resources/views/message.htm'
+            templateUrl: 'resources/views/message.html'
 
         })
         .when('/create/v/', {

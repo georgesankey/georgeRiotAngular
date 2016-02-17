@@ -8,6 +8,8 @@ appModule.controller("ProfileController", function(
 	$scope.userId=$routeParams.id;
 	$scope.user = {};
 	$scope.scripts = [];
+	$scope.newEvents = [];
+	$scope.pastEvents = [];
 
 	UserService.getUser($scope.userId).then(function(user) {
         $scope.user = user;

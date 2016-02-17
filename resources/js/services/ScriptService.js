@@ -8,10 +8,11 @@ var appModule = window.appModule ||
 appModule.factory('ScriptService', function($http, $q) {
 
     var scripts;
+    var route = "/onlymakebelieve/api/scripts.php";
 
     var getScript = function(id){
         var deferred = $q.defer();   
-        $http.get("/onlymakebelieve/api/scripts.php?id="+id).success(function (data){
+        $http.get(route + "?id="+id).success(function (data){
             deferred.resolve(data);
         });
         return deferred.promise;
@@ -19,7 +20,7 @@ appModule.factory('ScriptService', function($http, $q) {
 
     var getScriptsForUser = function(userId){
         var deferred = $q.defer();   
-        $http.get("/onlymakebelieve/api/scripts.php?user="+userId).success(function (data) {
+        $http.get(route+"?user="+userId).success(function (data) {
             deferred.resolve(data);
         });
         return deferred.promise;
@@ -29,11 +30,6 @@ appModule.factory('ScriptService', function($http, $q) {
         getScriptsForUser: getScriptsForUser,
         getScript: getScript
     };  
-        
-        //,
-        //getSearchedUserData: function($searchedUser){
-        //  var url = "/onlymakebelieve/api/userdata.php?user=" . $searchedUser;
-        //  return $http.get(url);
-        //}
+    
 });
 

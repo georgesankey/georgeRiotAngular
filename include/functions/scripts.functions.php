@@ -29,23 +29,35 @@ function getScriptsForUser($user=null) {
 
 	global $dbh;
 
-	if(empty($user) || $user == $_SESSION["user"]) {
+	// Personal search, use email
+	if(empty($user)) {
 		$authQuery = $dbh->prepare("
 			SELECT s.id, s.name
 			FROM SCRIPTS s
 			RIGHT JOIN USER_SCRIPT us ON us.script_id = s.id
-			LEFT JOIN USER u ON u.id = us.user_id
+			INNER JOIN USER u ON u.id = us.user_id
 			WHERE u.email = :user
 		");
 	    $authQuery->bindParam(':user', $_SESSION['user']);
 	    $authQuery->execute();
-	    $authRows = $authQuery->rowCount();
+	    //$authRows = $authQuery->rowCount();
 
-	    return $authQuery->fetch(PDO::FETCH_ASSOC);
+	    return $authQuery->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+	// Generic search, all access, use id
 	else {
+		$authQuery = $dbh->prepare("
+			SELECT s.id, s.name
+			FROM SCRIPTS s
+			RIGHT JOIN USER_SCRIPT us ON us.script_id = s.id
+			WHERE us.user_id = :user
+		");
+	    $authQuery->bindParam(':user', $user);
+	    $authQuery->execute();
+	    //$authRows = $authQuery->rowCount();
 
+	    return $authQuery->fetchAll(PDO::FETCH_ASSOC);
 	}
 }
 

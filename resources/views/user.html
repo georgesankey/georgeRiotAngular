@@ -37,12 +37,10 @@
 	<div class="panel-body">
 
 		<ul class="list-min">
-			<li>
-				Script 1
+			<li ng-repeat="script in scripts">
+				{{script.name}}
 			</li>
-			<li>
-				Script 2
-			</li>
+			<div ng-show="scripts.length==0">No Scripts Found</div>
 		</ul>
 
 	</div>

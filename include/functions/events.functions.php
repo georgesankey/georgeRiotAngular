@@ -17,7 +17,7 @@ function getEvent($id) {
     $authRows = $authQuery->rowCount();
 
     if($authRows == 1) {
-    	return $authQuery->fetch(PDO::FETCH_ASSOC);
+    	return $authQuery->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }

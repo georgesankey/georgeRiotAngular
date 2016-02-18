@@ -2,6 +2,8 @@
 AUTHOR: Tameem Imamdad
 Email: timamdad@hawk.iit.edu;
 */
+
+/* Font imports */
 @font-face {
   font-family:"opensans";
   src: url('../fonts/opensan.ttf') format('truetype');
@@ -18,61 +20,17 @@ Email: timamdad@hawk.iit.edu;
   font-family:"algoth";
   src: url('../fonts/algoth.ttf') format('truetype');
 }
+/* End Font imports */
 
-body {
-  /* Margin bottom by footer height */
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 400;
+/* Custom page CSS
+-------------------------------------------------- */
 
-  font-size: 15px;
-  line-height: 1.42857143;
-}
-body {
-  font:13px Helmet, Freesans, sans-serif;
-}
 body {
     font-family: 'Open Sans', sans-serif;
 }
 
-@media (min-width: 768px) {
-  #login-overlay {
-    height:235px;
-    width:400px;
-    position:absolute;
-    margin:auto;
-    left:0;right:0;top:0;bottom:0;
-  }
-}
-
-.login-footer {
-  position:fixed;
-  bottom:0px;
-  width: 100%;
-  height: 50px;
-  background-color: transparent;
-}
-
-.login-footer p {
-  color:#8f1963;
-  margin:5px;
-  text-align: center;
-}
-/* Custom page CSS
--------------------------------------------------- */
-
-code {
-  font-size: 80%;
-}
-
 .panel {
-  border-radius:0px;
-}
-
-.login-content {
-  position:fixed;
-  height:100%;
-  width:100%;
-  background-color: #eff3f3;
+    border-radius:0px;
 }
 
 .clear {
@@ -95,92 +53,6 @@ code {
     }
     
 }
-
-
-
-
-/* MISC ?
-/* 
-// Listrap v1.0, by Gustavo Gondim (http://github.com/ggondim)
-// Licenced under MIT License
-// For updates, improvements and issues, see https://github.com/inosoftbr/listrap
-*/
-.listrap {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    cursor: default;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.listrap li {
-    margin: 0;
-    padding: 10px;
-    color:black;
-}
-
-.listrap li.active, .listrap li:hover {
-    background-color: #ecf0f1;
-
-}
-
-.listrap strong {
-    margin-left: 10px;
-}
-
-.listrap .listrap-toggle {
-    display: inline-block;
-    width: 60px;
-    height: 60px;
-}
-
-.listrap .listrap-toggle span {
-    background-color: #428bca;
-    opacity: 0.8;
-    z-index: 100;
-    width: 60px;
-    height: 60px;
-    display: none;
-    position: absolute;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 60px;
-    vertical-align: middle;
-    color: red;
-    font-weight: bold;
-}
-
-
-
-.listrap .listrap-toggle span:before {
-    font-family: 'Glyphicons Halflings';
-    content: "Claimed";
-}
-
-.listrap li.active .listrap-toggle span {
-    display: block;
-}
-
-#login-remember {
-  color:black;
-}
-
-.mainhead {
-    font-family: 'opensans';
-    font-weight: bold;
-    font-size: 40px;
-    color: black;
-   text-align: center;
-  text-transform: uppercase;
-  border-bottom:6px solid #8f1963;
-  margin-bottom:15px;
-
-}
-
 
 /* Dashboard calendar */
 #dash-calendar .fc-toolbar, #dash-calendar .fc-more-cell,
@@ -205,6 +77,16 @@ code {
     overflow-y:hidden;
 }
 
+#dash-calendar .fc-highlight {
+    background:#CAFB95;
+}
+
+#dash-calendar .fc-today {
+    background:#A7D6FF;
+    opacity:1;
+}
+/* End Dashboard Calendar */
+
 .pay-sb{
   width:25%;
 }
@@ -214,15 +96,7 @@ code {
 }
 
 
-#dash-calendar .fc-highlight {
-    background:#CAFB95;
-}
-
-#dash-calendar .fc-today {
-    background:#A7D6FF;
-    opacity:1;
-}
-
+/* Dashboard notifications */
 .notifications-list .alert {
     margin-bottom:5px;
     cursor:pointer;
@@ -235,6 +109,7 @@ code {
 .notifications-list .alert-warning {
     background:transparent;
 }
+/* End Dashboard notifications */
 
 /* Profile section */
 .profile-header {
@@ -267,21 +142,7 @@ code {
     box-shadow: 2px 2px 5px grey;
 }
 
-.list-min li {
-    padding:5px;
-    cursor:default;
-    font-family:montserrat, opensans, arial;
-    border-bottom:1px solid lightblue;
-}
-
-.list-min a {
-    text-decoration:none;
-    color:#333;
-}
-
-.list-min a:hover {
-    text-decoration:underline;
-}
+/* End profile section */
 
 #daterange{
   width:275px;
@@ -295,6 +156,7 @@ width:100%;
   width: 100%
 }
 
+/* All notifications page */
 .all-notifications {
   padding:15px;
   margin-bottom:5px;
@@ -331,6 +193,8 @@ width:100%;
   float:right;
 }
 
+/* End All Notifications */
+
 /* mail */
 .nav-tabs .glyphicon:not(.no-margin) { margin-right:10px; }
 .tab-pane .list-group-item:first-child {border-top-right-radius: 0px;border-top-left-radius: 0px;}
@@ -346,3 +210,4 @@ hr { margin-top: 5px;margin-bottom: 10px; }
 .ad { padding: 5px;background: #F5F5F5;color: #222;font-size: 80%;border: 1px solid #E5E5E5; }
 .ad a.title {color: #15C;text-decoration: none;font-weight: bold;font-size: 110%;}
 .ad a.url {color: #093;text-decoration: none;}
+/* end mail */

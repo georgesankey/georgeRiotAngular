@@ -1,14 +1,13 @@
 // Define App
 var appModule = window.appModule || 
-	angular.module("ScheduleApp", ['ngRoute']);
+    angular.module("ScheduleApp", ['ngRoute']);
 
 /**
- * Use this Service to get information on self or other users
+ * Use this Service to get information on venues
  */
-appModule.factory('UserService', function($http, $q) {
+appModule.factory('VenueService', function($http, $q) {
 
-    var sessionUser;
-    var route = "/onlymakebelieve/api/userdata.php";
+    var route = "/onlymakebelieve/api/venue.php";
 
     var getSessionUserData = function(){
         var deferred = $q.defer();   
@@ -23,9 +22,9 @@ appModule.factory('UserService', function($http, $q) {
         return deferred.promise;
     };
 
-    var getUser = function(userId){
+    var getVenue = function(venueId){
         var deferred = $q.defer();   
-        $http.get(route+"?user="+userId).success(function (data) {
+        $http.get(route+"?id="+venueId).success(function (data) {
             deferred.resolve(data);
         });
         return deferred.promise;
@@ -33,7 +32,7 @@ appModule.factory('UserService', function($http, $q) {
 
     return {
         getSessionUserData: getSessionUserData,
-        getUser: getUser
+        getVenue: getVenue
     };  
     
 });

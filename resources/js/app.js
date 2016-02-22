@@ -33,7 +33,7 @@ appModule.config(function($routeProvider) {
 
         })
         .when('/create/v/', {
-            controller:'MainController',
+            controller:'VenueController',
             templateUrl:'resources/views/create/create_venue.html'
         })
         .when('/create/e/', {
@@ -41,7 +41,7 @@ appModule.config(function($routeProvider) {
             templateUrl:'resources/views/create/create_event.html'
         })
         .when('/v/:id', {
-            controller:'MainController',
+            controller:'VenueController',
             templateUrl:'resources/views/venue.html'
         })
         .when('/e/:id', {

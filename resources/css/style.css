@@ -145,6 +145,15 @@ body {
 /* End profile section */
 
 /* Venue section */
+
+.form-default .row {
+    padding:5px 10px;
+}
+
+.form-default label {
+    margin-top:5px;
+}
+
 /* End Venue section */
 
 #daterange{

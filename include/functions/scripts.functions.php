@@ -61,5 +61,33 @@ function getScriptsForUser($user=null) {
 	}
 }
 
+/**
+ * Requires $dbh, changes or creates a script
+ */
+function editScript($id, $name, $synopsis, $user_id=null) {
+
+	global $dbh;
+
+	if(is_null($id)) {
+		// Create a new script
+
+		$authQuery = $dbh->prepare("
+			INSERT INTO SCRIPTS (name, synopsis, creator) VALUES (:name, :synopsis, :userid)
+		");
+		$authQuery->bindParam(':name', $name);
+		$authQuery->bindParam(':synopsis', $synopsis);
+	    $authQuery->bindParam(':userid', $user_id);
+	    
+
+	    if ($authQuery->execute()) {
+	    	return "Success";
+	    }
+
+	    return "Failed: ".$authQuery->errorInfo();
+
+	} else {
+		// Update this script
+	}
+}
 
 ?>

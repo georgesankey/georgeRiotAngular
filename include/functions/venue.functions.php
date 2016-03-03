@@ -41,4 +41,8 @@ function getVenue($id) {
 
 }
 
+function createVenue() {
+	
+}
+
 ?>

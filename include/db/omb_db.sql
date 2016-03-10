@@ -1,9 +1,9 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 16, 2016 at 04:40 PM
+-- Generation Time: Mar 10, 2016 at 10:43 AM
 -- Server version: 5.5.46-0ubuntu0.14.04.2
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -50,7 +50,7 @@ INSERT INTO `ADDRESS` (`id`, `street_1`, `street_2`, `city`, `state`, `zipcode`,
 (8, 'Charlie Town', '', 'Charleston', 'NY', '89779', 3, '1'),
 (14, 'Tevye Road', '', 'New York', 'AL', '12345', 51, '3'),
 (16, 'T Road', '', 'Pain', 'AL', '1111', 53, '3'),
-(17, 'Harry Potter', '', 'Harry', 'AL', '111', 54, '3'),
+(17, 'Harry Potter', '', 'Harry', 'AL', '111', 1, '2'),
 (18, 'Vadim', '', 'Reyblat', 'AL', '2123', 55, '3'),
 (21, 'Root', '', 'Beer', 'AL', '12321', 64, '3'),
 (22, 'Blah', '', 'Blah', 'AL', '11355', 65, '3'),
@@ -83,7 +83,7 @@ INSERT INTO `CONTACT` (`id`, `first_name`, `last_name`, `cell_number`, `details`
 (2, 'Tameem', 'Imamdad', '(555) 555-5555', 'Tameem''s details.', 2, '', ''),
 (9, 'Stef', 'Curry', '77777', '', 43, '', ''),
 (10, 'Ned', 'Stark', '232343432', '', 45, '', ''),
-(11, 'Charliam', 'He', '98080989080', '', 3, '', ''),
+(11, 'Charlie', 'He', '98080989080', '', 3, '1', '2'),
 (17, 'Tevye', 'Fiddler', '8897897987', '', 51, '', ''),
 (19, 'T', 'Pain', '123323', '', 53, '', ''),
 (20, 'Harry', 'Potter', '23232', '', 54, '', ''),
@@ -169,7 +169,15 @@ CREATE TABLE IF NOT EXISTS `SCRIPTS` (
   `synopsis` longtext NOT NULL,
   `creator` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `SCRIPTS`
+--
+
+INSERT INTO `SCRIPTS` (`id`, `name`, `synopsis`, `creator`) VALUES
+(1, 'Test', 'Test Script', 3),
+(2, 'Test2', 'Testing 2', 3);
 
 -- --------------------------------------------------------
 
@@ -216,6 +224,16 @@ CREATE TABLE IF NOT EXISTS `USER_SCRIPT` (
   `script_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `USER_SCRIPT`
+--
+
+INSERT INTO `USER_SCRIPT` (`user_id`, `script_id`) VALUES
+(3, 1),
+(3, 2),
+(1, 1),
+(2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -227,7 +245,14 @@ CREATE TABLE IF NOT EXISTS `VENUE` (
   `name` varchar(1000) NOT NULL,
   `comments` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `VENUE`
+--
+
+INSERT INTO `VENUE` (`id`, `name`, `comments`) VALUES
+(1, 'Test', 'This is a nice place');
 
 -- --------------------------------------------------------
 
@@ -239,6 +264,13 @@ CREATE TABLE IF NOT EXISTS `VENUE_CONTACT` (
   `venue_id` int(11) NOT NULL,
   `contact_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `VENUE_CONTACT`
+--
+
+INSERT INTO `VENUE_CONTACT` (`venue_id`, `contact_id`) VALUES
+(1, 20);
 
 --
 -- Constraints for dumped tables

@@ -3,11 +3,11 @@ var appModule = window.appModule ||
     angular.module("ScheduleApp", ['ngRoute']);
 
 /**
- * Use this Service to get information on venues
+ * Use this Service to get information on contacts
  */
 appModule.factory('ContactService', function($http, $q) {
 
-    var route = "/onlymakebelieve/api/contact.php";
+    var route = "/onlymakebelieve/api/contacts.php";
     var contacts = null;
 
     // Gets all contacts for search. Will need to scale when contacts too many
@@ -16,11 +16,15 @@ appModule.factory('ContactService', function($http, $q) {
         if(contacts !== null) {
             deferred.resolve(contacts);
         } 
-        $http.get(route+"?all").success(function (data) {
+        $http.get(route).success(function (data) {
             contacts = data;
             deferred.resolve(contacts);
         });
         return deferred.promise;
+    };
+
+    var createContact = function(contact) {
+
     };
 
     return {

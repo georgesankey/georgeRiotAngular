@@ -41,8 +41,12 @@ function getVenue($id) {
 
 }
 
+/**
+ * Requires $dbh to be set
+ */
 function createVenue() {
-	
+	global $dbh;
+
 }
 
 ?>

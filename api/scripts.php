@@ -27,8 +27,7 @@ if(isset($_GET["user"])) {
 	$returnValue = getScriptsForUser($_GET["user"]);
 }
 
-if(isset($_POST["name"] || $_POST["id"])) {
-
+if(isset($_POST["name"]) || isset($_POST["id"])) {
 	$script_id = isset($_POST["id"]) ? $_POST["id"] : null;
 	$script_name = isset($_POST["name"]) ? $_POST["name"] : null;
 	$script_synopsis = isset($_POST["synposis"]) ? $_POST["synopsis"] : null;
@@ -36,6 +35,7 @@ if(isset($_POST["name"] || $_POST["id"])) {
 	
 	$returnValue = editScript($script_id, $script_name, $script_synopsis, $user_id);
 }
+
 
 exit(json_encode($returnValue));
 

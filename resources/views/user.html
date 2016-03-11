@@ -1,22 +1,15 @@
 
+
 <div class="col-md-12">
 
-<div class="panel profile-panel">
-	<div class="panel-body">
-
-		<div class="profile-username">
-			{{user}}
-		</div>
-
-		<div class="profile-role">
-			Admin
-		</div>
-
-		<div class="profile-img">
+<div class="profile-header text-center">
+	
+	<div class="profile-name" ng-if="user.first_name == null">{{user.email}}</div>
+	<div class="profile-name" ng-if="user.first_name">{{user.first_name}} {{user.last_name}}</div>
+	
+	<div class="profile-img">
 		<img class="profile-med" 
 			src="resources/images/tameem.jpg" alt="Profile Picture" />
-		</div>
-
 	</div>
 </div>
 
@@ -24,18 +17,32 @@
 
 <div class="col-md-4">
 
-<div class="panel">
-	<div class="panel-body">
-		
-		<h4>Scripts</h4>
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<div class="panel-title">Info</div>
+	</div>
+	<div class="panel-body profile-body">
 
-		<ul class="list-sharp">
-			<li>
-				Script 1
+		<p><strong>Email:</strong> {{user.email}}</p>
+		<p ng-if="user.cell_number"><strong>Cell:</strong> {{user.cell_number}}</p>
+		<p ng-if="user.home_number"><strong>Home:</strong> {{user.home_number}}</p>
+		<p ng-if="user.work_number"><strong>Work:</strong> {{user.work_number}}</p>
+		<p>{{user.role_name}}</p>
+
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title">Scripts</div>
+	</div>
+	<div class="panel-body">
+
+		<ul class="list-min">
+			<li ng-repeat="script in scripts">
+				{{script.name}}
 			</li>
-			<li>
-				Script 2
-			</li>
+			<div ng-show="scripts.length==0">No Scripts Found</div>
 		</ul>
 
 	</div>
@@ -44,15 +51,17 @@
 </div>
 
 <div class="col-md-8">
-<div class="panel">
+<div class="panel panel-success">
 
-		<div class="panel-body">
+	<div class="panel-heading">
+		<div class="panel-title">Upcoming Events</div>
+	</div>
 
-		<h4>Upcoming Events</h4>
+	<div class="panel-body">
 
-		<ul class="list-sharp">
+		<ul class="list-min">
 			<li>
-				Event 1
+				<a href="#">Event 1</a>
 			</li>
 			<li>
 				Event 2
@@ -63,13 +72,15 @@
 
 </div>
 
-<div class="panel">
+<div class="panel panel-warning">
 
-		<div class="panel-body">
+	<div class="panel-heading">
+		<div class="panel-title">Past Events</div>
+	</div>
+	
+	<div class="panel-body">
 
-		<h4>Past Events</h4>
-
-		<ul class="list-sharp">
+		<ul class="list-min">
 			<li>
 				Event 1
 			</li>

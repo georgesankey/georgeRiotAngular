@@ -1,7 +1,7 @@
 
 // Initialize app
 var appModule = window.appModule || 
-    angular.module("ScheduleApp", ['ngRoute']);
+    angular.module("ScheduleApp", ["ngRoute", "jqwidgets"]);
 
 // Route the app
 appModule.config(function($routeProvider) {
@@ -13,7 +13,7 @@ appModule.config(function($routeProvider) {
 	    })
         .when('/calendar', {
             controller:'MainController',
-            templateUrl:'resources/views/calendar.html'
+            templateUrl:'resources/views/scheduler.html'
         })
         .when('/pay', {
             controller:'MainController',
@@ -27,13 +27,13 @@ appModule.config(function($routeProvider) {
             controller:'MainController',
             templateUrl:'resources/views/notifs.html'
         })
-        .when('/message',{
+        .when('/messages',{
             controller:'MainController',
-            templateUrl: 'resources/views/message.htm'
+            templateUrl: 'resources/views/message.html'
 
         })
         .when('/create/v/', {
-            controller:'MainController',
+            controller:'VenueController',
             templateUrl:'resources/views/create/create_venue.html'
         })
         .when('/create/e/', {
@@ -41,7 +41,7 @@ appModule.config(function($routeProvider) {
             templateUrl:'resources/views/create/create_event.html'
         })
         .when('/v/:id', {
-            controller:'MainController',
+            controller:'VenueController',
             templateUrl:'resources/views/venue.html'
         })
         .when('/e/:id', {
@@ -49,7 +49,7 @@ appModule.config(function($routeProvider) {
             templateUrl:'resources/views/event.html'
         })
         .when('/u/:id', {
-            controller:'MainController',
+            controller:'ProfileController',
             templateUrl:'resources/views/user.html'
         })
         .when('/404', {

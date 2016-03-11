@@ -15,7 +15,9 @@
         <ul class="nav navbar-nav navbar-left">
             <li id="menu-btn">
                 <a>
-                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                    <span aria-hidden="true">
+                        <img src="resources/images/OMB.png" height ="20px" />
+                    </span>
                 </a>
             </li>
         </ul>
@@ -47,10 +49,6 @@
         {/literal}
         
         <ul class="nav navbar-nav navbar-right">
-            <li><a>User Access: Temp</a></li>
-            <li> 
-                <img src="resources/images/OMB.png" height ="50px" />
-            </li>
 
             {literal}
 
@@ -78,8 +76,6 @@
                     <li ng-show="notifications.length == 0">You have no notifications</li>
                 </ul>
             </li>
-
-            {/literal}
             
             <li>
                 <img src="resources/images/tameem.jpg" class="profile-thumbnail"
@@ -88,13 +84,15 @@
 
             <li class="dropdown">
             	<a class="dropdown-toggle" data-toggle="dropdown">
-            		{$user}
+                    
+            		<span ng-bind="user.first_name"></span>
+                    <span ng-if="!user.first_name" ng-bind="user.email"></span>
+    
             		<b class="caret"></b>
             	</a>
-          		
           		<ul class="dropdown-menu">
                     <li>
-                        <a href="#/u/1234">
+                        <a href="#/u/{{user.id}}">
                             View Profile
                         </a>
                     </li>    
@@ -109,6 +107,7 @@
                         </a>
                     </li>
                 </ul>
+                {/literal}
             </li> <!-- End Profile li -->
            
         </ul>

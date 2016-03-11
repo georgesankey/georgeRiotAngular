@@ -1,39 +1,64 @@
 <div class="col-md-12">
-<div class="panel">
-	<div class="panel-body">
-		<h4>
-			{{venue.title}}
-		</h4>
 
-	</div>
+<div class="profile-header text-center">
+	
+	<div class="profile-name">{{venue.name}}</div>
+	
 </div>
+
 </div>
 
 <div class="col-md-8">
-<div class="panel">
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h4 class="panel-title">Details</h4>
+	</div>
+
 	<div class="panel-body">
-		
-		{{venue.description}}
 
-		<br />
+		Location: {{venue.street_1}}, {{venue.street_2}}, {{venue.city}}, {{venue.state}} {{venue.zipcode}}
 
-		Location:
+		<p>
+		Image would go here
+		</p>
 
-		<div id="venueMap"></div>
+		<div id="venueMap">Google Map Embed Here</div>
 
 	</div>
 </div>
 </div>
 
 <div class="col-md-4">
-<div class="panel panel-default">
+
+<div class="panel panel-success">
 	<div class="panel-heading">
-		<h4 class="panel-title">Events</h4>
+		<h4 class="panel-title">Contact</h4>
 	</div>
 
 	<div class="panel-body">
 		
-		No events occurring
+		<p>
+		{{venue.last_name}}, {{venue.first_name}}
+		</p>
+
+		<p ng-if="venue.cell_number"><strong>Cell:</strong> {{venue.cell_number}}</p>
+		<p ng-if="venue.home_number"><strong>Home:</strong> {{venue.home_number}}</p>
+		<p ng-if="venue.work_number"><strong>Work:</strong> {{venue.work_number}}</p>
+
+		<p>
+		{{venue.details}}
+		</p>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h4 class="panel-title">Comments</h4>
+	</div>
+
+	<div class="panel-body">
+		
+		{{venue.comments}}
 
 	</div>
 </div>

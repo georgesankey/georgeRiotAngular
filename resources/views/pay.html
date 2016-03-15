@@ -6,24 +6,26 @@
     </div>
 
 </div>
-<script type="text/javascript">
+<script class="ng-scope" type="text/javascript">
 
 var dataSet = [
-    [ "Tiger Nixon", "System Architect", "Edinburgh", "5421", "2011/04/25", "$320,800" , "$320,800" ],
-    [ "Garrett Winters", "Accountant", "Tokyo", "8422", "2011/07/25", "$170,750" , "$320,800" ],
-    [ "Ashton Cox", "Junior Technical Author", "San Francisco", "1562", "2009/01/12", "$86,000" , "$320,800" ],
-     [ "Tiger Nixon", "System Architect", "Edinburgh", "5421", "2011/04/25", "$320,800" , "$320,800" ],
-    [ "Garrett Winters", "Accountant", "Tokyo", "8422", "2011/07/25", "$170,750" , "$320,800" ],
-    [ "Ashton Cox", "Junior Technical Author", "San Francisco", "1562", "2009/01/12", "$86,000" , "$320,800" ], [ "Tiger Nixon", "System Architect", "Edinburgh", "5421", "2011/04/25", "$320,800" , "$320,800" ],
-    [ "Garrett Winters", "Accountant", "Tokyo", "8422", "2011/07/25", "$170,750" , "$320,800" ],
-    [ "Ashton Cox", "Junior Technical Author", "San Francisco", "1562", "2009/01/12", "$86,000" , "$320,800" ], [ "Tiger Nixon", "System Architect", "Edinburgh", "5421", "2011/04/25", "$320,800" , "$320,800" ],
-    [ "Garrett Winters", "Accountant", "Tokyo", "8422", "2011/07/25", "$170,750" , "$320,800" ],
-    [ "Ashton Cox", "Junior Technical Author", "San Francisco", "1562", "2009/01/12", "$86,000" , "$320,800" ],
+    [ "BRIAR ROSE", "2011/07/25", "Edinburgh", "5421", "2011/04/25", "$32" , "$320,800" ],
+    [ "ECO-BABE", "2016/04/25", "Tokyo", "8422", "2011/07/25", "$17" , "$320,800" ],
+    [ "WE BELIEVE IN MAKE BELIEVE", "2016/04/25", "San Francisco", "1562", "2009/01/12", "$86" , "$320,800" ],
+     [ "GAMERS", "2011/07/25", "Edinburgh", "5421", "2011/04/25", "$32" , "$320,800" ],
+    [ "Garrett Winters", "2016/04/25", "Tokyo", "8422", "2011/07/25", "$17" , "$320,800" ],
+    [ "TUFF DUME", "2016/04/25", "San Francisco", "1562", "2009/01/12", "$8" , "$320,800" ], [ "HERE YOU GO, ROMEO", "2011/07/25", "Edinburgh", "5421", "2011/04/25", "$3" , "$320,800" ],
+    [  "RICK SPACEY", "2016/04/25", "Tokyo", "8422", "2011/07/25", "$17" , "$320,800" ],
+    [ "SHERLOCK IN WONDERLAND", "2016/04/25", "San Francisco", "1562", "2009/01/12", "$86" , "$320,800" ], [ "Tiger Nixon", "2016/04/25", "Edinburgh", "5421", "2011/04/25", "$32" , "$320,800" ],
+    [ "WONDERBOY MICKEY", "2009/01/12", "Tokyo", "8422", "2011/07/25", "$17" , "$320,800" ],
+    [  "TUFF DUME", "2011/07/25", "San Francisco", "1562", "2009/01/12", "$8" , "$320,800" ],
 ];
 
+
 $(document).ready(function() {
-  var t =  $('#example').DataTable({
-   data: dataSet,
+    // Init DataTables
+var table = $('#example').DataTable(
+    {data: dataSet,
         columns: [
           { title: "Task" },
             { title: "Date" },
@@ -32,8 +34,22 @@ $(document).ready(function() {
             { title: "Travel" },
             { title: "Wage" },
             { title: "Total Wage" }
-        ]
-  });
+        ]});
+ 
+// Apply the jEditable handlers to the table
+$( table.cells().nodes() ).editable( 'ajaxServerScript', {
+    "callback": function( value, y ) {
+        table.cell( this ).data( value ).draw();
+    },
+    "submitdata": function ( value, settings ) {
+        return {
+            "row_id": $(this).closest('tr').attr('id'),
+            "column": table.cell( this ).index().column
+        };
+    }
+} );
+      
+           
 
       
 });
@@ -46,6 +62,8 @@ $(function() {
             format: 'MM/DD/YYYY h:mm A'
         }
     });
+
+
 });
 </script>
 

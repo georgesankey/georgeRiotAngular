@@ -98,15 +98,15 @@ var mydata2 = [
 for(var i=0;i<mydata2.length;i++)
     jQuery("#timeSheet").addRowData(mydata2[i].id,mydata2[i]);
 
- /*$('#timeSheet').jqGrid('filterToolbar',{
+ $('#timeSheet').jqGrid('filterToolbar',{
                 // JSON stringify all data from search, including search toolbar operators
                 stringResult: true,
                 // instuct the grid toolbar to show the search options
                 searchOperators: true
             });
+jQuery(".ui-jqgrid-title").replaceWith('<div style="text-align: center;"><strong><span>' + jQuery(".ui-jqgrid-title").text() + '</strong></span></div>');
 
 
-*/
 });
 
 </script>

@@ -24,7 +24,11 @@ appModule.factory('ContactService', function($http, $q) {
     };
 
     var createContact = function(contact) {
-
+        var deferred = $q.defer();
+        $http.post(route, contact).success(function (data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
     };
 
     return {

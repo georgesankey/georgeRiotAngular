@@ -19,6 +19,7 @@ function getContact($id) {
     if($authRows == 1) {
     	return $authQuery->fetch(PDO::FETCH_ASSOC);
     }
+    return false;
 
 }
 
@@ -37,16 +38,33 @@ function getAllContacts() {
     $authQuery->execute();
     $authRows = $authQuery->rowCount();
 
-    return $authQuery->fetch(PDO::FETCH_ASSOC);
+    return $authQuery->fetchAll(PDO::FETCH_ASSOC);
 
 }
 
 /**
  * Requires $dbh and contact data
  */
-function setContact() {
+function setContact($contact) {
 
 	global $dbh;
+
+	if(isset($contact["id"])) {
+		// Try to edit
+	} else {
+		$authQuery = $dbh->prepare("
+			INSERT INTO CONTACT (name, synopsis, creator) VALUES (:name, :synopsis, :userid)
+		");
+		$authQuery->bindParam(':name', $name);
+		$authQuery->bindParam(':synopsis', $synopsis);
+	    $authQuery->bindParam(':userid', $user_id);
+
+	    if ($authQuery->execute()) {
+	    	return "Success";
+	    }
+
+	    return "Failed: ".$authQuery->errorInfo();
+	}
 
 	
 }

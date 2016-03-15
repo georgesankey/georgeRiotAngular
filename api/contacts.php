@@ -23,6 +23,11 @@ if(isset($_GET["id"])) {
 	$returnValue = getContact($_GET["id"]);
 }
 
+else if(isset($_POST["first_name"])) {
+	$contact = array();
+	$returnValue = setContact($contact);
+}
+
 else {
 	$returnValue = getAllContacts();
 }

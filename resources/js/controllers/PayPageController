@@ -38,7 +38,7 @@ appModule.controller('Controller', ['PayPageService', '$scope', function(PayPage
 			//$scope.accountRequestGrid.selectrow(0);
 		},
 		selectionmode: 'multiplecellsadvanced',
-		source: $scope.accountRequests,
+		source: $scope.timeSheet,
 		editable: true,
 		sortable: true,
 		pageable:true,

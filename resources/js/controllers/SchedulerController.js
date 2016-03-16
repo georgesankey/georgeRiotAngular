@@ -10,12 +10,14 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
     //SchedulerService.getAllEventsForScheduler().then(function(schedulerEvents){
     //    $scope.schedulerEvents = schedulerEvents;
     //});
+    $scope.venues = [];
     VenueService.getAllVenues().then(function(venues) {
         $scope.venues = venues;
-        console.log('venues before: ' + $scope.venues);
+        console.log('venues after: '+ $scope.venues);
     });
 
-    console.log('venues: '+ $scope.venues);
+
+
     // prepare the data
     var source =
     {
@@ -46,6 +48,7 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
            args.instance.ensureAppointmentVisible('1');
         },
         editDialogCreate: function(event){
+            //alert($scope.venues);
             var args = event.args;
             var appointment = args.appointment;
             var fields = args.fields;

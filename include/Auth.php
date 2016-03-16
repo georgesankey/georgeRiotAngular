@@ -148,9 +148,9 @@ class OMBAuth {
 		$userIdRow = $getUserIdQuery->fetch();
 		$userId = $userIdRow["id"];
 
-		$insertQuery = $this->db->prepare("INSERT INTO CONTACT (user_id, phone_number, first_name, last_name) VALUES (?,?,?,?)");
+		$insertQuery = $this->db->prepare("INSERT INTO CONTACT (user_id, cell_number, first_name, last_name) VALUES (?,?,?,?)");
 		$insertQuery->bindParam(1, $userId); 
-		$insertQuery->bindParam(2, $_POST["phonenumber"]);
+		$insertQuery->bindParam(2, $_POST["cellnumber"]);
 		$insertQuery->bindParam(3, $_POST["firstname"]); 
 		$insertQuery->bindParam(4, $_POST["lastname"]); 
 		$insertQuery->execute();

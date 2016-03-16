@@ -28,4 +28,13 @@ appModule.controller("VenueController", function(
 	};
 
 
+	//for getting all of the venues
+
+	$scope.venues = [];
+	VenueService.getAllVenues().then(function(venues) {
+		$scope.venues = venues;
+	});
+
+
+
 });

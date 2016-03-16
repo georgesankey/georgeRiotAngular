@@ -12,7 +12,7 @@ appModule.config(function($routeProvider) {
 	        templateUrl:'resources/views/dashboard.html'
 	    })
         .when('/calendar', {
-            controller:'MainController',
+            controller:'SchedulerController',
             templateUrl:'resources/views/scheduler.html'
         })
         .when('/pay', {

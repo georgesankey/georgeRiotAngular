@@ -74,6 +74,7 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">Account Requests</h4>
 		</div>
+	
 		<div class="panel-body" ng-controller="NotifController" style="width: 100%">	
 			<jqx-grid id="accountRequestGrid" jqx-source="accountRequests" jqx-instance="accountRequestGrid" jqx-settings="accountRequestGridSettings"></jqx-grid>	
 			<jqx-window id="accountRequestWindow" jqx-instance="accountRequestWindow" jqx-settings="accountRequestWindowSettings">
@@ -86,14 +87,9 @@
 			</div>
 			</div>
 			</jqx-window>
-			<!--<ul>
-				<li ng-repeat="req in accountRequests">
-					<div>
-						{{req.first_name}}
-					</div>
-				</li>
-			</ul>-->
-		</div>	 
+		</div>	
+	
+
 		</div>
 		</div>
 		<div><script></script></div>

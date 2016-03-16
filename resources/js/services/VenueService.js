@@ -30,9 +30,18 @@ appModule.factory('VenueService', function($http, $q) {
         return deferred.promise;
     };
 
+    var getAllVenues = function(){
+        var deferred = $q.defer();   
+        $http.get(route+"?func=getAllVenues").success(function (data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    };
+    
     return {
         getSessionUserData: getSessionUserData,
-        getVenue: getVenue
+        getVenue: getVenue,
+        getAllVenues: getAllVenues
     };  
     
 });

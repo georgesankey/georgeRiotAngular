@@ -1,6 +1,6 @@
 // Define App
 var appModule = window.appModule || 
-	angular.module("ScheduleApp", ['ngRoute']);
+	angular.module("ScheduleApp", ['ngRoute', 'jqwidgets']);
 
 /**
  * Mini Calendar on dashboard 

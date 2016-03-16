@@ -7,7 +7,7 @@ function getAllAccountRequests() {
 
 		if(isAdmin()){
 			$accountRequestQuery = $dbh->prepare("
-				SELECT u.id, u.active, u.email, c.first_name, c.last_name, r.role_name, c.phone_number FROM USER u
+				SELECT u.id, u.active, u.email, c.first_name, c.last_name, r.role_name, c.cell_number FROM USER u
 				LEFT JOIN ROLE r ON u.role_id=r.role_id
 				LEFT JOIN CONTACT c ON u.id=c.user_id
 				WHERE u.active=0

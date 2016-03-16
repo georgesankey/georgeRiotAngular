@@ -44,7 +44,7 @@ appModule.controller('NotifController', ['NotifService', '$scope', function(Noti
 		{text: 'First Name', datafield: 'first_name', width: '16%'},
 		{text: 'Last Name', datafield: 'last_name', width: '16%'},
 		{text: 'User Access', datafield: 'role_name', width: '16%'},
-		{text: 'Phone Number', datafield: 'phone_number', width: '16%'}
+		{text: 'Cell Number', datafield: 'cell_number', width: '16%'}
 		],
 		rowselect: function (event) {
 		$scope.selectedAccountRequest = event.args.row;

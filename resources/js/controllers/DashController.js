@@ -1,6 +1,6 @@
 // Define App
 var appModule = window.appModule || 
-	angular.module("ScheduleApp", ['ngRoute']);
+	angular.module("ScheduleApp", ['ngRoute', 'jqwidgets']);
 
 /**
  * Controller for Dashboard view

@@ -11,7 +11,7 @@ appModule.factory('PayPageService', function($http, $q) {
         var deferred = $q.defer();
         var timeSheetentry;    
         $http.get("/onlymakebelieve/api/pay.php").success(function (data){
-                accountRequests = data;
+                timeSheet = data;
                 deferred.resolve(timeSheetentry);
             });
             return deferred.promise;

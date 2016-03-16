@@ -5,7 +5,7 @@ var appModule = window.appModule ||
 /** 
  * Renders TimeSheet info & other notifications
  */
-appModule.controller('Controller', ['PayPageService', '$scope', function(PayPageService, $scope) {
+appModule.controller('PayPageController', ['PayPageService', '$scope', function(PayPageService, $scope) {
 
 	$scope.timeSheetGrid = {};
 	$scope.timeSheetWindow = {};
@@ -20,7 +20,7 @@ appModule.controller('Controller', ['PayPageService', '$scope', function(PayPage
 		position: 'middle',
 		resizable: false,
 		open: function(event){
-			//console.log(event);
+			console.log(event);
 		},
 		close: function () {
 			$scope.timeSheetGridSettings.apply('unselectrow');
@@ -35,7 +35,7 @@ appModule.controller('Controller', ['PayPageService', '$scope', function(PayPage
 		height: 300, 
 		theme: 'energyblue',
 		ready: function () {
-			//$scope.accountRequestGrid.selectrow(0);
+			
 		},
 		selectionmode: 'multiplecellsadvanced',
 		source: $scope.timeSheet,
@@ -43,8 +43,8 @@ appModule.controller('Controller', ['PayPageService', '$scope', function(PayPage
 		sortable: true,
 		pageable:true,
 		columns: [
-		{text: 'Name', datafield: 'name', width: '36%'},
-		{text: 'Task', datafield: 'task', width: '36%'},
+		{text: 'Name', datafield: 'name', width: '16%'},
+		{text: 'Task', datafield: 'task', width: '16%'},
 		{text: 'Date', columntype: 'DateTime'  ,datafield: 'date', width: '16%'},
 		{text: 'Duration', columntype: 'Number'  ,datafield: 'duration', width: '16%'},
 		{text: 'Travel',columntype: 'Number'  , datafield: 'travel', width: '16%'},

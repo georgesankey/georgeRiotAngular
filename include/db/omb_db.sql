@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 16, 2016 at 02:47 PM
+-- Generation Time: Mar 16, 2016 at 06:36 PM
 -- Server version: 5.5.46-0ubuntu0.14.04.2
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -46,13 +46,13 @@ INSERT INTO `ADDRESS` (`id`, `street_1`, `street_2`, `city`, `state`, `zipcode`,
 (6, 'Jamaica', '', 'New York', 'NY', '11432', 1, '1'),
 (7, 'Chicago Place', '', 'Chicago', 'IL', '23213', 2, '1'),
 (8, 'Charlie Town', '', 'Charleston', 'NY', '89779', 3, '1'),
-(24, '575 Wakefield Lane', '', 'New York', 'NY', '11432', 68, '4'),
-(25, '500 What Up', '', 'New York', 'NY', '11432', 69, '3'),
-(26, '500 Way', '', 'New York', 'NY', '11073', 70, '4'),
-(27, '47th Street Broadway', '', 'New York', 'NY', '17777', 1, '5'),
-(28, '500 Titanic Way', '', 'Los Angeles', 'CA', '123455', 71, '4'),
-(29, '404 Not Found', '', 'New York', 'NY', '10775', 72, '4'),
-(30, 'New York Lane', '', 'New York', 'NY', '145664', 2, '5');
+(24, '575 Wakefield Lane', '', 'New York', 'NY', '11432', 68, '1'),
+(25, '500 What Up', '', 'New York', 'NY', '11432', 69, '1'),
+(26, '500 Way', '', 'New York', 'NY', '11073', 70, '1'),
+(27, '47th Street Broadway', '', 'New York', 'NY', '17777', 1, '2'),
+(28, '500 Titanic Way', '', 'Los Angeles', 'CA', '123455', 71, '1'),
+(29, '404 Not Found', '', 'New York', 'NY', '10775', 72, '1'),
+(30, 'New York Lane', '', 'New York', 'NY', '145664', 2, '2');
 
 -- --------------------------------------------------------
 
@@ -189,8 +189,7 @@ INSERT INTO `ROLE` (`role_id`, `role_name`) VALUES
 (1, 'Administrator'),
 (2, 'Team Leader'),
 (3, 'Staff'),
-(4, 'Actor'),
-(5, 'Venue');
+(4, 'Actor');
 
 -- --------------------------------------------------------
 

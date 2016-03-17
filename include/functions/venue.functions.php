@@ -28,7 +28,7 @@ function getVenue($id) {
 		INNER JOIN VENUE_CONTACT vc ON vc.venue_id=v.id
 		INNER JOIN CONTACT c ON vc.contact_id=c.id
 		INNER JOIN ADDRESS a ON v.id=a.owner
-		WHERE v.id = :id AND a.owner_type=5
+		WHERE v.id = :id AND a.owner_type=2
 	");
 
     $authQuery->bindParam(':id', $id);
@@ -75,7 +75,7 @@ function getAllVenues(){
 		INNER JOIN VENUE_CONTACT vc ON vc.venue_id=v.id
 		INNER JOIN CONTACT c ON vc.contact_id=c.id
 		INNER JOIN ADDRESS a ON v.id=a.owner
-		WHERE a.owner_type=5
+		WHERE a.owner_type=2
 	");
 
     $authQuery->execute();

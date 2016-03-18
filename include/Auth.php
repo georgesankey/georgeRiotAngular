@@ -148,20 +148,24 @@ class OMBAuth {
 		$userIdRow = $getUserIdQuery->fetch();
 		$userId = $userIdRow["id"];
 
-		$insertQuery = $this->db->prepare("INSERT INTO CONTACT (user_id, cell_number, first_name, last_name) VALUES (?,?,?,?)");
+		$insertQuery = $this->db->prepare("INSERT INTO CONTACT (user_id, cell_number, first_name, last_name, work_number, home_number) VALUES (?,?,?,?,?,?)");
 		$insertQuery->bindParam(1, $userId); 
 		$insertQuery->bindParam(2, $_POST["cellnumber"]);
 		$insertQuery->bindParam(3, $_POST["firstname"]); 
 		$insertQuery->bindParam(4, $_POST["lastname"]); 
+		$insertQuery->bindParam(5, $_POST["worknumber"]);
+		$insertQuery->bindParam(6, $_POST["homenumber"]);
+
 		$insertQuery->execute();
 
+		$ownerType = "1";
 		$insertQuery = $this->db->prepare("INSERT INTO ADDRESS (street_1, city, state, zipcode, owner, owner_type) VALUES (?,?,?,?,?,?)");
 		$insertQuery->bindParam(1, $_POST["address"]); 
 		$insertQuery->bindParam(2, $_POST["city"]);
 		$insertQuery->bindParam(3, $_POST["state"]); 
 		$insertQuery->bindParam(4, $_POST["zipcode"]); 
 		$insertQuery->bindParam(5, $userId); 
-		$insertQuery->bindParam(6, $_POST["useraccess"]); 		
+		$insertQuery->bindParam(6, $ownerType); 		
 		$insertQuery->execute();
 
 		return true;

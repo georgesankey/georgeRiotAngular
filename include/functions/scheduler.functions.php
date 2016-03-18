@@ -3,25 +3,25 @@
 /**
  * Requires $dbh and $_SESSION["user"] to be set
  */
-function getEventsForScheduler($id) {
-/*
+function getAllEventsForScheduler() {
+
 	global $dbh;
 	
-	$authQuery = $dbh->prepare("
-		SELECT * FROM EVENT e
-		WHERE e.id = :id
+	$eventQuery = $dbh->prepare("
+		SELECT  
+			e.id,
+			e.show_name,
+			e.comments,
+			e.show_status,
+			e.from,
+			e.to,
+			e.administrator,
+			e.venue_id
+		FROM EVENT e
 	");
 
-    $authQuery->bindParam(':id', $id);
-    $authQuery->execute();
-    $authRows = $authQuery->rowCount();
-
-    if($authRows == 1) {
-    	return $authQuery->fetchAll(PDO::FETCH_ASSOC);
-    }
-*/
-
-
+    $eventQuery->execute();
+    return $eventQuery->fetchAll(PDO::FETCH_ASSOC);  
 }
 
 ?>

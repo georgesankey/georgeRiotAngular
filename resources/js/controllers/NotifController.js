@@ -40,11 +40,13 @@ appModule.controller('NotifController', ['NotifService', '$scope', function(Noti
 		selectionmode: 'singlerow',
 		source: $scope.accountRequests,
 		columns: [
-		{text: 'Email', datafield: 'email', width: '36%'},
-		{text: 'First Name', datafield: 'first_name', width: '16%'},
-		{text: 'Last Name', datafield: 'last_name', width: '16%'},
-		{text: 'User Access', datafield: 'role_name', width: '16%'},
-		{text: 'Cell Number', datafield: 'cell_number', width: '16%'}
+		{text: 'Email', datafield: 'email', width: '34%'},
+		{text: 'First Name', datafield: 'first_name', width: '11%'},
+		{text: 'Last Name', datafield: 'last_name', width: '11%'},
+		{text: 'User Access', datafield: 'role_name', width: '11%'},
+		{text: 'Cell Number', datafield: 'cell_number', width: '11%'},
+		{text: 'Home Number', datafield: 'home_number', width: '11%'},
+		{text: 'Work Number', datafield: 'work_number', width: '11%'},
 		],
 		rowselect: function (event) {
 		$scope.selectedAccountRequest = event.args.row;

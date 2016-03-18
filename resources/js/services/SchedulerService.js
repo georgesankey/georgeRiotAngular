@@ -7,25 +7,25 @@ var appModule = window.appModule ||
  */
 appModule.factory('SchedulerService', function($http, $q) {
 
+    var route = "/onlymakebelieve/api/scheduler.php";
 
- var getAllEventsForScheduler = function(){
-        //var deferred = $q.defer();
-        //$http.get("/onlymakebelieve/api/accountrequests.php").success(function (data){
-         //       accountRequests = data;
-          //      deferred.resolve(accountRequests);
-            //});
+     var getAllEventsForScheduler = function(){
+            var deferred = $q.defer();
+            $http.get(route + "?func=getAllEventsForScheduler").success(function (events){
+                    deferred.resolve(events);
+            });
 
 
-    var appointments = new Array();
-        var appointment1 = {
+  //  var appointments = new Array();
+    /*    var appointment1 = {
             id: "1",
             showName: "Aladdin",            
             showComments: "These are comments for the show Aladdin.",
             calendar: "Scheduled",
             start: new Date(2015, 10, 24, 9, 0, 0),
             end: new Date(2015, 10, 24, 16, 0, 0),
-            adminCreator: "Raihan Admin",
-            venueName: "Broadway Theatre"
+            adminCreator: "1",
+            venue: "1"
         };
         var appointment2 = {
             id: "2",
@@ -34,8 +34,8 @@ appModule.factory('SchedulerService', function($http, $q) {
             calendar: "Deferred",
             start: new Date(2015, 10, 25, 9, 0, 0),
             end: new Date(2015, 10, 25, 16, 0, 0),
-            adminCreator: "Raihan Admin",
-            venueName: "NYH"
+            adminCreator: "2",
+            venue: "2"
         };
         var appointment3 = {
             id: "3",
@@ -44,24 +44,20 @@ appModule.factory('SchedulerService', function($http, $q) {
             calendar: "Cancelled",
             start: new Date(2015, 10, 26, 9, 0, 0),
             end: new Date(2015, 10, 26, 16, 0, 0),
-            adminCreator: "Raihan Admin",
-            venueName: "Broadway Jungle"
+            adminCreator: "1",
+            venue: "1"
         };
-       
+      
         appointments.push(appointment1);
         appointments.push(appointment2);
         appointments.push(appointment3);
 
-        /*
-        appointments.push(appointment2);
-        appointments.push(appointment3);
-        appointments.push(appointment4);
-        appointments.push(appointment5);
-        appointments.push(appointment6);
-        */
+        
         //deferred.resolve(appointments);
         //return deferred.promise;
         return appointments;
+        */
+        return deferred.promise;
     };
 
  /*var accountRequestManagement = function(service, rowId) {

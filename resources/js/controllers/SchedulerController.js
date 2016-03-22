@@ -1,15 +1,25 @@
 // Define App
 var appModule = window.appModule || 
-	angular.module("ScheduleApp", ['ngRoute', 'jqwidgets', 'ngResource']);
+	angular.module("ScheduleApp", ['ngRoute', 'jqwidgets']);
 
 /**
  * SchedulerController 
  */
 appModule.controller('SchedulerController', ['SchedulerService', 'VenueService', 'UserService', '$scope', '$q', function(SchedulerService, VenueService, UserService, $scope, $q) {
     
-    var schedParam = SchedulerService.getAllEventsForScheduler().then(function(schedulerEvents) {
-    // prepare the data
-        var source = {
+    $scope.createScheduler = false;
+    var schedParam = SchedulerService.getAllEventsForScheduler();
+    var venuesParam = VenueService.getAllVenues();
+    var userParam = UserService.getSessionUserData();
+ 
+
+    $q.all([schedParam, venuesParam, userParam])
+    .then(function(response){
+    $scope.sourceSchedule = response[0];
+    $scope.venues = response[1];
+    $scope.currentUser = response[2];
+
+    var sourceSchedule = {
             dataType: "array",
             dataFields: [
                 { name: 'id', type: 'string' },
@@ -22,19 +32,8 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
                 { name: 'venue_id', type: 'string'}
             ],
             id: 'id',
-            localData: schedulerEvents
-        };
-       return source; 
-    });
-
-    var venuesParam = VenueService.getAllVenues();
-    var userParam = UserService.getSessionUserData();
- 
-    $q.all([schedParam, venuesParam, userParam])
-    .then(function(response){
-        var sourceSchedule = response[0];
-        var venues = response[1];
-        var currentUser = response[2];
+            localData: $scope.sourceSchedule
+    };
 
     $scope.settings = {
         date: new $.jqx.date(),
@@ -44,9 +43,9 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
         view: 'weekView',
         showLegend: true,
         editDialog: true,
-        //created: function (args) {
-         //  args.instance.ensureAppointmentVisible('2');
-        //},
+        created: function (args) {
+          //args.instance.ensureAppointmentVisible('2');
+        },
         editDialogCreate: function(event){
             var args = event.args;
             var appointment = args.appointment;
@@ -63,7 +62,7 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
             fields.locationContainer.hide();
             fields.colorContainer.hide();
 
-            eventMaintenanceButton = $("<button style='margin-left: 5px; float:right;'>Event Maintenance</button>");
+            var eventMaintenanceButton = $("<button style='margin-left: 5px; float:right;'>Event Maintenance</button>");
             fields.buttons.append(eventMaintenanceButton);
             eventMaintenanceButton.jqxButton({ theme: this.theme });
 
@@ -93,7 +92,7 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
             
             var venueNameSource = [];
             var venueIdSource = [];
-            $.each(venues, function(index, value) {
+            $.each($scope.venues, function(index, value) {
                     venueNameSource.push(value.name);
                     venueIdSource.push(value.id);
             });
@@ -111,26 +110,25 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
             var appointment = args.appointment;
 
             if(appointment){
-                //existing appointment   
-                $.each(venues, function(index, value) {
-
+                //existing appointment
+                $.each($scope.venues, function(index, value) {
                     if(value.id == appointment.venue){
                         $("#comboboxVenueName").jqxDropDownList('selectedIndex', index);
-                        UserService.getUser(appointment.adminCreator).then(function(userItem) {
+                        updateVenueFields(value);    
+                        UserService.getUser(appointment.adminCreator)
+                        .then(function(userItem) {
                             $('#adminField').val(userItem.first_name + " " + userItem.last_name + " ("+ userItem.email + ")");
                         });
-                        updateVenueFields(value);                                     
                     }
-            });  
-
+                });  
             } else {
-
-                VenueService.getVenue(venues[0].id).then(function(venueItem) {
+                //new appointment
+                VenueService.getVenue($scope.venues[0].id).then(function(venueItem) {
                     updateVenueFields(venueItem);   
                 });
 
                 $("#comboboxVenueName").jqxDropDownList('selectedIndex', 0);
-                $('#adminField').val(currentUser.first_name + " " + currentUser.last_name + " (" + currentUser.email + ")");
+                $('#adminField').val($scope.currentUser.first_name + " " + $scope.currentUser.last_name + " (" + $scope.currentUser.email + ")");
             }
 
                 $("#comboboxVenueName").on('change', function (event) {
@@ -174,10 +172,14 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
             'monthView', 
             'agendaView'
         ]
-    };        
-});
+    }; //end of $scope.settings
+        $scope.createScheduler = true;
 
-}]); 
+}); //end of then clause
+    
+
+
+}]); //end of SchedulerController
 
 function updateVenueFields(venue){
     $('#venueStreet').val(venue.street_1);

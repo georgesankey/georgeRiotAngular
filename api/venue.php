@@ -19,10 +19,13 @@ if(!$auth->loggedIn()) {
 // Route calls by action
 $returnValue = 'An error has occured';
 
-if(isset($_GET["id"])) {
-	$returnValue = getVenue($_GET["id"]);
-} else if(isset($_GET["func"]) && $_GET["func"] == "getAllVenues"){
-	$returnValue = getAllVenues();
+if(isset($_GET["func"])) {
+	
+	if($_GET["func"] == "getAllVenues"){
+		$returnValue = getAllVenues();
+	} else if($_GET["func"] == "getVenue" && isset($_GET["venue"])){
+		$returnValue = getVenue($_GET["venue"]);
+	}
 }
 
 exit(json_encode($returnValue));

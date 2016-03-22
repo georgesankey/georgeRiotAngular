@@ -7,8 +7,9 @@ var appModule = window.appModule ||
  */
 appModule.factory('UserService', function($http, $q) {
 
-    var sessionUser;
     var route = "/onlymakebelieve/api/userdata.php";
+    var sessionUser;
+    var user;
 
     var getSessionUserData = function(){
         var deferred = $q.defer();   
@@ -18,6 +19,8 @@ appModule.factory('UserService', function($http, $q) {
             $http.get(route).success(function (data){
                 sessionUser = data;
                 deferred.resolve(sessionUser);
+            }).finally(function() {
+                sessionUser = undefined;   
             });
         }
         return deferred.promise;
@@ -25,11 +28,20 @@ appModule.factory('UserService', function($http, $q) {
 
     var getUser = function(userId){
         var deferred = $q.defer();   
-        $http.get(route+"?user="+userId).success(function (data) {
-            deferred.resolve(data);
-        });
+        if(user !== undefined){
+            deferred.resolve(user);
+        } else {
+            $http.get(route + "?user=" + userId)
+            .success(function (data){
+                user = data;
+                deferred.resolve(user);
+            }).finally(function() {
+                user = undefined;
+            });
+        }
         return deferred.promise;
     };
+            //return $http.get(route + "?user=" + userId);
 
     return {
         getSessionUserData: getSessionUserData,

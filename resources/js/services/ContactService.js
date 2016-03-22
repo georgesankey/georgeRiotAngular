@@ -8,18 +8,21 @@ var appModule = window.appModule ||
 appModule.factory('ContactService', function($http, $q) {
 
     var route = "/onlymakebelieve/api/contacts.php";
-    var contacts = null;
+    var contacts;
 
     // Gets all contacts for search. Will need to scale when contacts too many
     var getAllContacts = function(){
         var deferred = $q.defer();  
-        if(contacts !== null) {
+        if(contacts !== undefined) {
             deferred.resolve(contacts);
-        } 
-        $http.get(route).success(function (data) {
-            contacts = data;
-            deferred.resolve(contacts);
-        });
+        } else {
+            $http.get(route).success(function (data) {
+                contacts = data;
+                deferred.resolve(contacts);
+            }).finally(function() {
+                contacts = undefined;
+            });            
+        }
         return deferred.promise;
     };
 

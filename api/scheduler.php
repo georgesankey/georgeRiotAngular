@@ -19,7 +19,7 @@ if(!$auth->loggedIn()) {
 $returnValue = 'An error has occured';
 
 // Getting event by id
-if(isset($_GET["func"]) && $_GET["func"] == "getAllEventsForScheduler") {
+if(isset($_GET["func"]) && ($_GET["func"] == "getAllEventsForScheduler")) {
 	$returnValue = getAllEventsForScheduler();
 }
 

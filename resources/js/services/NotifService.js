@@ -7,36 +7,49 @@ var appModule = window.appModule ||
  */
 appModule.factory('NotifService', function($http, $q) {
 
- var getAllAccountRequests = function(){
+var accountRequests;
+var accountRequestsResponse;
+
+var getAllAccountRequests = function(){
         var deferred = $q.defer();
-        var accountRequests;    
-        $http.get("/onlymakebelieve/api/accountrequests.php").success(function (data){
+        if(accountRequests !== undefined){
+            deferred.resolve(accountRequests);
+        } else {
+            $http.get("/onlymakebelieve/api/accountrequests.php").success(function (data){
                 accountRequests = data;
                 deferred.resolve(accountRequests);
-            });
-            return deferred.promise;
+            }).finally(function () {
+                accountRequests = undefined;
+            });            
+        }
+        return deferred.promise;
     };
 
  var accountRequestManagement = function(service, rowId) {
         var deferred = $q.defer();
-        var accountRequests;
         var user = encodeURIComponent(rowId);
         var serviceParam = (service == 'accept' ? encodeURIComponent('accept'): encodeURIComponent('reject'));
         var params = {
             'user': user,
             'service' : serviceParam
         };
-        $http({
-            method: 'POST',
-            url: "/onlymakebelieve/api/accountrequests.php",
-            data: params
-        }).success(function (data, status) {
-            accountRequests = data;
-            deferred.resolve(accountRequests);
-        });
+        if(accountRequestsResponse !== undefined){
+            deferred.resolve(accountRequestsResponse);            
+        } else {
+            $http({
+                method: 'POST',
+                url: "/onlymakebelieve/api/accountrequests.php",
+                data: params
+            }).success(function (data, status) {
+                accountRequestsResponse = data;
+                deferred.resolve(accountRequestsResponse);
+            }).finally(function() {
+                accountRequestsResponse = undefined;
+            });
+        }
         return deferred.promise;
    };
-
+   
     return {
         getAllAccountRequests: getAllAccountRequests,
         accountRequestManagement: accountRequestManagement

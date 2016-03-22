@@ -34,9 +34,9 @@ function getAllContacts() {
 		SELECT * FROM CONTACT c
 	");
 
-    $authQuery->bindParam(':id', $id);
+    //$authQuery->bindParam(':id', $id);
     $authQuery->execute();
-    $authRows = $authQuery->rowCount();
+    //$authRows = $authQuery->rowCount();
 
     return $authQuery->fetchAll(PDO::FETCH_ASSOC);
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 16, 2016 at 06:36 PM
+-- Generation Time: Mar 21, 2016 at 10:44 PM
 -- Server version: 5.5.46-0ubuntu0.14.04.2
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `ADDRESS` (
   `owner` int(11) NOT NULL,
   `owner_type` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
 
 --
 -- Dumping data for table `ADDRESS`
@@ -52,7 +52,11 @@ INSERT INTO `ADDRESS` (`id`, `street_1`, `street_2`, `city`, `state`, `zipcode`,
 (27, '47th Street Broadway', '', 'New York', 'NY', '17777', 1, '2'),
 (28, '500 Titanic Way', '', 'Los Angeles', 'CA', '123455', 71, '1'),
 (29, '404 Not Found', '', 'New York', 'NY', '10775', 72, '1'),
-(30, 'New York Lane', '', 'New York', 'NY', '145664', 2, '2');
+(30, 'New York Lane', '', 'New York', 'NY', '145664', 2, '2'),
+(31, '500 Actor Way', '', 'New York', 'NY', '110777', 73, '1'),
+(32, '500 Bollywood', '', 'Los Angeles', 'CA', '11034', 75, '1'),
+(34, '270 Park Ave', '', 'New York', 'NY', '23123', 79, '1'),
+(35, '270 Park Ave', '', 'New York', 'NY', '89089', 80, '1');
 
 -- --------------------------------------------------------
 
@@ -70,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `CONTACT` (
   `home_number` varchar(500) NOT NULL,
   `work_number` varchar(500) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
 
 --
 -- Dumping data for table `CONTACT`
@@ -83,10 +87,14 @@ INSERT INTO `CONTACT` (`id`, `first_name`, `last_name`, `cell_number`, `details`
 (27, 'Raihan', 'Actor', '7777777', '', 68, '', ''),
 (28, 'Raihan', 'Staff', '54345435354', '', 69, '', ''),
 (29, 'Raihan', 'Ahmed', '4314343243', '', 70, '', ''),
-(30, 'Broadway', 'Contact', '555-555-5555', 'This is the Point of Contact for Broadway.', 0, '555-555-5553', '555-555-5554'),
+(30, 'George', 'Lucas', '555-555-5555', 'This is the Point of Contact for Broadway.', 0, '555-555-5553', '555-555-5554'),
 (31, 'Leo', 'Dicaprio', '453345435', '', 71, '', ''),
 (32, 'Charlie', 'Staff', '4554354', '', 72, '', ''),
-(33, 'New York Hospital', 'Contact', '545-345-5532', 'This is a detail for the NYH contact.', 0, '43234324234', '');
+(33, 'Dr. Philip', 'Nolan', '545-345-5532', 'This is a detail for the NYH contact.', 0, '43234324234', ''),
+(34, 'Charlie', 'Actor', '', '', 73, '', ''),
+(35, 'Tameem', 'Actor', '3422343', '', 75, '89789789', '798789787'),
+(39, 'George', 'Sankey', '324234234', '', 79, '78989897897', '78989797'),
+(40, 'Marshall', 'Cho', '8908008', '', 80, '89098908890980', '890980890980');
 
 -- --------------------------------------------------------
 
@@ -106,15 +114,16 @@ CREATE TABLE IF NOT EXISTS `EVENT` (
   `comments` text NOT NULL,
   `created_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `EVENT`
 --
 
 INSERT INTO `EVENT` (`id`, `administrator`, `show_name`, `show_status`, `from`, `to`, `repeat_status`, `venue_id`, `comments`, `created_time`) VALUES
-(2, 1, 'Aladdin', '1', '2016-03-15 17:31:00', '2016-03-15 18:00:00', '1', 1, 'These are comments about the show Aladdin!', '2016-03-14 04:00:00'),
-(3, 1, 'Wicked', '1', '2016-03-25 00:00:00', '2016-03-26 01:00:00', '1', 2, 'This is show comments about Wicked.', '2016-03-15 14:58:44');
+(2, 1, 'Aladdin', 'Scheduled', '2016-03-17 17:00:00', '2016-03-17 18:00:00', '1', 1, 'These are comments about the show Aladdin!', '2016-03-14 04:00:00'),
+(3, 1, 'Wicked', 'Deferred', '2016-03-18 08:00:00', '2016-03-18 10:00:00', '1', 2, 'This is show comments about Wicked.', '2016-03-15 14:58:44'),
+(4, 2, 'Fiddler on the Roof', 'Cancelled', '2016-03-17 08:00:00', '2016-03-17 12:00:00', '1', 1, 'These are the comments for Fiddler on the Roof. ', '2016-03-18 07:37:15');
 
 -- --------------------------------------------------------
 
@@ -147,7 +156,14 @@ INSERT INTO `EVENT_ROLE_USER` (`user_id`, `event_id`, `role_id`, `status`) VALUE
 (69, 3, 3, 0),
 (72, 3, 3, 0),
 (2, 3, 2, 0),
-(3, 3, 2, 0);
+(3, 3, 2, 0),
+(68, 4, 4, 0),
+(70, 4, 4, 0),
+(71, 4, 4, 0),
+(69, 4, 3, 0),
+(72, 4, 3, 0),
+(2, 4, 2, 0),
+(3, 4, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -167,7 +183,8 @@ CREATE TABLE IF NOT EXISTS `EVENT_SCRIPT` (
 INSERT INTO `EVENT_SCRIPT` (`event_id`, `script_id`) VALUES
 (2, 1),
 (2, 2),
-(3, 3);
+(3, 3),
+(4, 4);
 
 -- --------------------------------------------------------
 
@@ -179,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `ROLE` (
   `role_id` int(11) NOT NULL AUTO_INCREMENT,
   `role_name` varchar(50) NOT NULL,
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `ROLE`
@@ -203,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `SCRIPTS` (
   `synopsis` longtext NOT NULL,
   `creator` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `SCRIPTS`
@@ -212,7 +229,8 @@ CREATE TABLE IF NOT EXISTS `SCRIPTS` (
 INSERT INTO `SCRIPTS` (`id`, `name`, `synopsis`, `creator`) VALUES
 (1, 'Aladdin Part 1', '...', 3),
 (2, 'Aladdin Part 2', '...', 3),
-(3, 'Wicked Script', 'This is the script for Wicked. Comments?', 1);
+(3, 'Wicked Script', 'This is the script for Wicked. Comments?', 1),
+(4, 'Fiddler on the Roof Script', '...', 1);
 
 -- --------------------------------------------------------
 
@@ -228,7 +246,7 @@ CREATE TABLE IF NOT EXISTS `USER` (
   `email` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `role_id_2` (`role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=73 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=82 ;
 
 --
 -- Dumping data for table `USER`
@@ -242,7 +260,11 @@ INSERT INTO `USER` (`id`, `password`, `role_id`, `active`, `email`) VALUES
 (69, '5d26029e024ed9bf222a815b12990253cd2ba169585e954bee4b6934b2c4a311e60b8d3ea2e82918add72c6b9793bd31', 3, 1, 'ray_staff@gmail.com'),
 (70, '403ed71753c01bbb9ae225f63cb34a9951694738a2f79b4ccfc1bae6507b6e22feb6542f60f677d23ad30516256aba1f', 4, 1, 'raihanahmed@gmail.com'),
 (71, 'a61fe22e1dc11a07ed766100d4726105caecb2cb463fd62979f110a2a4fb0b3f894db2f076eaa8570703e08deda455a4', 4, 1, 'leonardo_dicaprio@gmail.com'),
-(72, '093a5acd32bbd2cd5baa9b3a8c97bda16ea00da14e16568385bbcb09f28a475b158418c0632bc382d098c8a192596144', 3, 1, 'charlie_staff@gmail.com');
+(72, '093a5acd32bbd2cd5baa9b3a8c97bda16ea00da14e16568385bbcb09f28a475b158418c0632bc382d098c8a192596144', 3, 1, 'charlie_staff@gmail.com'),
+(73, 'f3be856efc23dd7872042a8e6d204b4952ddb89937b70814eb4077aa15760c0d83480427ace7d7ec1c1d75160592a541', 4, 1, 'charlie_actor@gmail.com'),
+(75, '8df1bd58222f1fb0bd85593252a95e7c9d526bfc04bf431e7195ccc48a033593edf4ebe4096b63e77e7e96d23e6800d1', 4, 1, 'tameem_actor@gmail.com'),
+(79, '7d5189792a14862355bc379d93603dac48ce206833644d733589d528f51a57378632bf58762a0a03e6d6679ee1535ac5', 4, 1, 'george_sankey@gmail.com'),
+(80, 'bc3ba3566a2fd26ec65a88a672b934ac23645eeeff9019d360ba08aa57a03f265533b1783e0910a7d4622beda9821c80', 4, 1, 'marshallcho@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -263,7 +285,29 @@ INSERT INTO `USER_SCRIPT` (`user_id`, `script_id`) VALUES
 (3, 1),
 (3, 2),
 (1, 1),
-(2, 1);
+(2, 1),
+(1, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `USER_STATUS`
+--
+
+CREATE TABLE IF NOT EXISTS `USER_STATUS` (
+  `status_id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` varchar(11) NOT NULL,
+  PRIMARY KEY (`status_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `USER_STATUS`
+--
+
+INSERT INTO `USER_STATUS` (`status_id`, `status`) VALUES
+(-1, 'Rejected'),
+(0, 'Pending'),
+(1, 'Accepted');
 
 -- --------------------------------------------------------
 

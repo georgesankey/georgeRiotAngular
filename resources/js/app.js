@@ -11,7 +11,7 @@ appModule.config(function($routeProvider) {
 	        controller:'DashController',
 	        templateUrl:'resources/views/dashboard.html'
 	    })
-        .when('/calendar', {
+        .when('/scheduler', {
             controller:'SchedulerController',
             templateUrl:'resources/views/scheduler.html'
         })

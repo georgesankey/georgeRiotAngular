@@ -7,22 +7,37 @@ var appModule = window.appModule ||
  */
 appModule.factory('ScriptService', function($http, $q) {
 
-    var scripts;
     var route = "/onlymakebelieve/api/scripts.php";
+    var script;
+    var scriptsForUser;
 
     var getScript = function(id){
-        var deferred = $q.defer();   
-        $http.get(route + "?id="+id).success(function (data){
-            deferred.resolve(data);
-        });
+        var deferred = $q.defer(); 
+        if(script !== undefined){
+            deferred.resolve(script);    
+        } else {
+            $http.get(route + "?id="+id).success(function (data){
+                script = data;
+                deferred.resolve(script);
+            }).finally(function() {
+                script = undefined;
+            });
+        }  
         return deferred.promise;
     };
 
     var getScriptsForUser = function(userId){
         var deferred = $q.defer();   
-        $http.get(route+"?user="+userId).success(function (data) {
-            deferred.resolve(data);
-        });
+        if(scriptsForUser !== undefined){
+            deferred.resolve(scriptsForUser);
+        } else {
+            $http.get(route+"?user="+userId).success(function (data) {
+                scriptsForUser = data;
+                deferred.resolve(scriptsForUser);
+            }).finally(function() {
+                scriptsForUser = undefined;
+            });
+        }
         return deferred.promise;
     };
 

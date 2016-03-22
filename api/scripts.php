@@ -30,7 +30,7 @@ if(isset($_GET["user"])) {
 if(isset($_POST["name"]) || isset($_POST["id"])) {
 	$script_id = isset($_POST["id"]) ? $_POST["id"] : null;
 	$script_name = isset($_POST["name"]) ? $_POST["name"] : null;
-	$script_synopsis = isset($_POST["synposis"]) ? $_POST["synopsis"] : null;
+	$script_synopsis = isset($_POST["synopsis"]) ? $_POST["synopsis"] : null;
 	$user_id = isset($_POST["user_id"]) ? $_POST["user_id"] : null;
 	
 	$returnValue = editScript($script_id, $script_name, $script_synopsis, $user_id);

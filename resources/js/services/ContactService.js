@@ -11,6 +11,7 @@ appModule.factory('ContactService', function($http, $q) {
     var contacts;
 
     // Gets all contacts for search. Will need to scale when contacts too many
+    // @cached
     var getAllContacts = function(){
         var deferred = $q.defer();  
         if(contacts !== undefined) {
@@ -27,6 +28,7 @@ appModule.factory('ContactService', function($http, $q) {
     var createContact = function(contact) {
         var deferred = $q.defer();
         $http.post(route, contact).success(function (data) {
+            contacts = undefined; // Clear old list
             deferred.resolve(data);
         });
         return deferred.promise;

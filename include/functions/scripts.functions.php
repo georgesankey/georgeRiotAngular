@@ -70,6 +70,7 @@ function editScript($id, $name, $synopsis, $user_id=null) {
 
 	if(is_null($id)) {
 		// Create a new script
+		if(is_null($user_id)) {$user_id=0;}
 
 		$authQuery = $dbh->prepare("
 			INSERT INTO SCRIPTS (name, synopsis, creator) VALUES (:name, :synopsis, :userid)

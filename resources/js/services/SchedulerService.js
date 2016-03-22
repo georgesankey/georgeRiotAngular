@@ -10,6 +10,7 @@ appModule.factory('SchedulerService', function($http, $q) {
     var route = "/onlymakebelieve/api/scheduler.php";
     var allEvents; 
 
+    // @cached
     var getAllEventsForScheduler =  function(){
         var deferred = $q.defer();
         if(allEvents !== undefined){
@@ -18,8 +19,6 @@ appModule.factory('SchedulerService', function($http, $q) {
             $http.get(route + "?func=getAllEventsForScheduler").success(function (events) {
                 allEvents = events;
                 deferred.resolve(allEvents);
-            }).finally(function() {
-                allEvents = undefined;
             });
         }
         return deferred.promise;

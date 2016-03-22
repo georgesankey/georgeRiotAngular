@@ -19,9 +19,7 @@ appModule.factory('ContactService', function($http, $q) {
             $http.get(route).success(function (data) {
                 contacts = data;
                 deferred.resolve(contacts);
-            }).finally(function() {
-                contacts = undefined;
-            });            
+            });          
         }
         return deferred.promise;
     };

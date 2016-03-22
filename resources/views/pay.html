@@ -55,6 +55,8 @@
                                     maxDate: new Date(2020, 0, 1),
                                     showOn: 'focus'
                                 });
+                                 <br/>
+    <jqx-button jqx-on-click="fillAndSelect()">Fill And Select ID 133</jqx-button>
         },
     }*/
         },
@@ -101,7 +103,7 @@ for(var i=0;i<mydata2.length;i++)
  $('#timeSheet').jqGrid('filterToolbar',{
                 // JSON stringify all data from search, including search toolbar operators
                 stringResult: true,
-                // instuct the grid toolbar to show the search options
+                // instuct the grid toolbar to show the search options 
                 searchOperators: true
             });
 jQuery(".ui-jqgrid-title").replaceWith('<div style="text-align: center;"><strong><span>' + jQuery(".ui-jqgrid-title").text() + '</strong></span></div>');
@@ -116,9 +118,12 @@ jQuery(".ui-jqgrid-title").replaceWith('<div style="text-align: center;"><strong
 
 
 <table id="timeSheet" class="scroll"></table>
+
 <div class="panel-body" ng-controller="PayPageController" style="width: 100%">    
             <jqx-grid id="timeSheetGrid" jqx-source="timeSheet" jqx-settings="timeSheetGridSettings"></jqx-grid>  
             <jqx-window id="timeSheetWindow" jqx-settings="timeSheetWindowSettings">
 
 
 </div>
+
+

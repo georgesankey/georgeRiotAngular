@@ -25,7 +25,16 @@ appModule.factory('ContactService', function($http, $q) {
         return deferred.promise;
     };
 
-    var createContact = function(contact) {
+    var newContact = function(contact) {
+        var deferred = $q.defer();
+        $http.post(route, contact).success(function (data) {
+            contacts = undefined; // Clear old list
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    };
+
+    var editContact = function(contact) {
         var deferred = $q.defer();
         $http.post(route, contact).success(function (data) {
             contacts = undefined; // Clear old list
@@ -35,7 +44,9 @@ appModule.factory('ContactService', function($http, $q) {
     };
 
     return {
-        getAllContacts: getAllContacts
+        getAllContacts: getAllContacts,
+        newContact: newContact,
+        editContact: editContact
     };  
     
 });

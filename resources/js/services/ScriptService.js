@@ -25,9 +25,28 @@ appModule.factory('ScriptService', function($http, $q) {
         return deferred.promise;
     };
 
+    // Use promise to chain requests
+    var newScript = function(script) {
+        var deferred = $q.defer(); 
+        $http.post(route, script).success(function(data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    };
+
+    var editScript = function(script) {
+        var deferred = $q.defer(); 
+        $http.post(route, script).success(function(data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    };
+
     return {
         getScriptsForUser: getScriptsForUser,
-        getScript: getScript
+        getScript: getScript,
+        newScript: newScript,
+        editScript: editScript
     };  
     
 });

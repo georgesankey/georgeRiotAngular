@@ -1,5 +1,6 @@
 
 var ScriptRoute = "/onlymakebelieve/api/scripts.php";
+var ContactRoute = "/onlymakebelieve/api/contacts.php";
 
 var log = function(data) {
 	if(!data) data = "<br>";
@@ -12,6 +13,7 @@ $(document).ready(function() {
 	log("Initializing tests...");
 	log();
 
+	/*
 	$.get(ScriptRoute, {
 		id:1
 	}, function(data) {
@@ -27,6 +29,7 @@ $(document).ready(function() {
 		log(data);
 		log();
 	});
+	*/
 
 	/*
 	// Testing Insert
@@ -46,6 +49,7 @@ $(document).ready(function() {
 	*/
 
 	// Testing update
+	/*
 	$.post(ScriptRoute, {
 		id:2,
 		name:"Test",
@@ -53,8 +57,50 @@ $(document).ready(function() {
 	}, function(data) {
 		log("Testing Script Edit/Post:");
 		log("Updating: Id=2, Name=Test Syn=Test");
-		if(data == "Success") {
+		if(JSON.parse(data) == "Success") {
+			log("Update Success");
+		} else {
+			log("Test Failed");
+		}
+		log();
+	});
+	*/
+	$.get(ContactRoute, {
+		id:1
+	}, function(data) {
+		log("Testing Contact by Id:");
+		log(data);
+		log();
+	});
+	
+	// Testing Insert
+	/*
+	$.post(ContactRoute, {
+		first_name:"Test",
+		last_name:"Test"
+	}, function(data) {
+		log("Testing Contact Edit/Post:");
+		log("Inserting: first_name=Test, last_name=Test");
+		if(JSON.parse(data) == "Success") {
 			log("Insert Success");
+		} else {
+			log("Test Failed");
+		}
+		log();
+	});
+	*/
+
+	// Testing update
+	$.post(ContactRoute, {
+		id:100,
+		first_name:"Test2",
+		last_name:"Test2",
+		details:"Test"
+	}, function(data) {
+		log("Testing Script Edit/Post:");
+		log("Updating: Id=100, first_name=Test2, last_name=Test2, details=Test");
+		if(JSON.parse(data) == "Success") {
+			log("Update Success");
 		} else {
 			log("Test Failed");
 		}

@@ -25,7 +25,17 @@ if(isset($_GET["id"])) {
 
 else if(isset($_POST["first_name"])) {
 	$contact = array();
-	$returnValue = setContact($contact);
+
+	$contact["id"] = isset($_POST["id"]) ? $_POST["id"] : null;
+	$contact["first_name"] = $_POST["first_name"];
+	$contact["last_name"] = isset($_POST["last_name"]) ? $_POST["last_name"] : "";
+	$contact["cell_number"] = isset($_POST["cell_number"]) ? $_POST["cell_number"] : "";
+	$contact["home_number"] = isset($_POST["home_number"]) ? $_POST["home_number"] : "";
+	$contact["work_number"] = isset($_POST["work_number"]) ? $_POST["work_number"] : "";
+	$contact["details"] = isset($_POST["details"]) ? $_POST["details"] : "";
+	$contact["user_id"] = isset($_POST["user_id"]) ? $_POST["user_id"] : 0;
+
+	$returnValue = editContact($contact);
 }
 
 else {

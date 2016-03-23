@@ -88,6 +88,24 @@ function editScript($id, $name, $synopsis, $user_id=null) {
 
 	} else {
 		// Update this script
+		$authQuery = $dbh->prepare("
+			UPDATE SCRIPTS SET 
+				name=:name, 
+				synopsis=:synopsis, 
+				creator=:userid
+			WHERE 
+				id=:id
+		");
+		$authQuery->bindParam(':id', $id);
+		$authQuery->bindParam(':name', $name);
+		$authQuery->bindParam(':synopsis', $synopsis);
+	    $authQuery->bindParam(':userid', $user_id);
+
+	    if ($authQuery->execute()) {
+	    	return "Success";
+	    }
+
+	    return "Failed: ".$authQuery->errorInfo();
 	}
 }
 

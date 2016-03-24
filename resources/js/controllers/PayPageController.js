@@ -108,7 +108,7 @@ appModule.controller('PayPageController', ['PayPageService', '$scope', function(
                   createeditor: function(row,column,editor){
                   	//assign a new data source to the dropdownList ,promptText: "Please Choose:"
                   	var names= ['Event 1', 'Event 2', 'Event 3'];
-                  	editor.jqxDropDownList({autoDropDownHeight:true,source:dataAdapter});
+                  	editor.jqxDropDownList({autoDropDownHeight:true,source:names});
                   }
               },
                   { text: 'Hourly Rate', columngroup: 'Users', datafield: 'HourlyRate', align: 'center', cellsalign: 'center', cellsformat: 'c2', width: 200 },

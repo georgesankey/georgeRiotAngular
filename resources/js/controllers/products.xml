@@ -1,850 +1,850 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Products>
-  <Product ProductID="1">
-    <ProductName>Chai</ProductName>
+<Entries>
+  <Entry EntryID ="1">
+    <firstName>Chai</firstName>
     <SupplierID>1</SupplierID>
     <CategoryID>1</CategoryID>
-    <QuantityPerUnit>10 boxes x 20 bags</QuantityPerUnit>
-    <UnitPrice>18.0000</UnitPrice>
-    <UnitsInStock>39</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>10</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="2">
-    <ProductName>Chang</ProductName>
+    <site>10 boxes x 20 bags</site>
+    <HourlyRate>18.0000</HourlyRate>
+    <Travel>39</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>10</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="2">
+    <firstName>Chang</firstName>
     <SupplierID>1</SupplierID>
     <CategoryID>1</CategoryID>
-    <QuantityPerUnit>24 - 12 oz bottles</QuantityPerUnit>
-    <UnitPrice>19.0000</UnitPrice>
-    <UnitsInStock>17</UnitsInStock>
-    <UnitsOnOrder>40</UnitsOnOrder>
-    <ReorderLevel>25</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="3">
-    <ProductName>Aniseed Syrup</ProductName>
+    <site>24 - 12 oz bottles</site>
+    <HourlyRate>19.0000</HourlyRate>
+    <Travel>17</Travel>
+    <SuitCase>40</SuitCase>
+    <WatchAShow>25</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="3">
+    <firstName>Aniseed Syrup</firstName>
     <SupplierID>1</SupplierID>
     <CategoryID>2</CategoryID>
-    <QuantityPerUnit>12 - 550 ml bottles</QuantityPerUnit>
-    <UnitPrice>10.0000</UnitPrice>
-    <UnitsInStock>13</UnitsInStock>
-    <UnitsOnOrder>70</UnitsOnOrder>
-    <ReorderLevel>25</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="4">
-    <ProductName>Chef Anton's Cajun Seasoning</ProductName>
+    <site>12 - 550 ml bottles</site>
+    <HourlyRate>10.0000</HourlyRate>
+    <Travel>13</Travel>
+    <SuitCase>70</SuitCase>
+    <WatchAShow>25</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="4">
+    <firstName>Chef Anton's Cajun Seasoning</firstName>
     <SupplierID>2</SupplierID>
     <CategoryID>2</CategoryID>
-    <QuantityPerUnit>48 - 6 oz jars</QuantityPerUnit>
-    <UnitPrice>22.0000</UnitPrice>
-    <UnitsInStock>53</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="5">
-    <ProductName>Chef Anton's Gumbo Mix</ProductName>
+    <site>48 - 6 oz jars</site>
+    <HourlyRate>22.0000</HourlyRate>
+    <Travel>53</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="5">
+    <firstName>Chef Anton's Gumbo Mix</firstName>
     <SupplierID>2</SupplierID>
     <CategoryID>2</CategoryID>
-    <QuantityPerUnit>36 boxes</QuantityPerUnit>
-    <UnitPrice>21.3500</UnitPrice>
-    <UnitsInStock>0</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>true</Discontinued>
-  </Product>
-  <Product ProductID="6">
-    <ProductName>Grandma's Boysenberry Spread</ProductName>
+    <site>36 boxes</site>
+    <HourlyRate>21.3500</HourlyRate>
+    <Travel>0</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>true</Driver>
+  </Entry>
+  <Entry EntryID ="6">
+    <firstName>Grandma's Boysenberry Spread</firstName>
     <SupplierID>3</SupplierID>
     <CategoryID>2</CategoryID>
-    <QuantityPerUnit>12 - 8 oz jars</QuantityPerUnit>
-    <UnitPrice>25.0000</UnitPrice>
-    <UnitsInStock>120</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>25</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="7">
-    <ProductName>Uncle Bob's Organic Dried Pears</ProductName>
+    <site>12 - 8 oz jars</site>
+    <HourlyRate>25.0000</HourlyRate>
+    <Travel>120</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>25</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="7">
+    <firstName>Uncle Bob's Organic Dried Pears</firstName>
     <SupplierID>3</SupplierID>
     <CategoryID>7</CategoryID>
-    <QuantityPerUnit>12 - 1 lb pkgs.</QuantityPerUnit>
-    <UnitPrice>30.0000</UnitPrice>
-    <UnitsInStock>15</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>10</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="8">
-    <ProductName>Northwoods Cranberry Sauce</ProductName>
+    <site>12 - 1 lb pkgs.</site>
+    <HourlyRate>30.0000</HourlyRate>
+    <Travel>15</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>10</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="8">
+    <firstName>Northwoods Cranberry Sauce</firstName>
     <SupplierID>3</SupplierID>
     <CategoryID>2</CategoryID>
-    <QuantityPerUnit>12 - 12 oz jars</QuantityPerUnit>
-    <UnitPrice>40.0000</UnitPrice>
-    <UnitsInStock>6</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="9">
-    <ProductName>Mishi Kobe Niku</ProductName>
+    <site>12 - 12 oz jars</site>
+    <HourlyRate>40.0000</HourlyRate>
+    <Travel>6</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="9">
+    <firstName>Mishi Kobe Niku</firstName>
     <SupplierID>4</SupplierID>
     <CategoryID>6</CategoryID>
-    <QuantityPerUnit>18 - 500 g pkgs.</QuantityPerUnit>
-    <UnitPrice>97.0000</UnitPrice>
-    <UnitsInStock>29</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>true</Discontinued>
-  </Product>
-  <Product ProductID="10">
-    <ProductName>Ikura</ProductName>
+    <site>18 - 500 g pkgs.</site>
+    <HourlyRate>97.0000</HourlyRate>
+    <Travel>29</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>true</Driver>
+  </Entry>
+  <Entry EntryID ="10">
+    <firstName>Ikura</firstName>
     <SupplierID>4</SupplierID>
     <CategoryID>8</CategoryID>
-    <QuantityPerUnit>12 - 200 ml jars</QuantityPerUnit>
-    <UnitPrice>31.0000</UnitPrice>
-    <UnitsInStock>31</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="11">
-    <ProductName>Queso Cabrales</ProductName>
+    <site>12 - 200 ml jars</site>
+    <HourlyRate>31.0000</HourlyRate>
+    <Travel>31</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="11">
+    <firstName>Queso Cabrales</firstName>
     <SupplierID>5</SupplierID>
     <CategoryID>4</CategoryID>
-    <QuantityPerUnit>1 kg pkg.</QuantityPerUnit>
-    <UnitPrice>21.0000</UnitPrice>
-    <UnitsInStock>22</UnitsInStock>
-    <UnitsOnOrder>30</UnitsOnOrder>
-    <ReorderLevel>30</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="12">
-    <ProductName>Queso Manchego La Pastora</ProductName>
+    <site>1 kg pkg.</site>
+    <HourlyRate>21.0000</HourlyRate>
+    <Travel>22</Travel>
+    <SuitCase>30</SuitCase>
+    <WatchAShow>30</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="12">
+    <firstName>Queso Manchego La Pastora</firstName>
     <SupplierID>5</SupplierID>
     <CategoryID>4</CategoryID>
-    <QuantityPerUnit>10 - 500 g pkgs.</QuantityPerUnit>
-    <UnitPrice>38.0000</UnitPrice>
-    <UnitsInStock>86</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="13">
-    <ProductName>Konbu</ProductName>
+    <site>10 - 500 g pkgs.</site>
+    <HourlyRate>38.0000</HourlyRate>
+    <Travel>86</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="13">
+    <firstName>Konbu</firstName>
     <SupplierID>6</SupplierID>
     <CategoryID>8</CategoryID>
-    <QuantityPerUnit>2 kg box</QuantityPerUnit>
-    <UnitPrice>6.0000</UnitPrice>
-    <UnitsInStock>24</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>5</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="14">
-    <ProductName>Tofu</ProductName>
+    <site>2 kg box</site>
+    <HourlyRate>6.0000</HourlyRate>
+    <Travel>24</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>5</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="14">
+    <firstName>Tofu</firstName>
     <SupplierID>6</SupplierID>
     <CategoryID>7</CategoryID>
-    <QuantityPerUnit>40 - 100 g pkgs.</QuantityPerUnit>
-    <UnitPrice>23.2500</UnitPrice>
-    <UnitsInStock>35</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="15">
-    <ProductName>Genen Shouyu</ProductName>
+    <site>40 - 100 g pkgs.</site>
+    <HourlyRate>23.2500</HourlyRate>
+    <Travel>35</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="15">
+    <firstName>Genen Shouyu</firstName>
     <SupplierID>6</SupplierID>
     <CategoryID>2</CategoryID>
-    <QuantityPerUnit>24 - 250 ml bottles</QuantityPerUnit>
-    <UnitPrice>15.5000</UnitPrice>
-    <UnitsInStock>39</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>5</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="16">
-    <ProductName>Pavlova</ProductName>
+    <site>24 - 250 ml bottles</site>
+    <HourlyRate>15.5000</HourlyRate>
+    <Travel>39</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>5</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="16">
+    <firstName>Pavlova</firstName>
     <SupplierID>7</SupplierID>
     <CategoryID>3</CategoryID>
-    <QuantityPerUnit>32 - 500 g boxes</QuantityPerUnit>
-    <UnitPrice>17.4500</UnitPrice>
-    <UnitsInStock>29</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>10</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="17">
-    <ProductName>Alice Mutton</ProductName>
+    <site>32 - 500 g boxes</site>
+    <HourlyRate>17.4500</HourlyRate>
+    <Travel>29</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>10</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="17">
+    <firstName>Alice Mutton</firstName>
     <SupplierID>7</SupplierID>
     <CategoryID>6</CategoryID>
-    <QuantityPerUnit>20 - 1 kg tins</QuantityPerUnit>
-    <UnitPrice>39.0000</UnitPrice>
-    <UnitsInStock>0</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>true</Discontinued>
-  </Product>
-  <Product ProductID="18">
-    <ProductName>Carnarvon Tigers</ProductName>
+    <site>20 - 1 kg tins</site>
+    <HourlyRate>39.0000</HourlyRate>
+    <Travel>0</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>true</Driver>
+  </Entry>
+  <Entry EntryID ="18">
+    <firstName>Carnarvon Tigers</firstName>
     <SupplierID>7</SupplierID>
     <CategoryID>8</CategoryID>
-    <QuantityPerUnit>16 kg pkg.</QuantityPerUnit>
-    <UnitPrice>62.5000</UnitPrice>
-    <UnitsInStock>42</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="19">
-    <ProductName>Teatime Chocolate Biscuits</ProductName>
+    <site>16 kg pkg.</site>
+    <HourlyRate>62.5000</HourlyRate>
+    <Travel>42</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="19">
+    <firstName>Teatime Chocolate Biscuits</firstName>
     <SupplierID>8</SupplierID>
     <CategoryID>3</CategoryID>
-    <QuantityPerUnit>10 boxes x 12 pieces</QuantityPerUnit>
-    <UnitPrice>9.2000</UnitPrice>
-    <UnitsInStock>25</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>5</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="20">
-    <ProductName>Sir Rodney's Marmalade</ProductName>
+    <site>10 boxes x 12 pieces</site>
+    <HourlyRate>9.2000</HourlyRate>
+    <Travel>25</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>5</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="20">
+    <firstName>Sir Rodney's Marmalade</firstName>
     <SupplierID>8</SupplierID>
     <CategoryID>3</CategoryID>
-    <QuantityPerUnit>30 gift boxes</QuantityPerUnit>
-    <UnitPrice>81.0000</UnitPrice>
-    <UnitsInStock>40</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="21">
-    <ProductName>Sir Rodney's Scones</ProductName>
+    <site>30 gift boxes</site>
+    <HourlyRate>81.0000</HourlyRate>
+    <Travel>40</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="21">
+    <firstName>Sir Rodney's Scones</firstName>
     <SupplierID>8</SupplierID>
     <CategoryID>3</CategoryID>
-    <QuantityPerUnit>24 pkgs. x 4 pieces</QuantityPerUnit>
-    <UnitPrice>10.0000</UnitPrice>
-    <UnitsInStock>3</UnitsInStock>
-    <UnitsOnOrder>40</UnitsOnOrder>
-    <ReorderLevel>5</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="22">
-    <ProductName>Gustaf's Knäckebröd</ProductName>
+    <site>24 pkgs. x 4 pieces</site>
+    <HourlyRate>10.0000</HourlyRate>
+    <Travel>3</Travel>
+    <SuitCase>40</SuitCase>
+    <WatchAShow>5</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="22">
+    <firstName>Gustaf's Knäckebröd</firstName>
     <SupplierID>9</SupplierID>
     <CategoryID>5</CategoryID>
-    <QuantityPerUnit>24 - 500 g pkgs.</QuantityPerUnit>
-    <UnitPrice>21.0000</UnitPrice>
-    <UnitsInStock>104</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>25</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="23">
-    <ProductName>Tunnbröd</ProductName>
+    <site>24 - 500 g pkgs.</site>
+    <HourlyRate>21.0000</HourlyRate>
+    <Travel>104</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>25</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="23">
+    <firstName>Tunnbröd</firstName>
     <SupplierID>9</SupplierID>
     <CategoryID>5</CategoryID>
-    <QuantityPerUnit>12 - 250 g pkgs.</QuantityPerUnit>
-    <UnitPrice>9.0000</UnitPrice>
-    <UnitsInStock>61</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>25</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="24">
-    <ProductName>Guaraná Fantástica</ProductName>
+    <site>12 - 250 g pkgs.</site>
+    <HourlyRate>9.0000</HourlyRate>
+    <Travel>61</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>25</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="24">
+    <firstName>Guaraná Fantástica</firstName>
     <SupplierID>10</SupplierID>
     <CategoryID>1</CategoryID>
-    <QuantityPerUnit>12 - 355 ml cans</QuantityPerUnit>
-    <UnitPrice>4.5000</UnitPrice>
-    <UnitsInStock>20</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>true</Discontinued>
-  </Product>
-  <Product ProductID="25">
-    <ProductName>NuNuCa Nuß-Nougat-Creme</ProductName>
+    <site>12 - 355 ml cans</site>
+    <HourlyRate>4.5000</HourlyRate>
+    <Travel>20</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>true</Driver>
+  </Entry>
+  <Entry EntryID ="25">
+    <firstName>NuNuCa Nuß-Nougat-Creme</firstName>
     <SupplierID>11</SupplierID>
     <CategoryID>3</CategoryID>
-    <QuantityPerUnit>20 - 450 g glasses</QuantityPerUnit>
-    <UnitPrice>14.0000</UnitPrice>
-    <UnitsInStock>76</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>30</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="26">
-    <ProductName>Gumbär Gummibärchen</ProductName>
+    <site>20 - 450 g glasses</site>
+    <HourlyRate>14.0000</HourlyRate>
+    <Travel>76</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>30</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="26">
+    <firstName>Gumbär Gummibärchen</firstName>
     <SupplierID>11</SupplierID>
     <CategoryID>3</CategoryID>
-    <QuantityPerUnit>100 - 250 g bags</QuantityPerUnit>
-    <UnitPrice>31.2300</UnitPrice>
-    <UnitsInStock>15</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="27">
-    <ProductName>Schoggi Schokolade</ProductName>
+    <site>100 - 250 g bags</site>
+    <HourlyRate>31.2300</HourlyRate>
+    <Travel>15</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="27">
+    <firstName>Schoggi Schokolade</firstName>
     <SupplierID>11</SupplierID>
     <CategoryID>3</CategoryID>
-    <QuantityPerUnit>100 - 100 g pieces</QuantityPerUnit>
-    <UnitPrice>43.9000</UnitPrice>
-    <UnitsInStock>49</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>30</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="28">
-    <ProductName>Rössle Sauerkraut</ProductName>
+    <site>100 - 100 g pieces</site>
+    <HourlyRate>43.9000</HourlyRate>
+    <Travel>49</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>30</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="28">
+    <firstName>Rössle Sauerkraut</firstName>
     <SupplierID>12</SupplierID>
     <CategoryID>7</CategoryID>
-    <QuantityPerUnit>25 - 825 g cans</QuantityPerUnit>
-    <UnitPrice>45.6000</UnitPrice>
-    <UnitsInStock>26</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>true</Discontinued>
-  </Product>
-  <Product ProductID="29">
-    <ProductName>Thüringer Rostbratwurst</ProductName>
+    <site>25 - 825 g cans</site>
+    <HourlyRate>45.6000</HourlyRate>
+    <Travel>26</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>true</Driver>
+  </Entry>
+  <Entry EntryID ="29">
+    <firstName>Thüringer Rostbratwurst</firstName>
     <SupplierID>12</SupplierID>
     <CategoryID>6</CategoryID>
-    <QuantityPerUnit>50 bags x 30 sausgs.</QuantityPerUnit>
-    <UnitPrice>123.7900</UnitPrice>
-    <UnitsInStock>0</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>true</Discontinued>
-  </Product>
-  <Product ProductID="30">
-    <ProductName>Nord-Ost Matjeshering</ProductName>
+    <site>50 bags x 30 sausgs.</site>
+    <HourlyRate>123.7900</HourlyRate>
+    <Travel>0</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>true</Driver>
+  </Entry>
+  <Entry EntryID ="30">
+    <firstName>Nord-Ost Matjeshering</firstName>
     <SupplierID>13</SupplierID>
     <CategoryID>8</CategoryID>
-    <QuantityPerUnit>10 - 200 g glasses</QuantityPerUnit>
-    <UnitPrice>25.8900</UnitPrice>
-    <UnitsInStock>10</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>15</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="31">
-    <ProductName>Gorgonzola Telino</ProductName>
+    <site>10 - 200 g glasses</site>
+    <HourlyRate>25.8900</HourlyRate>
+    <Travel>10</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>15</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="31">
+    <firstName>Gorgonzola Telino</firstName>
     <SupplierID>14</SupplierID>
     <CategoryID>4</CategoryID>
-    <QuantityPerUnit>12 - 100 g pkgs</QuantityPerUnit>
-    <UnitPrice>12.5000</UnitPrice>
-    <UnitsInStock>0</UnitsInStock>
-    <UnitsOnOrder>70</UnitsOnOrder>
-    <ReorderLevel>20</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="32">
-    <ProductName>Mascarpone Fabioli</ProductName>
+    <site>12 - 100 g pkgs</site>
+    <HourlyRate>12.5000</HourlyRate>
+    <Travel>0</Travel>
+    <SuitCase>70</SuitCase>
+    <WatchAShow>20</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="32">
+    <firstName>Mascarpone Fabioli</firstName>
     <SupplierID>14</SupplierID>
     <CategoryID>4</CategoryID>
-    <QuantityPerUnit>24 - 200 g pkgs.</QuantityPerUnit>
-    <UnitPrice>32.0000</UnitPrice>
-    <UnitsInStock>9</UnitsInStock>
-    <UnitsOnOrder>40</UnitsOnOrder>
-    <ReorderLevel>25</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="33">
-    <ProductName>Geitost</ProductName>
+    <site>24 - 200 g pkgs.</site>
+    <HourlyRate>32.0000</HourlyRate>
+    <Travel>9</Travel>
+    <SuitCase>40</SuitCase>
+    <WatchAShow>25</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="33">
+    <firstName>Geitost</firstName>
     <SupplierID>15</SupplierID>
     <CategoryID>4</CategoryID>
-    <QuantityPerUnit>500 g</QuantityPerUnit>
-    <UnitPrice>2.5000</UnitPrice>
-    <UnitsInStock>112</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>20</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="34">
-    <ProductName>Sasquatch Ale</ProductName>
+    <site>500 g</site>
+    <HourlyRate>2.5000</HourlyRate>
+    <Travel>112</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>20</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="34">
+    <firstName>Sasquatch Ale</firstName>
     <SupplierID>16</SupplierID>
     <CategoryID>1</CategoryID>
-    <QuantityPerUnit>24 - 12 oz bottles</QuantityPerUnit>
-    <UnitPrice>14.0000</UnitPrice>
-    <UnitsInStock>111</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>15</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="35">
-    <ProductName>Steeleye Stout</ProductName>
+    <site>24 - 12 oz bottles</site>
+    <HourlyRate>14.0000</HourlyRate>
+    <Travel>111</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>15</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="35">
+    <firstName>Steeleye Stout</firstName>
     <SupplierID>16</SupplierID>
     <CategoryID>1</CategoryID>
-    <QuantityPerUnit>24 - 12 oz bottles</QuantityPerUnit>
-    <UnitPrice>18.0000</UnitPrice>
-    <UnitsInStock>20</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>15</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="36">
-    <ProductName>Inlagd Sill</ProductName>
+    <site>24 - 12 oz bottles</site>
+    <HourlyRate>18.0000</HourlyRate>
+    <Travel>20</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>15</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="36">
+    <firstName>Inlagd Sill</firstName>
     <SupplierID>17</SupplierID>
     <CategoryID>8</CategoryID>
-    <QuantityPerUnit>24 - 250 g  jars</QuantityPerUnit>
-    <UnitPrice>19.0000</UnitPrice>
-    <UnitsInStock>112</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>20</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="37">
-    <ProductName>Gravad lax</ProductName>
+    <site>24 - 250 g  jars</site>
+    <HourlyRate>19.0000</HourlyRate>
+    <Travel>112</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>20</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="37">
+    <firstName>Gravad lax</firstName>
     <SupplierID>17</SupplierID>
     <CategoryID>8</CategoryID>
-    <QuantityPerUnit>12 - 500 g pkgs.</QuantityPerUnit>
-    <UnitPrice>26.0000</UnitPrice>
-    <UnitsInStock>11</UnitsInStock>
-    <UnitsOnOrder>50</UnitsOnOrder>
-    <ReorderLevel>25</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="38">
-    <ProductName>Côte de Blaye</ProductName>
+    <site>12 - 500 g pkgs.</site>
+    <HourlyRate>26.0000</HourlyRate>
+    <Travel>11</Travel>
+    <SuitCase>50</SuitCase>
+    <WatchAShow>25</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="38">
+    <firstName>Côte de Blaye</firstName>
     <SupplierID>18</SupplierID>
     <CategoryID>1</CategoryID>
-    <QuantityPerUnit>12 - 75 cl bottles</QuantityPerUnit>
-    <UnitPrice>263.5000</UnitPrice>
-    <UnitsInStock>17</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>15</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="39">
-    <ProductName>Chartreuse verte</ProductName>
+    <site>12 - 75 cl bottles</site>
+    <HourlyRate>263.5000</HourlyRate>
+    <Travel>17</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>15</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="39">
+    <firstName>Chartreuse verte</firstName>
     <SupplierID>18</SupplierID>
     <CategoryID>1</CategoryID>
-    <QuantityPerUnit>750 cc per bottle</QuantityPerUnit>
-    <UnitPrice>18.0000</UnitPrice>
-    <UnitsInStock>69</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>5</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="40">
-    <ProductName>Boston Crab Meat</ProductName>
+    <site>750 cc per bottle</site>
+    <HourlyRate>18.0000</HourlyRate>
+    <Travel>69</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>5</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="40">
+    <firstName>Boston Crab Meat</firstName>
     <SupplierID>19</SupplierID>
     <CategoryID>8</CategoryID>
-    <QuantityPerUnit>24 - 4 oz tins</QuantityPerUnit>
-    <UnitPrice>18.4000</UnitPrice>
-    <UnitsInStock>123</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>30</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="41">
-    <ProductName>Jack's New England Clam Chowder</ProductName>
+    <site>24 - 4 oz tins</site>
+    <HourlyRate>18.4000</HourlyRate>
+    <Travel>123</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>30</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="41">
+    <firstName>Jack's New England Clam Chowder</firstName>
     <SupplierID>19</SupplierID>
     <CategoryID>8</CategoryID>
-    <QuantityPerUnit>12 - 12 oz cans</QuantityPerUnit>
-    <UnitPrice>9.6500</UnitPrice>
-    <UnitsInStock>85</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>10</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="42">
-    <ProductName>Singaporean Hokkien Fried Mee</ProductName>
+    <site>12 - 12 oz cans</site>
+    <HourlyRate>9.6500</HourlyRate>
+    <Travel>85</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>10</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="42">
+    <firstName>Singaporean Hokkien Fried Mee</firstName>
     <SupplierID>20</SupplierID>
     <CategoryID>5</CategoryID>
-    <QuantityPerUnit>32 - 1 kg pkgs.</QuantityPerUnit>
-    <UnitPrice>14.0000</UnitPrice>
-    <UnitsInStock>26</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>true</Discontinued>
-  </Product>
-  <Product ProductID="43">
-    <ProductName>Ipoh Coffee</ProductName>
+    <site>32 - 1 kg pkgs.</site>
+    <HourlyRate>14.0000</HourlyRate>
+    <Travel>26</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>true</Driver>
+  </Entry>
+  <Entry EntryID ="43">
+    <firstName>Ipoh Coffee</firstName>
     <SupplierID>20</SupplierID>
     <CategoryID>1</CategoryID>
-    <QuantityPerUnit>16 - 500 g tins</QuantityPerUnit>
-    <UnitPrice>46.0000</UnitPrice>
-    <UnitsInStock>17</UnitsInStock>
-    <UnitsOnOrder>10</UnitsOnOrder>
-    <ReorderLevel>25</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="44">
-    <ProductName>Gula Malacca</ProductName>
+    <site>16 - 500 g tins</site>
+    <HourlyRate>46.0000</HourlyRate>
+    <Travel>17</Travel>
+    <SuitCase>10</SuitCase>
+    <WatchAShow>25</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="44">
+    <firstName>Gula Malacca</firstName>
     <SupplierID>20</SupplierID>
     <CategoryID>2</CategoryID>
-    <QuantityPerUnit>20 - 2 kg bags</QuantityPerUnit>
-    <UnitPrice>19.4500</UnitPrice>
-    <UnitsInStock>27</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>15</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="45">
-    <ProductName>Rogede sild</ProductName>
+    <site>20 - 2 kg bags</site>
+    <HourlyRate>19.4500</HourlyRate>
+    <Travel>27</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>15</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="45">
+    <firstName>Rogede sild</firstName>
     <SupplierID>21</SupplierID>
     <CategoryID>8</CategoryID>
-    <QuantityPerUnit>1k pkg.</QuantityPerUnit>
-    <UnitPrice>9.5000</UnitPrice>
-    <UnitsInStock>5</UnitsInStock>
-    <UnitsOnOrder>70</UnitsOnOrder>
-    <ReorderLevel>15</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="46">
-    <ProductName>Spegesild</ProductName>
+    <site>1k pkg.</site>
+    <HourlyRate>9.5000</HourlyRate>
+    <Travel>5</Travel>
+    <SuitCase>70</SuitCase>
+    <WatchAShow>15</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="46">
+    <firstName>Spegesild</firstName>
     <SupplierID>21</SupplierID>
     <CategoryID>8</CategoryID>
-    <QuantityPerUnit>4 - 450 g glasses</QuantityPerUnit>
-    <UnitPrice>12.0000</UnitPrice>
-    <UnitsInStock>95</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="47">
-    <ProductName>Zaanse koeken</ProductName>
+    <site>4 - 450 g glasses</site>
+    <HourlyRate>12.0000</HourlyRate>
+    <Travel>95</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="47">
+    <firstName>Zaanse koeken</firstName>
     <SupplierID>22</SupplierID>
     <CategoryID>3</CategoryID>
-    <QuantityPerUnit>10 - 4 oz boxes</QuantityPerUnit>
-    <UnitPrice>9.5000</UnitPrice>
-    <UnitsInStock>36</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="48">
-    <ProductName>Chocolade</ProductName>
+    <site>10 - 4 oz boxes</site>
+    <HourlyRate>9.5000</HourlyRate>
+    <Travel>36</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="48">
+    <firstName>Chocolade</firstName>
     <SupplierID>22</SupplierID>
     <CategoryID>3</CategoryID>
-    <QuantityPerUnit>10 pkgs.</QuantityPerUnit>
-    <UnitPrice>12.7500</UnitPrice>
-    <UnitsInStock>15</UnitsInStock>
-    <UnitsOnOrder>70</UnitsOnOrder>
-    <ReorderLevel>25</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="49">
-    <ProductName>Maxilaku</ProductName>
+    <site>10 pkgs.</site>
+    <HourlyRate>12.7500</HourlyRate>
+    <Travel>15</Travel>
+    <SuitCase>70</SuitCase>
+    <WatchAShow>25</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="49">
+    <firstName>Maxilaku</firstName>
     <SupplierID>23</SupplierID>
     <CategoryID>3</CategoryID>
-    <QuantityPerUnit>24 - 50 g pkgs.</QuantityPerUnit>
-    <UnitPrice>20.0000</UnitPrice>
-    <UnitsInStock>10</UnitsInStock>
-    <UnitsOnOrder>60</UnitsOnOrder>
-    <ReorderLevel>15</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="50">
-    <ProductName>Valkoinen suklaa</ProductName>
+    <site>24 - 50 g pkgs.</site>
+    <HourlyRate>20.0000</HourlyRate>
+    <Travel>10</Travel>
+    <SuitCase>60</SuitCase>
+    <WatchAShow>15</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="50">
+    <firstName>Valkoinen suklaa</firstName>
     <SupplierID>23</SupplierID>
     <CategoryID>3</CategoryID>
-    <QuantityPerUnit>12 - 100 g bars</QuantityPerUnit>
-    <UnitPrice>16.2500</UnitPrice>
-    <UnitsInStock>65</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>30</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="51">
-    <ProductName>Manjimup Dried Apples</ProductName>
+    <site>12 - 100 g bars</site>
+    <HourlyRate>16.2500</HourlyRate>
+    <Travel>65</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>30</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="51">
+    <firstName>Manjimup Dried Apples</firstName>
     <SupplierID>24</SupplierID>
     <CategoryID>7</CategoryID>
-    <QuantityPerUnit>50 - 300 g pkgs.</QuantityPerUnit>
-    <UnitPrice>53.0000</UnitPrice>
-    <UnitsInStock>20</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>10</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="52">
-    <ProductName>Filo Mix</ProductName>
+    <site>50 - 300 g pkgs.</site>
+    <HourlyRate>53.0000</HourlyRate>
+    <Travel>20</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>10</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="52">
+    <firstName>Filo Mix</firstName>
     <SupplierID>24</SupplierID>
     <CategoryID>5</CategoryID>
-    <QuantityPerUnit>16 - 2 kg boxes</QuantityPerUnit>
-    <UnitPrice>7.0000</UnitPrice>
-    <UnitsInStock>38</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>25</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="53">
-    <ProductName>Perth Pasties</ProductName>
+    <site>16 - 2 kg boxes</site>
+    <HourlyRate>7.0000</HourlyRate>
+    <Travel>38</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>25</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="53">
+    <firstName>Perth Pasties</firstName>
     <SupplierID>24</SupplierID>
     <CategoryID>6</CategoryID>
-    <QuantityPerUnit>48 pieces</QuantityPerUnit>
-    <UnitPrice>32.8000</UnitPrice>
-    <UnitsInStock>0</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>true</Discontinued>
-  </Product>
-  <Product ProductID="54">
-    <ProductName>Tourtière</ProductName>
+    <site>48 pieces</site>
+    <HourlyRate>32.8000</HourlyRate>
+    <Travel>0</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>true</Driver>
+  </Entry>
+  <Entry EntryID ="54">
+    <firstName>Tourtière</firstName>
     <SupplierID>25</SupplierID>
     <CategoryID>6</CategoryID>
-    <QuantityPerUnit>16 pies</QuantityPerUnit>
-    <UnitPrice>7.4500</UnitPrice>
-    <UnitsInStock>21</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>10</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="55">
-    <ProductName>Pâté chinois</ProductName>
+    <site>16 pies</site>
+    <HourlyRate>7.4500</HourlyRate>
+    <Travel>21</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>10</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="55">
+    <firstName>Pâté chinois</firstName>
     <SupplierID>25</SupplierID>
     <CategoryID>6</CategoryID>
-    <QuantityPerUnit>24 boxes x 2 pies</QuantityPerUnit>
-    <UnitPrice>24.0000</UnitPrice>
-    <UnitsInStock>115</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>20</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="56">
-    <ProductName>Gnocchi di nonna Alice</ProductName>
+    <site>24 boxes x 2 pies</site>
+    <HourlyRate>24.0000</HourlyRate>
+    <Travel>115</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>20</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="56">
+    <firstName>Gnocchi di nonna Alice</firstName>
     <SupplierID>26</SupplierID>
     <CategoryID>5</CategoryID>
-    <QuantityPerUnit>24 - 250 g pkgs.</QuantityPerUnit>
-    <UnitPrice>38.0000</UnitPrice>
-    <UnitsInStock>21</UnitsInStock>
-    <UnitsOnOrder>10</UnitsOnOrder>
-    <ReorderLevel>30</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="57">
-    <ProductName>Ravioli Angelo</ProductName>
+    <site>24 - 250 g pkgs.</site>
+    <HourlyRate>38.0000</HourlyRate>
+    <Travel>21</Travel>
+    <SuitCase>10</SuitCase>
+    <WatchAShow>30</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="57">
+    <firstName>Ravioli Angelo</firstName>
     <SupplierID>26</SupplierID>
     <CategoryID>5</CategoryID>
-    <QuantityPerUnit>24 - 250 g pkgs.</QuantityPerUnit>
-    <UnitPrice>19.5000</UnitPrice>
-    <UnitsInStock>36</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>20</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="58">
-    <ProductName>Escargots de Bourgogne</ProductName>
+    <site>24 - 250 g pkgs.</site>
+    <HourlyRate>19.5000</HourlyRate>
+    <Travel>36</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>20</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="58">
+    <firstName>Escargots de Bourgogne</firstName>
     <SupplierID>27</SupplierID>
     <CategoryID>8</CategoryID>
-    <QuantityPerUnit>24 pieces</QuantityPerUnit>
-    <UnitPrice>13.2500</UnitPrice>
-    <UnitsInStock>62</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>20</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="59">
-    <ProductName>Raclette Courdavault</ProductName>
+    <site>24 pieces</site>
+    <HourlyRate>13.2500</HourlyRate>
+    <Travel>62</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>20</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="59">
+    <firstName>Raclette Courdavault</firstName>
     <SupplierID>28</SupplierID>
     <CategoryID>4</CategoryID>
-    <QuantityPerUnit>5 kg pkg.</QuantityPerUnit>
-    <UnitPrice>55.0000</UnitPrice>
-    <UnitsInStock>79</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="60">
-    <ProductName>Camembert Pierrot</ProductName>
+    <site>5 kg pkg.</site>
+    <HourlyRate>55.0000</HourlyRate>
+    <Travel>79</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="60">
+    <firstName>Camembert Pierrot</firstName>
     <SupplierID>28</SupplierID>
     <CategoryID>4</CategoryID>
-    <QuantityPerUnit>15 - 300 g rounds</QuantityPerUnit>
-    <UnitPrice>34.0000</UnitPrice>
-    <UnitsInStock>19</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="61">
-    <ProductName>Sirop d'érable</ProductName>
+    <site>15 - 300 g rounds</site>
+    <HourlyRate>34.0000</HourlyRate>
+    <Travel>19</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="61">
+    <firstName>Sirop d'érable</firstName>
     <SupplierID>29</SupplierID>
     <CategoryID>2</CategoryID>
-    <QuantityPerUnit>24 - 500 ml bottles</QuantityPerUnit>
-    <UnitPrice>28.5000</UnitPrice>
-    <UnitsInStock>113</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>25</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="62">
-    <ProductName>Tarte au sucre</ProductName>
+    <site>24 - 500 ml bottles</site>
+    <HourlyRate>28.5000</HourlyRate>
+    <Travel>113</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>25</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="62">
+    <firstName>Tarte au sucre</firstName>
     <SupplierID>29</SupplierID>
     <CategoryID>3</CategoryID>
-    <QuantityPerUnit>48 pies</QuantityPerUnit>
-    <UnitPrice>49.3000</UnitPrice>
-    <UnitsInStock>17</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="63">
-    <ProductName>Vegie-spread</ProductName>
+    <site>48 pies</site>
+    <HourlyRate>49.3000</HourlyRate>
+    <Travel>17</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="63">
+    <firstName>Vegie-spread</firstName>
     <SupplierID>7</SupplierID>
     <CategoryID>2</CategoryID>
-    <QuantityPerUnit>15 - 625 g jars</QuantityPerUnit>
-    <UnitPrice>43.9000</UnitPrice>
-    <UnitsInStock>24</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>5</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="64">
-    <ProductName>Wimmers gute Semmelknödel</ProductName>
+    <site>15 - 625 g jars</site>
+    <HourlyRate>43.9000</HourlyRate>
+    <Travel>24</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>5</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="64">
+    <firstName>Wimmers gute Semmelknödel</firstName>
     <SupplierID>12</SupplierID>
     <CategoryID>5</CategoryID>
-    <QuantityPerUnit>20 bags x 4 pieces</QuantityPerUnit>
-    <UnitPrice>33.2500</UnitPrice>
-    <UnitsInStock>22</UnitsInStock>
-    <UnitsOnOrder>80</UnitsOnOrder>
-    <ReorderLevel>30</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="65">
-    <ProductName>Louisiana Fiery Hot Pepper Sauce</ProductName>
+    <site>20 bags x 4 pieces</site>
+    <HourlyRate>33.2500</HourlyRate>
+    <Travel>22</Travel>
+    <SuitCase>80</SuitCase>
+    <WatchAShow>30</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="65">
+    <firstName>Louisiana Fiery Hot Pepper Sauce</firstName>
     <SupplierID>2</SupplierID>
     <CategoryID>2</CategoryID>
-    <QuantityPerUnit>32 - 8 oz bottles</QuantityPerUnit>
-    <UnitPrice>21.0500</UnitPrice>
-    <UnitsInStock>76</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="66">
-    <ProductName>Louisiana Hot Spiced Okra</ProductName>
+    <site>32 - 8 oz bottles</site>
+    <HourlyRate>21.0500</HourlyRate>
+    <Travel>76</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="66">
+    <firstName>Louisiana Hot Spiced Okra</firstName>
     <SupplierID>2</SupplierID>
     <CategoryID>2</CategoryID>
-    <QuantityPerUnit>24 - 8 oz jars</QuantityPerUnit>
-    <UnitPrice>17.0000</UnitPrice>
-    <UnitsInStock>4</UnitsInStock>
-    <UnitsOnOrder>100</UnitsOnOrder>
-    <ReorderLevel>20</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="67">
-    <ProductName>Laughing Lumberjack Lager</ProductName>
+    <site>24 - 8 oz jars</site>
+    <HourlyRate>17.0000</HourlyRate>
+    <Travel>4</Travel>
+    <SuitCase>100</SuitCase>
+    <WatchAShow>20</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="67">
+    <firstName>Laughing Lumberjack Lager</firstName>
     <SupplierID>16</SupplierID>
     <CategoryID>1</CategoryID>
-    <QuantityPerUnit>24 - 12 oz bottles</QuantityPerUnit>
-    <UnitPrice>14.0000</UnitPrice>
-    <UnitsInStock>52</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>10</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="68">
-    <ProductName>Scottish Longbreads</ProductName>
+    <site>24 - 12 oz bottles</site>
+    <HourlyRate>14.0000</HourlyRate>
+    <Travel>52</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>10</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="68">
+    <firstName>Scottish Longbreads</firstName>
     <SupplierID>8</SupplierID>
     <CategoryID>3</CategoryID>
-    <QuantityPerUnit>10 boxes x 8 pieces</QuantityPerUnit>
-    <UnitPrice>12.5000</UnitPrice>
-    <UnitsInStock>6</UnitsInStock>
-    <UnitsOnOrder>10</UnitsOnOrder>
-    <ReorderLevel>15</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="69">
-    <ProductName>Gudbrandsdalsost</ProductName>
+    <site>10 boxes x 8 pieces</site>
+    <HourlyRate>12.5000</HourlyRate>
+    <Travel>6</Travel>
+    <SuitCase>10</SuitCase>
+    <WatchAShow>15</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="69">
+    <firstName>Gudbrandsdalsost</firstName>
     <SupplierID>15</SupplierID>
     <CategoryID>4</CategoryID>
-    <QuantityPerUnit>10 kg pkg.</QuantityPerUnit>
-    <UnitPrice>36.0000</UnitPrice>
-    <UnitsInStock>26</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>15</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="70">
-    <ProductName>Outback Lager</ProductName>
+    <site>10 kg pkg.</site>
+    <HourlyRate>36.0000</HourlyRate>
+    <Travel>26</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>15</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="70">
+    <firstName>Outback Lager</firstName>
     <SupplierID>7</SupplierID>
     <CategoryID>1</CategoryID>
-    <QuantityPerUnit>24 - 355 ml bottles</QuantityPerUnit>
-    <UnitPrice>15.0000</UnitPrice>
-    <UnitsInStock>15</UnitsInStock>
-    <UnitsOnOrder>10</UnitsOnOrder>
-    <ReorderLevel>30</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="71">
-    <ProductName>Flotemysost</ProductName>
+    <site>24 - 355 ml bottles</site>
+    <HourlyRate>15.0000</HourlyRate>
+    <Travel>15</Travel>
+    <SuitCase>10</SuitCase>
+    <WatchAShow>30</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="71">
+    <firstName>Flotemysost</firstName>
     <SupplierID>15</SupplierID>
     <CategoryID>4</CategoryID>
-    <QuantityPerUnit>10 - 500 g pkgs.</QuantityPerUnit>
-    <UnitPrice>21.5000</UnitPrice>
-    <UnitsInStock>26</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="72">
-    <ProductName>Mozzarella di Giovanni</ProductName>
+    <site>10 - 500 g pkgs.</site>
+    <HourlyRate>21.5000</HourlyRate>
+    <Travel>26</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="72">
+    <firstName>Mozzarella di Giovanni</firstName>
     <SupplierID>14</SupplierID>
     <CategoryID>4</CategoryID>
-    <QuantityPerUnit>24 - 200 g pkgs.</QuantityPerUnit>
-    <UnitPrice>34.8000</UnitPrice>
-    <UnitsInStock>14</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>0</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="73">
-    <ProductName>Röd Kaviar</ProductName>
+    <site>24 - 200 g pkgs.</site>
+    <HourlyRate>34.8000</HourlyRate>
+    <Travel>14</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>0</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="73">
+    <firstName>Röd Kaviar</firstName>
     <SupplierID>17</SupplierID>
     <CategoryID>8</CategoryID>
-    <QuantityPerUnit>24 - 150 g jars</QuantityPerUnit>
-    <UnitPrice>15.0000</UnitPrice>
-    <UnitsInStock>101</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>5</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="74">
-    <ProductName>Longlife Tofu</ProductName>
+    <site>24 - 150 g jars</site>
+    <HourlyRate>15.0000</HourlyRate>
+    <Travel>101</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>5</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="74">
+    <firstName>Longlife Tofu</firstName>
     <SupplierID>4</SupplierID>
     <CategoryID>7</CategoryID>
-    <QuantityPerUnit>5 kg pkg.</QuantityPerUnit>
-    <UnitPrice>10.0000</UnitPrice>
-    <UnitsInStock>4</UnitsInStock>
-    <UnitsOnOrder>20</UnitsOnOrder>
-    <ReorderLevel>5</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="75">
-    <ProductName>Rhönbräu Klosterbier</ProductName>
+    <site>5 kg pkg.</site>
+    <HourlyRate>10.0000</HourlyRate>
+    <Travel>4</Travel>
+    <SuitCase>20</SuitCase>
+    <WatchAShow>5</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="75">
+    <firstName>Rhönbräu Klosterbier</firstName>
     <SupplierID>12</SupplierID>
     <CategoryID>1</CategoryID>
-    <QuantityPerUnit>24 - 0.5 l bottles</QuantityPerUnit>
-    <UnitPrice>7.7500</UnitPrice>
-    <UnitsInStock>125</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>25</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="76">
-    <ProductName>Lakkalikööri</ProductName>
+    <site>24 - 0.5 l bottles</site>
+    <HourlyRate>7.7500</HourlyRate>
+    <Travel>125</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>25</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="76">
+    <firstName>Lakkalikööri</firstName>
     <SupplierID>23</SupplierID>
     <CategoryID>1</CategoryID>
-    <QuantityPerUnit>500 ml</QuantityPerUnit>
-    <UnitPrice>18.0000</UnitPrice>
-    <UnitsInStock>57</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>20</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-  <Product ProductID="77">
-    <ProductName>Original Frankfurter grüne Soße</ProductName>
+    <site>500 ml</site>
+    <HourlyRate>18.0000</HourlyRate>
+    <Travel>57</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>20</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+  <Entry EntryID ="77">
+    <firstName>Original Frankfurter grüne Soße</firstName>
     <SupplierID>12</SupplierID>
     <CategoryID>2</CategoryID>
-    <QuantityPerUnit>12 boxes</QuantityPerUnit>
-    <UnitPrice>13.0000</UnitPrice>
-    <UnitsInStock>32</UnitsInStock>
-    <UnitsOnOrder>0</UnitsOnOrder>
-    <ReorderLevel>15</ReorderLevel>
-    <Discontinued>false</Discontinued>
-  </Product>
-</Products>
+    <site>12 boxes</site>
+    <HourlyRate>13.0000</HourlyRate>
+    <Travel>32</Travel>
+    <SuitCase>0</SuitCase>
+    <WatchAShow>15</WatchAShow>
+    <Driver>false</Driver>
+  </Entry>
+</Entries>

@@ -15,15 +15,18 @@ appModule.controller('PayPageController', ['PayPageService', '$scope', function(
             {
                 datatype: "xml",
                 datafields: [
-                    { name: 'ProductName', type: 'string' },
-                    { name: 'QuantityPerUnit', type: 'int' },
-                    { name: 'UnitPrice', type: 'float' },
-                    { name: 'UnitsInStock', type: 'float' },
-                    { name: 'Discontinued', type: 'bool' }
+                    { name: 'firstName', type: 'string' },
+                    //{ name: 'site',columntype:'dropdownlist',editable:'false', type: 'int' },
+                    { name: 'HourlyRate', type: 'float',aggregates: ['sum', 'avg'] },
+                    //{ name: 'Travel', type: 'float' },
+                    { name: 'Driver', type: 'float',aggregates: ['sum', 'avg'] },
+                    { name: 'Suitcase', type: 'float' },
+					//{ name: 'WatchAShow', type: 'float' },
+                    //{ name: 'Driver', type: 'bool' }
                 ],
-                root: "Products",
-                record: "Product",
-                id: 'ProductID',
+                root: "Entries",
+                record: "Entry",
+                id: 'EntryID',
                 url: url
             };
             var cellsrenderer = function (row, columnfield, value, defaulthtml, columnproperties, rowdata) {
@@ -33,7 +36,7 @@ appModule.controller('PayPageController', ['PayPageService', '$scope', function(
                 else {
                     return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #008000;">' + value + '</span>';
                 }
-               
+
             }
             
             var dataAdapter = new $.jqx.dataAdapter(source, {
@@ -41,6 +44,10 @@ appModule.controller('PayPageController', ['PayPageService', '$scope', function(
                 loadComplete: function (data) { },
                // loadError: function (xhr, status, error) { }
             });
+
+            //var columns = ['First Name', 'Last Name', 'Product Name', 'Quantity', "Unit Price", "Total"];
+            //$("#columnchooser").jqxDropDownList({  autoDropDownHeight: true, width: 120, height: 25, selectedIndex: 1, source: columns });
+           // $("#enablehover").jqxCheckBox({  checked: true });
 
 	$scope.timeSheetWindowSettings = {
 		height: 150,
@@ -61,21 +68,28 @@ appModule.controller('PayPageController', ['PayPageService', '$scope', function(
 	$scope.jqxButtonNotifSettings = {
 		theme: 'energyblue'
 	};
-	$scope.timeSheetGridSettings = {/*/*
+	$scope.timeSheetGridSettings = {
+		source: dataAdapter,
 		altrows: true,
 		width:  '100%',
-		height: 300, 
+		height: 500, 
 		theme: 'energyblue',
 		ready: function () {
 			
 		},
-		//selectionmode: 'multiplecellsadvanced',
+		selectionmode: 'multiplecellsadvanced',
 		//source: $scope.timeSheet,
 		editable: true,
 		sortable: true,
+		pagesizeoptions: ['20','30','40'],
 		pageable:true,
 		filterable:true,
-
+		showfilterrow: true,
+		enabletooltips: true,
+		showaggregates: true,
+		pagesize: '20',
+		
+/*
 		columns: [
 		{text: 'Name', datafield: 'name', width: '16%'},
 		{text: 'Task', datafield: 'task', width: '16%'},
@@ -88,24 +102,31 @@ appModule.controller('PayPageController', ['PayPageService', '$scope', function(
 	
 
 		],*/
-		 width: 850,
-                source: dataAdapter,                
-                pageable: true,
-                autoheight: true,
-                sortable: true,
-                altrows: true,
-                enabletooltips: true,
-                editable: true,
-                selectionmode: 'multiplecellsadvanced',
                 columns: [
-                  { text: 'Product Name', columngroup: 'ProductDetails', datafield: 'ProductName', width: 250 },
-                  { text: 'Quantity per Unit', columngroup: 'ProductDetails', datafield: 'QuantityPerUnit', cellsalign: 'right', align: 'right', width: 200 },
-                  { text: 'Unit Price', columngroup: 'ProductDetails', datafield: 'UnitPrice', align: 'right', cellsalign: 'right', cellsformat: 'c2', width: 200 },
-                  { text: 'Units In Stock', datafield: 'UnitsInStock', cellsalign: 'right', cellsrenderer: cellsrenderer, width: 100 },
-                  { text: 'Discontinued', columntype: 'checkbox', datafield: 'Discontinued' }
+                  { text: 'First Name', datafield: 'firstName', width: 250, align: 'center',cellsalign: 'center'},
+                  { text: 'Site', columngroup: 'Users', datafield: 'site', width: 200, align: 'center', cellsalign: 'center',columntype:'dropdownlist',
+                  createeditor: function(row,column,editor){
+                  	//assign a new data source to the dropdownList ,promptText: "Please Choose:"
+                  	var names= ['Event 1', 'Event 2', 'Event 3'];
+                  	editor.jqxDropDownList({autoDropDownHeight:true,source:dataAdapter});
+                  }
+              },
+                  { text: 'Hourly Rate', columngroup: 'Users', datafield: 'HourlyRate', align: 'center', cellsalign: 'center', cellsformat: 'c2', width: 200 },
+                  { text: 'Travel', datafield: 'Travel', cellsalign: 'right', align: 'center', cellsalign: 'center',cellsrenderer: cellsrenderer, width: 100 },
+                  { text: 'Driver', columntype: 'checkbox', datafield: 'Driver', align: 'center', cellsalign: 'center', },
+                  { text: 'Suitcase', datafield: 'Suitcase', cellsalign: 'right', align: 'center', cellsalign: 'center',cellsrenderer: cellsrenderer, width: 100 },
+                  { text: 'Watch A Show', datafield: 'WatchAShow', align: 'center', cellsalign: 'center', },
+
+                  {
+                    text: 'Total', editable: false, datafield: 'total', cellsformat: 'c2',//aggregates:['sum', 'avg'],
+                      cellsrenderer: function (index, datafield, value, defaultvalue, column, rowdata) {
+                          var total = parseFloat(rowdata.UnitPrice) * parseFloat(rowdata.UnitsInStock);
+                          return "<div style='margin: 4px;' class='jqx-right-align'>" + dataAdapter.formatNumber(total, "c2") + "</div>";
+                      }
+                  }
                 ],
                 columngroups: [
-                    { text: 'Product Details', align: 'center', name: 'ProductDetails' }
+                    { text: 'Site Information', align: 'center', name: 'Users' }
                 ],
            
 		rowselect: function (event) {

@@ -12,7 +12,7 @@
       <div class="panel-heading">
          <h2 class="panel-title"><strong>Pay Period: Dec 7th - Dec 11th
          </strong></h2>
-         <input type="text" id="daterange"class="pull-right" name="daterange" value="12/07/2015 01:30 PM - 12/11/2015 01:30 PM" />
+       <!--  <input type="text" id="daterange"class="pull-right" name="daterange" value="12/07/2015 01:30 PM - 12/11/2015 01:30 PM" /> -->
      </div>
 
      <!--<table id="example" class="table table-striped table-bordered" cellspacing="0">
@@ -35,89 +35,6 @@
     </table>
 
     <button id="addRow" type="button" class= "btn btn-primary btn-sm center"> Add entry </button>-->
-
-    <script type="text/javascript">
-    jQuery(document).ready(function(){ 
-      var lastsel2
-      jQuery("#timeSheet").jqGrid({        
-        datatype: "local",
-        height: 250,
-        colNames:['Task', 'Date', 'Duration', 'Travel','Wage', 'Total Wage','Comments'],
-        colModel:[
-        {name:'task',index: 'task', width:90, editable: true},
-        {name:'date',index:'date', width:150,editable: true/* , searchoptions:
-    {
-        dataInit: function (element) {
-            $(element).datepicker({
-                id: 'orderDate_datePicker',
-                dateFormat: 'yy-mm-dd',
-                                    //minDate: new Date(2010, 0, 1),
-                                    maxDate: new Date(2020, 0, 1),
-                                    showOn: 'focus'
-                                });
-                                 <br/>
-    <jqx-button jqx-on-click="fillAndSelect()">Fill And Select ID 133</jqx-button>
-        },
-    }*/
-        },
-        {name:'duration',index:'duration', width:90, editable: true},
-        {name:'travel',index:'travel', width:60, editable: true, edittype:"checkbox",editoptions: {value:"Yes:No"}},
-        //{name:'Travel',index:'travel', width:90, editable: true, edittype:"select",formatter:'select', editoptions:{value:"FE:FedEx;IN:InTime;TN:TNT;AR:ARAMEX"}},                       
-        {name:'wage',index:'wage', width:90, editable: true},
-        {name:'total',index:'total', width:150,editable: true, editoptions:{size:"20",maxlength:"30"}},   
-        {name:'comments',index:'comments', width:200, sortable:false,editable: true,edittype:"textarea", editoptions:{rows:"2",cols:"10"}} 
-        ],
-        
-
-        onSelectRow: function(id){
-          if(id && id!==lastsel2){
-            jQuery('#timeSheet').restoreRow(lastsel2);
-            jQuery('#timeSheet').editRow(id,true);
-            lastsel2=id;
-        }
-
-         for (var i = 0; i < ids.length; i++) {
-            grid.setRowData(ids[i], false, { height : 20 + (i * 2) });
-        } 
-    },
-    editurl: "../../include/functions/server.php",
-    caption: "Timesheet",
-    autowidth: true
- 
-});
-
-var mydata2 = [
-{task:"Show",date:"dfsdf",duration:"dfsfd",travel:"Yes",wage:"sdfds",total:"sfds",comments:"sdfsf"},
-{task:"Carrying box",date:"03",duration:"gfgd",travel:"Yes",wage:"sfd",total:"sdfsdf",comments:"note3"},
-{task:"34567",date:"04",duration:"dasd ",travel:"Yes",wage:"",total:"",comments:"note3"},
-{task:"45678",date:"05",duration:"asda",travel:"No",wage:"",total:"",comments:"note3"},
-{task:"56789",date:"06",duration:"sdad ",travel:"Yes",wage:"",total:"",comments:"note3"},
-{task:"67890",date:"07",duration:"sdad",travel:"No", wage:"",total:"",comments:"note3"},
-{task:"76543",date:"08",duration:"adas",travel:"Yes",wage:"",total:"",comments:"note3"},
-{task:"87654",date:"09",duration:"asds",travel:"Yes",wage:"",total:"",comments:"note3"},
-{task:"98765",date:"10",duration:"adsd",travel:"No", wage:"",total:"",comments:"note3"}];
-
-for(var i=0;i<mydata2.length;i++)
-    jQuery("#timeSheet").addRowData(mydata2[i].id,mydata2[i]);
-
- $('#timeSheet').jqGrid('filterToolbar',{
-                // JSON stringify all data from search, including search toolbar operators
-                stringResult: true,
-                // instuct the grid toolbar to show the search options 
-                searchOperators: true
-            });
-jQuery(".ui-jqgrid-title").replaceWith('<div style="text-align: center;"><strong><span>' + jQuery(".ui-jqgrid-title").text() + '</strong></span></div>');
-
-
-});
-
-</script>
-
-
-
-
-
-<table id="timeSheet" class="scroll"></table>
 
 <div class="panel-body" ng-controller="PayPageController" style="width: 100%">    
             <jqx-grid id="timeSheetGrid" jqx-source="timeSheet" jqx-settings="timeSheetGridSettings"></jqx-grid>  

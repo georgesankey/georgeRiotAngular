@@ -25,6 +25,16 @@ if(isset($_GET["func"])) {
 		$returnValue = getAllVenues();
 	} else if($_GET["func"] == "getVenue" && isset($_GET["venue"])){
 		$returnValue = getVenue($_GET["venue"]);
+	} else if($_GET["func"] == "editVenue") {
+		$venue = array();
+
+		$venue["id"] = isset($_POST["id"]) ? $_POST["id"] : null;
+		$venue["name"] = isset($_POST["name"]) ? $_POST["name"] : "";
+		$venue["comments"] = isset($_POST["comments"]) ? $_POST["comments"] : "";
+		$venue["contacts"] = isset($_POST["contacts"]) ? $_POST["contacts"] : null;
+		$venue["address"] = isset($_POST["address"]) ? $_POST["address"] : null;
+
+		$returnValue = getVenue($venue);
 	}
 }
 

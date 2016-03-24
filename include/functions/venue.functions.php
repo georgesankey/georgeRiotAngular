@@ -43,14 +43,19 @@ function getVenue($id) {
 
 /**
  * Requires $dbh to be set
+ * Creates new venue or edits existing venue.
+ * Functionality is special because does not edit contacts/address directly
  */
-function createVenue() {
+function editVenue($venue) {
 	global $dbh;
 
 }
 
 
-
+/**
+ * Requires $dbh to be set
+ * Gets all venues in db
+ */
 function getAllVenues(){
 	global $dbh;
 	

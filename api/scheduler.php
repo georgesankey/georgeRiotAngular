@@ -18,10 +18,25 @@ if(!$auth->loggedIn()) {
 
 $returnValue = 'An error has occured';
 
-// Getting event by id
-if(isset($_GET["func"]) && ($_GET["func"] == "getAllEventsForScheduler")) {
-	$returnValue = getAllEventsForScheduler();
+$request = json_decode(file_get_contents("php://input"));
+
+
+if(isset($_GET["func"])){
+	if($_GET["func"] == "getAllEventsForScheduler"){
+		$returnValue = getAllEventsForScheduler();
+	} else if($_GET["func"] == "showMaintenance"){
+		if(isset($request->service)){
+			if($request->service == 'add'){
+				$returnValue = addEvent($request->data);
+			} else if($request->service == 'change'){
+
+			} else if($request->service == 'delete'){
+
+			}	
+		}
+	}
 }
+
 
 exit(json_encode($returnValue));
 

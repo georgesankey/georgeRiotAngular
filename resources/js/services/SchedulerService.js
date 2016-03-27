@@ -24,8 +24,29 @@ appModule.factory('SchedulerService', function($http, $q) {
         return deferred.promise;
     };
 
+    var showMaintenance = function(service, data) {
+        var deferred = $q.defer();
+
+        var serviceParam = (service == 'add'? 'add': (service == 'change'? 'change': 'delete'));
+        var params = {
+            'data': data,
+            'service' : serviceParam
+        };
+
+        $http({
+            method: 'POST',
+            url: route + "?func=showMaintenance",
+            data: params
+        }).success(function (data, status) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    };
+
+
     return {
-        getAllEventsForScheduler: getAllEventsForScheduler
+        getAllEventsForScheduler: getAllEventsForScheduler,
+        showMaintenance: showMaintenance
     };
 
 });

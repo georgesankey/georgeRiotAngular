@@ -11,7 +11,7 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
     var schedParam = SchedulerService.getAllEventsForScheduler();
     var venuesParam = VenueService.getAllVenues();
     var userParam = UserService.getSessionUserData();
- 
+    //$scope.selectedEvent = null;
 
     $q.all([schedParam, venuesParam, userParam])
     .then(function(response){
@@ -26,8 +26,8 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
                 { name: 'comments', type: 'string' },
                 { name: 'show_name', type: 'string' },
                 { name: 'show_status', type: 'string' },
-                { name: 'from', type: 'date' },
-                { name: 'to', type: 'date' },
+                { name: 'from_date', type: 'date' },
+                { name: 'to_date', type: 'date' },
                 { name: 'administrator', type: 'string'},
                 { name: 'venue_id', type: 'string'}
             ],
@@ -44,7 +44,7 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
         showLegend: true,
         editDialog: true,
         created: function (args) {
-          //args.instance.ensureAppointmentVisible('2');
+            args.instance.ensureAppointmentVisible('2');
         },
         editDialogCreate: function(event){
             var args = event.args;
@@ -62,7 +62,7 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
             fields.locationContainer.hide();
             fields.colorContainer.hide();
 
-            var eventMaintenanceButton = $("<button style='margin-left: 5px; float:right;'>Event Maintenance</button>");
+            var eventMaintenanceButton = $("<button id='eventMaintenanceButton' ng-click='openEventMaintenance()' style='margin-left: 5px; float:right; display:none;'>Event Maintenance</button>");
             fields.buttons.append(eventMaintenanceButton);
             eventMaintenanceButton.jqxButton({ theme: this.theme });
 
@@ -111,6 +111,8 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
 
             if(appointment){
                 //existing appointment
+                $('#eventMaintenanceButton').css('display', 'inline'); 
+
                 $.each($scope.venues, function(index, value) {
                     if(value.id == appointment.venue){
                         $("#comboboxVenueName").jqxDropDownList('selectedIndex', index);
@@ -120,9 +122,11 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
                             $('#adminField').val(userItem.first_name + " " + userItem.last_name + " ("+ userItem.email + ")");
                         });
                     }
-                });  
+                });
             } else {
                 //new appointment
+                $('#eventMaintenanceButton').css('display', 'none');  
+
                 VenueService.getVenue($scope.venues[0].id).then(function(venueItem) {
                     updateVenueFields(venueItem);   
                 });
@@ -140,14 +144,8 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
                         });
                     }
                 });
-        },
-        appointmentChange: function(event){
-            var args = event.args;
-            var appointment = args.appointment;
 
-            //appointment.adminCreator = $('#adminField').val();
-            //appointment.venueName = $('#venueName').val();
-        },
+        },      
         resources:
         {
             colorScheme: "scheme05",
@@ -156,8 +154,8 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
         },
         appointmentDataFields:
         {
-            from: "from",
-            to: "to",
+            from: "from_date",
+            to: "to_date",
             id: "id",
             description: "comments",
             subject: "show_name",
@@ -171,13 +169,53 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
             'weekView',
             'monthView', 
             'agendaView'
-        ]
+        ]   
     }; //end of $scope.settings
-        $scope.createScheduler = true;
+
+    //event handlers for the scheduler
+    $('#scheduler').on('appointmentChange', function(event) {
+        console.log('appointmentChange');
+
+
+
+    }).on('appointmentDelete', function(event) {
+        console.log('appointmentDelete');
+
+    }).on('appointmentAdd', function(event) {
+        var appointment = event.args.appointment;
+        var postEventData = {
+            "show_name" : appointment.subject.toString(),
+            "venue_id" :  $scope.venues[$("#comboboxVenueName").jqxDropDownList('selectedIndex')].id,
+            "administrator" : $scope.currentUser.id,
+            "from_date": appointment.from.toString(), 
+            "to_date": appointment.to.toString(),
+            "comments": appointment.description.toString(),
+            "show_status": appointment.resourceId.toString(),
+            "created_time": new Date()
+        };
+
+        $scope.showMaintenance('add', postEventData);
+
+    }).on('bindingComplete', function(event) {
+        console.log('bindingComplete');
+    });
+
+    $scope.createScheduler = true;
 
 }); //end of then clause
     
+$scope.showMaintenance = function(service, data){
+    SchedulerService.showMaintenance(service, data).then(function(sourceSchedule) {
+            $scope.sourceSchedule = sourceSchedule;
+            console.log(sourceSchedule);
+    });
+}
 
+/*$scope.openEventMaintenance = function(event){
+    console.log('open window');
+    $('#eventMaintenanceWindowDiv').css('display', 'inline');
+}
+*/
 
 }]); //end of SchedulerController
 

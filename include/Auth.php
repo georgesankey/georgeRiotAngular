@@ -19,6 +19,7 @@ $cfg = array(
 
 session_start();
 
+
 class OMBAuth {
 
 	var $config;

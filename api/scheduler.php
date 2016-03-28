@@ -29,9 +29,9 @@ if(isset($_GET["func"])){
 			if($request->service == 'add'){
 				$returnValue = addEvent($request->data);
 			} else if($request->service == 'change'){
-
+				$returnValue = changeEvent($request->data);
 			} else if($request->service == 'delete'){
-
+				$returnValue = deleteEvent($request->data);
 			}	
 		}
 	}

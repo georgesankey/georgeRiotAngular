@@ -11,7 +11,9 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
     var schedParam = SchedulerService.getAllEventsForScheduler();
     var venuesParam = VenueService.getAllVenues();
     var userParam = UserService.getSessionUserData();
-    //$scope.selectedEvent = null;
+    $scope.selectedEvent = null;
+    $scope.test = null;
+
 
     $q.all([schedParam, venuesParam, userParam])
     .then(function(response){
@@ -19,27 +21,11 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
     $scope.venues = response[1];
     $scope.currentUser = response[2];
 
-    var sourceSchedule = {
-            dataType: "array",
-            dataFields: [
-                { name: 'id', type: 'string' },
-                { name: 'comments', type: 'string' },
-                { name: 'show_name', type: 'string' },
-                { name: 'show_status', type: 'string' },
-                { name: 'from_date', type: 'date' },
-                { name: 'to_date', type: 'date' },
-                { name: 'administrator', type: 'string'},
-                { name: 'venue_id', type: 'string'}
-            ],
-            id: 'id',
-            localData: $scope.sourceSchedule
-    };
-
     $scope.settings = {
         date: new $.jqx.date(),
         width: '100%',
         height: 1200,
-        source: sourceSchedule,
+        source: schedulerAdapter($scope.sourceSchedule),
         view: 'weekView',
         showLegend: true,
         editDialog: true,
@@ -150,7 +136,7 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
         {
             colorScheme: "scheme05",
             dataField: "show_status",
-            source:  new $.jqx.dataAdapter(sourceSchedule)
+            source:  new $.jqx.dataAdapter(schedulerAdapter($scope.sourceSchedule))
         },
         appointmentDataFields:
         {
@@ -174,12 +160,26 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
 
     //event handlers for the scheduler
     $('#scheduler').on('appointmentChange', function(event) {
-        console.log('appointmentChange');
+        var appointment = event.args.appointment.jqxAppointment;
+        var postEventData = {
+            "id" : appointment.id,   
+            "show_name" : appointment.subject.toString(),
+            "venue_id" :  $scope.venues[$("#comboboxVenueName").jqxDropDownList('selectedIndex')].id,
+            "from_date": appointment.from.toString(), 
+            "to_date": appointment.to.toString(),
+            "comments": appointment.description.toString(),
+            "show_status": appointment.resourceId.toString()
+        };
 
-
+        $scope.showMaintenance('change', postEventData);
 
     }).on('appointmentDelete', function(event) {
-        console.log('appointmentDelete');
+        var appointment = event.args.appointment;
+        var postEventData = {
+            "id": appointment.id
+        };
+
+        $scope.showMaintenance('delete', postEventData);
 
     }).on('appointmentAdd', function(event) {
         var appointment = event.args.appointment;
@@ -197,19 +197,21 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
         $scope.showMaintenance('add', postEventData);
 
     }).on('bindingComplete', function(event) {
-        console.log('bindingComplete');
+        //console.log('bindingComplete');
     });
 
     $scope.createScheduler = true;
 
 }); //end of then clause
-    
-$scope.showMaintenance = function(service, data){
-    SchedulerService.showMaintenance(service, data).then(function(sourceSchedule) {
+ 
+
+     $scope.showMaintenance = function(service, data){
+        SchedulerService.showMaintenance(service, data).then(function(sourceSchedule) {
             $scope.sourceSchedule = sourceSchedule;
-            console.log(sourceSchedule);
-    });
-}
+            $('#legendbarbottomscheduler div:first-child').remove();
+            $('#scheduler').jqxScheduler({source: new $.jqx.dataAdapter(schedulerAdapter($scope.sourceSchedule))});
+        });
+    };   
 
 /*$scope.openEventMaintenance = function(event){
     console.log('open window');
@@ -230,3 +232,22 @@ function updateVenueFields(venue){
     $('#venueContactNumber').val(contactNumber);
     $('#venueComments').val(venue.comments); 
 } 
+
+
+function schedulerAdapter(source){
+    return {
+        dataType: "array",
+        dataFields: [
+            { name: 'id', type: 'string' },
+            { name: 'comments', type: 'string' },
+            { name: 'show_name', type: 'string' },
+            { name: 'show_status', type: 'string' },
+            { name: 'from_date', type: 'date' },
+            { name: 'to_date', type: 'date' },
+            { name: 'administrator', type: 'string'},
+            { name: 'venue_id', type: 'string'}
+        ],
+        id: 'id',
+        localData: source
+    };
+}

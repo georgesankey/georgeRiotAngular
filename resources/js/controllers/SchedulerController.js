@@ -11,10 +11,7 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
     var schedParam = SchedulerService.getAllEventsForScheduler();
     var venuesParam = VenueService.getAllVenues();
     var userParam = UserService.getSessionUserData();
-    $scope.selectedEvent = null;
-    $scope.test = null;
-
-
+ 
     $q.all([schedParam, venuesParam, userParam])
     .then(function(response){
     $scope.sourceSchedule = response[0];

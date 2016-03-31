@@ -33,7 +33,7 @@ appModule.factory('UserService', function($http, $q) {
         return deferred.promise;
     };
 
-    return {
+       return {
         getSessionUserData: getSessionUserData,
         getUser: getUser
     };  

@@ -20,6 +20,6 @@ $smarty->setTemplateDir(__DIR__ . '/../include/template');
 $smarty->setCompileDir(__DIR__ . '/../include/template_c');
 
 $smarty->assign("user", $_SESSION["user"]);
-$smarty->display("admin.html");
+$smarty->display("dashboard.html");
 
 ?>

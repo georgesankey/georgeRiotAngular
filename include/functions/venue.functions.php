@@ -91,7 +91,7 @@ function editVenue($venue) {
 	    }
 
 	    if(!is_null($contacts)) {
-	    	for($i=0;$i<count($contacts)) {
+	    	for($i=0;$i<count($contacts);$i++) {
 	    		$authQuery = $dbh->prepare("
 					INSERT INTO VENUE_CONTACT (
 						venue_id,
@@ -113,7 +113,7 @@ function editVenue($venue) {
 	    // Set address
 	    $authQuery = $dbh->prepare("
 			UPDATE ADDRESS SET 
-				owner_type = 1,
+				owner_type = 2,
 				owner = :vid
 			WHERE
 				id = :aid

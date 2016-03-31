@@ -6,15 +6,21 @@ var appModule = window.appModule ||
  * Use this Service to get a user's timeSheetNotif
  */
 appModule.factory('PayPageService', function($http, $q) {
+    var timeSheetEntry;
 
  var getAllTimeSheetEntries = function(){
+        
         var deferred = $q.defer();
-        var timeSheetentry;    
-        $http.get("/onlymakebelieve/api/pay.php").success(function (data){
-                timeSheet = data;
-                deferred.resolve(timeSheetentry);
-            });
-            return deferred.promise;
+
+        if(timesheetEntry !== undefined){
+            deferred.resolve(timeSheetEntry);
+        } else {
+            $http.get("/onlymakebelieve/api/pay.php").success(function (data){
+                timeSheetEntry = data;
+                deferred.resolve(timeSheetEntry);
+            });            
+        }
+        return deferred.promise;
     };
 
  var timeSheetManagement = function(service, rowId) {
@@ -31,7 +37,7 @@ appModule.factory('PayPageService', function($http, $q) {
             url: "/onlymakebelieve/api/pay.php",
             data: params
         }).success(function (data, status) {
-            accountRequests = data;
+            timeSheet = data;
             deferred.resolve(timeSheetentry);
         });
         return deferred.promise;

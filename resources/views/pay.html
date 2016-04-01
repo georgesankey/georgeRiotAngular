@@ -10,17 +10,25 @@
   <div class="panel panel-default text-center " class= "col-centered">
       <div class="panel-heading">
          <h2 class="panel-title"><strong>
-          <span ng-show="date"> {{date | date: "MMMM dd yyyy"}}</span>
+          
           Timesheet 
          </strong>
        </h2>
     
      </div>
 
-<div class="panel-body"  style="width: 100%">  
-<div id="datepicker" align="left">
-<div class="jqx-scheduler-edit-dialog-label" style="width:10%; margin-bottom:15px ">Select Date</div>
- <jqx-date-time-input ng-model="date" jqx-settings="dateInputSettings"></jqx-date-time-input>      
+<div class="panel-body"  style="width: 100% margin-bottom:10px">  
+<div id="selectDate"class="jqx-scheduler-edit-dialog-label" style="width:10%; margin-bottom:15px ">   Date : <span ng-show="date"> {{date | date: "M/d/yyyy"}}</span></div>
+
+</br></br></br>
+<div style="margin-left:2%">
+<table style="float:left; ">
+  <tr>
+<td id="datepicker" class="jqx-scheduler-edit-dialog-label" style="width:90px; margin-bottom:15px "> Select Date </td>
+  <td>
+<jqx-date-time-input ng-model="date" jqx-settings="dateInputSettings" style="display:inline-block;"></jqx-date-time-input>     </td>
+</tr>
+</table>
 </div>
             <jqx-grid id="jqxgrid" jqx-source="timeSheet" jqx-settings="timeSheetGridSettings"></jqx-grid>  
             <jqx-window id="timeSheetWindow" jqx-settings="timeSheetWindowSettings">

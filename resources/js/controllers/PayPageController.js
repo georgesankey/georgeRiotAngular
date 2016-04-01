@@ -182,7 +182,7 @@ var travel = [
                   {
                     text: 'Total', editable: false, datafield: 'total', cellsformat: 'c2', aggregates:['sum', 'avg'],
                       cellsrenderer: function (index, datafield, value, defaultvalue, column, rowdata) {
-                          var total = (parseFloat(rowdata.HourlyRate) * 1) + parseFloat(rowdata.Travel);
+                          var total = (parseFloat(rowdata.HourlyRate) * 1);
                           return "<div style='margin: 4px;' class='jqx-right-align'>" + dataAdapter.formatNumber(total, "c2") + "</div>";
                       }
                   }

@@ -4,3 +4,4 @@ vendor
 include/template_c
 include/template_c/*
 include/db/dbconfig.php
+/nbproject/private/

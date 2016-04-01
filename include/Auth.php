@@ -251,6 +251,7 @@ class OMBAuth {
 		// Make database call 
         $authQuery = $this->db->prepare("SELECT * FROM USER WHERE (email = :email) AND active = '1'");
 	    $authQuery->bindParam(':email', $email);
+            
 
 	    if($this->config["DEBUG"]) {
 			print("<br />Query: ");
@@ -259,10 +260,13 @@ class OMBAuth {
 
         $authQuery-> execute();
         $authRows = $authQuery->rowCount();
+        
 
         if($authRows == 1) {
         	$authRow = $authQuery->fetch();
 
+                $_SESSION["userid"]=$authRow["id"];
+                
         	if($this->config["DEBUG"]) {
 				print("<br /><b>Data: </b>");
 				print_r($authRow);

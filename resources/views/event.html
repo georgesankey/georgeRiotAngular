@@ -1,9 +1,10 @@
 
 <div class="col-md-12">
-	<div class="panel">
-	<div class="panel-body">
+	<div class="panel" style="height:170px; background-image:url('http://www.dahday.com/wp-content/uploads/2015/12/aladdin-group-sales-new-amsterdam-theater.jpeg');">
+	<div class="panel-body" style="">
 		<h4>
 			{{event.title}}
+                        <h1 style="color:white;"><strong>Aladdin</strong></h1>
 		</h4>
 	</div>
 	</div>
@@ -11,19 +12,20 @@
 
 
 <div class="col-md-4">
+    	<div class="panel">
+	<div class="panel-body">
+            <h4> Cadillac Palace Theatre </h4>
+            <img class="img-responsive" src="http://cdn.partyearth.com/photos/5ccb745258b4cbb5c546be1b56301f90/cadillac-palace_s345x230.jpg?1375144235">
+	</div>
+	</div>
 	<div class="panel">
 	<div class="panel-body">
-		Location:
+            <strong>Location:</strong> 151 W Randolph St, Chicago, IL 60601
 		<br/>
 		{{event.location}}
-		<p>Map</p>
-	</div>
-	</div>
-
-	<div class="panel">
-	<div class="panel-body">
-		Description:
-		<a href="{{event.url}}" target="_blank">Here</a>
+                <div class="embed-responsive embed-responsive-16by9">
+                <iframe src="https://www.google.com/maps/d/embed?mid=zJnmHZvNsc2Y.ka_Dp_4E0IZY&hl=en_US" width="450" height="350"></iframe>
+                </div>
 	</div>
 	</div>
 
@@ -33,16 +35,24 @@
 	<div class="panel">
 	<div class="panel-body">
 		<div>Edit</div>
-		<div>Start: {{event.start._i}}</div>
-		<div>End: {{event.end._i}}</div>
+                <div><strong>Start:</strong> 3/17/2016 - 5:00 PM {{event.start._i}}</div>
+		<div><strong>End:</strong> 3/17/2016 - 6:00 PM {{event.end._i}}</div>
 
 		<div>Venue info</div>
+	</div>
+	</div>
+    
+    	<div class="panel">
+	<div class="panel-body">
+            <strong>Description:</strong>
+<!--		<a href="{{event.url}}" target="_blank">Here</a>-->
+<p>In the middle-eastern town of Agrabah, Princess Jasmine is feeling hemmed in by her father’s desire to find her a royal groom. Meanwhile, the Sultan’s right-hand man, Jafar, is plotting to take over the throne. When Jasmine sneaks out of the palace incognito, she forms an instant connection with Aladdin, a charming street urchin and reformed thief. After being discovered together, Aladdin is sentenced to death, but Jafar saves him by ordering him to fetch a lamp from the Cave of Wonders. Where there’s a lamp, there’s a Genie, and once Aladdin unwittingly lets this one out, anything can happen! Will Aladdin’s new identity as “Prince Ali” help him win Jasmine’s heart and thwart Jafar’s evil plans? Will the Genie’s wish for freedom ever come true?</p>
 	</div>
 	</div>
 
 	<div class="panel">
 	<div class="panel-body">
-		<div>Actors</div>
+		<div><strong>Actors</strong></div>
 
 		<input type="text" class="form-control" />
 

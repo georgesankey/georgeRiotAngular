@@ -34,10 +34,17 @@
 		<!-- Notifications panel -->
 		<div class="panel panel-default">
 		<div class="panel-heading">
+			<h4 class="panel-title">Assigned Events</h4>
+		</div>
+                                     <jqx-grid jqx-create="createWidget" jqx-settings="gridSettings" class="table" id="notifGrid"></jqx-grid>
+		</div>
+                
+                
+                		<div class="panel panel-default">
+		<div class="panel-heading">
 			<h4 class="panel-title">Notifications</h4>
 			<span class="pull-right"><a href="#/notifications">View All</a></span>
 		</div>
-		<div class="panel-body">
 			<ul class="list notifications-list">
 
 				<li ng-hide="notifications.length == 0" ng-repeat="notif in notifications">
@@ -50,25 +57,40 @@
 
 				<li ng-show="notifications.length == 0">You have no notifications</li>
 			</ul>
-		</div>
+
 		</div>
 		<!-- End notifications panel -->
 
-		<div class="row">
-		
-		<div class="col-md-12">
-			<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4 class="panel-title">Shows Missing Actors</h4>
-			</div>
-			<div class="panel-body">
-				None
-			</div>
-			</div>
-		</div>
-		</div>
+<!--		<div class="row">
+                    <div class="col-md-12">
+                            <div class="panel panel-default">
+                            <div class="panel-heading">
+                                    <h4 class="panel-title">Shows Missing Actors</h4>
+                            </div>
+                            <div class="panel-body">
+                                    None
+                            </div>
+                            </div>
+                    </div>
+		</div>-->
+
+
 
 		<div class="row">
+                    <div class="col-md-12">
+                            <div class="panel panel-default">
+                            <div class="panel-heading">
+                                    <h4 class="panel-title">Messages</h4>
+                                    <span class="pull-right"><a href="#/messages">View All</a></span>
+                            </div>
+                            <div class="panel-body">
+                                    None
+                            </div>
+                            </div>
+                    </div>
+		</div>
+
+<!--		<div class="row">
 		<div class="col-md-12">
 		<div class="panel panel-default">
 		<div class="panel-heading">
@@ -93,11 +115,6 @@
 		</div>
 		</div>
 		<div><script></script></div>
-		</div>
+		</div>-->
 	</div>
 </div>
-
-
-
-   
-

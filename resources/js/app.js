@@ -32,6 +32,11 @@ appModule.config(function($routeProvider) {
             templateUrl: 'resources/views/message.html'
 
         })
+        .when('/event',{
+            controller:'MainController',
+            templateUrl: 'resources/views/event.html'
+
+        })
         .when('/create/v/', {
             controller:'VenueController',
             templateUrl:'resources/views/create/create_venue.html'

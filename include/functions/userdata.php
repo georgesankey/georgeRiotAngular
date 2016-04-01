@@ -18,11 +18,11 @@ function getUserData($user=null) {
 	    $authQuery->bindParam(':user', $_SESSION['user']);
 	    $authQuery->execute();
 	    $authRows = $authQuery->rowCount();
-
-	    if($authRows == 1) {
-	    	return $authQuery->fetch(PDO::FETCH_ASSOC);
-	    }
-	}
+            
+          return ($authRows > 0)? $authQuery->fetchAll() : null;
+		} else {
+			return null;	
+		}
 
 	// Validate Credentials
 	// For now, we haven't created access levels yet

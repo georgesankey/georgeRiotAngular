@@ -1,11 +1,11 @@
-﻿-- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- phpMyAdmin SQL Dump
+-- version 4.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Mar 21, 2016 at 10:44 PM
--- Server version: 5.5.46-0ubuntu0.14.04.2
--- PHP Version: 5.5.9-1ubuntu4.14
+-- Host: 127.0.0.1
+-- Generation Time: Apr 01, 2016 at 05:33 AM
+-- Server version: 5.7.9
+-- PHP Version: 5.6.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `omb_db`
@@ -23,10 +23,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ADDRESS`
+-- Table structure for table `address`
 --
 
-CREATE TABLE IF NOT EXISTS `ADDRESS` (
+DROP TABLE IF EXISTS `address`;
+CREATE TABLE IF NOT EXISTS `address` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `street_1` varchar(200) NOT NULL,
   `street_2` varchar(200) NOT NULL,
@@ -36,13 +37,13 @@ CREATE TABLE IF NOT EXISTS `ADDRESS` (
   `owner` int(11) NOT NULL,
   `owner_type` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `ADDRESS`
+-- Dumping data for table `address`
 --
 
-INSERT INTO `ADDRESS` (`id`, `street_1`, `street_2`, `city`, `state`, `zipcode`, `owner`, `owner_type`) VALUES
+INSERT INTO `address` (`id`, `street_1`, `street_2`, `city`, `state`, `zipcode`, `owner`, `owner_type`) VALUES
 (6, 'Jamaica', '', 'New York', 'NY', '11432', 1, '1'),
 (7, 'Chicago Place', '', 'Chicago', 'IL', '23213', 2, '1'),
 (8, 'Charlie Town', '', 'Charleston', 'NY', '89779', 3, '1'),
@@ -61,10 +62,11 @@ INSERT INTO `ADDRESS` (`id`, `street_1`, `street_2`, `city`, `state`, `zipcode`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `CONTACT`
+-- Table structure for table `contact`
 --
 
-CREATE TABLE IF NOT EXISTS `CONTACT` (
+DROP TABLE IF EXISTS `contact`;
+CREATE TABLE IF NOT EXISTS `contact` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
@@ -74,13 +76,13 @@ CREATE TABLE IF NOT EXISTS `CONTACT` (
   `home_number` varchar(500) NOT NULL,
   `work_number` varchar(500) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `CONTACT`
+-- Dumping data for table `contact`
 --
 
-INSERT INTO `CONTACT` (`id`, `first_name`, `last_name`, `cell_number`, `details`, `user_id`, `home_number`, `work_number`) VALUES
+INSERT INTO `contact` (`id`, `first_name`, `last_name`, `cell_number`, `details`, `user_id`, `home_number`, `work_number`) VALUES
 (1, 'Raihan', 'Admin', '9177753732', 'This is Raihan''s contact information.', 1, '', ''),
 (2, 'Tameem', 'Imamdad', '(555) 555-5555', 'Tameem''s details.', 2, '', ''),
 (11, 'Charlie', 'He', '98080989080', '', 3, '1', '2'),
@@ -99,10 +101,11 @@ INSERT INTO `CONTACT` (`id`, `first_name`, `last_name`, `cell_number`, `details`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `EVENT`
+-- Table structure for table `event`
 --
 
-CREATE TABLE IF NOT EXISTS `EVENT` (
+DROP TABLE IF EXISTS `event`;
+CREATE TABLE IF NOT EXISTS `event` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `administrator` int(11) NOT NULL,
   `show_name` varchar(100) NOT NULL,
@@ -114,73 +117,78 @@ CREATE TABLE IF NOT EXISTS `EVENT` (
   `comments` text NOT NULL,
   `created_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `EVENT`
+-- Dumping data for table `event`
 --
 
-INSERT INTO `EVENT` (`id`, `administrator`, `show_name`, `show_status`, `from`, `to`, `repeat_status`, `venue_id`, `comments`, `created_time`) VALUES
+INSERT INTO `event` (`id`, `administrator`, `show_name`, `show_status`, `from`, `to`, `repeat_status`, `venue_id`, `comments`, `created_time`) VALUES
 (2, 1, 'Aladdin', 'Scheduled', '2016-03-17 17:00:00', '2016-03-17 18:00:00', '1', 1, 'These are comments about the show Aladdin!', '2016-03-14 04:00:00'),
 (3, 1, 'Wicked', 'Deferred', '2016-03-18 08:00:00', '2016-03-18 10:00:00', '1', 2, 'This is show comments about Wicked.', '2016-03-15 14:58:44'),
-(4, 2, 'Fiddler on the Roof', 'Cancelled', '2016-03-17 08:00:00', '2016-03-17 12:00:00', '1', 1, 'These are the comments for Fiddler on the Roof. ', '2016-03-18 07:37:15');
+(4, 2, 'Fiddler on the Roof', 'Cancelled', '2016-03-17 08:00:00', '2016-03-17 12:00:00', '1', 1, 'These are the comments for Fiddler on the Roof. ', '2016-03-18 07:37:15'),
+(5, 2, 'The Lion King', 'Scheduled', '2016-04-08 08:00:00', '2016-04-08 10:00:00', '1', 1, 'These are the comments for the comedy show.', '2016-03-18 07:37:15');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `EVENT_ROLE_USER`
+-- Table structure for table `event_role_user`
 --
 
-CREATE TABLE IF NOT EXISTS `EVENT_ROLE_USER` (
+DROP TABLE IF EXISTS `event_role_user`;
+CREATE TABLE IF NOT EXISTS `event_role_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `event_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
-  `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` varchar(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `EVENT_ROLE_USER`
+-- Dumping data for table `event_role_user`
 --
 
-INSERT INTO `EVENT_ROLE_USER` (`user_id`, `event_id`, `role_id`, `status`) VALUES
-(68, 2, 4, 0),
-(70, 2, 4, 0),
-(71, 2, 4, 0),
-(69, 2, 3, 0),
-(72, 2, 3, 0),
-(2, 2, 2, 0),
-(3, 2, 2, 0),
-(68, 3, 4, 0),
-(70, 3, 4, 0),
-(71, 3, 4, 0),
-(69, 3, 3, 0),
-(72, 3, 3, 0),
-(2, 3, 2, 0),
-(3, 3, 2, 0),
-(68, 4, 4, 0),
-(70, 4, 4, 0),
-(71, 4, 4, 0),
-(69, 4, 3, 0),
-(72, 4, 3, 0),
-(2, 4, 2, 0),
-(3, 4, 2, 0);
+INSERT INTO `event_role_user` (`id`, `user_id`, `event_id`, `role_id`, `status`) VALUES
+(1, 68, 2, 4, '0'),
+(2, 70, 2, 4, '0'),
+(3, 71, 2, 4, '0'),
+(4, 69, 2, 3, '0'),
+(5, 72, 2, 3, '0'),
+(6, 2, 2, 2, '0'),
+(7, 3, 2, 2, '0'),
+(8, 68, 3, 4, '0'),
+(9, 70, 3, 4, '0'),
+(10, 71, 3, 4, '0'),
+(11, 69, 3, 3, '0'),
+(12, 72, 3, 3, '0'),
+(13, 2, 3, 2, '0'),
+(14, 3, 3, 2, '0'),
+(15, 68, 4, 4, '0'),
+(16, 70, 4, 4, '0'),
+(17, 71, 4, 4, '0'),
+(18, 69, 4, 3, '0'),
+(19, 72, 4, 3, '0'),
+(20, 2, 4, 2, '0'),
+(21, 3, 4, 2, '0');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `EVENT_SCRIPT`
+-- Table structure for table `event_script`
 --
 
-CREATE TABLE IF NOT EXISTS `EVENT_SCRIPT` (
+DROP TABLE IF EXISTS `event_script`;
+CREATE TABLE IF NOT EXISTS `event_script` (
   `event_id` int(11) NOT NULL,
   `script_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `EVENT_SCRIPT`
+-- Dumping data for table `event_script`
 --
 
-INSERT INTO `EVENT_SCRIPT` (`event_id`, `script_id`) VALUES
+INSERT INTO `event_script` (`event_id`, `script_id`) VALUES
 (2, 1),
 (2, 2),
 (3, 3),
@@ -189,20 +197,48 @@ INSERT INTO `EVENT_SCRIPT` (`event_id`, `script_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ROLE`
+-- Table structure for table `notification`
 --
 
-CREATE TABLE IF NOT EXISTS `ROLE` (
+DROP TABLE IF EXISTS `notification`;
+CREATE TABLE IF NOT EXISTS `notification` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL,
+  `message` varchar(45) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `status` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `notification`
+--
+
+INSERT INTO `notification` (`id`, `userId`, `message`, `date`, `status`) VALUES
+(3, 2, 'A show has been assigned to you', '2016-03-27', 'Accepted'),
+(4, 2, 'Show "Aladin" has been modified', '2016-03-29', 'Rejected'),
+(5, 2, 'test message', '2016-03-09', ''),
+(6, 2, 'test notification for user 2', '2016-03-11', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role`
+--
+
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE IF NOT EXISTS `role` (
   `role_id` int(11) NOT NULL AUTO_INCREMENT,
   `role_name` varchar(50) NOT NULL,
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `ROLE`
+-- Dumping data for table `role`
 --
 
-INSERT INTO `ROLE` (`role_id`, `role_name`) VALUES
+INSERT INTO `role` (`role_id`, `role_name`) VALUES
 (1, 'Administrator'),
 (2, 'Team Leader'),
 (3, 'Staff'),
@@ -211,22 +247,23 @@ INSERT INTO `ROLE` (`role_id`, `role_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `SCRIPTS`
+-- Table structure for table `scripts`
 --
 
-CREATE TABLE IF NOT EXISTS `SCRIPTS` (
+DROP TABLE IF EXISTS `scripts`;
+CREATE TABLE IF NOT EXISTS `scripts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `synopsis` longtext NOT NULL,
   `creator` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `SCRIPTS`
+-- Dumping data for table `scripts`
 --
 
-INSERT INTO `SCRIPTS` (`id`, `name`, `synopsis`, `creator`) VALUES
+INSERT INTO `scripts` (`id`, `name`, `synopsis`, `creator`) VALUES
 (1, 'Aladdin Part 1', '...', 3),
 (2, 'Aladdin Part 2', '...', 3),
 (3, 'Wicked Script', 'This is the script for Wicked. Comments?', 1),
@@ -235,10 +272,11 @@ INSERT INTO `SCRIPTS` (`id`, `name`, `synopsis`, `creator`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `USER`
+-- Table structure for table `user`
 --
 
-CREATE TABLE IF NOT EXISTS `USER` (
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `password` varchar(200) NOT NULL,
   `role_id` int(11) NOT NULL,
@@ -246,13 +284,13 @@ CREATE TABLE IF NOT EXISTS `USER` (
   `email` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `role_id_2` (`role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=82 ;
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `USER`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `USER` (`id`, `password`, `role_id`, `active`, `email`) VALUES
+INSERT INTO `user` (`id`, `password`, `role_id`, `active`, `email`) VALUES
 (1, 'e193d4669eab0ae21d1acf37a98f95a605a8e86c210e9db02445bac62351dbdbd856ee8aca7b5953cde8f43c996a03b0', 1, 1, 'ray_admin@gmail.com'),
 (2, '5ecaf34c43cd885cdc8e67022427a78d9aa2b4881e9c69f814469bac18166ace601aae163ab647fc883846d1c2e42378', 1, 1, 'tameem_imamdad@gmail.com'),
 (3, '0984196b975cfb4660f50c9be5911d3fa5a595220987a1c6820f1e1253a1eae5ab94db02af53d0d1916448c0f4eadd54', 1, 1, 'charlie'),
@@ -261,27 +299,28 @@ INSERT INTO `USER` (`id`, `password`, `role_id`, `active`, `email`) VALUES
 (70, '403ed71753c01bbb9ae225f63cb34a9951694738a2f79b4ccfc1bae6507b6e22feb6542f60f677d23ad30516256aba1f', 4, 1, 'raihanahmed@gmail.com'),
 (71, 'a61fe22e1dc11a07ed766100d4726105caecb2cb463fd62979f110a2a4fb0b3f894db2f076eaa8570703e08deda455a4', 4, 1, 'leonardo_dicaprio@gmail.com'),
 (72, '093a5acd32bbd2cd5baa9b3a8c97bda16ea00da14e16568385bbcb09f28a475b158418c0632bc382d098c8a192596144', 3, 1, 'charlie_staff@gmail.com'),
-(73, 'f3be856efc23dd7872042a8e6d204b4952ddb89937b70814eb4077aa15760c0d83480427ace7d7ec1c1d75160592a541', 4, 1, 'charlie_actor@gmail.com'),
-(75, '8df1bd58222f1fb0bd85593252a95e7c9d526bfc04bf431e7195ccc48a033593edf4ebe4096b63e77e7e96d23e6800d1', 4, 1, 'tameem_actor@gmail.com'),
-(79, '7d5189792a14862355bc379d93603dac48ce206833644d733589d528f51a57378632bf58762a0a03e6d6679ee1535ac5', 4, 1, 'george_sankey@gmail.com'),
-(80, 'bc3ba3566a2fd26ec65a88a672b934ac23645eeeff9019d360ba08aa57a03f265533b1783e0910a7d4622beda9821c80', 4, 1, 'marshallcho@gmail.com');
+(73, 'f3be856efc23dd7872042a8e6d204b4952ddb89937b70814eb4077aa15760c0d83480427ace7d7ec1c1d75160592a541', 4, 0, 'charlie_actor@gmail.com'),
+(75, '8df1bd58222f1fb0bd85593252a95e7c9d526bfc04bf431e7195ccc48a033593edf4ebe4096b63e77e7e96d23e6800d1', 4, 0, 'tameem_actor@gmail.com'),
+(79, '7d5189792a14862355bc379d93603dac48ce206833644d733589d528f51a57378632bf58762a0a03e6d6679ee1535ac5', 4, 0, 'george_sankey@gmail.com'),
+(80, 'bc3ba3566a2fd26ec65a88a672b934ac23645eeeff9019d360ba08aa57a03f265533b1783e0910a7d4622beda9821c80', 4, 0, 'marshallcho@gmail.com');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `USER_SCRIPT`
+-- Table structure for table `user_script`
 --
 
-CREATE TABLE IF NOT EXISTS `USER_SCRIPT` (
+DROP TABLE IF EXISTS `user_script`;
+CREATE TABLE IF NOT EXISTS `user_script` (
   `user_id` int(11) NOT NULL,
   `script_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `USER_SCRIPT`
+-- Dumping data for table `user_script`
 --
 
-INSERT INTO `USER_SCRIPT` (`user_id`, `script_id`) VALUES
+INSERT INTO `user_script` (`user_id`, `script_id`) VALUES
 (3, 1),
 (3, 2),
 (1, 1),
@@ -291,20 +330,21 @@ INSERT INTO `USER_SCRIPT` (`user_id`, `script_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `USER_STATUS`
+-- Table structure for table `user_status`
 --
 
-CREATE TABLE IF NOT EXISTS `USER_STATUS` (
+DROP TABLE IF EXISTS `user_status`;
+CREATE TABLE IF NOT EXISTS `user_status` (
   `status_id` int(11) NOT NULL AUTO_INCREMENT,
   `status` varchar(11) NOT NULL,
   PRIMARY KEY (`status_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `USER_STATUS`
+-- Dumping data for table `user_status`
 --
 
-INSERT INTO `USER_STATUS` (`status_id`, `status`) VALUES
+INSERT INTO `user_status` (`status_id`, `status`) VALUES
 (-1, 'Rejected'),
 (0, 'Pending'),
 (1, 'Accepted');
@@ -312,40 +352,42 @@ INSERT INTO `USER_STATUS` (`status_id`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `VENUE`
+-- Table structure for table `venue`
 --
 
-CREATE TABLE IF NOT EXISTS `VENUE` (
+DROP TABLE IF EXISTS `venue`;
+CREATE TABLE IF NOT EXISTS `venue` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(1000) NOT NULL,
   `comments` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `VENUE`
+-- Dumping data for table `venue`
 --
 
-INSERT INTO `VENUE` (`id`, `name`, `comments`) VALUES
+INSERT INTO `venue` (`id`, `name`, `comments`) VALUES
 (1, 'Broadway Theatre', 'These are comments about the Broadway Theatre venue.'),
 (2, 'New York Hospital', 'This is a comment about the New York Hospital.');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `VENUE_CONTACT`
+-- Table structure for table `venue_contact`
 --
 
-CREATE TABLE IF NOT EXISTS `VENUE_CONTACT` (
+DROP TABLE IF EXISTS `venue_contact`;
+CREATE TABLE IF NOT EXISTS `venue_contact` (
   `venue_id` int(11) NOT NULL,
   `contact_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `VENUE_CONTACT`
+-- Dumping data for table `venue_contact`
 --
 
-INSERT INTO `VENUE_CONTACT` (`venue_id`, `contact_id`) VALUES
+INSERT INTO `venue_contact` (`venue_id`, `contact_id`) VALUES
 (1, 30),
 (2, 33);
 
@@ -354,10 +396,16 @@ INSERT INTO `VENUE_CONTACT` (`venue_id`, `contact_id`) VALUES
 --
 
 --
--- Constraints for table `USER`
+-- Constraints for table `notification`
 --
-ALTER TABLE `USER`
-  ADD CONSTRAINT `user_role_id_to_role_id` FOREIGN KEY (`role_id`) REFERENCES `ROLE` (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `notification`
+  ADD CONSTRAINT `notif_user` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_role_id_to_role_id` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

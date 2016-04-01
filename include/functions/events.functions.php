@@ -3,6 +3,9 @@
 /**
  * Requires $dbh and $_SESSION["user"] to be set
  */
+
+
+
 function getEvent($id) {
 
 	global $dbh;
@@ -22,5 +25,66 @@ function getEvent($id) {
 
 }
 
+
+function getAssignedEvents() {
+
+	global $dbh;
+        $user = $_SESSION["userid"];
+	if(!empty($user)) {
+		$authQuery = $dbh->prepare("
+                    SELECT s.id, s.show_name, s.show_status, s.from, s.to, r.status, r.id as eventUserid FROM event s 
+                    LEFT JOIN event_role_user r ON s.id = r.event_id 
+                    LEFT JOIN CONTACT c ON r.user_id = c.user_id 
+                    WHERE c.user_id = :user
+		");
+	    $authQuery->bindParam(':user', $user);
+	    $authQuery->execute();
+	    $authRows = $authQuery->rowCount();
+
+	    	return ($authRows > 0)? $authQuery->fetchAll() : null;
+		} else {
+			return null;	
+		}
+
+}
+
+
+function acceptEvent($rowId){
+
+        
+	global $dbh;
+        $user = $_SESSION["userid"];
+	if(!empty($user)) {
+			$acceptAccountQuery = $dbh->prepare("
+				UPDATE event_role_user u
+				SET u.status = 'Accepted'
+				WHERE u.id = :id" 
+				);
+			$acceptAccountQuery->bindParam(":id", $rowId);
+			$acceptAccountQuery->execute();
+                        return getAllAccountRequests();
+		}
+			return $rowId;
+		
+}
+
+function rejectEvent($rowId){
+
+        
+	global $dbh;
+        $user = $_SESSION["userid"];
+	if(!empty($user)) {
+			$acceptAccountQuery = $dbh->prepare("
+				UPDATE event_role_user u
+				SET u.status = 'Rejected'
+				WHERE u.id = :id" 
+				);
+			$acceptAccountQuery->bindParam(":id", $rowId);
+			$acceptAccountQuery->execute();
+                        return getAllAccountRequests();
+		}
+			return $rowId;
+		
+}
 
 ?>

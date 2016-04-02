@@ -6,9 +6,11 @@ var appModule = window.appModule ||
  * Renders account requests & other notifications
  */
 appModule.controller('EventMaintenanceController', ['EventMaintenanceService', '$scope', function(EventMaintenanceService, $scope) {
-
 	
-	$scope.accountRequestWindowSettings = {
+
+	$scope.eventMaintenanceWindow = {};
+
+	$scope.eventMaintenanceWindowSettings = {
 		height: 150,
 		width: 300, 
 		theme: 'energyblue',
@@ -21,12 +23,14 @@ appModule.controller('EventMaintenanceController', ['EventMaintenanceService', '
 			//console.log(event);
 		},
 		close: function () {
-			$scope.accountRequestGridSettings.apply('unselectrow');
+			//$scope.accountRequestGridSettings.apply('unselectrow');
 		}
 	};
-	$scope.jqxButtonNotifSettings = {
+
+	$scope.jqxButtonEventMaintenanceSettings = {
 		theme: 'energyblue'
 	};
+	/*
 	$scope.accountRequestGridSettings = {
 		altrows: true,
 		width:  '100%',
@@ -51,18 +55,19 @@ appModule.controller('EventMaintenanceController', ['EventMaintenanceService', '
 		$scope.accountRequestWindowSettings.apply('open');
 	    }	
 	};
-
+*/
+/*
 	NotifService.getAllAccountRequests().then(function(accountRequests){
 
 		$scope.accountRequests = accountRequests;
 
 	});	
-
+*//*
 	$scope.accountRequestManagement = function (service) {
 		 NotifService.accountRequestManagement(service, $scope.selectedAccountRequest.id).then(function(accountRequests) {
 		 	$scope.accountRequests = accountRequests;
 		 	$scope.accountRequestWindowSettings.apply('close');
 		 });
 	}
-
+*/
 }]);

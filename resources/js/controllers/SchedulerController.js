@@ -45,9 +45,9 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
             fields.locationContainer.hide();
             fields.colorContainer.hide();
 
-            var eventMaintenanceButton = $("<button id='eventMaintenanceButton' ng-click='openEventMaintenance()' style='margin-left: 5px; float:right; display:none;'>Event Maintenance</button>");
+            var eventMaintenanceButton = $("<button onclick='openEventMaintenance()'style='margin-left: 5px; float: right; height: 25px;' id='eventMaintenanceButton' role='button' class='jqx-rc-all jqx-button jqx-widget jqx-fill-state-normal'>Event Maintenance</button>");
             fields.buttons.append(eventMaintenanceButton);
-            eventMaintenanceButton.jqxButton({ theme: this.theme });
+            eventMaintenanceButton.jqxButton({theme: this.theme});
 
             var venueFieldsMap = {
                 "Venue Name": "comboboxVenueName",
@@ -197,12 +197,12 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
         //console.log('bindingComplete');
     });
 
+ 
     $scope.createScheduler = true;
 
 }); //end of then clause
- 
 
-     $scope.showMaintenance = function(service, data){
+    $scope.showMaintenance = function(service, data){
         SchedulerService.showMaintenance(service, data).then(function(sourceSchedule) {
             $scope.sourceSchedule = sourceSchedule;
             $('#legendbarbottomscheduler div:first-child').remove();
@@ -210,11 +210,6 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
         });
     };   
 
-/*$scope.openEventMaintenance = function(event){
-    console.log('open window');
-    $('#eventMaintenanceWindowDiv').css('display', 'inline');
-}
-*/
 
 }]); //end of SchedulerController
 
@@ -248,3 +243,8 @@ function schedulerAdapter(source){
         localData: source
     };
 }
+
+    function openEventMaintenance (){
+        console.log('EM opened');
+        angular.element($('#EventMaintenanceController')).scope().$apply();
+    };

@@ -9,7 +9,9 @@ error_reporting(E_ALL);
 // Authenticate use of API:
 require_once __DIR__ . '/../include/db/dbconfig.php';
 require __DIR__ . '/../include/Auth.php';
-require __DIR__ . '/../include/functions/assigneEvents.functions.php';
+//require __DIR__ . '/../include/functions/assigneEvents.functions.php';
+require __DIR__ . '/../include/functions/notifications.php';
+
 $auth = new OMBAuth($cfg, $dbh);
 
 if(!$auth->loggedIn()) {

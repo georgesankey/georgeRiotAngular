@@ -7,7 +7,7 @@ function getUserData($user=null) {
 
 	global $dbh;
 
-	if(empty($user) || $user == $_SESSION["user"]) {
+	if(empty($user) || $user == $_SESSION["userid"]) {
 		$authQuery = $dbh->prepare("
 			SELECT u.id, u.email, c.first_name, c.last_name, r.role_name, c.cell_number, c.home_number, c.work_number 
 			FROM USER u
@@ -19,22 +19,23 @@ function getUserData($user=null) {
 	    $authQuery->execute();
 	    $authRows = $authQuery->rowCount();
             
-          return ($authRows > 0)? $authQuery->fetchAll() : null;
-		} else {
-			return null;	
-		}
+          return ($authRows > 0)? $authQuery->fetch(PDO::FETCH_ASSOC) : null;
+	} 
+		//else {
+		//	return null;	
+		//}
 
 	// Validate Credentials
 	// For now, we haven't created access levels yet
 	// So using weird fix for now
 
-	if($user != $_SESSION["user"]) {
+	if($user != $_SESSION["userid"]) {
 
 		// Get personal data
 		$data = getUserData();
 
 		// Vet role
-		if($data["role_name"] == "Administrator") {
+		if($data['role_name'] == "Administrator") {
 			$authQuery = $dbh->prepare("
 				SELECT u.id, u.email, c.first_name, c.last_name, r.role_name, c.cell_number, c.home_number, c.work_number
 				FROM USER AS u
@@ -60,6 +61,7 @@ function getUserData($user=null) {
 	    }
 
 	}
+		return null;
 }
 
 ?>

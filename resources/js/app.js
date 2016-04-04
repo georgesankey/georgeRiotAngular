@@ -53,6 +53,10 @@ appModule.config(function($routeProvider) {
             controller:'MainController',
             templateUrl:'resources/views/event.html'
         })
+        .when('/u', {
+            controller:'ProfileController',
+            templateUrl:'resources/views/user.html'
+        })
         .when('/u/:id', {
             controller:'ProfileController',
             templateUrl:'resources/views/user.html'

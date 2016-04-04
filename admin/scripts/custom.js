@@ -113,7 +113,7 @@ $(document).ready(function() {
 		id:1,
 		name:"Test2",
 		comments:"This is a nice place",
-		contacts:"20,3",
+		contact:"20",
 		address:"17"
 	}, function(data) {
 		log("Testing Venue Edit/Post:");

@@ -28,11 +28,14 @@
 	<label for="venue-search">Find a Venue:</label>
 	<input class="form-control" type="text" />
 
-	<div class="venue-search-results" ng-show="venueSearch.length > 0">
+	<div class="venue-search-results" ng-show="venues.length > 0">
 	<br />
 		<ul class="list-min">
-			<li>
-				Results list :: Location
+			<li ng-repeat="venueItem in venues">
+				<a href="#/v/{{venueItem.id}}">
+				{{venueItem.name}} :: {{venueItem.street_1}}, 
+					{{venueItem.city}}, {{venueItem.state}}
+				</a>
 			</li>
 		</ul>
 	</div>

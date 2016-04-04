@@ -1,0 +1,42 @@
+
+<!-- This page is for searching over all venues
+	 Also serves as an entry point to venues -->
+
+<div class="row">
+<div class="col-md-3">
+<div class="panel panel-success">
+
+	<div class="panel-heading text-center">
+		<h4 class="panel-title">
+			<a href="#/create/v">Create a Venue</a>
+		</h4>
+	</div>
+</div>
+</div>
+</div>
+
+<div class="panel panel-info">
+
+	<div class="panel-heading">
+		<h4 class="panel-title">
+			Venue Search
+		</h4>
+	</div>
+
+	<div class="panel-body">
+
+	<label for="venue-search">Find a Venue:</label>
+	<input class="form-control" type="text" />
+
+	<div class="venue-search-results" ng-show="venueSearch.length > 0">
+	<br />
+		<ul class="list-min">
+			<li>
+				Results list :: Location
+			</li>
+		</ul>
+	</div>
+
+	</div>
+</div>
+

@@ -28,11 +28,26 @@ appModule.controller("VenueController", function(
 	};
 
 
-	//for getting all of the venues
+	// For getting all of the venues
 	VenueService.getAllVenues().then(function(venues) {
 		$scope.venues = venues;
 	});
 
+	// Filter search on venues
+	$scope.venueSearch = [];
+	$scope.venueQuery = "";
+	$scope.filterVenues = function() {
+		var query = $scope.venueQuery.toLowerCase();
 
+		if(!$scope.venues || $scope.venues.length < 1 
+				|| query.trim() == "") {
+			$scope.venueSearch = [];
+			return false;
+		}
+
+		$scope.venueSearch = $scope.venues.filter(function(e) {
+			return e.name ? e.name.toLowerCase().indexOf(query) > -1 : false;
+		});
+	};
 
 });

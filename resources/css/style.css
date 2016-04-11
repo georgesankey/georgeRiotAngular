@@ -46,7 +46,9 @@ body {
     border-radius: 20px;
 }
 
-
+#selectDate{
+  width:103px;
+}
 @media (max-width: 767px) {
     .header{
         text-align : center;

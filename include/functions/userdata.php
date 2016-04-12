@@ -61,7 +61,7 @@ function getUserData($user=null) {
 	    }
 
 	}
-		return null;
+	return null;
 }
 
 ?>

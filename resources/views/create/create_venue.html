@@ -20,16 +20,37 @@
 				<label for="name">Name</label>
 			</div>
 			<div class="col-sm-9">
-				<input type="text" name="name" class="form-control"/>
+				<input type="text" name="name" ng-model="newVenue.name" class="form-control"/>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-sm-2 col-sm-offset-1">
-				<label for="location">Location</label>
+				<label for="street">Street</label>
 			</div>
 			<div class="col-sm-9">
-				<input type="text" name="location" class="form-control"/>
+				<input type="text" name="street" ng-model="newAddress.street_1" class="form-control"/>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-2 col-sm-offset-1">
+				<label for="city">City</label>
+			</div>
+			<div class="col-sm-3">
+				<input type="text" name="city" ng-model="newAddress.city" class="form-control"/>
+			</div>
+			<div class="col-sm-1">
+				<label for="state">State</label>
+			</div>
+			<div class="col-sm-2">
+				<input type="text" name="state" ng-model="newAddress.state" class="form-control" value="NY"/>
+			</div>
+			<div class="col-sm-1">
+				<label for="zip">Zip</label>
+			</div>
+			<div class="col-sm-2">
+				<input type="text" name="state" ng-model="newAddress.zipcode" class="form-control"/>
 			</div>
 		</div>
 
@@ -38,7 +59,7 @@
 				<label for="description">Description</label>
 			</div>
 			<div class="col-sm-9">
-				<textarea name="description" class="form-control"></textarea>
+				<textarea name="description" ng-model="newVenue.comments" class="form-control"></textarea>
 			</div>
 		</div>
 
@@ -49,11 +70,14 @@
 				<label for="contact">Contact</label>
 			</div>
 			<div class="col-sm-9">
-				<input type="text" name="contact-search" class="form-control" />
+				<input type="text" name="contact-search" class="form-control" 
+					ng-model="contactSearch" ng-change="filterContacts()" />
 
 				<ul class="list-min list-selectable contact-list">
-					<li>Test</li>
-					<li>Filter</li>
+					<li ng-repeat="ct in contacts" ng-hide="contacts.length == 0" 
+						ng-click="setContact(ct)">
+						{{ct.last_name}}, {{ct.first_name}} || {{ct.cell_number}}
+					</li>
 				</ul>
 
 				<p>
@@ -130,14 +154,14 @@
 				</div>
 
 				<!-- Once searched, use this as true contact -->
-				<input type="hidden" name="contact" value=""/>
+				<input type="hidden" ng-model="newVenue.contact" name="contact" value=""/>
 			</div>
 
 		</div>
 		
 		<div class="row">
 			<div class="col-sm-12">
-				<input type="submit" class="btn btn-success pull-right"/>
+				<input type="submit" class="btn btn-success pull-right" ng-click="submitVenue()" />
 			</div>
 		</div>
 	</form>

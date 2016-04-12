@@ -3,7 +3,8 @@ var appModule = window.appModule ||
 	angular.module("ScheduleApp", ['ngRoute', 'jqwidgets']);
 
 appModule.controller("VenueController", function(
-			$rootScope, $scope, $location, $routeParams, VenueService, UserService) {
+			$rootScope, $scope, $location, $routeParams, 
+				AddressService, VenueService, ContactService) {
 
 	// For rendering a venue
 	$scope.venueId=$routeParams.id;
@@ -18,15 +19,6 @@ appModule.controller("VenueController", function(
 	        $scope.venue = venue;
 	    });
 	}
-
-	// For creating a venue
-	$scope.newVenue = {
-		name: "",
-		comments: "",
-		contacts: [],
-		address: {}
-	};
-
 
 	// For getting all of the venues
 	VenueService.getAllVenues().then(function(venues) {
@@ -48,6 +40,70 @@ appModule.controller("VenueController", function(
 		$scope.venueSearch = $scope.venues.filter(function(e) {
 			return e.name ? e.name.toLowerCase().indexOf(query) > -1 : false;
 		});
+	};
+
+	/////////////////////////////////////////////////////////////////////
+	// For creating a venue
+	$scope.newVenue = {
+		name: "",
+		comments: "",
+		contact: 0,
+		address: 0
+	};
+
+	$scope.newAddress = {
+		street_1:"",
+		zipcode:"",
+		state:"NY",
+		city:"",
+		owner_type:2
+	};
+
+	$scope.newContact = {
+		first_name:"",
+		last_name:"",
+		cell_number:"",
+		work_number:"",
+		home_number:"",
+		details:""
+	};
+
+	// Log details first
+	$scope.submitVenue = function() {
+		console.log($scope.newVenue);
+		console.log($scope.newAddress);
+		console.log($scope.newContact);
+	};
+
+	// Contact list
+	$scope.contactSearch = "";
+	$scope.AllContacts = [];
+	$scope.contacts = [];
+	$scope.filterContacts = function() {
+		var needle = $scope.contactSearch.toLowerCase();
+		$scope.contacts = $scope.AllContacts.filter(function(e) {
+			if(e.first_name.toLowerCase().indexOf(needle) > -1) {
+				return true;
+			}
+			if(e.last_name.toLowerCase().indexOf(needle) > -1) {
+				return true;
+			}
+			if(e.details.toLowerCase().indexOf(needle) > -1) {
+				return true;
+			}
+			return false;
+		});
+		if($scope.contacts.length > 5) {
+			$scope.contacts = $scope.contacts.slice(0,5);
+		}
+	};
+	ContactService.getAllContacts().then(function(contacts) {
+		$scope.AllContacts = contacts;
+	});
+	$scope.setContact = function(ct) {
+		$scope.newVenue.contact = ct.id;
+		$scope.contactSearch = ct.last_name+", "+ct.first_name+" || "+ct.cell_number;
+		$scope.contacts = [];
 	};
 
 });

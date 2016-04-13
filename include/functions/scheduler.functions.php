@@ -21,7 +21,42 @@ function getAllEventsForScheduler() {
 	");
 
     $eventQuery->execute();
-    return $eventQuery->fetchAll(PDO::FETCH_ASSOC);  
+
+
+    $statusArray = array(
+    	array(
+            "id" => -1,
+            "show_name" => "Scheduled",
+            "comments" => "...",
+            "show_status" => "Scheduled",
+            "from_date" => "2011-03-16 17:00:00",
+            "to_date" => "2011-03-16 17:00:00",
+            "administrator" => 1,
+            "venue_id" => 1
+        ),
+      	array(
+            "id" => 0,
+            "show_name" => "Deferred",
+            "comments" => "...",
+            "show_status" => "Deferred",
+            "from_date" => "2011-03-16 18:00:00",
+            "to_date" => "2011-03-16 18:00:00",
+            "administrator" => 1,
+            "venue_id" => 1
+        ),    	
+        array(
+            "id" => 1,
+            "show_name" => "Cancelled",
+            "comments" => "...",
+            "show_status" => "Cancelled",
+            "from_date" => "2011-03-16 19:00:00",
+            "to_date" => "2011-03-16 19:00:00",
+            "administrator" => 1,
+            "venue_id" => 1
+        ) 	
+    );
+
+    return array_merge($statusArray, $eventQuery->fetchAll(PDO::FETCH_ASSOC));  
 }
 
 
@@ -33,13 +68,13 @@ function addEvent($data){
 	$eventQuery = "INSERT INTO EVENT(administrator, show_name, show_status, from_date, to_date, repeat_status, venue_id, comments, created_time)
 		VALUES (" 
 		. "'" . $data->administrator . "',"
-		. "'" . $data->show_name . "',"
+		. "'" . addslashes($data->show_name) . "',"
 		. "'" . $data->show_status . "',"
 		. "'" . $data->from_date . "',"
 	    . "'" . $data->to_date . "',"
 		. "'" . $repeatStatus . "',"
 		. "'" . $data->venue_id . "',"
-		. "'" . $data->comments . "',"
+		. "'" . addslashes($data->comments) . "',"
 		. "'" . $data->created_time . "')";
 
 	$eventQuery = $dbh->prepare($eventQuery);
@@ -63,14 +98,16 @@ function changeEvent($data){
 
 	global $dbh;	
 	$eventQuery = $dbh->prepare("UPDATE EVENT 
-		SET show_name = :show_name, comments = :comments, show_status = :show_status, from_date = :from_date, to_date = :to_date, venue_id = :venue_id
-		WHERE id= :id");
-	$eventQuery->bindParam(":show_name", $data->show_name);
+		SET show_name = :show_name, comments = :comments, show_status = :show_status, from_date = :from_date, to_date = :to_date" . (is_null($data->venue_id) ? 
+		"" : ", venue_id = :venue_id") . " WHERE id= :id");
+	$showName = addslashes($data->show_name);
+	$showComments = addslashes($data->comments);
+	$eventQuery->bindParam(":show_name", $showName);
 	$eventQuery->bindParam(":show_status", $data->show_status);
-	$eventQuery->bindParam(":comments", $data->comments);
+	$eventQuery->bindParam(":comments", $showComments);
 	$eventQuery->bindParam(":from_date", $data->from_date);
 	$eventQuery->bindParam(":to_date", $data->to_date);
-	$eventQuery->bindParam(":venue_id", $data->venue_id);
+	if(isset($data->venue_id)) $eventQuery->bindParam(":venue_id", $data->venue_id);
 
 	$eventQuery->bindParam(":id", $data->id);
 	$eventQuery->execute();

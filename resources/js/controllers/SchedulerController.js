@@ -5,9 +5,11 @@ var appModule = window.appModule ||
 /**
  * SchedulerController 
  */
-appModule.controller('SchedulerController', ['SchedulerService', 'VenueService', 'UserService', '$scope', '$q', function(SchedulerService, VenueService, UserService, $scope, $q) {
+appModule.controller('SchedulerController', ['SchedulerService', 'VenueService', 'UserService', '$rootScope', '$scope', '$q', '$route', function(SchedulerService, VenueService, UserService, $rootScope, $scope, $q, $route) {
     
     $scope.createScheduler = false;
+    $scope.selectedEvent = null;
+
     var schedParam = SchedulerService.getAllEventsForScheduler();
     var venuesParam = VenueService.getAllVenues();
     var userParam = UserService.getSessionUserData();
@@ -26,13 +28,19 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
         view: 'weekView',
         showLegend: true,
         editDialog: true,
+        theme: 'energyblue',
         created: function (args) {
-            args.instance.ensureAppointmentVisible('2');
+            //args.instance.ensureAppointmentVisible('2');
         },
         editDialogCreate: function(event){
+
             var args = event.args;
             var appointment = args.appointment;
             var fields = args.fields;
+
+            if($rootScope.user.role_name !== "Administrator"){
+                
+            }
 
             fields.subjectLabel.html("Show Name");
             fields.fromLabel.html("Start Time");
@@ -45,9 +53,15 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
             fields.locationContainer.hide();
             fields.colorContainer.hide();
 
-            var eventMaintenanceButton = $("<button onclick='openEventMaintenance()'style='margin-left: 5px; float: right; height: 25px;' id='eventMaintenanceButton' role='button' class='jqx-rc-all jqx-button jqx-widget jqx-fill-state-normal'>Event Maintenance</button>");
+            var eventMaintenanceButton = $("<button class='jqx-rc-all jqx-button jqx-widget jqx-fill-state-normal' style='float:right;' id='eventMaintenanceButton'>Event Maintenance</button>");
             fields.buttons.append(eventMaintenanceButton);
-            eventMaintenanceButton.jqxButton({theme: this.theme});
+            eventMaintenanceButton.jqxButton({theme: 'energyblue'});
+
+            $('#eventMaintenanceButton').on('click', function(event) {
+                angular.element('#eventMaintenanceController').scope().showEMWindow(
+                   angular.element("#SchedulerController").scope().selectedEvent
+                );     
+            });
 
             var venueFieldsMap = {
                 "Venue Name": "comboboxVenueName",
@@ -89,6 +103,9 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
 
         },
         editDialogOpen: function(event){
+                console.log('open');
+                console.log($('#dialogscheduler div:last-child button:visible'));
+
             var args = event.args;
             var appointment = args.appointment;
 
@@ -106,16 +123,20 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
                         });
                     }
                 });
+                $scope.selectedEvent = appointment.id;
             } else {
                 //new appointment
-                $('#eventMaintenanceButton').css('display', 'none');  
+                if($rootScope.user.role_name === "Administrator"){
 
-                VenueService.getVenue($scope.venues[0].id).then(function(venueItem) {
-                    updateVenueFields(venueItem);   
-                });
+                    $('#eventMaintenanceButton').css('display', 'none');  
 
-                $("#comboboxVenueName").jqxDropDownList('selectedIndex', 0);
-                $('#adminField').val($scope.currentUser.first_name + " " + $scope.currentUser.last_name + " (" + $scope.currentUser.email + ")");
+                    VenueService.getVenue($scope.venues[0].id).then(function(venueItem) {
+                        updateVenueFields(venueItem);   
+                    });
+
+                    $("#comboboxVenueName").jqxDropDownList('selectedIndex', 0);
+                    $('#adminField').val($scope.currentUser.first_name + " " + $scope.currentUser.last_name + " (" + $scope.currentUser.email + ")");
+                } 
             }
 
                 $("#comboboxVenueName").on('change', function (event) {
@@ -127,7 +148,6 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
                         });
                     }
                 });
-
         },      
         resources:
         {
@@ -161,7 +181,7 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
         var postEventData = {
             "id" : appointment.id,   
             "show_name" : appointment.subject.toString(),
-            "venue_id" :  $scope.venues[$("#comboboxVenueName").jqxDropDownList('selectedIndex')].id,
+            "venue_id" :  $("#comboboxVenueName").length == 0? null : $scope.venues[$("#comboboxVenueName").jqxDropDownList('selectedIndex')].id,
             "from_date": appointment.from.toString(), 
             "to_date": appointment.to.toString(),
             "comments": appointment.description.toString(),
@@ -196,20 +216,17 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
     }).on('bindingComplete', function(event) {
         //console.log('bindingComplete');
     });
-
- 
-    $scope.createScheduler = true;
-
-}); //end of then clause
-
-    $scope.showMaintenance = function(service, data){
+     $scope.showMaintenance = function(service, data){
         SchedulerService.showMaintenance(service, data).then(function(sourceSchedule) {
             $scope.sourceSchedule = sourceSchedule;
             $('#legendbarbottomscheduler div:first-child').remove();
             $('#scheduler').jqxScheduler({source: new $.jqx.dataAdapter(schedulerAdapter($scope.sourceSchedule))});
         });
-    };   
+    }; 
 
+    $scope.createScheduler = true;
+
+}); //end of then clause
 
 }]); //end of SchedulerController
 
@@ -224,7 +241,6 @@ function updateVenueFields(venue){
     $('#venueContactNumber').val(contactNumber);
     $('#venueComments').val(venue.comments); 
 } 
-
 
 function schedulerAdapter(source){
     return {
@@ -243,8 +259,3 @@ function schedulerAdapter(source){
         localData: source
     };
 }
-
-    function openEventMaintenance (){
-        console.log('EM opened');
-        angular.element($('#EventMaintenanceController')).scope().$apply();
-    };

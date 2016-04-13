@@ -14,7 +14,7 @@ appModule.config(function($routeProvider) {
         .when('/scheduler', {
             controller:'SchedulerController',
             templateUrl:'resources/views/scheduler.html'
-        })
+        })      
         .when('/pay', {
             controller:'MainController',
             templateUrl:'resources/views/pay.html'

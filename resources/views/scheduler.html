@@ -1,23 +1,82 @@
 <!-- Display calendar related information and filters  -->
-<div class="panel panel-info">
+<div class="panel panel-info" id="SchedulerController">
     <div class="panel-heading">
-        <h4 class="panel-title">Scheduler</h4>
+        <h4 class="panel-title">Scheduler</h4> 
     </div>
-
      <div class="panel-body">
-        <jqx-scheduler jqx-create="createScheduler" id="scheduler" jqx-settings="settings">
-
-
-
-    </jqx-scheduler>
-    <div ng-controller="EventMaintenanceController" style="display:none;" id="EventMaintenanceController">
-    <jqx-window  id="eventMaintenanceWindow" jqx-instance="eventMaintenanceWindow" jqx-settings="eventMaintenanceWindowSettings">
-			<div>Event Maintenance</div>
-			<div>
-				<h5>Do you want to approve or reject s account request?</h5>
-			</div>
-			</jqx-window>
-		</div>
+        <jqx-scheduler jqx-create="createScheduler" id="scheduler" jqx-settings="settings"></jqx-scheduler>
     </div>
 </div>
+<div id="eventMaintenanceController" ng-controller="EventMaintenanceController">
+   <jqx-window jqx-settings="eventMaintenanceWindowSettings">
+     <div>Event Maintenance</div>
+     <div>
+        <jqx-tabs jqx-width="'100%'" jqx-height="'100%'">
+            <ul style='margin-left: 20px;'>
+                <li>Users</li>
+                <li>Scripts</li>
+            </ul>
+            <div class="row">
+                    <div class="col-md-3" style="float: right;">    
+                        <label for="searchEMUsersInput" class="control-label">Search Users:</label><br><br>
+                        <jqx-input id="searchEMUsersInput" jqx-display-member="'display_member'" jqx-value-member="'value_member'" ng-model="EMUser" jqx-source="EMDataAdapterUsers" jqx-width="300" jqx-height="25" jqx-place-holder="'Enter a Name'"></jqx-input><br><br>
+                        <label>Email: </label>{{EMUser.value | splitFunction:',':1}} <br>
+                        <label>First Name: </label>{{EMUser.value | splitFunction:',':2}} <br>
+                        <label>Last Name: </label>{{EMUser.value | splitFunction:',':3}} <br>
+                        <label>Cell Number: </label>{{EMUser.value | splitFunction:',':4}}<br>
+                        <label>Home Number: </label>{{EMUser.value | splitFunction:',':5}}<br>
+                        <label>Work Number: </label>{{EMUser.value | splitFunction:',':6}} <br>
+                        <label>Show Role: </label>
+                        <jqx-drop-down-list id="showRoleDropDownList" ng-model="selectedShowRoleValue" jqx-ng-model jqx-settings="showRoleDropDownListSettings"></jqx-drop-down-list>
+                        <br /><br />
+                        <jqx-button jqx-settings="addUserButtonSettings">Add User</jqx-button>
+                    </div>
+                    <div class="col-md-9">
+                        <label for="currentUsersGrid" class="control-label">Current Users:</label>
+                        <jqx-grid jqx-create="gridsConstrFinished" id="currentUsersGrid" jqx-source="currentUsersResults" jqx-instance="currentUsersGrid" jqx-settings="currentUsersGridSettings">
+                        </jqx-grid> 
+                    </div>
+            </div>
+            <div class="row">
+                    <div class="col-md-2" style="float: right;">    
+                        <label for="searchEMScriptsInput" class="control-label">Search Scripts:</label><br><br>
+                        <jqx-input id="searchEMScriptsInput" jqx-display-member="'script_display_member'" jqx-value-member="'script_value_member'" ng-model="EMScript" jqx-source="EMDataAdapterScripts" jqx-width="300" jqx-height="25" jqx-place-holder="'Enter a Script'"></jqx-input><br><br>
+                        <label>ID: </label>{{EMScript.value | splitFunction:',':0}} <br>
+                        <label>Name: </label>{{EMScript.value | splitFunction:',':1}} <br>
+                        <label>Synopsis: </label>{{EMScript.value | splitFunction:',':2}} <br>
+                        <label>Creator: </label>{{EMScript.value | splitFunction:',':3}}<br>
+                        <label>Owners: </label>{{EMScript.value | splitFunction:',':4}}<br>
 
+                        <br /><br />
+                        <jqx-button jqx-settings="addScriptButtonSettings">Add Scripts</jqx-button>
+                    </div>
+                    <div class="col-md-10">
+                        <label for="currentScriptsGrid" class="control-label">Current Scripts:</label>
+                        <jqx-grid jqx-create="gridsConstrFinished" id="currentScriptsGrid" jqx-source="currentScriptsResults" jqx-instance="currentScriptsGrid" jqx-settings="currentScriptsGridSettings">
+                        </jqx-grid> 
+                    </div>    
+             </div>
+        </jqx-tabs>
+        <jqx-window jqx-create="deleteUserWindowFlag" id="currentUserDeleteWindow" jqx-settings="currentUserDeleteWindowSettings">
+            <div>User Removal Prompt</div>
+            <div>
+                <h5>Do you want to remove {{selectedCurrentDeleteUser.first_name}} {{selectedCurrentDeleteUser.last_name}} from the show?</h5>
+                <div align="center">
+                    <jqx-button id="yesDeleteUserButton" jqx-settings="jqxButtonsEMSettings">Yes</jqx-button>&nbsp;&nbsp;
+                    <jqx-button id="noDeleteUserButton" jqx-settings="jqxButtonsEMSettings">No</jqx-button>
+                </div>
+            </div>
+        </jqx-window>
+        <jqx-window jqx-create="deleteScriptWindowFlag" id="currentScriptDeleteWindow" jqx-settings="currentScriptDeleteWindowSettings">
+            <div>Script Removal Prompt</div>
+            <div>
+                <h5>Do you want to remove the script '{{selectedCurrentDeleteScript.name}}' from the show?</h5>
+                <div align="center">
+                    <jqx-button id="yesDeleteScriptButton" jqx-settings="jqxButtonsEMSettings">Yes</jqx-button>&nbsp;&nbsp;
+                    <jqx-button id="noDeleteScriptButton" jqx-settings="jqxButtonsEMSettings">No</jqx-button>
+                </div>
+            </div>
+        </jqx-window>                             
+    </div> 
+  </jqx-window>
+</div>

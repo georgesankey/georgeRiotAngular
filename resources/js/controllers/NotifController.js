@@ -13,7 +13,6 @@ appModule.controller('NotifController', ['NotifService', '$scope', function(Noti
 	$scope.accountRequestWindowSettings = {
 		height: 150,
 		width: 300, 
-		theme: 'energyblue',
 		isModal: true,
 		autoOpen: false,
 		draggable: true,
@@ -27,13 +26,11 @@ appModule.controller('NotifController', ['NotifService', '$scope', function(Noti
 		}
 	};
 	$scope.jqxButtonNotifSettings = {
-		theme: 'energyblue'
 	};
 	$scope.accountRequestGridSettings = {
 		altrows: true,
 		width:  '100%',
-		height: 300, 
-		theme: 'energyblue',
+		autoHeight: true,
 		ready: function () {
 			//$scope.accountRequestGrid.selectrow(0);
 		},

@@ -3,9 +3,9 @@ var appModule = window.appModule ||
         angular.module("ScheduleApp", ['ngRoute', 'jqwidgets']);
 
 /**
- * Controller for Dashboard view
+ * Controller for Admin view
  */
-appModule.controller("DashController", function ($rootScope, $scope, $http) {
+appModule.controller("AdminController", function ($rootScope, $scope, $http) {
     $scope.upcoming = [{
             _start: "3:00PM",
             _end: "4:00PM",
@@ -35,7 +35,7 @@ appModule.controller("DashController", function ($rootScope, $scope, $http) {
       console.log(data);
         }); */
 
-   $http.get("api/notifications.php?action=getNotification")
+            $http.get("api/notifications.php")
     .then(function(response) {
         $scope.myNotifications = response.data;
     });
@@ -207,38 +207,6 @@ appModule.controller("DashController", function ($rootScope, $scope, $http) {
     });
     
         $("#notifGrid").jqxGrid('setcellvalue', rowid, "status", "Rejected");
-    };
-
-
-
-
-
-        $scope.addNotif = function () {
-        
-     var userid = 2;
-     var showid = 3;
-     var message = "this is a test addddddddddd";
-     var date = null;
-     var type = 2;
-
-      $http.post('api/notifications.php?action=addNotification', 
-        {
-            'userid'  : userid,
-            'showid'  : showid,
-            'message'  : message,
-            'date'  : date,
-            'type'  : type,
-        }
-    )
-
-    .success(function (data, status, headers, config) {
-        console.log("The notification has been added");
-    })
-
-    .error(function(data, status, headers, config) {
-        console.log("Failed to add the status to DB ");
-    });
-    
     };
 
 });

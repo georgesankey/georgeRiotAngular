@@ -13,6 +13,8 @@ function getNotifications() {
 			SELECT *
 			FROM NOTIFICATION
 			WHERE userId = :user
+			ORDER BY timestamp DESC
+			LIMIT 5
 		");
 	    $authQuery->bindParam(':user', $user);
 	    $authQuery->execute();
@@ -61,6 +63,55 @@ function getNotifications() {
 	    }
 
 	}
+}
+
+
+
+function addNotification($userid, $showid,$message,$date,$type){
+
+        
+	global $dbh;
+	if(!empty($userid)) {
+
+					// Create new
+		$authQuery = $dbh->prepare("
+			INSERT INTO NOTIFICATION (
+				userId, 
+				show_id,
+				message,
+				date,
+				type,
+				timestamp
+			) 
+			VALUES (
+				:userid,
+				:showid,
+				:message,
+				:date,
+				:type,
+				:timestamp
+			)
+		");
+		$curr_timestamp = date('Y-m-d H:i:s');
+		$authQuery->bindParam(':userid', $userid);
+		$authQuery->bindParam(':showid',$showid);
+		$authQuery->bindParam(':message', $message);
+		$authQuery->bindParam(':date', $date);
+		$authQuery->bindParam(':type', $type);
+		$authQuery->bindParam(':timestamp', $curr_timestamp);
+
+
+	    if ($authQuery->execute()) {
+	    	return "Success";
+	    }else {
+	    	return "Failed: ".$authQuery->errorInfo();
+	    }
+
+}
+else {
+			return 'erorr bruh';	
+		}	
+            
 }
 
 ?>

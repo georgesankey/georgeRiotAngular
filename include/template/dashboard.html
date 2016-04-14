@@ -40,6 +40,11 @@
                     Pay
                 </a>
             </li>
+                        <li ng-class="{active:isPage('admin')}">
+                <a href="#/admin">
+                    Admin
+                </a>
+            </li>
         </ul>
         {/literal}
         
@@ -154,6 +159,12 @@
                     <a href="#/pay">
                         <span class="glyphicon glyphicon-tags"></span>
                         <span class="hidden-xs">&nbsp;Pay</span>
+                    </a>
+                </li>
+                <li ng-class="{active:isPage('admin')}">
+                    <a href="#/admin">
+                        <span class="glyphicon glyphicon-wrench"></span>
+                        <span class="hidden-xs">&nbsp;Admin</span>
                     </a>
                 </li>
             </ul>

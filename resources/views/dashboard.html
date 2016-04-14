@@ -47,13 +47,20 @@
 		</div>
 			<ul class="list notifications-list">
 
-				<li ng-hide="notifications.length == 0" ng-repeat="notif in notifications">
-					<div class="alert" ng-class="notif.type">
-				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+<!--			<ul>
+			  <li ng-repeat="x in myNotifications">
+			    {{ x.id + ', ' + x.message }}
+			  </li>
+			</ul> -->
 
-						{{notif.text}}
+				<a href="/event/{{notif.show_id}}" class="close" data-dismiss="alert" aria-label="close">
+				<li ng-hide="notifications.length == 0" ng-repeat="notif in myNotifications">
+					<div class="alert" ng-class="{'alert-info' : notif.type == 0  , 'alert-warning' : notif.type == 1 , 'alert-danger' : notif.type == 2}">
+				<a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						{{notif.message}}
 					</div>
 				</li>
+				</a>
 
 				<li ng-show="notifications.length == 0">You have no notifications</li>
 			</ul>
@@ -85,6 +92,7 @@
                             </div>
                             <div class="panel-body">
                                     None
+                                    <button id='rejectButton" + row + "' ng-click='addNotif()'> Add notification test</button>
                             </div>
                             </div>
                     </div>

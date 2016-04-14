@@ -68,6 +68,10 @@ appModule.config(function($routeProvider) {
         .when('/404', {
             templateUrl:'resources/views/404.html'
         })
+        .when('/admin', {
+            controller:'AdminController',
+            templateUrl:'resources/views/admin.html'
+        })
 	    .otherwise({
 	        redirectTo:'/404'
 	    });

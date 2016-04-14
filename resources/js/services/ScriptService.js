@@ -28,7 +28,9 @@ appModule.factory('ScriptService', function($http, $q) {
     // Use promise to chain requests
     var newScript = function(script) {
         var deferred = $q.defer(); 
-        $http.post(route, script).success(function(data) {
+        $http.post(route, $.param(script), {
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(data) {
             deferred.resolve(data);
         });
         return deferred.promise;
@@ -36,7 +38,9 @@ appModule.factory('ScriptService', function($http, $q) {
 
     var editScript = function(script) {
         var deferred = $q.defer(); 
-        $http.post(route, script).success(function(data) {
+        $http.post(route, $.param(script), {
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(data) {
             deferred.resolve(data);
         });
         return deferred.promise;

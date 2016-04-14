@@ -19,8 +19,10 @@ appModule.factory('AddressService', function($http, $q) {
 
     var editAddress = function(address) {
         var deferred = $q.defer(); 
-        var postData = {data:JSON.stringify(address)};
-        $http.post(route, postData).success(function(data) {
+        var postData = JSON.stringify(address);
+        $http.post(route, $.param({data:postData}), {
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(data) {
             deferred.resolve(data);
         });
         return deferred.promise;

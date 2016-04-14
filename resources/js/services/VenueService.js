@@ -30,10 +30,22 @@ appModule.factory('VenueService', function($http, $q) {
         }
         return deferred.promise;
     };
+
+    var editVenue = function(venue) {
+        var deferred = $q.defer();
+        $http.post(route+"?func=editVenue", $.param(venue), {
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function (data) {
+            allVenues = undefined;
+            deferred.resolve(data);         
+        });
+        return deferred.promise;
+    };
     
     return {
         getVenue: getVenue,
-        getAllVenues: getAllVenues
+        getAllVenues: getAllVenues,
+        editVenue: editVenue
     };  
     
 });

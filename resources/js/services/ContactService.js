@@ -36,7 +36,9 @@ appModule.factory('ContactService', function($http, $q) {
 
     var editContact = function(contact) {
         var deferred = $q.defer();
-        $http.post(route, contact).success(function (data) {
+        $http.post(route, $.param(contact), {
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function (data) {
             contacts = undefined; // Clear old list
             deferred.resolve(data);
         });

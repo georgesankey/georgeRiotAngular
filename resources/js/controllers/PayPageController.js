@@ -77,9 +77,9 @@ appModule.controller('PayPageController', ['PayPageService', '$scope', function(
                  ],
                  localdata: sites
             };
-var travel = [
-                 { value: "20", label: "20" },
-                 { value: "30", label: "30" },
+        var travel = [
+                 { value: "20", label: "$20" },
+                 { value: "30", label: "$30" },
                  ];
              var travelSource =
             {
@@ -147,7 +147,7 @@ var travel = [
                 },
         rendertoolbar: function (toolbar) {
                     var me = this;
-        var container = $("<div style='margin: 5px;'></div>");
+                    var container = $("<div style='margin: 5px;'></div>");
                     toolbar.append(container);
                     container.append('<input id="addrowbutton" type="button" value="Add New Row" />');
                     container.append('<input style="margin-left: 5px;" id="deleterowbutton" type="button" value="Delete Selected Row" />');
@@ -196,11 +196,17 @@ var travel = [
         $scope.timeSheetWindowSettings.apply('open');
         }   
     };
+
+    //$(#date).html("<div>From: " + selection.from.toLocaleDateString() + " <br/>To: " + selection.to.toLocaleDateString() + "</div>");}
+                    
     $scope.dateInputSettings =
             {
                 width: 200,
                 height: 30,
-                formatString: 'd'
+                formatString: 'd',
+                animationType: 'fade',
+                selectionMode: 'range'
+
             }
     $scope.date = Date.now();
       

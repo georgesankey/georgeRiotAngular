@@ -19,19 +19,20 @@
 
 
 
-<div class="panel-body"  style="width: 100% margin-bottom:10px margin-left:38px">  
-<div id="selectDate"class="jqx-scheduler-edit-dialog-label" style="width:120px;">   Date : <span ng-show="date"> {{date | date: "M/d/yyyy"}}</span></div>
+<div class="panel-body"  style="width: 100% margin-bottom:10px margin-left:38px">  <!--
+<label id="selectDate"class="jqx-scheduler-edit-dialog-label" style="width:120px;">   Date : <span ng-show="date"> </span></label>
+{{date | date: "M/d/yyyy"}} -->
 
-</br></br></br>
-<div style="margin-left:2%">
-<table style="float:left; ">
+
+<table style="float:right; margin-bottom: 100px; ">
   <tr>
-<td id="datepicker" class="jqx-scheduler-edit-dialog-label" style="width:90px; margin-bottom:15px "> Select Date </td>
-  <td>
+    <td>
+     <!-- <label for="date"> Select Range</label> -->
+  
 <jqx-date-time-input ng-model="date" jqx-settings="dateInputSettings" style="display:inline-block;"></jqx-date-time-input>     </td>
 </tr>
 </table>
-</div>
+
             <jqx-grid id="jqxgrid" jqx-source="timeSheet" jqx-settings="timeSheetGridSettings"></jqx-grid>  
             <jqx-window id="timeSheetWindow" jqx-settings="timeSheetWindowSettings">
 

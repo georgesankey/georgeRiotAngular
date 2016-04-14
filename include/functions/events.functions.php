@@ -32,9 +32,9 @@ function getAssignedEvents() {
         $user = $_SESSION["userid"];
 	if(!empty($user)) {
 		$authQuery = $dbh->prepare("
-                    SELECT s.id, s.show_name, s.show_status, s.from, s.to,z.role_name, r.status, r.id as eventUserid FROM event s 
-                    LEFT JOIN event_role_user r ON s.id = r.event_id
-                    LEFT JOIN role z ON r.role_id = z.role_id  
+                    SELECT s.id, s.show_name, s.show_status, s.from, s.to,z.role_name, r.status, r.id as eventUserid FROM EVENT s 
+                    LEFT JOIN EVENT_ROLE_USER r ON s.id = r.event_id
+                    LEFT JOIN ROLE z ON r.role_id = z.role_id  
                     LEFT JOIN CONTACT c ON r.user_id = c.user_id 
                     WHERE c.user_id = :user
 		");
@@ -57,7 +57,7 @@ function acceptEvent($rowId){
         $user = $_SESSION["userid"];
 	if(!empty($user)) {
 			$acceptAccountQuery = $dbh->prepare("
-				UPDATE event_role_user u
+				UPDATE EVENT_ROLE_USER u
 				SET u.status = 'Accepted'
 				WHERE u.id = :id" 
 				);
@@ -76,7 +76,7 @@ function rejectEvent($rowId){
         $user = $_SESSION["userid"];
 	if(!empty($user)) {
 			$acceptAccountQuery = $dbh->prepare("
-				UPDATE event_role_user u
+				UPDATE EVENT_ROLE_USER u
 				SET u.status = 'Rejected'
 				WHERE u.id = :id" 
 				);

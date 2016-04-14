@@ -1,5 +1,7 @@
 <?php
 
+include_once(__DIR__."/../classes/PersistentObject.php");
+
 /**
  * Requires $dbh to be set
  */
@@ -7,20 +9,12 @@ function getContact($id) {
 
 	global $dbh;
 	
-	$authQuery = $dbh->prepare("
-		SELECT * FROM CONTACT c
-		WHERE c.id = :id
-	");
-
-    $authQuery->bindParam(':id', $id);
-    $authQuery->execute();
-    $authRows = $authQuery->rowCount();
-
-    if($authRows == 1) {
-    	return $authQuery->fetch(PDO::FETCH_ASSOC);
-    }
-    return false;
-
+	$contact = new PersistentObject($dbh, "CONTACT", $id);
+	$data = $contact->load();
+	if(!$data) {
+		return $contact->error;
+	}
+	return $data;
 }
 
 /**
@@ -33,10 +27,7 @@ function getAllContacts() {
 	$authQuery = $dbh->prepare("
 		SELECT * FROM CONTACT c
 	");
-
-    //$authQuery->bindParam(':id', $id);
     $authQuery->execute();
-    //$authRows = $authQuery->rowCount();
 
     return $authQuery->fetchAll(PDO::FETCH_ASSOC);
 

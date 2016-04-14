@@ -47,13 +47,13 @@ appModule.controller('PayPageController', ['PayPageService', '$scope', function(
             });
 
             var sites = [
-                 { value: "AU", label: "Noah Smith"  },
-                 { value: "AT", label: "Daniel Miller" },
-                 { value: "AZ", label: "Madison Williams" },
-                 { value: "BS", label: "Avery Jones" },
-                 { value: "BH", label: "Benjamin Miller" },
-                 { value: "BD", label: "Sofia Jackson" },
-                 { value: "BB", label: "Daniel White" },
+                 { value: "AU", label: "Brookdale Impatient"  },
+                 { value: "AT", label: "Incarnation" },
+                 { value: "AZ", label: "A. Harry Moore" },
+                 { value: "BS", label: "AHRC Middle/High School" },
+                 { value: "BH", label: "Blythedale" },
+                 { value: "BD", label: "Bronx Psych" },
+                 { value: "BB", label: "morgan Stanley" },
                  { value: "BY", label: "James Martin" },
                  { value: "BE", label: "David Garcia" },
                  { value: "BZ", label: "Belize Clark" },

@@ -31,7 +31,7 @@ if(isset($_GET["func"])) {
 		$venue["id"] = isset($_POST["id"]) ? $_POST["id"] : null;
 		$venue["name"] = isset($_POST["name"]) ? $_POST["name"] : "";
 		$venue["comments"] = isset($_POST["comments"]) ? $_POST["comments"] : "";
-		$venue["contacts"] = isset($_POST["contacts"]) ? $_POST["contacts"] : null;
+		$venue["contact"] = isset($_POST["contact"]) ? $_POST["contact"] : null;
 		$venue["address"] = isset($_POST["address"]) ? $_POST["address"] : null;
 
 		$returnValue = editVenue($venue);

@@ -19,7 +19,9 @@ appModule.controller("RootController", function($rootScope, $scope, $location, $
     
     // Track the current page for nav
     $scope.page = "";
-    $scope.isPage = function(testPage) {return $scope.page == testPage;}
+    $scope.isPage = function(testPage) {
+        return $scope.page == testPage;
+    }
     $scope.$on('$locationChangeStart', function(evt) {
         var path = $location.path().split("/");
         if(path.length == 1) {

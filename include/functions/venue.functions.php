@@ -45,11 +45,13 @@ function getVenue($id) {
  * In: String of contacts separated by comma
  * Out: PHP array of Strings
  */
+/*
 function decodeContacts($contacts) {
 	if(is_null($contacts)) return null;
 	$contact_arr = explode(",", $contacts);
 	return $contact_arr ? $contact_arr : null;
 }
+*/
 
 /**
  * Requires $dbh to be set
@@ -58,8 +60,6 @@ function decodeContacts($contacts) {
  */
 function editVenue($venue) {
 	global $dbh;
-
-	$contacts = decodeContacts($venue["contacts"]);
 
 	if(isset($venue["id"]) && !is_null($venue["id"])) {
 		
@@ -90,24 +90,20 @@ function editVenue($venue) {
 	    	return "Failed: ".$authQuery->errorInfo();
 	    }
 
-	    if(!is_null($contacts)) {
-	    	for($i=0;$i<count($contacts);$i++) {
-	    		$authQuery = $dbh->prepare("
-					INSERT INTO VENUE_CONTACT (
-						venue_id,
-						contact_id
-					)
-					VALUES (
-						:vid,
-						:cid
-					)
-				");
-				$authQuery->bindParam(':vid', $venue["id"]);
-				$authQuery->bindParam(':cid', $contacts[$i]);
-				if(!$authQuery->execute()) {
-			    	return "Failed: ".$authQuery->errorInfo();
-			    }
-	    	}
+	    $authQuery = $dbh->prepare("
+			INSERT INTO VENUE_CONTACT (
+				venue_id,
+				contact_id
+			)
+			VALUES (
+				:vid,
+				:cid
+			)
+		");
+		$authQuery->bindParam(':vid', $venue["id"]);
+		$authQuery->bindParam(':cid', $venue["contact"]);
+		if(!$authQuery->execute()) {
+	    	return "Failed: ".$authQuery->errorInfo();
 	    }
 
 	    // Set address
@@ -128,7 +124,7 @@ function editVenue($venue) {
 
 	} else {
 
-		// Update data
+		// New data
 		$authQuery = $dbh->prepare("
 			INSERT INTO VENUE (
 				name, 
@@ -147,6 +143,37 @@ function editVenue($venue) {
 	    	return "Failed: ".$authQuery->errorInfo();
 	    }
 
+	    // Set contact
+	    $authQuery = $dbh->prepare("
+			INSERT INTO VENUE_CONTACT (
+				venue_id,
+				contact_id
+			)
+			VALUES (
+				:vid,
+				:cid
+			)
+		");
+		$authQuery->bindParam(':vid', $venue["id"]);
+		$authQuery->bindParam(':cid', $venue["contact"]);
+		if(!$authQuery->execute()) {
+	    	return "Failed: ".$authQuery->errorInfo();
+	    }
+
+	    // Set address
+	    $authQuery = $dbh->prepare("
+			UPDATE ADDRESS SET 
+				owner_type = 2,
+				owner = :vid
+			WHERE
+				id = :aid
+		");
+		$authQuery->bindParam(':vid', $venue["id"]);
+	    $authQuery->bindParam(':aid', $venue["address"]);
+
+	    if(!$authQuery->execute()) {
+	    	return "Failed: ".$authQuery->errorInfo();
+	    }
 	    return "Success";
 	}
 

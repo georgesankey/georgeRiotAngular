@@ -2,6 +2,7 @@
 var ScriptRoute = "/onlymakebelieve/api/scripts.php";
 var ContactRoute = "/onlymakebelieve/api/contacts.php";
 var VenueRoute = "/onlymakebelieve/api/venue.php";
+var AddressRoute = "/onlymakebelieve/api/address.php";
 
 var log = function(data) {
 	if(!data) data = "<br>";
@@ -91,6 +92,24 @@ $(document).ready(function() {
 	});
 	*/
 
+	// Testing Address
+	/*
+	$.post(AddressRoute, {
+		data:JSON.stringify({
+			street_1: "Test",
+			city:"Test",
+			state:"TE",
+			zipcode:"10001",
+			owner:"1",
+			owner_type:"2"
+		})
+	}, function(data) {
+		log("Testing Address Edit/Post:");
+		
+		log(data);
+		log();
+	});*/
+
 	// Testing update
 	$.post(ContactRoute, {
 		id:100,
@@ -113,7 +132,7 @@ $(document).ready(function() {
 		id:1,
 		name:"Test2",
 		comments:"This is a nice place",
-		contacts:"20,3",
+		contact:"20",
 		address:"17"
 	}, function(data) {
 		log("Testing Venue Edit/Post:");

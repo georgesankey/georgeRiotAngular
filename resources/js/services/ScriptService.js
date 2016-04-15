@@ -1,5 +1,5 @@
 // Define App
-var appModule = window.appModule || 
+var appModule = window.appModule ||
     angular.module("ScheduleApp", ['ngRoute']);
 
 /**
@@ -7,10 +7,10 @@ var appModule = window.appModule ||
  */
 appModule.factory('ScriptService', function($http, $q) {
 
-    var route = "/onlymakebelieve/api/scripts.php";
+    var route = "api/scripts.php";
 
     var getScript = function(id){
-        var deferred = $q.defer(); 
+        var deferred = $q.defer();
         $http.get(route + "?id="+id).success(function (data){
             deferred.resolve(data);
         });
@@ -18,7 +18,7 @@ appModule.factory('ScriptService', function($http, $q) {
     };
 
     var getScriptsForUser = function(userId){
-        var deferred = $q.defer();   
+        var deferred = $q.defer();
         $http.get(route+"?user="+userId).success(function (data) {
             deferred.resolve(data);
         });
@@ -27,7 +27,7 @@ appModule.factory('ScriptService', function($http, $q) {
 
     // Use promise to chain requests
     var newScript = function(script) {
-        var deferred = $q.defer(); 
+        var deferred = $q.defer();
         $http.post(route, $.param(script), {
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(data) {
@@ -37,7 +37,7 @@ appModule.factory('ScriptService', function($http, $q) {
     };
 
     var editScript = function(script) {
-        var deferred = $q.defer(); 
+        var deferred = $q.defer();
         $http.post(route, $.param(script), {
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(data) {
@@ -51,7 +51,6 @@ appModule.factory('ScriptService', function($http, $q) {
         getScript: getScript,
         newScript: newScript,
         editScript: editScript
-    };  
-    
-});
+    };
 
+});

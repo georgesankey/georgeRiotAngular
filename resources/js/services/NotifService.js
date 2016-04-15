@@ -1,5 +1,5 @@
 // Define App
-var appModule = window.appModule || 
+var appModule = window.appModule ||
 	angular.module("ScheduleApp", ['ngRoute']);
 
 /**
@@ -15,10 +15,10 @@ appModule.factory('NotifService', function($http, $q) {
         if(accountRequests !== undefined){
             deferred.resolve(accountRequests);
         } else {
-            $http.get("/onlymakebelieve/api/accountrequests.php").success(function (data){
+            $http.get("api/accountrequests.php").success(function (data){
                 accountRequests = data;
                 deferred.resolve(accountRequests);
-            });            
+            });
         }
         return deferred.promise;
     };
@@ -33,14 +33,14 @@ appModule.factory('NotifService', function($http, $q) {
         };
         $http({
             method: 'POST',
-            url: "/onlymakebelieve/api/accountrequests.php",
+            url: "api/accountrequests.php",
             data: params
         }).success(function (data, status) {
             deferred.resolve(data);
         });
         return deferred.promise;
     };
-   
+
     return {
         getAllAccountRequests: getAllAccountRequests,
         accountRequestManagement: accountRequestManagement

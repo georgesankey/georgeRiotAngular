@@ -6,16 +6,17 @@ var appModule = window.appModule ||
  * Use this Service to get a user's timeSheetNotif
  */
 appModule.factory('PayPageService', function($http, $q) {
-    var timeSheetEntry;
+    var timeSheetEntry = {};
+    var route = "api/pay.php";
 
- var getAllTimeSheetEntries = function(){
+    var getAllTimeSheetEntries = function(){
 
         var deferred = $q.defer();
 
         if(timesheetEntry !== undefined){
             deferred.resolve(timeSheetEntry);
         } else {
-            $http.get("api/pay.php").success(function (data){
+            $http.get(route).success(function (data){
                 timeSheetEntry = data;
                 deferred.resolve(timeSheetEntry);
             });
@@ -42,9 +43,11 @@ appModule.factory('PayPageService', function($http, $q) {
         });
         return deferred.promise;
    };
-
-    return {
+   
+        return {
+        getAllUsers: getAllUsers,
         getAllTimeSheetEntries: getAllTimeSheetEntries,
-        timeSheetManagement: timeSheetManagement
+        timeSheetManagement: timeSheetManagement,
+
     };
 });

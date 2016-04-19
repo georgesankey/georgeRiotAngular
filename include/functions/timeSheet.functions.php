@@ -12,7 +12,7 @@ function getAllUsers() {
 				LEFT JOIN CONTACT c ON u.id=c.user_id
 				WHERE u.active=1
 			");
-	    	$retrieveUserQuery->execute();
+	    	$retrieveUserQuery->execute();	    	
 	    	$numberOfUserRows = $retrieveUserQuery->rowCount();
 	    	return ($numberOfUserRows > 0)? $retrieveUserQuery->fetchAll() : null;
 		} 

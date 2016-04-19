@@ -33,9 +33,14 @@ appModule.factory('UserService', function($http, $q) {
         return deferred.promise;
     };
 
+    var editUser = function(user) {
+        
+    };
+
     return {
         getSessionUserData: getSessionUserData,
-        getUser: getUser
+        getUser: getUser,
+        editUser: editUser
     };
 
 });

@@ -5,9 +5,9 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
 /** 
  * Renders TimeSheet info & other notifications
  */
- appModule.controller('PayPageController', ['PayPageService', '$scope', function(PayPageService, $scope) {
+ appModule.controller('PayPageController',  ['$rootScope', '$scope', '$http', '$route' ,'PayPageService',function ($rootScope, $scope, $http, $route, PayPageService) {
+ 
 
-    
     $scope.timeSheetWindow = {};
     var url = "resources/js/controllers/products.xml";
         
@@ -32,21 +32,22 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
             url: url,
 
           };
-          var cellsrenderer = function (row, columnfield, value, defaulthtml, columnproperties, rowdata) {
-            if (value < 20) {
-              return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #ff0000;">' + value + '</span>';
-            }
-            else {
-              return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #008000;">' + value + '</span>';
-            }
 
-          }
+      var cellsrenderer = function (row, columnfield, value, defaulthtml, columnproperties, rowdata) {
+        if (value < 20) {
+          return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #ff0000;">' + value + '</span>';
+        }
+        else {
+          return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #008000;">' + value + '</span>';
+        }
 
-          var dataAdapter = new $.jqx.dataAdapter(source, {
-            downloadComplete: function (data, status, xhr) { },
-            loadComplete: function (data) { },
-       // loadError: function (xhr, status, error) { }
-     });
+      }
+
+      var dataAdapter = new $.jqx.dataAdapter(source, {
+        downloadComplete: function (data, status, xhr) { },
+        loadComplete: function (data) { },
+   // loadError: function (xhr, status, error) { }
+        });
 
           var sites = [
           { value: "AU", label: "Brookdale Impatient"  },
@@ -100,11 +101,6 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
         //autoBind: true
       });
 
-
-        $scope.jqxButtonNotifSettings = {
-          theme: 'energyblue'
-        };
-
       //Timesheet Grid Settings
       $scope.timeSheetGridSettings = {
         source: dataAdapter,
@@ -138,15 +134,14 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
         var container = $("<div style='margin: 5px;'></div>");
         toolbar.append(container);
         container.append('<input id="addrowbutton" type="button" value="Add New Row" />');
-        container.append('<input style="margin-left: 5px;" id="deleterowbutton" type="button" value="Delete Selected Row" />');
-        container.append('<input style="margin-left: 5px;" id="updaterowbutton" type="button" value="Update Selected Row" />');
+        container.append('<input style="margin-left: 5px;" id="deleterowbutton" type="button" value="Delete Selected Row" />');        
         $("#addrowbutton").jqxButton();
          },
       columns: [
       { text: 'Name', datafield: 'firstName', width: 250, align: 'center',cellsalign: 'center' ,editable:false},
       { text: 'Site', columngroup: 'Users', datafield: 'site', width: 200, align: 'center',  cellsalign: 'center',columntype:'dropdownlist',
       createeditor: function (row, value, editor) {
-        editor.jqxDropDownList({ source: sitesAdapter, displayMember: 'label', valueMember: 'value', dropDownHeight:100, selectedIndex: 1, 'theme': 'energyblue'});
+        editor.jqxDropDownList({ source: sitesAdapter, displayMember: 'name', valueMember: 'value', dropDownHeight:100, selectedIndex: 1, 'theme': 'energyblue'});
       }
       },
       { text: 'Hourly Rate', columngroup: 'Users', datafield: 'HourlyRate', align: 'center', cellsalign: 'center', cellsformat: 'c2', width: 200 },
@@ -175,14 +170,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
                 $scope.timeSheetWindowSettings.apply('open');
               }   
             };
-    //Button to export files with paypage data
-    $scope.exportButtonSettings = {
-    theme: 'energyblue',
-    click: function(event){
-    $("#jqxgrid").jqxGrid('exportdata', 'xls', 'jqxgrid');
-                          }
-    };
-        
+
     $scope.dateInputSettings =
     {
       width: 200,
@@ -202,24 +190,65 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
                 });
 
 
-    $scope.users= [];
+    var dataSourceUrl = "api/pay.php?action=getAllUsers";
+    $http({
+        method: 'get',
+        url: dataSourceUrl
+    }).success(function (data, status) {
+        // prepare the data
+        var userSource =
+                {
+                  
+                    datatype: "json",
+                    datafields: [
 
-    var tabularGrid = function (tab) {
-                switch (tab) {
-                    case 0:
-                        $scope.timeSheetGridSettings;
-                        break;
-                    case 1:
-                        $scope.timeSheetGridSettings;
-                        break;
-                }
-            }
-        
-    
-    $('#tabularGrid').jqxTabs({
-      initTabContent: tabularGrid,
+                        {name: 'email', type: 'string'},
+                        {name: 'first_name', type: 'string'},
+                        {name: 'last_name', type: 'string'},
+                        {name: 'role_name', type: 'string'},
+                        {name: 'cell_number', type: 'string'},
+                        {name: 'home_number', type: 'string'},
+                                           ],
+                    url: dataSourceUrl,
+                    
+                };
 
-    });
+
+
+      var userDataAdapter = new $.jqx.dataAdapter(userSource);
+      
+ 
+          
+    $scope.userGridSettings= {
+          source: userDataAdapter,
+          theme: 'energyblue',
+           width:  '100%',
+          columns: [
+          { text: 'E-mail', datafield: 'email', width: 250, align: 'center',cellsalign: 'center' },
+          { text: 'First Name',columngroup: 'Name',columngroup: 'Users', datafield:'first_name', width: 200, align: 'center',  cellsalign: 'center'},
+          { text: 'Last Name', columngroup: 'Name',columngroup: 'Users', datafield: 'last_name', width: 250, align: 'center',cellsalign: 'center' },
+          { text: 'Role', datafield: 'role_name', width: 200, align: 'center',  cellsalign: 'center'},
+          { text: 'Cell Number', columngroup: 'Number',columngroup: 'Users',datafield: 'cell_number', width: 250, align: 'center',cellsalign: 'center' },
+          { text: 'House number', datafield: 'Number', width: 200, align: 'center',  cellsalign: 'center'},
+          ]
+};
+
+
+})
+    //Buttons to export grids with paypage data
+    $scope.exportButtonSettings = {
+    theme: 'energyblue',
+    click: function(event){
+    $("#jqxgrid").jqxGrid('exportdata', 'xls', 'jqxgrid');
+                          }
+    };
+       
+    $scope.exportUserButtonSettings = {
+    theme: 'energyblue',
+    click: function(event){
+    $("#userGrid").jqxGrid('exportdata', 'xls', 'jqxgrid');
+                          }
+    };
 
     //$scope.date = Date.now();
 
@@ -228,14 +257,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
         $scope.timeSheet = timeSheet;
 
     }); 
-    
-                 
-                var date1 = new Date();
-                date1.setFullYear(2013, 7, 7);
-                var date2 = new Date();
-                date2.setFullYear(2013, 7, 15);
-                $("#jqxWidget").jqxDateTimeInput('setRange', date1, date2);
-*/
+                     */
 $scope.timeSheetManagement = function (service) {
 
   PayPageService.timeSheetManagement(service, $scope.selectedTimeSheetEntry.id).then(function(timeSheet) {

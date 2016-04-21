@@ -24,7 +24,7 @@ appModule.factory('PayPageService', function($http, $q) {
         return deferred.promise;
     };
 
- var timeSheetManagement = function(service, rowId) {
+    var timeSheetManagement = function(service, rowId) {
         var deferred = $q.defer();
         var timeSheetentry;
         var user = encodeURIComponent(rowId);
@@ -45,7 +45,6 @@ appModule.factory('PayPageService', function($http, $q) {
    };
    
         return {
-        getAllUsers: getAllUsers,
         getAllTimeSheetEntries: getAllTimeSheetEntries,
         timeSheetManagement: timeSheetManagement,
 

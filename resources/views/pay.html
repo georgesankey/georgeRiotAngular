@@ -33,19 +33,20 @@
 <jqx-date-time-input ng-model="date" id="date"jqx-settings="dateInputSettings" style="display:inline-block;"></jqx-date-time-input>     </td>
 </tr>
 </table>
-            
-            <jqx-grid id="jqxgrid" jqx-source="timeSheet" jqx-settings="timeSheetGridSettings"></jqx-grid>
+            <!-- Timesheet Grid and Export button-->
+            <jqx-grid id="jqxgrid" jqx-source="timeSheet" jqx-settings="timeSheetGridSettings"><jqx-button id="addrowbutton" jqx-settings="addTimesheetEntrySettings">Add Entry</jqx-button></jqx-grid>
             <jqx-button jqx-settings="exportButtonSettings">Export to Excel</jqx-button>
             <jqx-window id="timeSheetWindow" jqx-settings="timeSheetWindowSettings">
+          </jqx-window>
 
-
-
-
-</div>
-<div>
+            <!-- User List Grid and Export button-->
+            <div>
             <jqx-grid id="userGrid" jqx-source="" jqx-settings="userGridSettings"></jqx-grid>
             <jqx-button jqx-settings="exportUserButtonSettings">Export Users to Excel</jqx-button>
-            <jqx-window id="timeSheetWindow" jqx-settings="timeSheetWindowSettings">
+            
 
          </div>
+
+</div>
+
 </div>

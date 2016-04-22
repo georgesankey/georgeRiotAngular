@@ -121,6 +121,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
         showfilterrow: true,
         enabletooltips: true,
         showaggregates: true,
+        showtoolbar:true,
         pagesize: '20',
         addrow: function (rowid, rowdata, position, commit) {
             // synchronize with the server - send insert command
@@ -135,7 +136,8 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
         toolbar.append(container);
         container.append('<input id="addrowbutton" type="button" value="Add New Row" />');
         container.append('<input style="margin-left: 5px;" id="deleterowbutton" type="button" value="Delete Selected Row" />');        
-        $("#addrowbutton").jqxButton();
+        $("#addrowbutton").jqxButton({ theme: 'energyblue'});         
+        $("#deleterowbutton").jqxButton({ theme: 'energyblue'});
          },
       columns: [
       { text: 'Name', datafield: 'firstName', width: 250, align: 'center',cellsalign: 'center' ,editable:false},
@@ -170,7 +172,21 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
                 $scope.timeSheetWindowSettings.apply('open');
               }   
             };
+      $("#addrowbutton").on('click',function(){
+        var datarow =generaterow();
+        var commit = $("#jqxgrid").jqxGrid('addrow',null,datarow);
+      });
 
+      $("#deleterowbutton").on('click',function(){
+        var selectedRowIndex = $("#jqxgrid").jqxGrid('getselectedrowindex');
+        var rowscount = $("#jqxgrid").jqxGrid('getdatainformation').rowscount;
+        if (selectedRowIndex >=0 && selectedRowIndex < rowscount){
+          var id = $("#jqxgrid").jqxGrid('getrowid',selectedRowIndex );
+          var commit = $("#jqxgrid").jqxGrid('deleterow',id);
+        }
+        
+      });
+      
     $scope.dateInputSettings =
     {
       width: 200,
@@ -220,9 +236,15 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
  
           
     $scope.userGridSettings= {
-          source: userDataAdapter,
-          theme: 'energyblue',
-           width:  '100%',
+        source: userDataAdapter,
+        theme: 'energyblue',
+        width:  '100%',
+        sortable: true,
+        pageable:true,
+        filterable:true,
+        showfilterrow: true,
+        enabletooltips: true,
+        pagesize: '20',
           columns: [
           { text: 'E-mail', datafield: 'email', width: 250, align: 'center',cellsalign: 'center' },
           { text: 'First Name',columngroup: 'Name',columngroup: 'Users', datafield:'first_name', width: 200, align: 'center',  cellsalign: 'center'},
@@ -232,6 +254,20 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
           { text: 'House number', datafield: 'Number', width: 200, align: 'center',  cellsalign: 'center'},
           ]
 };
+    $scope.addTimesheetEntrySettings = {
+
+       theme: 'energyblue',
+        click: function(event){
+           /* if($scope.EMUser !== "" && $scope.sessionUserRole === "Administrator"){
+                EventMaintenanceService.userToEventService('addUser', Number($scope.EMUser.value.split(',')[0]), $scope.selectedEvent, $scope.selectedShowRole)
+                .then(function(addUserArray) {
+                    $scope.EMDataAdapterUsers = new $.jqx.dataAdapter(searchInputAdapter(addUserArray[0]));
+                    $scope.currentUsersResults = addUserArray[1];
+                    $scope.EMUser = "";
+                });
+            }*/
+        }
+    }
 
 
 })

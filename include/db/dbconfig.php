@@ -2,7 +2,8 @@
 $db_host = "localhost"; // "localhost:9090" or wherever your mysql server is
 $db_name ="omb_db";
 $username = "root";
-$password = "";
+$password = "root";
+$port = 3306;
 //establish a PDO Database Connection
  try {
 	$dbh = new PDO("mysql:host=$db_host;dbname=$db_name", $username, $password);
@@ -31,5 +32,3 @@ $password = "ti4kzA2akBKXry";
 ?>*/
 
 ?>
-
- 

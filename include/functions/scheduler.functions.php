@@ -25,7 +25,7 @@ function getAllEventsForScheduler() {
 
     $statusArray = array(
     	array(
-            "id" => -1,
+            "id" => -3,
             "show_name" => "Scheduled",
             "comments" => "...",
             "show_status" => "Scheduled",
@@ -35,7 +35,7 @@ function getAllEventsForScheduler() {
             "venue_id" => 1
         ),
       	array(
-            "id" => 0,
+            "id" => -2,
             "show_name" => "Deferred",
             "comments" => "...",
             "show_status" => "Deferred",
@@ -45,7 +45,7 @@ function getAllEventsForScheduler() {
             "venue_id" => 1
         ),    	
         array(
-            "id" => 1,
+            "id" => -1,
             "show_name" => "Cancelled",
             "comments" => "...",
             "show_status" => "Cancelled",

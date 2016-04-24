@@ -24,29 +24,13 @@ appModule.factory('PayPageService', function($http, $q) {
         return deferred.promise;
     };
 
-    var timeSheetManagement = function(service, rowId) {
-        var deferred = $q.defer();
-        var timeSheetentry;
-        var user = encodeURIComponent(rowId);
-        var serviceParam = (service == 'accept' ? encodeURIComponent('accept'): encodeURIComponent('reject'));
-        var params = {
-            'user': user,
-            'service' : serviceParam
-        };
-        $http({
-            method: 'POST',
-            url: "api/pay.php",
-            data: params
-        }).success(function (data, status) {
-            timeSheet = data;
-            deferred.resolve(timeSheetentry);
-        });
-        return deferred.promise;
+    var getAllUsers = function() {
+    
    };
    
         return {
-        getAllTimeSheetEntries: getAllTimeSheetEntries,
-        timeSheetManagement: timeSheetManagement,
+        getAllTimeSheetEntries: getAllTimeSheetEntries
+      
 
     };
 });

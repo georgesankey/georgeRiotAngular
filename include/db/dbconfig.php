@@ -21,7 +21,4 @@ if($devbox) {
 		die('Connection failed: '. $e);
 	}
 }
-
 ?>
-
- 

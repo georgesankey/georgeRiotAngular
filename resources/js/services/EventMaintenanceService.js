@@ -1,5 +1,5 @@
 // Define App
-var appModule = window.appModule || 
+var appModule = window.appModule ||
 	angular.module("ScheduleApp", ['ngRoute']);
 
 /**
@@ -7,10 +7,10 @@ var appModule = window.appModule ||
  */
 appModule.factory('EventMaintenanceService', function($http, $q) {
 
-    var route = "/onlymakebelieve/api/eventmaintenance.php";
+    var route = "api/eventmaintenance.php";
 
     var getUsersForEvent = function(eventId){
-        var deferred = $q.defer();   
+        var deferred = $q.defer();
         $http.get(route + "?func=getUsersForEvent&event=" + eventId).success(function (data){
             deferred.resolve(data);
         });
@@ -18,7 +18,7 @@ appModule.factory('EventMaintenanceService', function($http, $q) {
     };
 
     var getScriptsForEvent = function(eventId){
-        var deferred = $q.defer(); 
+        var deferred = $q.defer();
         $http.get(route + "?func=getScriptsForEvent&event=" + eventId).success(function (data){
             deferred.resolve(data);
         });
@@ -58,7 +58,7 @@ appModule.factory('EventMaintenanceService', function($http, $q) {
         });
         return deferred.promise;
     };
-    
+
     var getEMScripts = function(eventId){
         var deferred = $q.defer();
         $http.get(route + "?func=getEMScripts&event=" + eventId).success(function (data) {
@@ -107,7 +107,6 @@ appModule.factory('EventMaintenanceService', function($http, $q) {
         getEMScripts: getEMScripts,
         getScriptOwners: getScriptOwners,
         scriptToEventService: scriptToEventService
-    };  
-    
-});
+    };
 
+});

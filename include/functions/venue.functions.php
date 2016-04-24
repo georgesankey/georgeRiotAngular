@@ -143,6 +143,8 @@ function editVenue($venue) {
 	    	return "Failed: ".$authQuery->errorInfo();
 	    }
 
+	    $vid = $dbh->lastInsertId();
+
 	    // Set contact
 	    $authQuery = $dbh->prepare("
 			INSERT INTO VENUE_CONTACT (
@@ -154,7 +156,7 @@ function editVenue($venue) {
 				:cid
 			)
 		");
-		$authQuery->bindParam(':vid', $venue["id"]);
+		$authQuery->bindParam(':vid', $vid);
 		$authQuery->bindParam(':cid', $venue["contact"]);
 		if(!$authQuery->execute()) {
 	    	return "Failed: ".$authQuery->errorInfo();
@@ -168,7 +170,7 @@ function editVenue($venue) {
 			WHERE
 				id = :aid
 		");
-		$authQuery->bindParam(':vid', $venue["id"]);
+		$authQuery->bindParam(':vid', $vid);
 	    $authQuery->bindParam(':aid', $venue["address"]);
 
 	    if(!$authQuery->execute()) {

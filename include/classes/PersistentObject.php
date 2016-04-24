@@ -102,6 +102,27 @@ class PersistentObject {
 		return false;
 	}
 
+	/* Hard delete object from database */
+	function delete() {
+		if(!$this->check() || is_null($this->id)) {return false;}
+		
+		$query = $this->db->prepare("DELETE FROM ".$this->table." WHERE id=:id");
+		$query->bindValue(":id", $this->id);
+		$query->execute();
+
+		// Check if row was deleted
+		$rows = $query->rowCount();
+		if($rows == 1) {
+			$this->data = null;
+			$this->id = null;
+			return true;
+		}
+
+		// An error occurred
+		$this->error = $query->errorInfo();
+		return false;
+	}
+
 	/* Getters and setters */
 	function getTable() {
 		return $this->table;

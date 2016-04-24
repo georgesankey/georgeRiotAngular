@@ -1,5 +1,5 @@
 // Define App
-var appModule = window.appModule || 
+var appModule = window.appModule ||
 	angular.module("ScheduleApp", ['ngRoute']);
 
 /**
@@ -7,8 +7,8 @@ var appModule = window.appModule ||
  */
 appModule.factory('SchedulerService', function($http, $q) {
 
-    var route = "/onlymakebelieve/api/scheduler.php";
-    var allEvents; 
+    var route = "api/scheduler.php";
+    var allEvents;
 
     // @cached
     var getAllEventsForScheduler =  function(){
@@ -50,4 +50,3 @@ appModule.factory('SchedulerService', function($http, $q) {
     };
 
 });
-

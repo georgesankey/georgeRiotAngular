@@ -13,19 +13,19 @@ if(isset($_GET["r"])) {
 }
 
 if(isset($_POST["email"]) && isset($_POST["password"])) {
-	
+
 	require_once __DIR__ . '/include/db/dbconfig.php';
 	require __DIR__ . '/include/Auth.php';
 
 	$auth = new OMBAuth($cfg, $dbh);
 
-    //do the initial log-in 
+    //do the initial log-in
  	if($auth->login($_POST["email"], $_POST["password"])) {
 		// If Debug is on, have to redirect with JS
 
 		if(isset($_GET["r"])) {
 			header('Location: index.php#/'.$_GET["r"]);
-		} 
+		}
 
 		header('Location: index.php');
 		die("<script type='text/javascript'>document.location.pathname='/onlymakebelieve/';</script>");
@@ -33,7 +33,7 @@ if(isset($_POST["email"]) && isset($_POST["password"])) {
 		$smarty->assign("error", true);
 	    $smarty->display("login.html");
 	}
-      
+
 } else {
 	$smarty->assign("error", false);
 	$smarty->display("login.html");

@@ -70,9 +70,18 @@ appModule.controller("VenueController", function(
 
 	// Log details first
 	$scope.submitVenue = function() {
-		console.log($scope.newVenue);
-		console.log($scope.newAddress);
-		console.log($scope.newContact);
+		$scope.newVenue.contact = Number($scope.newVenue.contact);
+
+		AddressService.editAddress($scope.newAddress).then(function(data) {
+			if(data.id) {
+				$scope.newVenue.address = Number(data.id);
+				VenueService.editVenue($scope.newVenue).then(function(data) {
+					alertLog("Venue Created");
+					console.log(data);
+				});
+			}
+		});
+
 	};
 
 	// Contact list

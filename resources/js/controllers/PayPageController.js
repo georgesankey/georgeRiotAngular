@@ -5,7 +5,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
 /** 
  * Renders TimeSheet info & other notifications
  */
- appModule.controller('PayPageController',  ['$rootScope', '$scope', '$http', '$route' ,'PayPageService',function ($rootScope, $scope, $http, $route, PayPageService) {
+ appModule.controller('PayPageController',  [ '$scope','$rootScope', '$http', '$route' ,'PayPageService',function ( $scope, $rootScope, $http, $route, PayPageService) {
  
 
     $scope.timeSheetWindow = {};

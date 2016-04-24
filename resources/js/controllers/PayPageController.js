@@ -130,7 +130,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
             // you can pass additional argument to the commit callback which represents the new ID if it is generated from a DB.
             commit(true);
           },
-      rendertoolbar: function (toolbar) {
+        rendertoolbar: function (toolbar) {
         var me = this;
         var container = $("<div style='margin: 5px;'></div>");
         toolbar.append(container);

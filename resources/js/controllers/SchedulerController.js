@@ -5,7 +5,7 @@ var appModule = window.appModule ||
 /**
  * SchedulerController 
  */
-appModule.controller('SchedulerController', ['SchedulerService', 'VenueService', 'UserService', '$rootScope', '$scope', '$q', '$route', function(SchedulerService, VenueService, UserService, $rootScope, $scope, $q, $route) {
+appModule.controller('SchedulerController', ['SchedulerService', 'VenueService', 'UserService', '$window', '$rootScope', '$scope', '$q', '$route', function(SchedulerService, VenueService, UserService, $window, $rootScope, $scope, $q, $route) {
     
     $scope.createScheduler = false;
     $scope.selectedEvent = null;
@@ -38,10 +38,6 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
             var appointment = args.appointment;
             var fields = args.fields;
 
-            if($rootScope.user.role_name !== "Administrator"){
-                
-            }
-
             fields.subjectLabel.html("Show Name");
             fields.fromLabel.html("Start Time");
             fields.toLabel.html("End Time");
@@ -58,9 +54,9 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
             eventMaintenanceButton.jqxButton({theme: 'energyblue'});
 
             $('#eventMaintenanceButton').on('click', function(event) {
-                angular.element('#eventMaintenanceController').scope().showEMWindow(
-                   angular.element("#SchedulerController").scope().selectedEvent
-                );     
+                    $rootScope.selectedEvent = $scope.selectedEvent;
+                    $rootScope.eventName = $scope.eventName;
+                    $window.location.href = 'index.php#/eventmaintenance';    
             });
 
             var venueFieldsMap = {
@@ -103,14 +99,18 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
 
         },
         editDialogOpen: function(event){
-                console.log('open');
-                console.log($('#dialogscheduler div:last-child button:visible'));
 
             var args = event.args;
             var appointment = args.appointment;
 
             if(appointment){
                 //existing appointment
+                $scope.eventName = appointment.subject;
+
+                if($rootScope.user.role_name !== "Administrator"){
+                    event.args.fields.buttons.hide();
+                }
+
                 $('#eventMaintenanceButton').css('display', 'inline'); 
 
                 $.each($scope.venues, function(index, value) {
@@ -126,17 +126,20 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
                 $scope.selectedEvent = appointment.id;
             } else {
                 //new appointment
-                if($rootScope.user.role_name === "Administrator"){
 
-                    $('#eventMaintenanceButton').css('display', 'none');  
+                if($rootScope.user.role_name !== "Administrator"){
+                    event.args.fields.buttons.hide();
+                }
 
-                    VenueService.getVenue($scope.venues[0].id).then(function(venueItem) {
-                        updateVenueFields(venueItem);   
-                    });
+                $('#eventMaintenanceButton').css('display', 'none');  
 
-                    $("#comboboxVenueName").jqxDropDownList('selectedIndex', 0);
-                    $('#adminField').val($scope.currentUser.first_name + " " + $scope.currentUser.last_name + " (" + $scope.currentUser.email + ")");
-                } 
+                VenueService.getVenue($scope.venues[0].id).then(function(venueItem) {
+                    updateVenueFields(venueItem);   
+                });
+
+                $("#comboboxVenueName").jqxDropDownList('selectedIndex', 0);
+                $('#adminField').val($scope.currentUser.first_name + " " + $scope.currentUser.last_name + " (" + $scope.currentUser.email + ")");
+                
             }
 
                 $("#comboboxVenueName").on('change', function (event) {

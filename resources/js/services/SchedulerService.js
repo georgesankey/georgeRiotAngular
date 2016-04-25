@@ -10,17 +10,14 @@ appModule.factory('SchedulerService', function($http, $q) {
     var route = "api/scheduler.php";
     var allEvents;
 
-    // @cached
     var getAllEventsForScheduler =  function(){
         var deferred = $q.defer();
-        if(allEvents !== undefined){
+
+        $http.get(route + "?func=getAllEventsForScheduler").success(function (events) {
+            allEvents = events;
             deferred.resolve(allEvents);
-        } else {
-            $http.get(route + "?func=getAllEventsForScheduler").success(function (events) {
-                allEvents = events;
-                deferred.resolve(allEvents);
-            });
-        }
+        });
+        
         return deferred.promise;
     };
 

@@ -22,6 +22,34 @@ function getAllEventsForScheduler() {
 
     $eventQuery->execute();
 
+    $eventsArray = $eventQuery->fetchAll(PDO::FETCH_ASSOC);
+
+	foreach($eventsArray as &$event){
+
+		$event["show_name"] = stripslashes($event["show_name"]);
+
+		if($event["show_status"] == "Cancelled"){
+			continue;
+		} 
+
+		$colorStatusQuery = $dbh->prepare("
+			SELECT * 
+			FROM EVENT_ROLE_USER er
+			WHERE er.event_id = :event_id AND er.status = 0
+		");
+
+		$colorStatusQuery->bindParam("event_id", $event["id"]);
+		$colorStatusQuery->execute();
+		$colorStatusArr = $colorStatusQuery->fetchAll(PDO::FETCH_ASSOC);
+
+		if(count($colorStatusArr) === 0){
+			$event["show_status"] = "Scheduled";
+		} else {
+			$event["show_status"] = "Deferred";
+		}
+
+	}
+
 
     $statusArray = array(
     	array(
@@ -56,7 +84,7 @@ function getAllEventsForScheduler() {
         ) 	
     );
 
-    return array_merge($statusArray, $eventQuery->fetchAll(PDO::FETCH_ASSOC));  
+    return array_merge($statusArray, $eventsArray);  
 }
 
 
@@ -89,6 +117,11 @@ function deleteEvent($data){
 	$eventQuery = $dbh->prepare("DELETE FROM EVENT WHERE id = :id");
 	$eventQuery->bindParam(":id", $data->id);
 	$eventQuery->execute();
+
+	$eventQuery = $dbh->prepare("DELETE FROM EVENT_ROLE_USER WHERE event_id = :event_id");
+	$eventQuery->bindParam(":event_id", $data->id);
+	$eventQuery->execute();	
+
 	return getAllEventsForScheduler();
 
 }

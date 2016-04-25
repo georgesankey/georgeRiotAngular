@@ -189,6 +189,7 @@ function getEMScripts($eventId){
 		LEFT JOIN USER u ON s.creator = u.id
 		LEFT JOIN CONTACT c ON c.user_id = u.id 
 		WHERE s.id NOT IN (select es.script_id from EVENT_SCRIPT es WHERE es.event_id = :event_id)
+		GROUP BY s.id
     ");
 
 	$scriptsQuery->bindParam(':event_id', $eventId);

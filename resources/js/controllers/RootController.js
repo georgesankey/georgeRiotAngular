@@ -1,6 +1,6 @@
 // Define App
 var appModule = window.appModule || 
-	angular.module("ScheduleApp", ['ngRoute', 'jqwidgets']);
+	angular.module("ScheduleApp", ['ngRoute', 'jqwidgets', 'ngCookies']);
 
 /**
  * Controller for entire page
@@ -33,6 +33,8 @@ appModule.controller("RootController", function($rootScope, $scope, $location, $
 
 
     $rootScope.events = [];
+
+    $rootScope.selectedEvent = null;
 
     $rootScope.notifications = [{
         type: "alert-danger",

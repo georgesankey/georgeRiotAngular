@@ -20,7 +20,7 @@ appModule.config(function($routeProvider) {
             templateUrl:'resources/views/eventmaintenance.html'
         })             
         .when('/pay', {
-            controller:'MainController',
+            controller:'PayPageController',
             templateUrl:'resources/views/pay.html'
         })
         .when('/actors', {

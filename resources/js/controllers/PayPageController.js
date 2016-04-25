@@ -5,8 +5,27 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
 /** 
  * Renders TimeSheet info & other notifications
  */
- appModule.controller('PayPageController',  [ '$scope','$rootScope', '$http', '$route' ,'PayPageService',function ( $scope, $rootScope, $http, $route, PayPageService) {
+ appModule.controller('PayPageController',  [ '$scope','$rootScope', '$http', '$q','$route' ,'PayPageService',function ( $scope, $rootScope, $http,$q, $route, PayPageService) {
+
+
  
+    $scope.timeSheetShowFlag = true;
+    $scope.userFormShowFlag = false;
+    var user = $rootScope.user.role_name;
+    if(user !== "Administrator"){
+
+            $scope.userFormShowFlag = true;
+            $scope.timeSheetShowFlag = false;
+            $scope.timeSheetManagement =  null;
+            }
+
+     else 
+   {
+
+    var userParam = PayPageService;
+
+    $q.all([userParam])
+    .then(function(response){
 
     $scope.timeSheetWindow = {};
     var url = "resources/js/controllers/products.xml";
@@ -231,12 +250,12 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
 
 
 
-      var userDataAdapter = new $.jqx.dataAdapter(userSource);
+    var userDataAdapter = new $.jqx.dataAdapter(userSource);
       
- 
+    $scope.userDataAdapter = userDataAdapter;
           
     $scope.userGridSettings= {
-        source: userDataAdapter,
+        source: $scope.userDataAdapter,
         theme: 'energyblue',
         width:  '100%',
         sortable: true,
@@ -285,6 +304,8 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
     $("#userGrid").jqxGrid('exportdata', 'xls', 'jqxgrid');
                           }
     };
+})
+
 
     //$scope.date = Date.now();
 
@@ -301,5 +322,10 @@ $scope.timeSheetManagement = function (service) {
             //$scope.timeSheetWindowSettings.apply('close');
           });
 }
+    
+}
+
+
+
 
 }]);

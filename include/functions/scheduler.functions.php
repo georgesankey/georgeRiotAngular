@@ -35,7 +35,7 @@ function getAllEventsForScheduler() {
 		$colorStatusQuery = $dbh->prepare("
 			SELECT * 
 			FROM EVENT_ROLE_USER er
-			WHERE er.event_id = :event_id AND er.status = 0
+			WHERE er.event_id = :event_id AND (er.status = 0 OR er.status = 1)
 		");
 
 		$colorStatusQuery->bindParam("event_id", $event["id"]);

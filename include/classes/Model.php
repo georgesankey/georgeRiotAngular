@@ -14,7 +14,7 @@ class Model extends PersistentObject {
 	public function setData($data, $allMode=false) {
 		// Do data set with dependencies
 		if($allMode) {
-
+			// Used to create refs to dependents
 		} else {
 			if(is_null($this->schema)) {
 				$this->data = $data;

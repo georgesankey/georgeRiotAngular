@@ -124,12 +124,17 @@ class PersistentObject {
 	}
 
 	/* Getters and setters */
-	function getTable() {
+	public function getTable() {
 		return $this->table;
 	}
 
-	function setTable($table) {
+	public function setTable($table) {
 		$this->table=$table;
+	}
+
+	public function get($field) {
+		if(is_null($this->data)) return null;
+		return isset($this->data[$field]) ? $this->data[$field] : null;
 	}
 
 	/* Builds query from data input */

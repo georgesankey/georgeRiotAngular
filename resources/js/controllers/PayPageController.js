@@ -163,7 +163,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
         source: dataAdapter,
         altrows: true,
         width:  '100%',
-        height: 500, 
+        height: '100%', 
         theme: 'energyblue',
         ready: function () {
 
@@ -254,6 +254,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
       
       
     }
+    
     // Change the text reflecting the date picker
     $("#date").on('change', function (event) {
        var selection = $("#date").jqxDateTimeInput('getRange');
@@ -264,7 +265,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
  
        
        var test =  new $.jqx.dataAdapter(userAdapter($scope.allUsers));
-       console.log(test);
+       
 
     $scope.userGridSettings= {
         source: test ,
@@ -319,7 +320,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
 }
 
 
-    //$scope.date = Date.now();
+    $scope.date = Date.now();
 
   /*PayPageService.getAllTimeSheetEntries().then(function(timeSheet){
 

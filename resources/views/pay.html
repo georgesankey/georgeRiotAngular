@@ -14,8 +14,10 @@
 			</div>
 			<div id="adminView" ng-show="timeSheetShowFlag" class="panel-body"
 				style="width: 100% margin-bottom:10px margin-left:38px">
-          <label id="Selectdate" class="jqx-scheduler-edit-dialog-label"
-          style="width: 120px;"> Date : </span></label>
+          
+          <label id="Selectdate" class="control-label col-sm-4"> 
+            Date: {{date | date : 'MM/dd/yyyy'}} </label>
+        
         <table style="float: right; margin-bottom: 100px;">
           <tr>
             <td>
@@ -26,7 +28,7 @@
             </td>
           </tr>
         </table>
-        <jqx-tabs jqx-width="'100%'" jqx-height="'100%'">
+        <jqx-tabs jqx-width="'100%'">
         <ul >
                         <li>Timesheet</li>
                         <li>Users</li>
@@ -34,14 +36,14 @@
              <div class="row">
                 <!-- Timesheet Grid and Export button    -->
                            <div class="col-md-12">
-                                <label for="Timesheet" class="control-label">Current Timesheet:</label>
+                                <label for="Timesheet" class="control-label" style="margin: 10px">Current Timesheet:</label>
                                 <jqx-grid  id="jqxgrid" jqx-source="timeSheet" jqx-settings="timeSheetGridSettings">
                           <jqx-button
-                          id="addrowbutton" jqx-settings="addTimesheetEntrySettings">Add
+                          id="addrowbutton" style="margin: 10px" jqx-settings="addTimesheetEntrySettings">Add
                         Entry </jqx-button>
                                 </jqx-grid> 
 
-            <jqx-button jqx-settings="exportButtonSettings">Export
+            <jqx-button jqx-settings="exportButtonSettings" style="text-align:center; margin: 10px">Export
         to Excel</jqx-button>
                             </div>
 
@@ -50,11 +52,11 @@
                              <!-- User List Grid and Export button-->
             <div class="row">
                    <div class="col-md-12">
-                      <label for="Users" class="control-label">Current Users:
+                      <label for="Users" style="margin: 10px" class="control-label">Current Users:
                       </label>
                       <jqx-grid  id="userGrid" jqx-source="userGrid" jqx-settings="userGridSettings">                       
                       </jqx-grid> 
-                      <jqx-button jqx-settings="exportUserButtonSettings">Export
+                      <jqx-button style="margin: 10px" jqx-settings="exportUserButtonSettings">Export
                    Users to Excel</jqx-button>
                   </div>
 

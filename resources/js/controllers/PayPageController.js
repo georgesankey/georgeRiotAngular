@@ -14,6 +14,43 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
     var user = $rootScope.user.role_name;
     if(user !== "Administrator"){
 
+            // initialize the input fields.
+            $("#site").jqxInput({ theme: 'energyblue' });
+            $("#hourlyRate").jqxInput({ theme: 'energyblue' });
+            $("#travel").jqxInput({ theme: 'energyblue' });
+             $("#driver").jqxInput({ theme: 'energyblue' });
+            $("#suitcase").jqxInput({ theme: 'energyblue' });
+            $("#watchShow").jqxInput({ theme: 'energyblue' });
+             $("#rehersal").jqxInput({ theme: 'energyblue' });
+            $("#meetingHours").jqxInput({ theme: 'energyblue' });
+            $("#hospital").jqxInput({ theme: 'energyblue' });
+             
+          
+        
+            $("#site").width(150);
+            $("#site").height(23);
+            $("#hourlyRate").width(150);
+            $("#hourlyRate").height(23);
+            $("#travel").width(150);
+            $("#travel").height(23);
+            $("#driver").width(150);
+            $("#driver").height(23);
+            $("#suitcase").width(150);
+            $("#suitcase").height(23);
+            $("#watchShow").width(150);
+            $("#watchShow").height(23);
+            $("#rehersal").width(150);
+            $("#rehersal").height(23);
+            $("#meetingHours").width(150);
+            $("#meetingHours").height(23);
+             $("#hospital").width(150);
+             $("#hospital").height(23);
+             $("#driver").jqxNumberInput({spinMode: 'simple', width: 150, height: 23, min: 0, decimalDigits: 0, spinButtons: true });
+             $("#driver").jqxNumberInput({ spinMode: 'simple', symbol: '$', width: 150, min: 0, height: 23, spinButtons: true });
+
+
+
+
             $scope.userFormShowFlag = true;
             $scope.timeSheetShowFlag = false;
             $scope.timeSheetManagement =  null;
@@ -255,7 +292,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
     $scope.userDataAdapter = userDataAdapter;
           
     $scope.userGridSettings= {
-        source: $scope.userDataAdapter,
+        source: userDataAdapter,
         theme: 'energyblue',
         width:  '100%',
         sortable: true,

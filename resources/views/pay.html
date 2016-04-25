@@ -19,7 +19,7 @@
 				<table style="float: right; margin-bottom: 100px;">
 					<tr>
 						<td>
-							<!-- <label for="date"> Select Range</label> 
+							<!-- <label class="control-label col-sm-4" for="date"> Select Range</label> 
      <span ng-show="date">{{date | date: "M/d/yyyy"}}s--> <jqx-date-time-input
 								ng-model="date" id="date" jqx-settings="dateInputSettings"
 								style="display:inline-block;"></jqx-date-time-input>
@@ -46,165 +46,152 @@
 
 			</div>
 			<div id="userView" ng-show="userFormShowFlag">
-				<div class="form-group">
-
-					<label for="email" class="control-label">Email</label> <input
-						type="email" class="form-control" id="email" name="email" value=""
-						title="Please enter your email" required maxlength="50"> <span
-						class="help-block"></span>
-
-				</div>
-
-				<div class="form-group">
-
-					<label for="password" class="control-label">Password</label> <input
-						type="password" class="form-control" id="password" name="password"
-						value="" title="Please enter your password" required
-						maxlength="50"> <span class="help-block"></span>
-
-				</div>
+				<div style="overflow:hidden">
+                   <p> Please Enter Timesheet Details</p>
+     
+               <div class="col-xs-12">
 
 
 
-				<div class="form-group col-xs-6">
+                      <form id="loginForm" method="POST" action="">
 
-					<label for="firstname" class="control-label">First Name</label> <input
-						type="text" class="form-control" id="firstname" name="firstname"
-						value="" title="Please enter your firstname" required
-						maxlength="50"> <span class="help-block"></span>
+                             <div class="form-group col-xs-6">
 
-				</div>
+                              <label class="control-label col-sm-4" for="site" class="control-label">Site:</label>
 
-				<div class="form-group col-xs-6">
+                              <input type="site" class="form-control" id="site" name="site" value="" title="Please enter the Site information" required maxlength="30">
 
-					<label for="lastname" class="control-label">Last Name</label> <input
-						type="text" class="form-control" id="lastname" name="lastname"
-						value="" title="Please enter your lastname" required
-						maxlength="50"> <span class="help-block"></span>
+                              <span class="help-block"></span>
 
-				</div>
+                          </div>
 
-				<div class="form-group">
+                          <div class="form-group col-xs-6">
 
-					<label for="address" class="control-label">Address</label> <input
-						type="text" class="form-control" id="address" name="address"
-						value="" title="Please enter your address" required
-						maxlength="190"> <span class="help-block"></span>
+                              <label class="control-label col-sm-4" for="hourlyRate" class="control-label">Hourly Rate</label>
 
-				</div>
+                              <input type="hourlyRate" class="form-control" id="hourlyRate" name="hourlyRate" value="" title="Please enter your Hourly Rate" required maxlength="30">
 
-				<div class="form-group col-xs-6">
+                              <span class="help-block"></span>
 
-					<label for="city" class="control-label">City</label> <input
-						type="text" class="form-control" id="city" name="city" value=""
-						title="Please enter your city" required maxlength="75"> <span
-						class="help-block"></span>
-
-				</div>
-
-				<div class="form-group col-xs-6">
-
-					<label for="state" class="control-label">State</label> <select
-						class="form-control" id="state" name="state">
-						<option value="AL">Alabama</option>
-						<option value="AK">Alaska</option>
-						<option value="AZ">Arizona</option>
-						<option value="AR">Arkansas</option>
-						<option value="CA">California</option>
-						<option value="CO">Colorado</option>
-						<option value="CT">Connecticut</option>
-						<option value="DE">Delaware</option>
-						<option value="DC">District Of Columbia</option>
-						<option value="FL">Florida</option>
-						<option value="GA">Georgia</option>
-						<option value="HI">Hawaii</option>
-						<option value="ID">Idaho</option>
-						<option value="IL">Illinois</option>
-						<option value="IN">Indiana</option>
-						<option value="IA">Iowa</option>
-						<option value="KS">Kansas</option>
-						<option value="KY">Kentucky</option>
-						<option value="LA">Louisiana</option>
-						<option value="ME">Maine</option>
-						<option value="MD">Maryland</option>
-						<option value="MA">Massachusetts</option>
-						<option value="MI">Michigan</option>
-						<option value="MN">Minnesota</option>
-						<option value="MS">Mississippi</option>
-						<option value="MO">Missouri</option>
-						<option value="MT">Montana</option>
-						<option value="NE">Nebraska</option>
-						<option value="NV">Nevada</option>
-						<option value="NH">New Hampshire</option>
-						<option value="NJ">New Jersey</option>
-						<option value="NM">New Mexico</option>
-						<option value="NY">New York</option>
-						<option value="NC">North Carolina</option>
-						<option value="ND">North Dakota</option>
-						<option value="OH">Ohio</option>
-						<option value="OK">Oklahoma</option>
-						<option value="OR">Oregon</option>
-						<option value="PA">Pennsylvania</option>
-						<option value="RI">Rhode Island</option>
-						<option value="SC">South Carolina</option>
-						<option value="SD">South Dakota</option>
-						<option value="TN">Tennessee</option>
-						<option value="TX">Texas</option>
-						<option value="UT">Utah</option>
-						<option value="VT">Vermont</option>
-						<option value="VA">Virginia</option>
-						<option value="WA">Washington</option>
-						<option value="WV">West Virginia</option>
-						<option value="WI">Wisconsin</option>
-						<option value="WY">Wyoming</option>
-					</select> <span class="help-block"></span>
-
-				</div>
-
-				<div class="form-group col-xs-3">
-
-					<label for="zipcode" class="control-label">Zipcode</label> <input
-						type="text" class="form-control" id="zipcode" name="zipcode"
-						value="" title="Please enter your zipcode" required maxlength="10">
-
-					<span class="help-block"></span>
-
-				</div>
-
-				<div class="form-group col-xs-5">
-
-					<label for="cellnumber" class="control-label">Cell Number</label> <input
-						type="text" class="form-control" id="cellnumber" name="cellnumber"
-						value="" title="Please enter your cellnumber" maxlength="30">
-
-					<span class="help-block"></span>
-
-				</div>
-
-
-				<div class="form-group col-xs-4">
-
-					<label for="useraccess" class="control-label">User Access</label> <select
-						class="form-control" id="useraccess" name="useraccess">
-						<option value="4">Actor</option>
-						<option value="3">Staff</option>
-					</select> <span class="help-block"></span>
-				</div>
-
-
-				<div class="form-group col-xs-6">
-
-					<label for="homenumber" class="control-label">Home Number</label> <input
-						type="text" class="form-control" id="homenumber" name="homenumber"
-						value="" title="Please enter your home number" maxlength="30">
-
-					<span class="help-block"></span>
-
-				</div>
+                          </div>
 
 
 
-			</div>
+                          <div class="form-group col-xs-6">
+
+                              <label class="control-label col-sm-4" for="travel" class="control-label">Travel: </label>
+
+                              <input type="text" class="form-control" id="travel" name="travel" value="" title="Please enter your travel" required maxlength="30">
+
+                              <span class="help-block"></span>
+
+                          </div>
+
+                          <div class="form-group col-xs-6">
+
+                              <label class="control-label col-sm-4" for="driver" class="control-label">Driver: </label>
+
+                              <input type="text" class="form-control" id="driver" name="driver" value="" title="Please enter your driver" required maxlength="30">
+
+                              <span class="help-block"></span>
+
+                          </div>
+
+                             <div class="form-group col-xs-6">
+
+                              <label class="control-label col-sm-4" for="suitcase" class="control-label">Suitcase</label>
+
+                              <input type="text" class="form-control" id="suitcase" name="suitcase" value="" title="Please enter your suitcase" required maxlength="30">
+
+                              <span class="help-block"></span>
+
+                          </div>  
+
+                             <div class="form-group col-xs-6">
+
+                              <label class="control-label col-sm-4" for="watchShow" class="control-label">Watch a Show</label>
+
+                              <input type="text" class="form-control" id="watchShow" name="watchShow" value="" title="Please enter your watchShow" required maxlength="30">
+
+                              <span class="help-block"></span>
+
+                          </div>
+
+                          <div class="form-group col-xs-6">
+
+                            <label class="control-label col-sm-4" for="state">State</label>
+                            <div class="control-label col-sm-5">
+                            <select class="form-control" id="state" name="state">
+                              <option value="AL">Alabama</option>
+                              <option value="AK">Alaska</option>
+                              <option value="AZ">Arizona</option>
+                              <option value="AR">Arkansas</option>
+                              <option value="CA">California</option>
+                              <option value="CO">Colorado</option>
+                              <option value="CT">Connecticut</option>
+                              <option value="DE">Delaware</option>
+                              <option value="DC">District Of Columbia</option>
+                              <option value="FL">Florida</option>
+                              <option value="GA">Georgia</option>
+                              <option value="HI">Hawaii</option>
+                              
+                            </select>
+
+                            <span class="help-block"></span>
+                            </div>
+                          </div>
+
+                          <div class="form-group col-xs-6">
+
+                              <label class="control-label col-sm-4" for="rehersal" class="control-label">Rehersal</label>
+
+                              <input type="text" class="form-control" id="rehersal" name="rehersal" value="" title="Please enter your rehersal" required maxlength="10">
+
+                              <span class="help-block"></span>
+
+                          </div>
+
+                          <div class="form-group col-xs-6">
+
+                              <label class="control-label col-sm-4" for="meetingHours" class="control-label">Meeting Hours</label>
+
+                              <input type="text" class="form-control" id="meetingHours" name="meetingHours" value="" title="Please enter your meetingHours" maxlength="30">
+
+                              <span class="help-block"></span>
+
+                          </div>
+
+
+                          <div class="form-group col-xs-6">
+
+                              <label class="control-label col-sm-4" for="hospital" class="control-label">Hospital Compliance</label>
+
+                            <select class="form-control" id="hospital" name="hospital">
+                              <option value="4">Actor</option>
+                              <option value="3">Staff</option>
+                            </select>
+                              <span class="help-block"></span>
+                          </div>                          
+
+
+                          <div class="form-group col-xs-6">
+
+                              <label class="control-label col-sm-4" for="total" class="control-label">Total</label>
+
+                          
+
+                              <span class="help-block"></span>
+
+                          </div>
+
+                          <button type="submit" class="btn btn-primary btn-norad pull-right">Submit</button>
+                          
+                      </form>
+                     </div>   
+                </div>
+                   
+                  
+               
 		</div>
 	</div>
 </div>

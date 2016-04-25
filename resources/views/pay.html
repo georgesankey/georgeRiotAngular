@@ -14,35 +14,55 @@
 			</div>
 			<div id="adminView" ng-show="timeSheetShowFlag" class="panel-body"
 				style="width: 100% margin-bottom:10px margin-left:38px">
-				<label id="Selectdate" class="jqx-scheduler-edit-dialog-label"
-					style="width: 120px;"> Date : </span></label>
-				<table style="float: right; margin-bottom: 100px;">
-					<tr>
-						<td>
-							<!-- <label class="control-label col-sm-4" for="date"> Select Range</label> 
+          <label id="Selectdate" class="jqx-scheduler-edit-dialog-label"
+          style="width: 120px;"> Date : </span></label>
+        <table style="float: right; margin-bottom: 100px;">
+          <tr>
+            <td>
+              <!-- <label class="control-label col-sm-4" for="date"> Select Range</label> 
      <span ng-show="date">{{date | date: "M/d/yyyy"}}s--> <jqx-date-time-input
-								ng-model="date" id="date" jqx-settings="dateInputSettings"
-								style="display:inline-block;"></jqx-date-time-input>
-						</td>
-					</tr>
-				</table>
-				<!-- Timesheet Grid and Export button-->
-				<jqx-grid id="jqxgrid" jqx-source="timeSheet"
-					jqx-settings="timeSheetGridSettings"> <jqx-button
-					id="addrowbutton" jqx-settings="addTimesheetEntrySettings">Add
-				Entry </jqx-button> </jqx-grid>
-				<jqx-button jqx-settings="exportButtonSettings">Export
-				to Excel</jqx-button>
-				<jqx-window id="timeSheetWindow"
-					jqx-settings="timeSheetWindowSettings"> </jqx-window>
+                ng-model="date" id="date" jqx-settings="dateInputSettings"
+                style="display:inline-block;"></jqx-date-time-input>
+            </td>
+          </tr>
+        </table>
+        <jqx-tabs jqx-width="'100%'" jqx-height="'100%'">
+        <ul >
+                        <li>Timesheet</li>
+                        <li>Users</li>
+                    </ul>
+             <div class="row">
+                <!-- Timesheet Grid and Export button    -->
+                           <div class="col-md-12">
+                                <label for="Timesheet" class="control-label">Current Timesheet:</label>
+                                <jqx-grid  id="jqxgrid" jqx-source="timeSheet" jqx-settings="timeSheetGridSettings">
+                          <jqx-button
+                          id="addrowbutton" jqx-settings="addTimesheetEntrySettings">Add
+                        Entry </jqx-button>
+                                </jqx-grid> 
 
-				<!-- User List Grid and Export button-->
-				<div>
-					<jqx-grid id="userGrid" jqx-source="userGrid"
-						jqx-settings="userGridSettings"></jqx-grid>
-					<jqx-button jqx-settings="exportUserButtonSettings">Export
-					Users to Excel</jqx-button>
-				</div>
+            <jqx-button jqx-settings="exportButtonSettings">Export
+        to Excel</jqx-button>
+                            </div>
+
+       </div>
+
+                             <!-- User List Grid and Export button-->
+            <div class="row">
+                   <div class="col-md-12">
+                      <label for="Users" class="control-label">Current Users:
+                      </label>
+                      <jqx-grid  id="userGrid" jqx-source="userGrid" jqx-settings="userGridSettings">                       
+                      </jqx-grid> 
+                      <jqx-button jqx-settings="exportUserButtonSettings">Export
+                   Users to Excel</jqx-button>
+                  </div>
+
+
+
+            </div>
+      </jqx-tabs>
+   
 
 			</div>
 			<div id="userView" ng-show="userFormShowFlag">
@@ -50,8 +70,6 @@
                    <p> Please Enter Timesheet Details</p>
      
                <div class="col-xs-12">
-
-
 
                       <form id="loginForm" method="POST" action="">
 

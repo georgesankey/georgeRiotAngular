@@ -59,11 +59,12 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
      else 
    {
 
-    var userParam = PayPageService;
+    var userParam = PayPageService.getAllUsers();
 
     $q.all([userParam])
     .then(function(response){
-
+    $scope.allUsers = response[0];
+      
     $scope.timeSheetWindow = {};
     var url = "resources/js/controllers/products.xml";
         
@@ -73,7 +74,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
     {
       datatype: "xml",
       datafields: [
-      { name: 'firstName', type: 'string'},
+            { name: 'firstName', type: 'string'},
             //{ name: 'siteA',columntype:'dropdownlist',editable:'false' },
             { name: 'HourlyRate', type: 'float',aggregates: ['sum', 'avg'] },
             //{ name: 'Travel', type: 'float' },
@@ -260,39 +261,13 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
           $("#Selectdate").html("<div> Date : " + selection.from.toLocaleDateString() + " - " + selection.to.toLocaleDateString() + "</div>");
                     }
                 });
+ 
+       
+       var test =  new $.jqx.dataAdapter(userAdapter($scope.allUsers));
+       console.log(test);
 
-
-    var dataSourceUrl = "api/pay.php?action=getAllUsers";
-    $http({
-        method: 'get',
-        url: dataSourceUrl
-    }).success(function (data, status) {
-        // prepare the data
-        var userSource =
-                {
-                  
-                    datatype: "json",
-                    datafields: [
-
-                        {name: 'email', type: 'string'},
-                        {name: 'first_name', type: 'string'},
-                        {name: 'last_name', type: 'string'},
-                        {name: 'role_name', type: 'string'},
-                        {name: 'cell_number', type: 'string'},
-                        {name: 'home_number', type: 'string'},
-                                           ],
-                    url: dataSourceUrl,
-                    
-                };
-
-
-
-    var userDataAdapter = new $.jqx.dataAdapter(userSource);
-      
-    $scope.userDataAdapter = userDataAdapter;
-          
     $scope.userGridSettings= {
-        source: userDataAdapter,
+        source: test ,
         theme: 'energyblue',
         width:  '100%',
         sortable: true,
@@ -341,7 +316,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
     $("#userGrid").jqxGrid('exportdata', 'xls', 'jqxgrid');
                           }
     };
-})
+}
 
 
     //$scope.date = Date.now();
@@ -360,9 +335,24 @@ $scope.timeSheetManagement = function (service) {
           });
 }
     
-}
-
-
-
 
 }]);
+ // prepare the data
+       function userAdapter(source){
+               return {                  
+                    datatype: "array",
+                    datafields: [
+
+                        {name: 'email', type: 'string'},
+                        {name: 'first_name', type: 'string'},
+                        {name: 'last_name', type: 'string'},
+                        {name: 'role_name', type: 'string'},
+                        {name: 'cell_number', type: 'string'},
+                        {name: 'home_number', type: 'string'}
+                                          ],
+
+                    localdata: source,
+                   
+                };
+    
+    }

@@ -25,12 +25,19 @@ appModule.factory('PayPageService', function($http, $q) {
     };
 
     var getAllUsers = function() {
-    
+        var deferred = $q.defer();
+
+        $http.get(route + "?action=getAllUsers").success(function (data, status) {
+            allUsers = data;
+            deferred.resolve(allUsers);
+                    });
+        
+        return deferred.promise;
    };
    
         return {
-        getAllTimeSheetEntries: getAllTimeSheetEntries
-      
+        getAllTimeSheetEntries: getAllTimeSheetEntries,
+        getAllUsers:getAllUsers
 
     };
 });

@@ -28,7 +28,7 @@
             </td>
           </tr>
         </table>
-        <jqx-tabs jqx-create="createuserList" jqx-width="'100%'">
+        <jqx-tabs jqx-width="'100%'">
         <ul >
                         <li>Timesheet</li>
                         <li>Users</li>
@@ -37,7 +37,7 @@
                 <!-- Timesheet Grid and Export button    -->
                            <div class="col-md-12">
                                 <label for="Timesheet" class="control-label" style="margin: 10px">Current Timesheet:</label>
-                                <jqx-grid  id="jqxgrid" jqx-source="timeSheet" jqx-settings="timeSheetGridSettings">
+                                <jqx-grid  id="jqxgrid" jqx-create="createuserList" jqx-settings="timeSheetGridSettings">
                           <jqx-button
                           id="addrowbutton" style="margin: 10px" jqx-settings="addTimesheetEntrySettings">Add
                         Entry </jqx-button>
@@ -54,12 +54,11 @@
                    <div class="col-md-12">
                       <label for="Users" style="margin: 10px" class="control-label">Current Users:
                       </label>
-                      <jqx-grid  id="userGrid" jqx-source="userGrid" jqx-settings="userGridSettings">                       
+                      <jqx-grid  id="userGrid" jqx-create="createuserList" jqx-settings="userGridSettings">                       
                       </jqx-grid> 
                       <jqx-button style="margin: 10px" jqx-settings="exportUserButtonSettings">Export
                    Users to Excel</jqx-button>
                   </div>
-
 
 
             </div>

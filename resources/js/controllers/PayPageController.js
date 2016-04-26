@@ -5,10 +5,11 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
 /** 
  * Renders TimeSheet info & other notifications
  */
- appModule.controller('PayPageController',  [ '$scope','$rootScope', '$http', '$q','$route' ,'PayPageService',function ( $scope, $rootScope, $http,$q, $route, PayPageService) {
+ appModule.controller('PayPageController',  [ '$scope','$rootScope', '$http', '$q','$route' ,'PayPageService', 'VenueService', function ( $scope, $rootScope, $http,$q, $route, PayPageService, VenueService) {
 
 
- 
+ console.log("Entering the controller - I am here");
+    $scope.createuserList = false;
     $scope.timeSheetShowFlag = true;
     $scope.userFormShowFlag = false;
     var user = $rootScope.user.role_name;
@@ -49,7 +50,31 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
              $("#driver").jqxNumberInput({ spinMode: 'simple', symbol: '$', width: 150, min: 0, height: 23, spinButtons: true });
 
 
+            var vendorParam = VendorService.getAllVenues();
+            console.log("Entering vendorParam"); 
+            console.log(vendorParam);
+            $q.all([vendorParam])
+            .then(function(response){
+            $scope.allVendors = response[0];
+            console.log("$scope.allVendors"); 
+            console.log($scope.allVendors);
+/*
+            $.each($scope.venues, function(index, value) {
+                    venueNameSource.push(value.name);
+                    venueIdSource.push(value.id);
+            });
+            $.each($scope.venues, function(index, value) {
+                    if(value.id == appointment.venue){
+                        $("#comboboxVenueName").jqxDropDownList('selectedIndex', index);
+                        updateVenueFields(value);    
+                        UserService.getUser(appointment.adminCreator)
+                        .then(function(userItem) {
+                            $('#adminField').val(userItem.first_name + " " + userItem.last_name + " ("+ userItem.email + ")");
+                        });
+                    }
+                });
 
+*/
 
             $scope.userFormShowFlag = true;
             $scope.timeSheetShowFlag = false;
@@ -58,13 +83,14 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
 
      else 
    {
-
     var userParam = PayPageService.getAllUsers();
-
+    console.log("Entering userParam"); 
+      console.log(userParam);
     $q.all([userParam])
     .then(function(response){
     $scope.allUsers = response[0];
-      
+    console.log("$scope.ALLUSERS"); 
+    console.log($scope.allUsers);
     $scope.timeSheetWindow = {};
     var url = "resources/js/controllers/products.xml";
         
@@ -259,16 +285,18 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
     $("#date").on('change', function (event) {
        var selection = $("#date").jqxDateTimeInput('getRange');
                if (selection.from != null) {
-          $("#Selectdate").html("<div> Date : " + selection.from.toLocaleDateString() + " - " + selection.to.toLocaleDateString() + "</div>");
+          $("#Selectdate").html("<div> Date : " + selection.from.toLocaleDateString() + " - " +       selection.to.toLocaleDateString() + "</div>");
                     }
                 });
  
        
        var test =  new $.jqx.dataAdapter(userAdapter($scope.allUsers));
        
+       console.log("Object passed to source below");
+       console.log(test);
 
     $scope.userGridSettings= {
-        source: test ,
+        source: test,
         theme: 'energyblue',
         width:  '100%',
         sortable: true,
@@ -279,11 +307,11 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
         pagesize: '20',
           columns: [
           { text: 'E-mail', datafield: 'email', width: 250, align: 'center',cellsalign: 'center' },
-          { text: 'First Name',columngroup: 'Name',columngroup: 'Users', datafield:'first_name', width: 200, align: 'center',  cellsalign: 'center'},
-          { text: 'Last Name', columngroup: 'Name',columngroup: 'Users', datafield: 'last_name', width: 250, align: 'center',cellsalign: 'center' },
+          { text: 'First Name',columngroup: 'Name', datafield:'first_name', width: 200, align: 'center',  cellsalign: 'center'},
+          { text: 'Last Name', columngroup: 'Name', datafield: 'last_name', width: 250, align: 'center',cellsalign: 'center' },
           { text: 'Role', datafield: 'role_name', width: 200, align: 'center',  cellsalign: 'center'},
-          { text: 'Cell Number', columngroup: 'Number',columngroup: 'Users',datafield: 'cell_number', width: 250, align: 'center',cellsalign: 'center' },
-          { text: 'House number', datafield: 'Number', width: 200, align: 'center',  cellsalign: 'center'},
+          { text: 'Cell Number', columngroup: 'Number',datafield: 'cell_number', width: 250, align: 'center',cellsalign: 'center' },
+          { text: 'House number', datafield: 'home_number', width: 200, align: 'center',  cellsalign: 'center'},
           ]
 };
     $scope.addTimesheetEntrySettings = {
@@ -301,8 +329,11 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
         }
     }
 
-
+$scope.createuserList = true;
 })
+, function(error) {
+        console.log('opsssss' + error);
+    };
     //Buttons to export grids with paypage data
     $scope.exportButtonSettings = {
     theme: 'energyblue',
@@ -352,7 +383,8 @@ $scope.timeSheetManagement = function (service) {
                         {name: 'home_number', type: 'string'}
                                           ],
 
-                    localdata: source,
+                    localdata: source
+        
                    
                 };
     

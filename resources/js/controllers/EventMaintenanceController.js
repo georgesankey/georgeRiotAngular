@@ -7,15 +7,6 @@ var appModule = window.appModule ||
  */
 appModule.controller('EventMaintenanceController', ['$window', '$rootScope', '$scope', '$q', '$route' ,'EventMaintenanceService', function($window, $rootScope, $scope, $q, $route, EventMaintenanceService) {
 	
-
-    /*if($rootScope.selectedEvent !== null){
-        $scope.selectedEvent = $rootScope.selectedEvent;
-        $cookies.put('selectedEvent', $scope.selectedEvent);
-
-    } else {
-        $scope.selectedEvent = $cookies.get('selectedEvent');
-    }*/
-
     $scope.selectedEvent = $rootScope.selectedEvent;
 
     //Session Role 
@@ -131,13 +122,11 @@ appModule.controller('EventMaintenanceController', ['$window', '$rootScope', '$s
                     angular.forEach($scope.EMUsers, function(EMUser) {
                     	if(EMUser.id == Number(item.value.split(',')[0])){
                     		$scope.EMUser = EMUser;
+                            $('#searchEMUsersInput').jqxInput('opened', false);
                     	}
                     });
                 }
             }
-        }).on('change', function (event) {
-            //if not exactly search result, set back to empty
-            $scope.EMUser = "";                           
         });
 
         $("#searchEMScriptsInput").on('select', function (event) {
@@ -149,13 +138,11 @@ appModule.controller('EventMaintenanceController', ['$window', '$rootScope', '$s
                         if(EMScript.id == Number(item.value.split(',')[0])){
                             item.value += EMScript.owners;
                             $scope.EMScript = EMScript;
+                            $('#searchEMScriptsInput').jqxInput('opened', false);
                         }
                     });
                 }
             }
-        }).on('change', function (event) {
-            //if not exactly search result, set back to empty
-            $scope.EMScript = "";                           
         });
 
 

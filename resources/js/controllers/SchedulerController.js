@@ -93,7 +93,7 @@ appModule.controller('SchedulerController', ['SchedulerService', 'VenueService',
             $scope.venueNames = venueNameSource;
             $scope.venueIds = venueIdSource;
 
-            $('#dialogscheduler input').jqxInput({ width: '100%', height: 25});
+            $('#dialogscheduler input').not("[type='textarea']").jqxInput({ width: '100%', height: 25});
             $('#dialogscheduler textarea').jqxInput({ width: '100%', height: 50});
             $("#comboboxVenueName").jqxDropDownList({ source: venueNameSource, width: '100%', height: '25px' });            
 

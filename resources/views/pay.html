@@ -1,19 +1,19 @@
 <div>
-	<div class="panel panel-info">
-		<div class="panel-heading">
-			<h4 class="panel-title">Timesheets</h4>
-		</div>
-	</div>
-	<!-- Pay View panel -->
-	<div id="half">
-		<div class="panel panel-default text-center " class="col-centered">
-			<div class="panel-heading">
-				<h2 class="panel-title">
-					<strong> Timesheet </strong>
-				</h2>
-			</div>
-			<div id="adminView" ng-show="timeSheetShowFlag" class="panel-body"
-				style="width: 100% margin-bottom:10px margin-left:38px">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Timesheets</h4>
+    </div>
+  </div>
+  <!-- Pay View panel -->
+  <div id="half">
+    <div class="panel panel-default text-center " class="col-centered">
+      <div class="panel-heading">
+        <h2 class="panel-title">
+          <strong> Timesheet </strong>
+        </h2>
+      </div>
+      <div id="adminView" ng-show="timeSheetShowFlag" class="panel-body"
+        style="width: 100% margin-bottom:10px margin-left:38px">
           
           <label id="Selectdate" class="control-label col-sm-4"> 
             Date: {{date | date : 'MM/dd/yyyy'}} </label>
@@ -28,7 +28,7 @@
             </td>
           </tr>
         </table>
-        <jqx-tabs jqx-width="'100%'">
+        <jqx-tabs jqx-create="createuserList" jqx-width="'100%'">
         <ul >
                         <li>Timesheet</li>
                         <li>Users</li>
@@ -66,9 +66,9 @@
       </jqx-tabs>
    
 
-			</div>
-			<div id="userView" ng-show="userFormShowFlag">
-				<div style="overflow:hidden">
+      </div>
+      <div id="userView" ng-show="userFormShowFlag">
+        <div style="overflow:hidden">
                    <p> Please Enter Timesheet Details</p>
      
                <div class="col-xs-12">
@@ -212,6 +212,6 @@
                    
                   
                
-		</div>
-	</div>
+    </div>
+  </div>
 </div>

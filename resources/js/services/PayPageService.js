@@ -24,6 +24,17 @@ appModule.factory('PayPageService', function($http, $q) {
         return deferred.promise;
     };
 
+     var submitEntry = function(entry) {
+        var deferred = $q.defer();
+        $http.post(route+"?func=editEntry", $.param(entry), {
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function (data) {
+            allEntries = undefined;
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    };
+
     var getAllUsers = function() {
         var deferred = $q.defer();
 

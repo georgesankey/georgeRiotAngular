@@ -15,7 +15,101 @@ function getAllUsers() {
 	    	$retrieveUserQuery->execute();	    	
 	    	$numberOfUserRows = $retrieveUserQuery->rowCount();
 	    	return ($numberOfUserRows > 0)? $retrieveUserQuery->fetchAll() : null;
-		} 
+		}
+
+	function submitEntry($entry) {
+	global $dbh;
+
+	if(isset($entry["id"]) && !is_null($entry["id"])) {
+		
+		// Update data
+		//First Name Last Name SiteID = venueid userid =userid
+		$authQuery = $dbh->prepare("
+			UPDATE TIMESHEET SET 
+				name = :name,
+				hourlyRate = :hourlyRate,
+				travel = :travel,
+				driver = :driver,
+				suitcase = :suitcase,
+				watchShow = :watchShow,
+				rehersalHours = :rehersalHours,
+				meetingHours = :meetingHours,
+				hospitalCompliance = :hospitalCompliance,
+				total = :total,
+				comments = :comments
+			WHERE
+				id = :id
+		");
+
+		$authQuery->bindParam(':name', $venue["name"]);
+		$authQuery->bindParam(':hourlyRate', $venue["hourlyRate"]);
+	    $authQuery->bindParam(':travel', $venue["travel"]);
+	    $authQuery->bindParam(':driver', $venue["driver"]);
+	    $authQuery->bindParam(':suitcase', $venue["suitcase"]);
+		$authQuery->bindParam(':watchShow', $venue["watchShow"]);
+	    $authQuery->bindParam(':rehersalHours', $venue["rehersalHours"]);
+	    $authQuery->bindParam(':meetingHours', $venue["meetingHours"]);
+		$authQuery->bindParam(':hospitalCompliance', $venue["hospitalCompliance"]);
+		$authQuery->bindParam(':total', $venue["total"]);
+		$authQuery->bindParam(':comments', $venue["comments"]);
+
+	    if(!$authQuery->execute()) {
+	    	return "Failed: ".$authQuery->errorInfo();
+	    }
+	    return "Success";
+
+	} else {
+
+		// New data
+		$authQuery = $dbh->prepare("
+			INSERT INTO VENUE (
+				name ,
+				hourlyRate ,
+				travel ,
+				driver ,
+				watchShow ,
+				rehersalHours ,
+				meetingHours ,
+				hospitalCompliance ,
+				total ,
+				comments 
+			)
+			VALUES (
+				:name,
+				:hourlyRate,
+				:travel,
+				:driver,
+				:watchShow,
+				:rehersalHours,
+				:meetingHours,
+				:hospitalCompliance,
+				:total,
+				:comments
+			)
+		");
+
+		$authQuery->bindParam(':name', $venue["name"]);
+		$authQuery->bindParam(':hourlyRate', $venue["hourlyRate"]);
+	    $authQuery->bindParam(':travel', $venue["travel"]);
+	    $authQuery->bindParam(':suitcase', $venue["suitcase"]);
+		$authQuery->bindParam(':watchShow', $venue["watchShow"]);
+	    $authQuery->bindParam(':rehersalHours', $venue["rehersalHours"]);
+	    $authQuery->bindParam(':meetingHours', $venue["meetingHours"]);
+		$authQuery->bindParam(':hospitalCompliance', $venue["hospitalCompliance"]);
+		$authQuery->bindParam(':total', $venue["total"]);
+		$authQuery->bindParam(':comments', $venue["comments"]);
+
+	    if(!$authQuery->execute()) {
+	    	return "Failed: ".$authQuery->errorInfo();
+	    }
+
+	    $vid = $dbh->lastInsertId();
+
+	  
+	    return "Success";
+	}
+
+} 
 			
 
 

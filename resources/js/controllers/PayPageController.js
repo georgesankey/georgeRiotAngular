@@ -5,7 +5,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
 /** 
  * Renders TimeSheet info & other notifications
  */
- appModule.controller('PayPageController',  [ '$scope','$rootScope', '$http', '$q','$route' ,'PayPageService', 'VenueService', function ( $scope, $rootScope, $http,$q, $route, PayPageService, VenueService) {
+ appModule.controller('PayPageController',  [ 'PayPageService', 'VenueService','$scope','$rootScope', '$http', '$q','$route' , function ( PayPageService, VenueService, $scope, $rootScope, $http,$q, $route) {
 
 
  console.log("Entering the controller - I am here");
@@ -15,49 +15,16 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
     var user = $rootScope.user.role_name;
     if(user !== "Administrator"){
 
-            // initialize the input fields.
-            $("#site").jqxInput({ theme: 'energyblue' });
-            $("#hourlyRate").jqxInput({ theme: 'energyblue' });
-            $("#travel").jqxInput({ theme: 'energyblue' });
-             $("#driver").jqxInput({ theme: 'energyblue' });
-            $("#suitcase").jqxInput({ theme: 'energyblue' });
-            $("#watchShow").jqxInput({ theme: 'energyblue' });
-             $("#rehersal").jqxInput({ theme: 'energyblue' });
-            $("#meetingHours").jqxInput({ theme: 'energyblue' });
-            $("#hospital").jqxInput({ theme: 'energyblue' });
-             
-          
-        
-            $("#site").width(150);
-            $("#site").height(23);
-            $("#hourlyRate").width(150);
-            $("#hourlyRate").height(23);
-            $("#travel").width(150);
-            $("#travel").height(23);
-            $("#driver").width(150);
-            $("#driver").height(23);
-            $("#suitcase").width(150);
-            $("#suitcase").height(23);
-            $("#watchShow").width(150);
-            $("#watchShow").height(23);
-            $("#rehersal").width(150);
-            $("#rehersal").height(23);
-            $("#meetingHours").width(150);
-            $("#meetingHours").height(23);
-             $("#hospital").width(150);
-             $("#hospital").height(23);
-             $("#driver").jqxNumberInput({spinMode: 'simple', width: 150, height: 23, min: 0, decimalDigits: 0, spinButtons: true });
-             $("#driver").jqxNumberInput({ spinMode: 'simple', symbol: '$', width: 150, min: 0, height: 23, spinButtons: true });
+           
 
-
-            var vendorParam = VendorService.getAllVenues();
-            console.log("Entering vendorParam"); 
-            console.log(vendorParam);
-            $q.all([vendorParam])
+            $scope.venueParam = VenueService.getAllVenues();
+            console.log("Entering venueParam"); 
+            console.log($scope.venueParam);
+            $q.all([$scope.venueParam])
             .then(function(response){
-            $scope.allVendors = response[0];
-            console.log("$scope.allVendors"); 
-            console.log($scope.allVendors);
+            $scope.allVenues = response[0];
+            console.log("$scope.allVenues"); 
+            console.log($scope.allVenues);
 /*
             $.each($scope.venues, function(index, value) {
                     venueNameSource.push(value.name);
@@ -74,13 +41,39 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
                     }
                 });
 
-*/
+*///TimeSheet Entry 
+          $scope.newEntry = {
+          site:"",
+          hourlyRate:"",
+          travel:"",
+          driver:"",
+          meetingHours:"",
+          watchShow:"",
+          rehersalHours:"",
+          suitcase:"",
+          hospitalCompliance:"",
+          comments:""
+
+
+        };
+
+          // Log details first
+          $scope.submitEntry = function() {
+            
+          PayPageService.submitEntry($scope.newEntry).then(function(data) {
+                  alertLog("Entry Created");
+                  console.log(data);
+                });
+              }
+            
+
+         
 
             $scope.userFormShowFlag = true;
             $scope.timeSheetShowFlag = false;
             $scope.timeSheetManagement =  null;
-            }
-
+            })
+}
      else 
    {
     var userParam = PayPageService.getAllUsers();

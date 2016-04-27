@@ -66,151 +66,125 @@
    
 
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
       <div id="userView" ng-show="userFormShowFlag">
-        <div style="overflow:hidden">
-                   <p> Please Enter Timesheet Details</p>
-     
-               <div class="col-xs-12">
+       
+            <form class="form-default">
 
-                      <form id="loginForm" method="POST" action="">
-
-                             <div class="form-group col-xs-6">
-
-                              <label class="control-label col-sm-4" for="site" class="control-label">Site:</label>
-
-                              <input type="site" class="form-control" id="site" name="site" value="" title="Please enter the Site information" required maxlength="30">
-
-                              <span class="help-block"></span>
-
-                          </div>
-
-                          <div class="form-group col-xs-6">
-
-                              <label class="control-label col-sm-4" for="hourlyRate" class="control-label">Hourly Rate</label>
-
-                              <input type="hourlyRate" class="form-control" id="hourlyRate" name="hourlyRate" value="" title="Please enter your Hourly Rate" required maxlength="30">
-
-                              <span class="help-block"></span>
-
-                          </div>
+    <div class="row">
+      <div class="col-sm-2 col-sm-offset-1">
+        <label for="site">Site</label>
+      </div>
+      <div class="col-sm-5">
+       <select class="col-sm-5"  id="repeatVenues" ng-model="venueParam" ng-options="venueParam.name">
+       <option value = ""> Choose a Venue</option>
+       </select>
+      </div>
+    </div>
 
 
 
-                          <div class="form-group col-xs-6">
 
-                              <label class="control-label col-sm-4" for="travel" class="control-label">Travel: </label>
+    <div class="row">
+      <div class="col-sm-2 col-sm-offset-1">
+        <label for="hourlyRate">Hourly Rate</label>
+      </div>
+      <div class="col-sm-3">
+        <input type="text" name="hourlyRate" ng-model="newEntry.hourlyRate" class="form-control"/>
+      </div>
+    </div>
 
-                              <input type="text" class="form-control" id="travel" name="travel" value="" title="Please enter your travel" required maxlength="30">
-
-                              <span class="help-block"></span>
-
-                          </div>
-
-                          <div class="form-group col-xs-6">
-
-                              <label class="control-label col-sm-4" for="driver" class="control-label">Driver: </label>
-
-                              <input type="text" class="form-control" id="driver" name="driver" value="" title="Please enter your driver" required maxlength="30">
-
-                              <span class="help-block"></span>
-
-                          </div>
-
-                             <div class="form-group col-xs-6">
-
-                              <label class="control-label col-sm-4" for="suitcase" class="control-label">Suitcase</label>
-
-                              <input type="text" class="form-control" id="suitcase" name="suitcase" value="" title="Please enter your suitcase" required maxlength="30">
-
-                              <span class="help-block"></span>
-
-                          </div>  
-
-                             <div class="form-group col-xs-6">
-
-                              <label class="control-label col-sm-4" for="watchShow" class="control-label">Watch a Show</label>
-
-                              <input type="text" class="form-control" id="watchShow" name="watchShow" value="" title="Please enter your watchShow" required maxlength="30">
-
-                              <span class="help-block"></span>
-
-                          </div>
-
-                          <div class="form-group col-xs-6">
-
-                            <label class="control-label col-sm-4" for="state">State</label>
-                            <div class="control-label col-sm-5">
-                            <select class="form-control" id="state" name="state">
-                              <option value="AL">Alabama</option>
-                              <option value="AK">Alaska</option>
-                              <option value="AZ">Arizona</option>
-                              <option value="AR">Arkansas</option>
-                              <option value="CA">California</option>
-                              <option value="CO">Colorado</option>
-                              <option value="CT">Connecticut</option>
-                              <option value="DE">Delaware</option>
-                              <option value="DC">District Of Columbia</option>
-                              <option value="FL">Florida</option>
-                              <option value="GA">Georgia</option>
-                              <option value="HI">Hawaii</option>
-                              
-                            </select>
-
-                            <span class="help-block"></span>
-                            </div>
-                          </div>
-
-                          <div class="form-group col-xs-6">
-
-                              <label class="control-label col-sm-4" for="rehersal" class="control-label">Rehersal</label>
-
-                              <input type="text" class="form-control" id="rehersal" name="rehersal" value="" title="Please enter your rehersal" required maxlength="10">
-
-                              <span class="help-block"></span>
-
-                          </div>
-
-                          <div class="form-group col-xs-6">
-
-                              <label class="control-label col-sm-4" for="meetingHours" class="control-label">Meeting Hours</label>
-
-                              <input type="text" class="form-control" id="meetingHours" name="meetingHours" value="" title="Please enter your meetingHours" maxlength="30">
-
-                              <span class="help-block"></span>
-
-                          </div>
+    <div class="row">
+      <div class="col-sm-2 col-sm-offset-1">
+        <label for="travel">Travel</label>
+      </div>
+      <div class="col-sm-3">
+        <input type="text" name="travel" ng-model="newEntry.travel" class="form-control"/>
+      </div>
 
 
-                          <div class="form-group col-xs-6">
+      <div class="col-sm-2">
+        <label for="driver">Driver</label>
+      </div>
+      <div class="col-sm-3">
+        <input type="text" name="driver" ng-model="newEntry.driver" class="form-control" />
+      </div>
+      </div>
 
-                              <label class="control-label col-sm-4" for="hospital" class="control-label">Hospital Compliance</label>
+      
+    
 
-                            <select class="form-control" id="hospital" name="hospital">
-                              <option value="4">Actor</option>
-                              <option value="3">Staff</option>
-                            </select>
-                              <span class="help-block"></span>
-                          </div>                          
+    <div class="row">
 
-
-                          <div class="form-group col-xs-6">
-
-                              <label class="control-label col-sm-4" for="total" class="control-label">Total</label>
-
-                          
-
-                              <span class="help-block"></span>
-
-                          </div>
-
-                          <button type="submit" class="btn btn-primary btn-norad pull-right">Submit</button>
-                          
-                      </form>
-                     </div>   
-                </div>
-                   
+        <div class="col-sm-2 col-sm-offset-1">
+        <label for="meetingHours">Meeting Hours</label>
+      </div>
+      <div class="col-sm-3">
+        <input type="text" name="meetingHours" ng-model="newEntry.meetingHours" class="form-control"/>
+      </div>
+      <div class="col-sm-2">
+        <label for="watchShow">Watch A Show</label>
+      </div>
+      <div class="col-sm-3">
+        <input type="text" name="watchShow" ng-model="newEntry.watchShow" class="form-control"/>
+      </div>
+</div>
+      <div class="row">
+      <div class="col-sm-2 col-sm-offset-1">
+        <label for="rehersal">Rehersal</label>
+      </div>
+      <div class="col-sm-3">
+        <input type="text" name="rehersal" ng-model="newEntry.rehersal" class="form-control"/>
+      </div>
+      <div class="col-sm-2">
+        <label for="suitcase">Suitcase</label>
+      </div>
+      <div class="col-sm-3">
+        <input type="text" name="suitcase" ng-model="newEntry.suitcase" class="form-control"/>
+      </div>
+      
+      
+    </div>
+    <div class="row">
+      <div class="col-sm-2 col-sm-offset-1">
+        <label for="hospital">Hospital</label>
+      </div>
+      <div class="col-sm-2">
+        <input type="text" name="hospital" ng-model="newEntry.hospital" class="form-control"/>
+      </div>
+      
+    </div>
+   
+  <hr/>
+      <div class="row">
+      <div class="col-sm-2 col-sm-offset-1">
+        <label for="comments">Comments</label>
+      </div>
+      <div class="col-sm-9">
+        <textarea name="description" ng-model="newEntry.comments" class="form-control"></textarea>
+      </div>
+      </div>
+      
+    <div class="row">
+      <div class="col-sm-12">
+        <input type="submit" class="btn btn-success pull-right" ng-click="submitEntry()" />
+      </div>
+    </div>
+    </form> 
                   
                
     </div>
+    <!-- End User View -->     
   </div>
 </div>

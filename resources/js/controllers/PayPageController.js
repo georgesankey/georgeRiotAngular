@@ -17,10 +17,10 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
 
            
 
-            $scope.venueParam = VenueService.getAllVenues();
+            var venueParam = VenueService.getAllVenues();
             console.log("Entering venueParam"); 
-            console.log($scope.venueParam);
-            $q.all([$scope.venueParam])
+            console.log(venueParam);
+            $q.all([venueParam])
             .then(function(response){
             $scope.allVenues = response[0];
             console.log("$scope.allVenues"); 

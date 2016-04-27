@@ -87,7 +87,7 @@
         <label for="site">Site</label>
       </div>
       <div class="col-sm-5">
-       <select class="col-sm-5"  id="repeatVenues" ng-model="venueParam" ng-options="venueParam.name">
+       <select class="col-sm-5"  id="repeatVenues" ng-model="venueParam" ng-options=" venue as venue.name for venue in allVenues">
        <option value = ""> Choose a Venue</option>
        </select>
       </div>

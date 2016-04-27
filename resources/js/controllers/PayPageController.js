@@ -41,22 +41,56 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
                     }
                 });
 
-*///TimeSheet Entry 
+*/
+    $scope.dateInputSettings =
+    {
+      width: 200,
+      height: 30,
+      formatString: 'd',
+      animationType: 'fade'
+      
+      
+      
+    }
+    
+    // Change the text reflecting the date picker
+    $("#date").on('change', function (event) {
+       var selection = $("#date").jqxDateTimeInput('getRange');
+               if (selection.from != null) {
+          $("#Selectdate").html("<div> Date : " + selection.from.toLocaleDateString() + " - " +       selection.to.toLocaleDateString() + "</div>");
+                    }
+                });
+
+    $scope.suitcase = [15,20,40];
+    $scope.travel = [20,30];
+    $scope.workShop = [125,150,175];
+    $scope.driver = [15];
+    $scope.watchShow = [30];
+
+    $scope.selectedSuitcase = null;
+    $scope.selectedTravel = null;
+    $scope.selectedWorkShop = null;
+    $scope.selectedDriver = null;
+    $scope.selectedWatchShow = null;
+
+    //TimeSheet Entry 
           $scope.newEntry = {
-          site:"",
+          id:3,
+          userId: $rootScope.user.id,
+          venueId:"",
           hourlyRate:"",
-          travel:"",
+          travel: "",
           driver:"",
-          meetingHours:"",
+          suitcase:"",          
           watchShow:"",
-          rehersalHours:"",
-          suitcase:"",
+          rehersalHours:"",  
+          meetingHours:"",                  
           hospitalCompliance:"",
+          total:"",
           comments:""
 
 
         };
-
           // Log details first
           $scope.submitEntry = function() {
             
@@ -262,7 +296,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
         }
         
       });
-      
+    // ADMIN date info  
     $scope.dateInputSettings =
     {
       width: 200,

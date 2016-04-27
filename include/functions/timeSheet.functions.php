@@ -1,5 +1,5 @@
 <?php
-
+include_once(__DIR__."/../classes/PersistentObject.php");
 
 function getAllUsers() {
 
@@ -16,7 +16,7 @@ function getAllUsers() {
 	    	$numberOfUserRows = $retrieveUserQuery->rowCount();
 	    	return ($numberOfUserRows > 0)? $retrieveUserQuery->fetchAll() : null;
 		}
-
+/*
 	function submitEntry($entry) {
 	global $dbh;
 
@@ -110,7 +110,22 @@ function getAllUsers() {
 	}
 
 } 
-			
+*/
+
+/**
+ * Requires $dbh to be set
+ */
+function editEntry($data) {
+
+	global $dbh;
+
+	$data = json_decode($data, true);
+	$address = new PersistentObject($dbh, "TIMESHEET", isset($data["id"]) ? $data["id"] : null);
+	$address->data = $data;
+
+	if(!$address->save()) return null;
+	return $address->load();
+}			
 
 
 ?>

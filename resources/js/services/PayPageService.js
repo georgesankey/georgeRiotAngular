@@ -26,10 +26,10 @@ appModule.factory('PayPageService', function($http, $q) {
 
      var submitEntry = function(entry) {
         var deferred = $q.defer();
-        $http.post(route+"?func=editEntry", $.param(entry), {
+        var postData = JSON.stringify(entry);
+        $http.post(route + "?action=submit", $.param({data:postData}), {
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        }).success(function (data) {
-            allEntries = undefined;
+        }).success(function(data) {
             deferred.resolve(data);
         });
         return deferred.promise;
@@ -47,7 +47,7 @@ appModule.factory('PayPageService', function($http, $q) {
    };
    
         return {
-        getAllTimeSheetEntries: getAllTimeSheetEntries,
+        submitEntry: submitEntry,
         getAllUsers:getAllUsers
 
     };

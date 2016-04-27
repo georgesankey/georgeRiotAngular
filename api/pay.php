@@ -26,7 +26,9 @@ try {
         getAllUsersAPI(); 
         break;
     default:
-        $returnValue = 'An error has occured';
+        if(isset($_POST["data"])) {
+       $returnValue = editEntry($_POST["data"]);
+}
          break;
 } 
   }else {
@@ -38,11 +40,14 @@ try {
 }
 
 
+
 function getAllUsersAPI(){
 $request = json_decode(file_get_contents("php://input"));
 $returnValue = getAllUsers();
 exit(json_encode($returnValue)); 
 }
+
+
 
 
 ?>

@@ -311,13 +311,13 @@ INSERT INTO `SCRIPTS` (`id`, `name`, `synopsis`, `creator`) VALUES
 --
 
 CREATE TABLE `TIMESHEET` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
   `venueId` int(11) NOT NULL,
   `hourlyRate` int(11) NOT NULL,
   `workShop` double NOT NULL,
   `travel` double NOT NULL,
-  `driver` tinyint(1) NOT NULL,
+  `driver` int(1) NOT NULL,
   `suitcase` int(11) NOT NULL,
   `watchShow` double NOT NULL,
   `rehersalHours` double NOT NULL,
@@ -325,7 +325,8 @@ CREATE TABLE `TIMESHEET` (
   `hospitalCompliance` double NOT NULL,
   `total` double NOT NULL,
   `comments` longtext NOT NULL,
-  `submitDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `submitDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
@@ -333,7 +334,9 @@ CREATE TABLE `TIMESHEET` (
 --
 
 INSERT INTO `TIMESHEET` (`id`, `userId`, `venueId`, `hourlyRate`, `workShop`, `travel`, `driver`, `suitcase`, `watchShow`, `rehersalHours`, `meetingHours`, `hospitalCompliance`, `total`, `comments`, `submitDate`) VALUES
-(1, 1, 2, 15, 150, 9, 2, 3, 2, 1, 9, 8, 0, 'booom bang', '2016-04-28 02:27:25');
+(1, 1, 2, 15, 150, 9, 2, 3, 2, 1, 9, 8, 0, 'booom bang', '2016-04-28 02:27:25'),
+(2, 68, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 9,'test','2016-04-27 20:22:17'),
+(3, 0, 0, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0,'comment','2016-04-27 20:02:57');
 
 -- --------------------------------------------------------
 
@@ -502,13 +505,6 @@ ALTER TABLE `ROLE`
 ALTER TABLE `SCRIPTS`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `TIMESHEET`
---
-ALTER TABLE `TIMESHEET`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`),
-  ADD KEY `id_2` (`id`);
 
 --
 -- Indexes for table `USER`

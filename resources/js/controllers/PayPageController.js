@@ -159,10 +159,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
             { name: 'Submitted Date', type: 'string' }
             
             ],
-            root: "Entries",
-            record: "Entry",
-            id: 'EntryID',
-            url: url,
+            
 
           };
 
@@ -234,6 +231,10 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
         //autoBind: true
       });
 */
+      var timesheetEntries =  new $.jqx.dataAdapter(timeSheetAdapter($scope.allTimeSheetEntries));
+       console.log("timesheet OBject passed to source below");
+       console.log(timesheetEntries);
+
       //Timesheet Grid Settings
       $scope.timeSheetGridSettings = {
         source: timesheetEntries,
@@ -246,7 +247,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
         },
         selectionmode: 'multiplecellsadvanced',
         //source: $scope.timeSheet,
-        editable: true,
+       // editable: true,
         sortable: true,
         pagesizeoptions: ['20','30','40'],
         pageable:true,
@@ -263,6 +264,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
             // you can pass additional argument to the commit callback which represents the new ID if it is generated from a DB.
             commit(true);
           },
+         
         rendertoolbar: function (toolbar) {
         var me = this;
         var container = $("<div style='margin: 5px;'></div>");
@@ -273,31 +275,32 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
         $("#deleterowbutton").jqxButton({ theme: 'energyblue'});
          },
       columns: [
-      { text: 'Name', datafield: 'firstName', width: 250, align: 'center',cellsalign: 'center' ,editable:false},
-      { text: 'Site', columngroup: 'Users', datafield: 'site', width: 200, align: 'center',  cellsalign: 'center',columntype:'dropdownlist',
-      createeditor: function (row, value, editor) {
-        editor.jqxDropDownList({ source: sitesAdapter, displayMember: 'name', valueMember: 'value', dropDownHeight:100, selectedIndex: 1, 'theme': 'energyblue'});
-      }
+      { text: 'First Name',columngroup: 'Users', datafield: 'firstName', width: 100, align: 'center',cellsalign: 'center' ,editable:false},
+      { text: 'Last Name', columngroup: 'Users', datafield: 'lastName', width: 100, align: 'center',  cellsalign: 'center'
+      
+      
       },
-      { text: 'Hourly Rate', columngroup: 'Users', datafield: 'HourlyRate', align: 'center', cellsalign: 'center', cellsformat: 'c2', width: 200 },
-      { text: 'Travel', datafield: 'Travel', cellsalign: 'right', align: 'center', cellsalign: 'center',cellsrenderer: cellsrenderer, width: 100 ,columntype:'dropdownlist',
-      createeditor: function (row, value, editor) {
-        editor.jqxDropDownList({ source: travelAdapter, displayMember: 'label', valueMember: 'value', dropDownHeight:100, selectedIndex: 1,  });
-      }
+      { text: 'Site', columngroup: 'Users', datafield: 'site', align: 'center', cellsalign: 'center', cellsformat: 'c2', width: 150 },
+      { text: 'hourlyRate', datafield: 'hourlyRate', cellsalign: 'right', align: 'center', cellsalign: 'center',cellsrenderer: cellsrenderer, width: 50 
+      
       },
-      { text: 'Driver', columntype: 'checkbox', datafield: 'Driver', align: 'center', cellsalign: 'center', },
-      { text: 'Suitcase', datafield: 'Suitcase', cellsalign: 'right', align: 'center', cellsalign: 'center',cellsrenderer: cellsrenderer, width: 100 },
-      { text: 'Watch A Show', datafield: 'WatchAShow', align: 'center', cellsalign: 'center', },
+      { text: 'workShop', datafield: 'workShop', align: 'center', cellsalign: 'center',width: 70  },
+      { text: 'travel', datafield: 'travel', cellsalign: 'right', align: 'center', cellsalign: 'center',width: 70  },
+      { text: 'driver', datafield: 'driver', align: 'center', cellsalign: 'center',width: 70  },
+      { text: 'Suitcase', datafield: 'suitcase', cellsalign: 'right', align: 'center', cellsalign: 'center',width: 70 },
 
-      {text: 'Total', editable: false, datafield: 'total', cellsformat: 'c2', aggregates:['sum', 'avg'],
-        cellsrenderer: function (index, datafield, value, defaultvalue, column, rowdata) {
-          var total = (parseFloat(rowdata.HourlyRate) * 1);
-          return "<div style='margin: 4px;' class='jqx-right-align'>" + dataAdapter.formatNumber(total, "c2") + "</div>";
-                }
-              }
+      { text: 'Watch A Show', datafield: 'watchShow', align: 'center', cellsalign: 'center', width: 70 },
+      { text: 'rehersalHours', datafield: 'rehersalHours', align: 'center', cellsalign: 'center', width: 70 },
+      { text: 'hospitalCompliance', datafield: 'hospitalCompliance', align: 'center', cellsalign: 'center',width: 70  },
+      { text: 'total', datafield: 'total', align: 'center', cellsalign: 'center', width: 70 },
+      { text: 'comments', datafield: 'comments', align: 'center', cellsalign: 'center', width: 150 },
+      { text: 'submitDate', datafield: 'submitDate', align: 'center', cellsalign: 'center',width: 150  },
+
+     
               ],
               columngroups: [
-              { text: 'Site Information', align: 'center', name: 'Users' }
+              { text: 'Users', align: 'center', name: 'Users' },
+              { text: 'Site Information', align: 'center', name: 'Site' }
               ],
 
               rowselect: function (event) {
@@ -346,7 +349,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
        console.log(test);
 
        
-       var timesheetEntries =  new $.jqx.dataAdapter(timeSheetAdapter($scope.allTimeSheetEntries));
+       
     $scope.userGridSettings= {
         source: test,
         theme: 'energyblue',
@@ -427,7 +430,7 @@ $scope.timeSheetManagement = function (service) {
                     datatype: "array",
                     datafields: [
 
-                        {name: 'Fi', type: 'string'},
+                        {name: 'email', type: 'string'},
                         {name: 'first_name', type: 'string'},
                         {name: 'last_name', type: 'string'},
                         {name: 'role_name', type: 'string'},
@@ -448,21 +451,21 @@ $scope.timeSheetManagement = function (service) {
                     datatype: "array",
                     datafields: [
 
-                        {name: 'First Name', type: 'string'},
-                        {name: 'Last Name', type: 'string'},
-                        {name: 'Site', type: 'string'},
-                        {name: 'hourlyRate', type: 'string'},
-                        {name: 'workShop', type: 'string'},
-                        {name: 'travel', type: 'string'}
-                        {name: 'driver', type: 'string'}
-                        {name: 'suitcase', type: 'string'}
-                        {name: 'watchShow', type: 'string'}
-                        {name: 'rehersalHours', type: 'string'}
-                        {name: 'meetingHours', type: 'string'}
-                        {name: 'hospitalCompliance', type: 'string'}
-                        {name: 'total', type: 'string'}
-                        {name: 'comments', type: 'string'}
-                        {name: 'submitDate', type: 'string'}
+                        {name: 'firstName', type: 'string'},
+                        {name: 'lastName', type: 'string'},
+                        {name: 'site', type: 'string'},
+                        {name: 'hourlyRate', type: 'int'},
+                        {name: 'workShop', type: 'int'},
+                        {name: 'travel', type: 'int'},
+                        {name: 'driver', type: 'int'},
+                        {name: 'suitcase', type: 'int'},
+                        {name: 'watchShow', type: 'int'},
+                        {name: 'rehersalHours', type: 'int'},
+                        {name: 'meetingHours', type: 'int'},
+                        {name: 'hospitalCompliance', type: 'int'},
+                        {name: 'total', type: 'int'},
+                        {name: 'comments', type: 'int'},
+                        {name: 'submitDate', type: 'date'}
 
                                           ],
 

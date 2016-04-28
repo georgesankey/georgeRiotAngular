@@ -23,7 +23,7 @@ function getAllTimeSheetEntries() {
 
 		
 			$retrieveUserQuery = $dbh->prepare("
-				SELECT c.first_name as 'First Name', c.last_name as 'Last Name', v.name as Site , t.hourlyRate, t.workShop, t.travel, t.driver, t.suitcase, t.watchShow, t.rehersalHours, t.meetingHours, t.hospitalCompliance, t.total, t.comments, t.submitDate as 'Submitted Date'  FROM TIMESHEET t
+				SELECT c.first_name as firstName, c.last_name as lastName , v.name as site, t.hourlyRate, t.workShop, t.travel, t.driver, t.suitcase, t.watchShow, t.rehersalHours, t.meetingHours, t.hospitalCompliance, t.total, t.comments, t.submitDate  FROM TIMESHEET t
 				JOIN CONTACT c on c.user_id = t.userId
                 JOIN USER u on t.userId = u.id
                 JOIN VENUE v on v.id = t.venueId

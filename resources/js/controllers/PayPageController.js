@@ -67,35 +67,44 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
     $scope.driver = [15];
     $scope.watchShow = [30];
 
-    $scope.selectedSuitcase = null;
-    $scope.selectedTravel = null;
-    $scope.selectedWorkShop = null;
-    $scope.selectedDriver = null;
-    $scope.selectedWatchShow = null;
+    $scope.selectedSuitcase = "";
+    $scope.selectedTravel = "";
+    $scope.selectedWorkShop = "";
+    $scope.selectedDriver = "";
+    $scope.selectedWatchShow = "";
 
     //TimeSheet Entry 
           $scope.newEntry = {
-          id:3,
+          id:"",
           userId: $rootScope.user.id,
-          venueId:"",
-          hourlyRate:"",
-          travel: "",
-          driver:"",
-          suitcase:"",          
-          watchShow:"",
-          rehersalHours:"",  
-          meetingHours:"",                  
-          hospitalCompliance:"",
-          total:"",
-          comments:""
-
+          venueId: "",
+          hourlyRate: 13.4,
+          workShop:   $scope.selectedWorkShop,
+          travel:     $scope.selectedTravel,
+          driver:     $scope.selectedDriver,
+          suitcase:   $scope.selectedSuitcase,          
+          watchShow:  $scope.selectedWatchShow,
+          rehersalHours:7,  
+          meetingHours:7,                  
+          hospitalCompliance:7,
+          total:6,
+          comments:"test"
+          
+/*
+ workShop:   $scope.selectedWorkShop,
+          travel:     $scope.selectedTravel,
+          driver:     $scope.selectedDriver,
+          siteId:     $scope.selectedVenue,
+          suitcase:   $scope.selectedSuitcase,          
+          watchShow:  $scope.selectedWatchShow,
+*/
 
         };
           // Log details first
           $scope.submitEntry = function() {
             
           PayPageService.submitEntry($scope.newEntry).then(function(data) {
-                  alertLog("Entry Created");
+                  alertLog("Timesheet Entry Created");
                   console.log(data);
                 });
               }
@@ -111,13 +120,17 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
      else 
    {
     var userParam = PayPageService.getAllUsers();
+    var timeSheetParam = PayPageService.getAllTimeSheetEntries();
     console.log("Entering userParam"); 
-      console.log(userParam);
-    $q.all([userParam])
+      console.log(userParam,timeSheetParam);
+    $q.all([userParam,timeSheetParam])
     .then(function(response){
     $scope.allUsers = response[0];
+    $scope.allTimeSheetEntries = response[1];
     console.log("$scope.ALLUSERS"); 
     console.log($scope.allUsers);
+    console.log("$scope.allTimeSheetEntries"); 
+    console.log($scope.allTimeSheetEntries); 
     $scope.timeSheetWindow = {};
     var url = "resources/js/controllers/products.xml";
         
@@ -125,16 +138,26 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
     // prepare the data
     var source =
     {
-      datatype: "xml",
+      datatype: "json",
       datafields: [
-            { name: 'firstName', type: 'string'},
-            //{ name: 'siteA',columntype:'dropdownlist',editable:'false' },
+
+
+            { name: 'First Name', type: 'string'},
+            { name: 'Last Name', type: 'string'},
+            { name: 'Site', type: 'string'},
             { name: 'HourlyRate', type: 'float',aggregates: ['sum', 'avg'] },
-            //{ name: 'Travel', type: 'float' },
-            { name: 'Driver', type: 'float',aggregates: ['sum', 'avg'] },
-            { name: 'Suitcase', type: 'float' },
-            //{ name: 'WatchAShow', type: 'float' },
-            //{ name: 'Driver', type: 'bool' }
+            { name: 'WorkShop', type: 'float'},
+            { name: 'Travel', type: 'float'},
+            { name: 'Driver', type: 'float'},
+            { name: 'Suitcase', type: 'float'} ,
+            { name: 'Watch Show', type: 'float' },
+            { name: 'Rehersal Hours', type: 'float' },
+            { name: 'Meeting Hours', type: 'float' },
+            { name: 'Hospital Compliance', type: 'float' },
+            { name: 'Total', type: 'float' },
+            { name: 'Comments', type: 'string' },
+            { name: 'Submitted Date', type: 'string' }
+            
             ],
             root: "Entries",
             record: "Entry",
@@ -158,7 +181,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
         loadComplete: function (data) { },
    // loadError: function (xhr, status, error) { }
         });
-
+/*
           var sites = [
           { value: "AU", label: "Brookdale Impatient"  },
           { value: "AT", label: "Incarnation" },
@@ -210,10 +233,10 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
          var travelAdapter = new $.jqx.dataAdapter(travelSource, {
         //autoBind: true
       });
-
+*/
       //Timesheet Grid Settings
       $scope.timeSheetGridSettings = {
-        source: dataAdapter,
+        source: timesheetEntries,
         altrows: true,
         width:  '100%',
         height: '100%', 
@@ -322,6 +345,8 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
        console.log("Object passed to source below");
        console.log(test);
 
+       
+       var timesheetEntries =  new $.jqx.dataAdapter(timeSheetAdapter($scope.allTimeSheetEntries));
     $scope.userGridSettings= {
         source: test,
         theme: 'energyblue',
@@ -402,7 +427,7 @@ $scope.timeSheetManagement = function (service) {
                     datatype: "array",
                     datafields: [
 
-                        {name: 'email', type: 'string'},
+                        {name: 'Fi', type: 'string'},
                         {name: 'first_name', type: 'string'},
                         {name: 'last_name', type: 'string'},
                         {name: 'role_name', type: 'string'},
@@ -416,3 +441,35 @@ $scope.timeSheetManagement = function (service) {
                 };
     
     }
+
+     // prepare TimeSheet data
+       function timeSheetAdapter(source){
+               return {                  
+                    datatype: "array",
+                    datafields: [
+
+                        {name: 'First Name', type: 'string'},
+                        {name: 'Last Name', type: 'string'},
+                        {name: 'Site', type: 'string'},
+                        {name: 'hourlyRate', type: 'string'},
+                        {name: 'workShop', type: 'string'},
+                        {name: 'travel', type: 'string'}
+                        {name: 'driver', type: 'string'}
+                        {name: 'suitcase', type: 'string'}
+                        {name: 'watchShow', type: 'string'}
+                        {name: 'rehersalHours', type: 'string'}
+                        {name: 'meetingHours', type: 'string'}
+                        {name: 'hospitalCompliance', type: 'string'}
+                        {name: 'total', type: 'string'}
+                        {name: 'comments', type: 'string'}
+                        {name: 'submitDate', type: 'string'}
+
+                                          ],
+
+                    localdata: source
+        
+                   
+                };
+    
+    }
+

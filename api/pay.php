@@ -25,6 +25,9 @@ try {
     case 'getAllUsers' :
         getAllUsersAPI(); 
         break;
+    case 'getAllTimeSheetEntries' :
+        getAllTimeSheetEntriesAPI(); 
+        break;
     default:
         if(isset($_POST["data"])) {
        $returnValue = editEntry($_POST["data"]);
@@ -44,6 +47,12 @@ try {
 function getAllUsersAPI(){
 $request = json_decode(file_get_contents("php://input"));
 $returnValue = getAllUsers();
+exit(json_encode($returnValue)); 
+}
+
+function getAllTimeSheetEntriesAPI(){
+$request = json_decode(file_get_contents("php://input"));
+$returnValue = getAllTimeSheetEntries();
 exit(json_encode($returnValue)); 
 }
 

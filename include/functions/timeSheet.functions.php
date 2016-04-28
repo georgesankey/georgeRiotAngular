@@ -16,6 +16,23 @@ function getAllUsers() {
 	    	$numberOfUserRows = $retrieveUserQuery->rowCount();
 	    	return ($numberOfUserRows > 0)? $retrieveUserQuery->fetchAll() : null;
 		}
+
+function getAllTimeSheetEntries() {
+
+	global $dbh;
+
+		
+			$retrieveUserQuery = $dbh->prepare("
+				SELECT c.first_name as 'First Name', c.last_name as 'Last Name', v.name as Site , t.hourlyRate, t.workShop, t.travel, t.driver, t.suitcase, t.watchShow, t.rehersalHours, t.meetingHours, t.hospitalCompliance, t.total, t.comments, t.submitDate as 'Submitted Date'  FROM TIMESHEET t
+				JOIN CONTACT c on c.user_id = t.userId
+                JOIN USER u on t.userId = u.id
+                JOIN VENUE v on v.id = t.venueId
+				WHERE u.active=1 
+			");
+	    	$retrieveUserQuery->execute();	    	
+	    	$numberOfUserRows = $retrieveUserQuery->rowCount();
+	    	return ($numberOfUserRows > 0)? $retrieveUserQuery->fetchAll() : null;
+		}
 /*
 	function submitEntry($entry) {
 	global $dbh;
@@ -123,7 +140,7 @@ function editEntry($data) {
 	$address = new PersistentObject($dbh, "TIMESHEET", isset($data["id"]) ? $data["id"] : null);
 	$address->data = $data;
 
-	if(!$address->save()) return null;
+	if(!$address->save()) return "Failed: ";
 	return $address->load();
 }			
 

@@ -13,20 +13,18 @@ appModule.factory('PayPageService', function($http, $q) {
 
         var deferred = $q.defer();
 
-        if(timesheetEntry !== undefined){
-            deferred.resolve(timeSheetEntry);
-        } else {
-            $http.get(route).success(function (data){
-                timeSheetEntry = data;
-                deferred.resolve(timeSheetEntry);
-            });
-        }
+        $http.get(route + "?action=getAllTimeSheetEntries").success(function (data, status) {
+            allUsers = data;
+            deferred.resolve(allUsers);
+                    });
+        
         return deferred.promise;
     };
 
      var submitEntry = function(entry) {
         var deferred = $q.defer();
         var postData = JSON.stringify(entry);
+        console.log(postData);
         $http.post(route + "?action=submit", $.param({data:postData}), {
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(data) {
@@ -48,7 +46,8 @@ appModule.factory('PayPageService', function($http, $q) {
    
         return {
         submitEntry: submitEntry,
-        getAllUsers:getAllUsers
+        getAllUsers:getAllUsers,
+        getAllTimeSheetEntries:getAllTimeSheetEntries
 
     };
 });

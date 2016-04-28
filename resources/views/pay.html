@@ -101,11 +101,15 @@
         <label for="site">Site</label>
       </div>
       <div class="col-sm-5">
-       <select class="col-sm-7"  id="repeatVenues" ng-model="selectedVenue" ng-options=" venue as venue.name for venue in allVenues">
-       <option value = ""> Choose a Venue</option>
+       <select class="col-sm-7"  id="repeatVenues" ng-model="selectedVenue" ng-options=" venue.id as venue.name for venue in allVenues">
+       <option value = "" disabled selected> Choose a Venue</option>
        </select>
       </div>
     </div>
+     <p>
+        selected text: 
+      {{selectedVenue}}
+      </p> 
 
 
 
@@ -125,7 +129,7 @@
       </div>
       <div class="col-sm-3">
        <select class="col-sm-10"  id="repeatTravel" ng-model="selectedTravel" ng-options=" travel for travel in travel">
-       <option value = ""> Choose a Travel fee</option>
+       <option value = "" disabled selected> Choose a Travel fee</option>
        </select>
       </div>
 
@@ -135,7 +139,7 @@
       </div>
       <div class="col-sm-3">
        <select class="col-sm-9"  id="repeatDriver" ng-model="selectedDriver" ng-options=" driver for driver in driver">
-       <option value = ""> Choose a Driver fee</option>
+       <option value = "" disabled selected> Choose a Driver fee</option>
        </select>
       </div>
       </div>
@@ -156,7 +160,7 @@
       </div>
       <div class="col-sm-3">
        <select class="col-sm-11"  id="repeatwatchShow" ng-model="selectedWatchShow" ng-options=" watchShow for watchShow in watchShow">
-       <option value = ""> Choose a Watch Show fee</option>
+       <option value = "" disabled selected> Choose a Watch Show fee</option>
        </select>
       </div>
 </div>
@@ -165,36 +169,36 @@
         <label for="rehersal">Rehersal</label>
       </div>
       <div class="col-sm-3">
-        <input type="number" step="0.01" name="rehersal" ng-model="newEntry.rehersal" class="form-control"/>
+        <input type="number" step="0.01" name="rehersal" ng-model="newEntry.rehersalHours" class="form-control"/>
       </div>
       <div class="col-sm-2">
         <label for="suitcase">Suitcase</label>
       </div>
       <div class="col-sm-3">
        <select class="col-sm-9"  id="repeatSuitcaseFee" ng-model="selectedSuitcase" ng-options=" suitcase for suitcase in suitcase">
-       <option value = ""> Choose a Suitcase Fee</option>
+       <option value = "" disabled selected> Choose a Suitcase Fee</option>
        </select>
       </div>
 
     </div>
-<!--
+
     <p>
         selected text: 
       {{selectedSuitcase}}
-      </p> -->
+      </p> 
     <div class="row">
       <div class="col-sm-2 col-sm-offset-1">
         <label for="hospital">Hospital</label>
       </div>
       <div class="col-sm-3">
-        <input type="number" step="0.01" name="hospital" ng-model="newEntry.hospital" class="form-control"/>
+        <input type="number" step="0.01" name="hospital" ng-model="newEntry.hospitalCompliance" class="form-control"/>
       </div>
       <div class="col-sm-2">
         <label for="workshop">Workshop</label>
       </div>
       <div class="col-sm-3">
        <select class="col-sm-9"  id="workshop" ng-model="selectedWorkShop" ng-options=" workShop for workShop in workShop">
-       <option value = ""> Choose a Workshop Fee</option>
+       <option value = "" disabled selected> Choose a Workshop Fee</option>
        </select>
       </div>
     </div>

@@ -101,15 +101,12 @@
         <label for="site">Site</label>
       </div>
       <div class="col-sm-5">
-       <select class="col-sm-7"  id="repeatVenues" ng-model="selectedVenue" ng-options=" venue.id as venue.name for venue in allVenues">
+       <select class="col-sm-7"  id="repeatVenues" ng-model="newEntry.venueId" ng-options=" venue.id as venue.name for venue in allVenues" required>
        <option value = "" disabled selected> Choose a Venue</option>
        </select>
       </div>
     </div>
-     <p>
-        selected text: 
-      {{selectedVenue}}
-      </p> 
+    
 
 
 
@@ -128,7 +125,7 @@
         <label for="travel">Travel</label>
       </div>
       <div class="col-sm-3">
-       <select class="col-sm-10"  id="repeatTravel" ng-model="selectedTravel" ng-options=" travel for travel in travel">
+       <select class="col-sm-10"  id="repeatTravel" ng-model="newEntry.travel" ng-options=" travel for travel in travel">
        <option value = "" disabled selected> Choose a Travel fee</option>
        </select>
       </div>
@@ -138,7 +135,7 @@
         <label for="driver">Driver</label>
       </div>
       <div class="col-sm-3">
-       <select class="col-sm-9"  id="repeatDriver" ng-model="selectedDriver" ng-options=" driver for driver in driver">
+       <select class="col-sm-9"  id="repeatDriver" ng-model="newEntry.driver" ng-options=" driver for driver in driver">
        <option value = "" disabled selected> Choose a Driver fee</option>
        </select>
       </div>
@@ -159,7 +156,7 @@
         <label for="watchShow">Watch A Show</label>
       </div>
       <div class="col-sm-3">
-       <select class="col-sm-11"  id="repeatwatchShow" ng-model="selectedWatchShow" ng-options=" watchShow for watchShow in watchShow">
+       <select class="col-sm-11"  id="repeatwatchShow" ng-model="newEntry.watchShow" ng-options=" watchShow for watchShow in watchShow">
        <option value = "" disabled selected> Choose a Watch Show fee</option>
        </select>
       </div>
@@ -175,7 +172,7 @@
         <label for="suitcase">Suitcase</label>
       </div>
       <div class="col-sm-3">
-       <select class="col-sm-9"  id="repeatSuitcaseFee" ng-model="selectedSuitcase" ng-options=" suitcase for suitcase in suitcase">
+       <select class="col-sm-9"  id="repeatSuitcaseFee" ng-model="newEntry.suitcase" ng-options=" suitcase for suitcase in suitcase">
        <option value = "" disabled selected> Choose a Suitcase Fee</option>
        </select>
       </div>
@@ -197,7 +194,7 @@
         <label for="workshop">Workshop</label>
       </div>
       <div class="col-sm-3">
-       <select class="col-sm-9"  id="workshop" ng-model="selectedWorkShop" ng-options=" workShop for workShop in workShop">
+       <select class="col-sm-9"  id="workshop" ng-model="newEntry.workShop" ng-options=" workShop for workShop in workShop">
        <option value = "" disabled selected> Choose a Workshop Fee</option>
        </select>
       </div>

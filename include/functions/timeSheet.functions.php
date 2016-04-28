@@ -139,7 +139,7 @@ function editEntry($data) {
 	$data = json_decode($data, true);
 	$address = new PersistentObject($dbh, "TIMESHEET", isset($data["id"]) ? $data["id"] : null);
 	$address->data = $data;
-
+	return var_dump($address);
 	if(!$address->save()) return "Failed: ";
 	return $address->load();
 }			

@@ -30,11 +30,13 @@ try {
         break;
     default:
         if(isset($_POST["data"])) {
-       $returnValue = editEntry($_POST["data"]);
-}
+          $returnValue = editEntry($_POST["data"]);
+          echo $returnValue;
+        }
          break;
-} 
-  }else {
+  } 
+}
+else {
       echo "An error has occured";
   }
     

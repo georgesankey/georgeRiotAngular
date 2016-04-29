@@ -15,19 +15,8 @@
       <div id="adminView" ng-show="timeSheetShowFlag" class="panel-body"
         style="width: 100% margin-bottom:10px margin-left:38px">
           
-          <label id="adminSelectdate" class="control-label col-sm-4"> 
-            Date: {{admindate | date : 'MM/dd/yyyy'}} </label>
-        
-        <table style="float: right; margin-bottom: 100px;">
-          <tr>
-            <td>
-              <!-- <label class="control-label col-sm-4" for="date"> Select Range</label> 
-     <span ng-show="date">{{date | date: "M/d/yyyy"}}s--> <jqx-date-time-input
-                ng-model="date" id="date" jqx-settings="dateInputSettings"
-                style="display:inline-block;"></jqx-date-time-input>
-            </td>
-          </tr>
-        </table>
+                  
+     
         <jqx-tabs jqx-width="'100%'">
         <ul >
                         <li>Timesheet</li>
@@ -36,7 +25,7 @@
              <div class="row">
                 <!-- Timesheet Grid and Export button    -->
                            <div class="col-md-12">
-                                <label for="Timesheet" class="control-label" style="margin: 10px">Current Timesheet:</label>
+                                <label for="Timesheet" class="control-label" style="margin: 10px">Current Submitted Entries:</label>
                                 <jqx-grid  id="jqxgrid" jqx-create="createuserList" jqx-settings="timeSheetGridSettings">
                           <jqx-button
                           id="addrowbutton" style="margin: 10px" jqx-settings="addTimesheetEntrySettings">Add
@@ -219,4 +208,5 @@
     </div>
     <!-- End User View -->     
   </div>
+</div>
 </div>

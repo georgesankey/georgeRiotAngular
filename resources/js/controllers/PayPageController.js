@@ -73,13 +73,12 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
          
           // Log details first
           $scope.submitEntry = function() {
-       
-           // if ($scope.newEntry.venue!=null){           
+            
            PayPageService.submitEntry($scope.newEntry).then(function(data) {
                   alertLog("Timesheet Entry Created");                  
                 });
-        //}
-
+      
+                                
               }
 
           
@@ -240,15 +239,6 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
             commit(true);
           },
          
-        // rendertoolbar: function (toolbar) {
-        // var me = this;
-        // var container = $("<div style='margin: 5px;'></div>");
-        // toolbar.append(container);
-        // container.append('<input id="addrowbutton" type="button" value="Add New Row" />');
-        // container.append('<input style="margin-left: 5px;" id="deleterowbutton" type="button" value="Delete Selected Row" />');        
-        // $("#addrowbutton").jqxButton({ theme: 'energyblue'});         
-        // $("#deleterowbutton").jqxButton({ theme: 'energyblue'});
-        //  },
       columns: [
       { text: 'First Name',columngroup: 'Users', datafield: 'firstName', width: 100, align: 'center',cellsalign: 'center' ,editable:false},
       { text: 'Last Name', columngroup: 'Users', datafield: 'lastName', width: 100, align: 'center',  cellsalign: 'center'
@@ -294,14 +284,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
       
     }
     
-    // Change the text reflecting the date picker
-    $("#date").on('change', function (event) {
-       var selection = $("#date").jqxDateTimeInput('getRange');
-               if (selection.from != null) {
-          $("#adminSelectdate").html("<div> Date : " + selection.from.toLocaleDateString() + " - " +       selection.to.toLocaleDateString() + "</div>");
-                    }
-                });
- 
+  
        
        var test =  new $.jqx.dataAdapter(userAdapter($scope.allUsers));
        

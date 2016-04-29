@@ -23,9 +23,7 @@ appModule.factory('PayPageService', function($http, $q) {
 
      var submitEntry = function(entry) {
         var deferred = $q.defer();
-        var postData = JSON.stringify(entry);
-        console.log("entered submit service")
-        console.log(postData);
+        var postData = JSON.stringify(entry);        
         $http.post(route + "?action=submit", $.param({data:postData}), {
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(data) {

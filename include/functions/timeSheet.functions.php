@@ -23,7 +23,7 @@ function getAllTimeSheetEntries() {
 
 		
 			$retrieveUserQuery = $dbh->prepare("
-				SELECT c.first_name as firstName, c.last_name as lastName , v.name as venue, t.hourlyRate, t.workShop, t.travel, t.driver, t.suitcase, t.watchShow, t.rehersalHours, t.meetingHours, t.hospitalCompliance, t.total, t.comments, t.submitDate  FROM TIMESHEET t
+				SELECT c.first_name as firstName, c.last_name as lastName ,t.date, v.name as venue, t.workShop, t.travel, t.driver, t.suitcase, t.watchShow, t.rehersalHours, t.meetingHours, t.hospitalCompliance, t.total, t.comments, t.submitDate  FROM TIMESHEET t
 				JOIN CONTACT c on c.user_id = t.userId
                 JOIN USER u on t.userId = u.id
                 JOIN VENUE v on v.id = t.venueId
@@ -44,7 +44,6 @@ function editEntry($data) {
 	$data = json_decode($data, true);
 	$address = new PersistentObject($dbh, "TIMESHEET", isset($data["id"]) ? $data["id"] : null);
 	$address->data = $data;
-	return var_dump($address);
 	if(!$address->save()) return "Failed: ";
 	return $address->load();
 }			
@@ -55,7 +54,7 @@ function getUsersTimesheetEntries() {
         $user = $_SESSION["userid"];
 	if(!empty($user)) {
 		$authQuery = $dbh->prepare("
-                    SELECT c.first_name as firstName, c.last_name as lastName , v.name as venue, t.hourlyRate, t.workShop, t.travel, t.driver, t.suitcase, t.watchShow, t.rehersalHours, t.meetingHours, t.hospitalCompliance, t.total, t.comments, t.submitDate  FROM TIMESHEET t
+                    SELECT c.first_name as firstName, c.last_name as lastName ,t.date, v.name as venue, t.workShop, t.travel, t.driver, t.suitcase, t.watchShow, t.rehersalHours, t.meetingHours, t.hospitalCompliance, t.total, t.comments, t.submitDate  FROM TIMESHEET t
 				JOIN CONTACT c on c.user_id = t.userId
                 JOIN USER u on t.userId = u.id
                 JOIN VENUE v on v.id = t.venueId

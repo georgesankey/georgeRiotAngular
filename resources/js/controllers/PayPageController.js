@@ -8,7 +8,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
  appModule.controller('PayPageController',  [ 'PayPageService', 'VenueService','$scope','$rootScope', '$http', '$q','$route' , function ( PayPageService, VenueService, $scope, $rootScope, $http,$q, $route) {
 
 
- 
+    
     $scope.createuserList = false;
     $scope.timeSheetShowFlag = true;
     $scope.userFormShowFlag = false;
@@ -24,7 +24,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
     .then(function(response){
     $scope.allVenues = response[0];
     $scope.allUserTimeSheetEntries = response[1];
-    console.log( $scope.allUserTimeSheetEntries);
+    
 
     $scope.dateInputSettings =
     {
@@ -34,14 +34,14 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
       animationType: 'fade'
       
     }
-    
+    //$scope.convertedDate = $scope.date;
     // Change the text reflecting the date picker
     $("#date").on('change', function (event) {
-       var selection = $("#date").jqxDateTimeInput('getRange');
-               if (selection.from != null) {
-          $("#Selectdate").html("<div> Date : " + selection.from.toLocaleDateString() + " - " +       selection.to.toLocaleDateString() + "</div>");
-                    }
+       var selection = $("#date").jqxDateTimeInput('getDate');
+                       
                 });
+
+
 
     $scope.suitcase = [15,20,40];
     $scope.travel = [20,30];
@@ -50,44 +50,48 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
     $scope.watchShow = [30];
 
  
+    $scope.date = new Date();
 
     //TimeSheet Entry 
           $scope.newEntry = {
-          id: "",          
+                  
           userId: $rootScope.user.id,
-          date:"", //$scope.date
-          venueId: "", //$scope.newEntry.venue
-          hourlyRate: "",
-          workShop:   "",//$scope.newEntry.workShop
-          travel:     "",//$scope.newEntry.travel
-          driver:     "",//$scope.newEntry.driver
-          suitcase:   "",//$scope.newEntry.suitcase     
-          watchShow:  "",//$scope.newEntry.watchShow
-          rehersalHours:"",
-          meetingHours: "",                 
-          hospitalCompliance:"", 
-          total: "",//$scope.totalCalculation
+          date:  $scope.date,
+          venueId: "",       
+          workShop:  0,
+          travel:     0,
+          driver:     0,
+          suitcase:   0,    
+          watchShow:  0,
+          rehersalHours:0,
+          meetingHours: 0,                 
+          hospitalCompliance:0, 
+          total: 0,
           comments:""
 
         };
-         console.log($scope.newEntry.venue);
+         
           // Log details first
           $scope.submitEntry = function() {
        
-           // if ($scope.newEntry.venue!=null){
-            console.log("newEntry");
-            console.log($scope.newEntry);
+           // if ($scope.newEntry.venue!=null){           
            PayPageService.submitEntry($scope.newEntry).then(function(data) {
-                  alertLog("Timesheet Entry Created");
-                  console.log(data);
+                  alertLog("Timesheet Entry Created");                  
                 });
         //}
 
               }
+
+          
+
               //Calculation Total Logic
-            $scope.totalCalculation = function() { return $scope.newEntry.travel + $scope.newEntry.driver + $scope.newEntry.meetingHours +
-            $scope.newEntry.watchShow + $scope.newEntry.rehersalHours + $scope.newEntry.suitcase
-            + $scope.newEntry.hospitalCompliance + $scope.newEntry.workShop};
+            $scope.totalCalculation = function() { 
+              return ($scope.newEntry.travel + $scope.newEntry.driver + ($scope.newEntry.meetingHours*15.) +
+            $scope.newEntry.watchShow + ($scope.newEntry.rehersalHours*20.) + $scope.newEntry.suitcase
+            + ($scope.newEntry.hospitalCompliance*15.) + $scope.newEntry.workShop)
+
+
+          };
       
       var userTimesheetEntries =  new $.jqx.dataAdapter(timeSheetAdapter($scope.allUserTimeSheetEntries));
       
@@ -115,12 +119,9 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
       { text: 'First Name',columngroup: 'Users', datafield: 'firstName', width: 100, align: 'center',cellsalign: 'center' ,editable:false},
       { text: 'Last Name', columngroup: 'Users', datafield: 'lastName', width: 100, align: 'center',  cellsalign: 'center'
       },
-      { text: 'Date', datafield: 'date', filtertype: 'date' , width: 100},
+      { text: 'Date', datafield: 'date', filtertype: 'date' , width: 150,align: 'center',  cellsalign: 'center', cellsformat: 'MM/dd/yyyy'},
       { text: 'Venue', datafield: 'venue', align: 'center', cellsalign: 'center', width: 150 },
-      { text: 'Hourly Rate', datafield: 'hourlyRate', cellsalign: 'right', align: 'center', cellsformat: 'c2', cellsalign: 'center', width: 80 
-      
-      },
-      { text: 'Workshop', datafield: 'workShop', align: 'center', cellsalign: 'center',cellsformat: 'c2',width: 70  },
+      { text: 'Workshop Rate', datafield: 'workShop', align: 'center', cellsalign: 'center',cellsformat: 'c2',width: 70  },
       { text: 'Travel', datafield: 'travel', cellsalign: 'right', align: 'center',cellsformat: 'c2', cellsalign: 'center',width: 70  },
       { text: 'Driver', datafield: 'driver', align: 'center', cellsalign: 'center',cellsformat: 'c2',width: 70  },
       { text: 'Suitcase', datafield: 'suitcase', cellsalign: 'right', align: 'center', cellsformat: 'c2',cellsalign: 'center',width: 70 },
@@ -156,16 +157,12 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
    {
     var userParam = PayPageService.getAllUsers();
     var timeSheetParam = PayPageService.getAllTimeSheetEntries();
-    console.log("Entering userParam"); 
-    console.log(userParam,timeSheetParam);
+   
     $q.all([userParam,timeSheetParam])
     .then(function(response){
     $scope.allUsers = response[0];
     $scope.allTimeSheetEntries = response[1];
-    console.log("$scope.ALLUSERS"); 
-    console.log($scope.allUsers);
-    console.log("$scope.allTimeSheetEntries"); 
-    console.log($scope.allTimeSheetEntries); 
+    
     
          
     // prepare the data
@@ -177,8 +174,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
 
             { name: 'First Name', type: 'string'},
             { name: 'Last Name', type: 'string'},
-            { name: 'Venue', type: 'string'},
-            { name: 'HourlyRate', type: 'float' },
+            { name: 'Venue', type: 'string'},            
             { name: 'WorkShop', type: 'float'},
             { name: 'Travel', type: 'float'},
             { name: 'Driver', type: 'float'},
@@ -213,9 +209,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
         });
 
       var timesheetEntries =  new $.jqx.dataAdapter(timeSheetAdapter($scope.allTimeSheetEntries));
-       console.log("timesheet OBject passed to source below");
-       console.log(timesheetEntries);
-
+       
       //Timesheet Grid Settings
       $scope.timeSheetGridSettings = {
         source: timesheetEntries,
@@ -259,12 +253,9 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
       { text: 'First Name',columngroup: 'Users', datafield: 'firstName', width: 100, align: 'center',cellsalign: 'center' ,editable:false},
       { text: 'Last Name', columngroup: 'Users', datafield: 'lastName', width: 100, align: 'center',  cellsalign: 'center'
       },
-      { text: 'Date', datafield: 'date', filtertype: 'date',width: 100 },
+      { text: 'Date', datafield: 'date', filtertype: 'range',width: 150, align: 'center',  cellsalign: 'center', cellsformat: 'MM/dd/yyyy' },
       { text: 'Venue', datafield: 'venue', align: 'center', cellsalign: 'center', width: 150 },
-      { text: 'Hourly Rate', datafield: 'hourlyRate', cellsalign: 'right', align: 'center', cellsformat: 'c2', cellsalign: 'center', width: 80 
-      
-      },
-      { text: 'Workshop', datafield: 'workShop', align: 'center', cellsalign: 'center',cellsformat: 'c2',width: 70  },
+      { text: 'Workshop Rate', datafield: 'workShop', align: 'center', cellsalign: 'center',cellsformat: 'c2',width: 70  },
       { text: 'Travel', datafield: 'travel', cellsalign: 'right', align: 'center',cellsformat: 'c2', cellsalign: 'center',width: 70  },
       { text: 'Driver', datafield: 'driver', align: 'center', cellsalign: 'center',cellsformat: 'c2',width: 70  },
       { text: 'Suitcase', datafield: 'suitcase', cellsalign: 'right', align: 'center', cellsformat: 'c2',cellsalign: 'center',width: 70 },
@@ -307,7 +298,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
     $("#date").on('change', function (event) {
        var selection = $("#date").jqxDateTimeInput('getRange');
                if (selection.from != null) {
-          $("#Selectdate").html("<div> Date : " + selection.from.toLocaleDateString() + " - " +       selection.to.toLocaleDateString() + "</div>");
+          $("#adminSelectdate").html("<div> Date : " + selection.from.toLocaleDateString() + " - " +       selection.to.toLocaleDateString() + "</div>");
                     }
                 });
  
@@ -374,7 +365,7 @@ $scope.createuserList = true;
 }
 
 
-    $scope.date = Date.now();
+    
 
   /*PayPageService.getAllTimeSheetEntries().then(function(timeSheet){
 
@@ -422,8 +413,7 @@ $scope.timeSheetManagement = function (service) {
                         {name: 'firstName', type: 'string'},
                         {name: 'lastName', type: 'string'},
                         {name: 'date', type: 'date'},
-                        {name: 'venue', type: 'int'},
-                        {name: 'hourlyRate', type: 'int'},
+                        {name: 'venue', type: 'int'},                       
                         {name: 'workShop', type: 'int'},
                         {name: 'travel', type: 'int'},
                         {name: 'driver', type: 'int'},

@@ -34,7 +34,7 @@ try {
     default:
         if(isset($_POST["data"])) {
           $returnValue = editEntry($_POST["data"]);
-          echo $returnValue;
+        
         }
          break;
   } 

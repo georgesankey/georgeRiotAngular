@@ -289,20 +289,8 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
                 $scope.timeSheetWindowSettings.apply('open');
               }   
             };
-      $("#addrowbutton").on('click',function(){
-        var datarow =generaterow();
-        var commit = $("#jqxgrid").jqxGrid('addrow',null,datarow);
-      });
-
-      $("#deleterowbutton").on('click',function(){
-        var selectedRowIndex = $("#jqxgrid").jqxGrid('getselectedrowindex');
-        var rowscount = $("#jqxgrid").jqxGrid('getdatainformation').rowscount;
-        if (selectedRowIndex >=0 && selectedRowIndex < rowscount){
-          var id = $("#jqxgrid").jqxGrid('getrowid',selectedRowIndex );
-          var commit = $("#jqxgrid").jqxGrid('deleterow',id);
-        }
-        
-      });
+    
+    
     // ADMIN date info  
     $scope.dateInputSettings =
     {

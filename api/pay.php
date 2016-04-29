@@ -28,6 +28,9 @@ try {
     case 'getAllTimeSheetEntries' :
         getAllTimeSheetEntriesAPI(); 
         break;
+    case 'getUsersTimesheetEntries':
+          getUsersTimesheetEntriesAPI();
+        break;
     default:
         if(isset($_POST["data"])) {
           $returnValue = editEntry($_POST["data"]);
@@ -58,6 +61,11 @@ $returnValue = getAllTimeSheetEntries();
 exit(json_encode($returnValue)); 
 }
 
+function getUsersTimesheetEntriesAPI(){
+$request = json_decode(file_get_contents("php://input"));
+$returnValue = getUsersTimesheetEntries();
+exit(json_encode($returnValue)); 
+}
 
 
 

@@ -23,7 +23,7 @@ function getAllTimeSheetEntries() {
 
 		
 			$retrieveUserQuery = $dbh->prepare("
-				SELECT c.first_name as firstName, c.last_name as lastName , v.name as site, t.hourlyRate, t.workShop, t.travel, t.driver, t.suitcase, t.watchShow, t.rehersalHours, t.meetingHours, t.hospitalCompliance, t.total, t.comments, t.submitDate  FROM TIMESHEET t
+				SELECT c.first_name as firstName, c.last_name as lastName , v.name as venue, t.hourlyRate, t.workShop, t.travel, t.driver, t.suitcase, t.watchShow, t.rehersalHours, t.meetingHours, t.hospitalCompliance, t.total, t.comments, t.submitDate  FROM TIMESHEET t
 				JOIN CONTACT c on c.user_id = t.userId
                 JOIN USER u on t.userId = u.id
                 JOIN VENUE v on v.id = t.venueId
@@ -33,6 +33,48 @@ function getAllTimeSheetEntries() {
 	    	$numberOfUserRows = $retrieveUserQuery->rowCount();
 	    	return ($numberOfUserRows > 0)? $retrieveUserQuery->fetchAll() : null;
 		}
+
+/**
+ * Requires $dbh to be set
+ */
+function editEntry($data) {
+
+	global $dbh;
+
+	$data = json_decode($data, true);
+	$address = new PersistentObject($dbh, "TIMESHEET", isset($data["id"]) ? $data["id"] : null);
+	$address->data = $data;
+	return var_dump($address);
+	if(!$address->save()) return "Failed: ";
+	return $address->load();
+}			
+
+function getUsersTimesheetEntries() {
+
+	global $dbh;
+        $user = $_SESSION["userid"];
+	if(!empty($user)) {
+		$authQuery = $dbh->prepare("
+                    SELECT c.first_name as firstName, c.last_name as lastName , v.name as venue, t.hourlyRate, t.workShop, t.travel, t.driver, t.suitcase, t.watchShow, t.rehersalHours, t.meetingHours, t.hospitalCompliance, t.total, t.comments, t.submitDate  FROM TIMESHEET t
+				JOIN CONTACT c on c.user_id = t.userId
+                JOIN USER u on t.userId = u.id
+                JOIN VENUE v on v.id = t.venueId
+				WHERE u.active=1 and u.id = :user
+		");
+	    $authQuery->bindParam(':user', $user);
+	    $authQuery->execute();
+	    $authRows = $authQuery->rowCount();
+
+	    	return ($authRows > 0)? $authQuery->fetchAll() : null;
+		} else {
+			return null;	
+		}
+
+}
+
+
+
+
 /*
 	function submitEntry($entry) {
 	global $dbh;
@@ -128,21 +170,5 @@ function getAllTimeSheetEntries() {
 
 } 
 */
-
-/**
- * Requires $dbh to be set
- */
-function editEntry($data) {
-
-	global $dbh;
-
-	$data = json_decode($data, true);
-	$address = new PersistentObject($dbh, "TIMESHEET", isset($data["id"]) ? $data["id"] : null);
-	$address->data = $data;
-	return var_dump($address);
-	if(!$address->save()) return "Failed: ";
-	return $address->load();
-}			
-
 
 ?>

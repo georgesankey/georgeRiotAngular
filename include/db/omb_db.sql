@@ -1,20 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.4.10
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Apr 28, 2016 at 06:46 PM
--- Server version: 5.5.46-0ubuntu0.14.04.2
--- PHP Version: 5.5.9-1ubuntu4.14
+-- Host: localhost:8889
+-- Generation Time: Apr 29, 2016 at 05:50 AM
+-- Server version: 5.5.42
+-- PHP Version: 7.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+SET time_zone = "-05:00";
 
 --
 -- Database: `omb_db`
@@ -26,17 +20,16 @@ SET time_zone = "+00:00";
 -- Table structure for table `ADDRESS`
 --
 
-CREATE TABLE IF NOT EXISTS `ADDRESS` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ADDRESS` (
+  `id` int(11) NOT NULL,
   `street_1` varchar(200) NOT NULL,
   `street_2` varchar(200) NOT NULL,
   `city` varchar(200) NOT NULL,
   `state` varchar(50) NOT NULL,
   `zipcode` varchar(100) NOT NULL,
   `owner` int(11) NOT NULL,
-  `owner_type` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
+  `owner_type` varchar(100) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ADDRESS`
@@ -69,17 +62,16 @@ INSERT INTO `ADDRESS` (`id`, `street_1`, `street_2`, `city`, `state`, `zipcode`,
 -- Table structure for table `CONTACT`
 --
 
-CREATE TABLE IF NOT EXISTS `CONTACT` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `CONTACT` (
+  `id` int(11) NOT NULL,
   `first_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
   `cell_number` varchar(50) NOT NULL,
   `details` text NOT NULL,
   `user_id` int(11) NOT NULL,
   `home_number` varchar(500) NOT NULL,
-  `work_number` varchar(500) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
+  `work_number` varchar(500) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `CONTACT`
@@ -112,8 +104,8 @@ INSERT INTO `CONTACT` (`id`, `first_name`, `last_name`, `cell_number`, `details`
 -- Table structure for table `EVENT`
 --
 
-CREATE TABLE IF NOT EXISTS `EVENT` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `EVENT` (
+  `id` int(11) NOT NULL,
   `administrator` int(11) NOT NULL,
   `show_name` varchar(100) NOT NULL,
   `show_status` varchar(100) NOT NULL,
@@ -122,9 +114,8 @@ CREATE TABLE IF NOT EXISTS `EVENT` (
   `repeat_status` varchar(1000) NOT NULL,
   `venue_id` int(11) NOT NULL,
   `comments` text NOT NULL,
-  `created_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
+  `created_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `EVENT`
@@ -145,7 +136,8 @@ INSERT INTO `EVENT` (`id`, `administrator`, `show_name`, `show_status`, `from_da
 (24, 1, 'Show A', 'Scheduled', '2016-04-12 05:00:00', '2016-04-12 05:30:00', '1', 1, '...', '2016-04-14 23:25:44'),
 (25, 1, 'Show B', 'Scheduled', '2016-04-11 06:30:00', '2016-04-11 07:00:00', '1', 1, '', '2016-04-14 23:25:49'),
 (28, 3, 'Fantastic 4', 'Scheduled', '2016-04-14 08:30:00', '2016-04-14 11:00:00', '1', 2, '', '2016-04-15 00:43:03'),
-(29, 3, 'sads', 'Scheduled', '2016-04-20 02:30:00', '2016-04-20 03:00:00', '1', 1, '', '2016-04-22 21:53:18');
+(29, 3, 'sads', 'Scheduled', '2016-04-20 02:30:00', '2016-04-20 03:00:00', '1', 1, '', '2016-04-22 21:53:18'),
+(30, 3, 'Aladdin', 'Scheduled', '2016-04-26 15:00:00', '2016-04-26 15:30:00', '1', 1, '', '2016-04-29 05:41:49');
 
 -- --------------------------------------------------------
 
@@ -153,14 +145,13 @@ INSERT INTO `EVENT` (`id`, `administrator`, `show_name`, `show_status`, `from_da
 -- Table structure for table `EVENT_ROLE_USER`
 --
 
-CREATE TABLE IF NOT EXISTS `EVENT_ROLE_USER` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `EVENT_ROLE_USER` (
+  `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `event_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
-  `status` int(5) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=131 ;
+  `status` int(5) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `EVENT_ROLE_USER`
@@ -209,7 +200,7 @@ INSERT INTO `EVENT_ROLE_USER` (`id`, `user_id`, `event_id`, `role_id`, `status`)
 -- Table structure for table `EVENT_SCRIPT`
 --
 
-CREATE TABLE IF NOT EXISTS `EVENT_SCRIPT` (
+CREATE TABLE `EVENT_SCRIPT` (
   `event_id` int(11) NOT NULL,
   `script_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -236,17 +227,15 @@ INSERT INTO `EVENT_SCRIPT` (`event_id`, `script_id`) VALUES
 -- Table structure for table `NOTIFICATION`
 --
 
-CREATE TABLE IF NOT EXISTS `NOTIFICATION` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `NOTIFICATION` (
+  `id` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `show_id` int(11) NOT NULL,
   `message` varchar(45) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `type` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `userId` (`userId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+  `type` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `NOTIFICATION`
@@ -278,11 +267,10 @@ INSERT INTO `NOTIFICATION` (`id`, `userId`, `show_id`, `message`, `date`, `times
 -- Table structure for table `ROLE`
 --
 
-CREATE TABLE IF NOT EXISTS `ROLE` (
-  `role_id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_name` varchar(50) NOT NULL,
-  PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+CREATE TABLE `ROLE` (
+  `role_id` int(11) NOT NULL,
+  `role_name` varchar(50) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ROLE`
@@ -300,13 +288,12 @@ INSERT INTO `ROLE` (`role_id`, `role_name`) VALUES
 -- Table structure for table `SCRIPTS`
 --
 
-CREATE TABLE IF NOT EXISTS `SCRIPTS` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `SCRIPTS` (
+  `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `synopsis` longtext NOT NULL,
-  `creator` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  `creator` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `SCRIPTS`
@@ -324,8 +311,8 @@ INSERT INTO `SCRIPTS` (`id`, `name`, `synopsis`, `creator`) VALUES
 -- Table structure for table `TIMESHEET`
 --
 
-CREATE TABLE IF NOT EXISTS `TIMESHEET` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `TIMESHEET` (
+  `id` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `venueId` int(11) NOT NULL,
   `hourlyRate` float NOT NULL,
@@ -339,9 +326,8 @@ CREATE TABLE IF NOT EXISTS `TIMESHEET` (
   `hospitalCompliance` double NOT NULL,
   `total` double NOT NULL,
   `comments` longtext NOT NULL,
-  `submitDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  `submitDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `TIMESHEET`
@@ -359,15 +345,13 @@ INSERT INTO `TIMESHEET` (`id`, `userId`, `venueId`, `hourlyRate`, `workShop`, `t
 -- Table structure for table `USER`
 --
 
-CREATE TABLE IF NOT EXISTS `USER` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `USER` (
+  `id` int(11) NOT NULL,
   `password` varchar(200) NOT NULL,
   `role_id` int(11) NOT NULL,
   `active` int(1) NOT NULL DEFAULT '0',
-  `email` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `role_id_2` (`role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=86 ;
+  `email` varchar(100) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `USER`
@@ -398,7 +382,7 @@ INSERT INTO `USER` (`id`, `password`, `role_id`, `active`, `email`) VALUES
 -- Table structure for table `USER_SCRIPT`
 --
 
-CREATE TABLE IF NOT EXISTS `USER_SCRIPT` (
+CREATE TABLE `USER_SCRIPT` (
   `user_id` int(11) NOT NULL,
   `script_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -420,11 +404,10 @@ INSERT INTO `USER_SCRIPT` (`user_id`, `script_id`) VALUES
 -- Table structure for table `USER_STATUS`
 --
 
-CREATE TABLE IF NOT EXISTS `USER_STATUS` (
-  `status_id` int(11) NOT NULL AUTO_INCREMENT,
-  `status` varchar(11) NOT NULL,
-  PRIMARY KEY (`status_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+CREATE TABLE `USER_STATUS` (
+  `status_id` int(11) NOT NULL,
+  `status` varchar(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `USER_STATUS`
@@ -441,14 +424,13 @@ INSERT INTO `USER_STATUS` (`status_id`, `status`) VALUES
 -- Table structure for table `USER_TOTAL_PAY`
 --
 
-CREATE TABLE IF NOT EXISTS `USER_TOTAL_PAY` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `USER_TOTAL_PAY` (
+  `id` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `timesheet_id` int(11) NOT NULL,
   `date` int(11) NOT NULL,
-  `total` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `total` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -456,12 +438,11 @@ CREATE TABLE IF NOT EXISTS `USER_TOTAL_PAY` (
 -- Table structure for table `VENUE`
 --
 
-CREATE TABLE IF NOT EXISTS `VENUE` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `VENUE` (
+  `id` int(11) NOT NULL,
   `name` varchar(1000) CHARACTER SET latin1 NOT NULL,
-  `comments` longtext CHARACTER SET latin1 NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_danish_ci AUTO_INCREMENT=5 ;
+  `comments` longtext CHARACTER SET latin1 NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_danish_ci;
 
 --
 -- Dumping data for table `VENUE`
@@ -479,7 +460,7 @@ INSERT INTO `VENUE` (`id`, `name`, `comments`) VALUES
 -- Table structure for table `VENUE_CONTACT`
 --
 
-CREATE TABLE IF NOT EXISTS `VENUE_CONTACT` (
+CREATE TABLE `VENUE_CONTACT` (
   `venue_id` int(11) NOT NULL,
   `contact_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -492,6 +473,148 @@ INSERT INTO `VENUE_CONTACT` (`venue_id`, `contact_id`) VALUES
 (1, 30),
 (2, 33);
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `ADDRESS`
+--
+ALTER TABLE `ADDRESS`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `CONTACT`
+--
+ALTER TABLE `CONTACT`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `EVENT`
+--
+ALTER TABLE `EVENT`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `EVENT_ROLE_USER`
+--
+ALTER TABLE `EVENT_ROLE_USER`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `NOTIFICATION`
+--
+ALTER TABLE `NOTIFICATION`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userId` (`userId`);
+
+--
+-- Indexes for table `ROLE`
+--
+ALTER TABLE `ROLE`
+  ADD PRIMARY KEY (`role_id`);
+
+--
+-- Indexes for table `SCRIPTS`
+--
+ALTER TABLE `SCRIPTS`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `TIMESHEET`
+--
+ALTER TABLE `TIMESHEET`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `USER`
+--
+ALTER TABLE `USER`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `role_id_2` (`role_id`);
+
+--
+-- Indexes for table `USER_STATUS`
+--
+ALTER TABLE `USER_STATUS`
+  ADD PRIMARY KEY (`status_id`);
+
+--
+-- Indexes for table `USER_TOTAL_PAY`
+--
+ALTER TABLE `USER_TOTAL_PAY`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `VENUE`
+--
+ALTER TABLE `VENUE`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `ADDRESS`
+--
+ALTER TABLE `ADDRESS`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=41;
+--
+-- AUTO_INCREMENT for table `CONTACT`
+--
+ALTER TABLE `CONTACT`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=46;
+--
+-- AUTO_INCREMENT for table `EVENT`
+--
+ALTER TABLE `EVENT`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+--
+-- AUTO_INCREMENT for table `EVENT_ROLE_USER`
+--
+ALTER TABLE `EVENT_ROLE_USER`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=131;
+--
+-- AUTO_INCREMENT for table `NOTIFICATION`
+--
+ALTER TABLE `NOTIFICATION`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+--
+-- AUTO_INCREMENT for table `ROLE`
+--
+ALTER TABLE `ROLE`
+  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `SCRIPTS`
+--
+ALTER TABLE `SCRIPTS`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `TIMESHEET`
+--
+ALTER TABLE `TIMESHEET`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `USER`
+--
+ALTER TABLE `USER`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=86;
+--
+-- AUTO_INCREMENT for table `USER_STATUS`
+--
+ALTER TABLE `USER_STATUS`
+  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `USER_TOTAL_PAY`
+--
+ALTER TABLE `USER_TOTAL_PAY`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `VENUE`
+--
+ALTER TABLE `VENUE`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- Constraints for dumped tables
 --
@@ -507,7 +630,3 @@ ALTER TABLE `NOTIFICATION`
 --
 ALTER TABLE `USER`
   ADD CONSTRAINT `user_role_id_to_role_id` FOREIGN KEY (`role_id`) REFERENCES `ROLE` (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

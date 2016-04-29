@@ -98,12 +98,15 @@
             </hr>
     <div class="row">
       <div class="col-sm-2 col-sm-offset-1">
-        <label for="site">Site</label>
+        <label for="site">Venue</label>
       </div>
-      <div class="col-sm-5">
-       <select class="col-sm-7"  id="repeatVenues" ng-model="newEntry.venueId" ng-options=" venue.id as venue.name for venue in allVenues" required>
+      <div class="col-sm-3">
+       <select class="col-sm-12"  id="repeatVenues" ng-model="newEntry.venueId" ng-options=" venue.id as venue.name for venue in allVenues" required>
        <option value = "" disabled selected> Choose a Venue</option>
        </select>
+      </div>
+      <div class="col-sm-2 col-sm-offset-1">
+        <label for="Total">Total: ${{totalCalculation()}}</label>
       </div>
     </div>
     
@@ -125,7 +128,7 @@
         <label for="travel">Travel</label>
       </div>
       <div class="col-sm-3">
-       <select class="col-sm-10"  id="repeatTravel" ng-model="newEntry.travel" ng-options=" travel for travel in travel">
+       <select class="col-sm-12"  id="repeatTravel" ng-model="newEntry.travel" ng-options=" travel for travel in travel">
        <option value = "" disabled selected> Choose a Travel fee</option>
        </select>
       </div>
@@ -135,7 +138,7 @@
         <label for="driver">Driver</label>
       </div>
       <div class="col-sm-3">
-       <select class="col-sm-9"  id="repeatDriver" ng-model="newEntry.driver" ng-options=" driver for driver in driver">
+       <select class="col-sm-11"  id="repeatDriver" ng-model="newEntry.driver" ng-options=" driver for driver in driver">
        <option value = "" disabled selected> Choose a Driver fee</option>
        </select>
       </div>
@@ -172,17 +175,14 @@
         <label for="suitcase">Suitcase</label>
       </div>
       <div class="col-sm-3">
-       <select class="col-sm-9"  id="repeatSuitcaseFee" ng-model="newEntry.suitcase" ng-options=" suitcase for suitcase in suitcase">
+       <select class="col-sm-11"  id="repeatSuitcaseFee" ng-model="newEntry.suitcase" ng-options=" suitcase for suitcase in suitcase">
        <option value = "" disabled selected> Choose a Suitcase Fee</option>
        </select>
       </div>
 
     </div>
 
-    <p>
-        selected text: 
-      {{selectedSuitcase}}
-      </p> 
+    
     <div class="row">
       <div class="col-sm-2 col-sm-offset-1">
         <label for="hospital">Hospital</label>
@@ -194,7 +194,7 @@
         <label for="workshop">Workshop</label>
       </div>
       <div class="col-sm-3">
-       <select class="col-sm-9"  id="workshop" ng-model="newEntry.workShop" ng-options=" workShop for workShop in workShop">
+       <select class="col-sm-11"  id="workshop" ng-model="newEntry.workShop" ng-options=" workShop for workShop in workShop">
        <option value = "" disabled selected> Choose a Workshop Fee</option>
        </select>
       </div>
@@ -215,9 +215,20 @@
         <input type="submit" class="btn btn-success pull-right" ng-click="submitEntry()" />
       </div>
     </div>
+    <hr/>
+    <div class="panel-heading">
+        <h2 class="panel-title">
+          <strong> Submit History</strong>
+        </h2>
+      </div>
+
+    <div class="row">
+     <div class="col-md-12">         
+    <jqx-grid  id="jqxgrid" jqx-width="'100%'" jqx-settings="usertimeSheetGridSettings"> </jqx-grid>  
+    </div>
+    </div>
     </form> 
-                  
-               
+     
     </div>
     <!-- End User View -->     
   </div>

@@ -45,10 +45,22 @@ appModule.factory('PayPageService', function($http, $q) {
         return deferred.promise;
    };
    
+   var getUsersTimesheetEntries = function() {
+        var deferred = $q.defer();
+
+        $http.get(route + "?action=getUsersTimesheetEntries").success(function (data, status) {
+            userEntries = data;
+            deferred.resolve(userEntries);
+                    });
+        
+        return deferred.promise;
+   };
+
         return {
         submitEntry: submitEntry,
         getAllUsers:getAllUsers,
-        getAllTimeSheetEntries:getAllTimeSheetEntries
+        getAllTimeSheetEntries:getAllTimeSheetEntries,
+        getUsersTimesheetEntries:getUsersTimesheetEntries
 
     };
 });

@@ -2,7 +2,7 @@
 var appModule = window.appModule || 
 angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
 
-/** 
+/**
  * Renders TimeSheet info & other notifications
  */
  appModule.controller('PayPageController',  [ 'PayPageService', 'VenueService','$scope','$rootScope', '$http', '$q','$route' , function ( PayPageService, VenueService, $scope, $rootScope, $http,$q, $route) {
@@ -15,7 +15,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
     var user = $rootScope.user.role_name;
     if(user !== "Administrator"){
 
-           
+    $scope.createUserPage = false;
 
     var venueParam = VenueService.getAllVenues();
     var usertimeSheetParam = PayPageService.getUsersTimesheetEntries();
@@ -25,7 +25,64 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
     $scope.allVenues = response[0];
     $scope.allUserTimeSheetEntries = response[1];
     
+    var userTimesheetEntries =  new $.jqx.dataAdapter(timeSheetAdapter($scope.allUserTimeSheetEntries));
+    
+    // User Grid Settings
+    $scope.usertimeSheetGridSettings = {
+      source: userTimesheetEntries,
+      altrows: true,       
+      width:  '100%',
+      height: '100%', 
+      theme: 'energyblue',
+      ready: function () {
 
+      },
+      selectionmode: 'multiplecellsadvanced',
+      sortable: true,
+      pagesizeoptions: ['20','30','40'],
+      pageable:true,
+      filterable:true,
+      showfilterrow: true,
+      showstatusbar: true,
+      statusbarheight: 50,
+      enabletooltips: true,
+      showaggregates: true,
+      pagesize: '20',
+      
+    columns: [
+    { text: 'First Name',columngroup: 'Users', datafield: 'firstName', width: 100, align: 'center',cellsalign: 'center' ,editable:false},
+    { text: 'Last Name', columngroup: 'Users', datafield: 'lastName', width: 100, align: 'center',  cellsalign: 'center'
+    },
+    { text: 'Date', datafield: 'date', filtertype: 'date' , width: 150,align: 'center',  cellsalign: 'center', cellsformat: 'MM/dd/yyyy'},
+    { text: 'Venue', datafield: 'venue', align: 'center', cellsalign: 'center', width: 150 },
+    { text: 'Workshop Rate', datafield: 'workShop', align: 'center', cellsalign: 'center',cellsformat: 'c2',width: 70  },
+    { text: 'Travel', datafield: 'travel', cellsalign: 'right', align: 'center',cellsformat: 'c2', cellsalign: 'center',width: 70  },
+    { text: 'Driver', datafield: 'driver', align: 'center', cellsalign: 'center',cellsformat: 'c2',width: 70  },
+    { text: 'Suitcase', datafield: 'suitcase', cellsalign: 'right', align: 'center', cellsformat: 'c2',cellsalign: 'center',width: 70 },
+
+          { text: 'Watch </br>A Show', datafield: 'watchShow', align: 'center', cellsalign: 'center', width: 70, aggregates: ['count']},
+      { text: 'Rehersal #</br>of Hours', datafield: 'rehersalHours', align: 'center', cellsalign: 'center', width: 100 , aggregates: ['count']},
+      { text: 'Hospital</br> Compliance # of Hours', datafield: 'hospitalCompliance', align: 'center', cellsalign: 'center',width: 125 , aggregates: ['count'] },
+      { text: 'Meeting #</br> of Hours', datafield: 'meetingHours', align: 'center', cellsalign: 'center',width: 100 , aggregates: ['count'] },
+      { text: 'Total', datafield: 'total', align: 'center', cellsalign: 'center', width: 70 ,cellsformat: 'c2',
+      aggregates: ['sum', 'avg'] 
+  },
+    { text: 'Comments', datafield: 'comments', align: 'center', cellsalign: 'center', width: 150 },
+    { text: 'Submited Date', datafield: 'submitDate', align: 'center', cellsalign: 'center',width: 150  }
+
+   
+            ],
+            columngroups: [
+            { text: 'Users', align: 'center', name: 'Users' },
+            { text: 'Venue Information', align: 'center', name: 'Venue' }
+            ],
+
+            rowselect: function (event) {
+              $scope.selectedTimeSheetEntry = event.args.row;
+              $scope.timeSheetWindowSettings.apply('open');
+            }   
+          };
+    
     $scope.dateInputSettings =
     {
       width: 200,
@@ -34,7 +91,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
       animationType: 'fade'
       
     }
-    //$scope.convertedDate = $scope.date;
+    // $scope.convertedDate = $scope.date;
     // Change the text reflecting the date picker
     $("#date").on('change', function (event) {
        var selection = $("#date").jqxDateTimeInput('getDate');
@@ -49,10 +106,8 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
     $scope.driver = [15];
     $scope.watchShow = [30];
 
- 
     $scope.date = new Date();
-
-    //TimeSheet Entry 
+    // TimeSheet Entry
           $scope.newEntry = {
                   
           userId: $rootScope.user.id,
@@ -66,90 +121,35 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
           rehersalHours:0,
           meetingHours: 0,                 
           hospitalCompliance:0, 
-          total: 0,
+          total: "",
           comments:""
 
         };
          
+          
+
           // Log details first
           $scope.submitEntry = function() {
-            
            PayPageService.submitEntry($scope.newEntry).then(function(data) {
                   alertLog("Timesheet Entry Created");                  
-                });
-      
-                                
+                });                   
               }
 
           
 
-              //Calculation Total Logic
+              // Calculation Total Logic
             $scope.totalCalculation = function() { 
-              return ($scope.newEntry.travel + $scope.newEntry.driver + ($scope.newEntry.meetingHours*15.) +
+              return $scope.newEntry.total = ($scope.newEntry.travel + $scope.newEntry.driver + ($scope.newEntry.meetingHours*15.) +
             $scope.newEntry.watchShow + ($scope.newEntry.rehersalHours*20.) + $scope.newEntry.suitcase
             + ($scope.newEntry.hospitalCompliance*15.) + $scope.newEntry.workShop)
-
-
           };
-      
-      var userTimesheetEntries =  new $.jqx.dataAdapter(timeSheetAdapter($scope.allUserTimeSheetEntries));
-      
-      //User Grid Settings
-      $scope.usertimeSheetGridSettings = {
-        source: userTimesheetEntries,
-        altrows: true,       
-        width:  '100%',
-        height: '100%', 
-        theme: 'energyblue',
-        ready: function () {
-
-        },
-        selectionmode: 'multiplecellsadvanced',
-        sortable: true,
-        pagesizeoptions: ['20','30','40'],
-        pageable:true,
-        filterable:true,
-        showfilterrow: true,
-        enabletooltips: true,
-        showaggregates: true,
-        pagesize: '20',
-        
-      columns: [
-      { text: 'First Name',columngroup: 'Users', datafield: 'firstName', width: 100, align: 'center',cellsalign: 'center' ,editable:false},
-      { text: 'Last Name', columngroup: 'Users', datafield: 'lastName', width: 100, align: 'center',  cellsalign: 'center'
-      },
-      { text: 'Date', datafield: 'date', filtertype: 'date' , width: 150,align: 'center',  cellsalign: 'center', cellsformat: 'MM/dd/yyyy'},
-      { text: 'Venue', datafield: 'venue', align: 'center', cellsalign: 'center', width: 150 },
-      { text: 'Workshop Rate', datafield: 'workShop', align: 'center', cellsalign: 'center',cellsformat: 'c2',width: 70  },
-      { text: 'Travel', datafield: 'travel', cellsalign: 'right', align: 'center',cellsformat: 'c2', cellsalign: 'center',width: 70  },
-      { text: 'Driver', datafield: 'driver', align: 'center', cellsalign: 'center',cellsformat: 'c2',width: 70  },
-      { text: 'Suitcase', datafield: 'suitcase', cellsalign: 'right', align: 'center', cellsformat: 'c2',cellsalign: 'center',width: 70 },
-
-      { text: 'Watch </br>A Show', datafield: 'watchShow', align: 'center', cellsalign: 'center', width: 70 },
-      { text: 'Rehersal #</br>of Hours', datafield: 'rehersalHours', align: 'center', cellsalign: 'center', width: 100 },
-      { text: 'Hospital</br> Compliance # of Hours', datafield: 'hospitalCompliance', align: 'center', cellsalign: 'center',width: 125  },
-      { text: 'Meeting #</br> of Hours', datafield: 'meetingHours', align: 'center', cellsalign: 'center',width: 100  },
-      { text: 'Total', datafield: 'total', align: 'center', cellsalign: 'center', width: 70 ,cellsformat: 'c2'},
-      { text: 'Comments', datafield: 'comments', align: 'center', cellsalign: 'center', width: 150 },
-      { text: 'Submited Date', datafield: 'submitDate', align: 'center', cellsalign: 'center',width: 150  }
-
+          
      
-              ],
-              columngroups: [
-              { text: 'Users', align: 'center', name: 'Users' },
-              { text: 'Venue Information', align: 'center', name: 'Venue' }
-              ],
-
-              rowselect: function (event) {
-                $scope.selectedTimeSheetEntry = event.args.row;
-                $scope.timeSheetWindowSettings.apply('open');
-              }   
-            };
          
 
             $scope.userFormShowFlag = true;
             $scope.timeSheetShowFlag = false;
-            $scope.timeSheetManagement =  null;
+            $scope.createUserPage = true;
             })
 }
      else 
@@ -209,7 +209,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
 
       var timesheetEntries =  new $.jqx.dataAdapter(timeSheetAdapter($scope.allTimeSheetEntries));
        
-      //Timesheet Grid Settings
+      // Timesheet Grid Settings
       $scope.timeSheetGridSettings = {
         source: timesheetEntries,
         altrows: true,       
@@ -220,22 +220,26 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
 
         },
         selectionmode: 'multiplecellsadvanced',
-        //source: $scope.timeSheet,
+        // source: $scope.timeSheet,
        // editable: true,
         sortable: true,
         pagesizeoptions: ['20','30','40'],
         pageable:true,
+        showstatusbar: true,
+        statusbarheight: 41,
         filterable:true,
         showfilterrow: true,
         enabletooltips: true,
         showaggregates: true,
-        //showtoolbar:true,
+        // showtoolbar:true,
         pagesize: '20',
         addrow: function (rowid, rowdata, position, commit) {
             // synchronize with the server - send insert command
-            // call commit with parameter true if the synchronization with the server is successful 
-            //and with parameter false if the synchronization failed.
-            // you can pass additional argument to the commit callback which represents the new ID if it is generated from a DB.
+            // call commit with parameter true if the synchronization with the
+			// server is successful
+            // and with parameter false if the synchronization failed.
+            // you can pass additional argument to the commit callback which
+			// represents the new ID if it is generated from a DB.
             commit(true);
           },
          
@@ -250,11 +254,11 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
       { text: 'Driver', datafield: 'driver', align: 'center', cellsalign: 'center',cellsformat: 'c2',width: 70  },
       { text: 'Suitcase', datafield: 'suitcase', cellsalign: 'right', align: 'center', cellsformat: 'c2',cellsalign: 'center',width: 70 },
 
-      { text: 'Watch </br>A Show', datafield: 'watchShow', align: 'center', cellsalign: 'center', width: 70 },
-      { text: 'Rehersal #</br>of Hours', datafield: 'rehersalHours', align: 'center', cellsalign: 'center', width: 100 },
-      { text: 'Hospital</br> Compliance # of Hours', datafield: 'hospitalCompliance', align: 'center', cellsalign: 'center',width: 125  },
-      { text: 'Meeting #</br> of Hours', datafield: 'meetingHours', align: 'center', cellsalign: 'center',width: 100  },
-      { text: 'Total', datafield: 'total', align: 'center', cellsalign: 'center', width: 70 ,cellsformat: 'c2'},
+      { text: 'Watch </br>A Show', datafield: 'watchShow', align: 'center', cellsalign: 'center', width: 70, aggregates: ['count']},
+      { text: 'Rehersal #</br>of Hours', datafield: 'rehersalHours', align: 'center', cellsalign: 'center', width: 100 , aggregates: ['count']},
+      { text: 'Hospital</br> Compliance # of Hours', datafield: 'hospitalCompliance', align: 'center', cellsalign: 'center',width: 125 , aggregates: ['count'] },
+      { text: 'Meeting #</br> of Hours', datafield: 'meetingHours', align: 'center', cellsalign: 'center',width: 100 , aggregates: ['count'] },
+      { text: 'Total', datafield: 'total', align: 'center', cellsalign: 'center', width: 70 ,cellsformat: 'c2',aggregates: ['sum', 'avg'] },
       { text: 'Comments', datafield: 'comments', align: 'center', cellsalign: 'center', width: 150 },
       { text: 'Submited Date', datafield: 'submitDate', align: 'center', cellsalign: 'center',width: 150  },
 
@@ -272,7 +276,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
             };
     
     
-    // ADMIN date info  
+    // ADMIN date info
     $scope.dateInputSettings =
     {
       width: 200,
@@ -315,14 +319,17 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
 
        theme: 'energyblue',
         click: function(event){
-           /* if($scope.EMUser !== "" && $scope.sessionUserRole === "Administrator"){
-                EventMaintenanceService.userToEventService('addUser', Number($scope.EMUser.value.split(',')[0]), $scope.selectedEvent, $scope.selectedShowRole)
-                .then(function(addUserArray) {
-                    $scope.EMDataAdapterUsers = new $.jqx.dataAdapter(searchInputAdapter(addUserArray[0]));
-                    $scope.currentUsersResults = addUserArray[1];
-                    $scope.EMUser = "";
-                });
-            }*/
+           /*
+			 * if($scope.EMUser !== "" && $scope.sessionUserRole ===
+			 * "Administrator"){
+			 * EventMaintenanceService.userToEventService('addUser',
+			 * Number($scope.EMUser.value.split(',')[0]), $scope.selectedEvent,
+			 * $scope.selectedShowRole) .then(function(addUserArray) {
+			 * $scope.EMDataAdapterUsers = new
+			 * $.jqx.dataAdapter(searchInputAdapter(addUserArray[0]));
+			 * $scope.currentUsersResults = addUserArray[1]; $scope.EMUser = "";
+			 * }); }
+			 */
         }
     }
 
@@ -331,7 +338,7 @@ $scope.createuserList = true;
 , function(error) {
         console.log('opsssss' + error);
     };
-    //Buttons to export grids with paypage data
+    // Buttons to export grids with paypage data
     $scope.exportButtonSettings = {
     theme: 'energyblue',
     click: function(event){
@@ -350,19 +357,14 @@ $scope.createuserList = true;
 
     
 
-  /*PayPageService.getAllTimeSheetEntries().then(function(timeSheet){
+  /*
+	 * PayPageService.getAllTimeSheetEntries().then(function(timeSheet){
+	 * 
+	 * $scope.timeSheet = timeSheet;
+	 * 
+	 * });
+	 */
 
-        $scope.timeSheet = timeSheet;
-
-    }); 
-                     */
-$scope.timeSheetManagement = function (service) {
-
-  PayPageService.timeSheetManagement(service, $scope.selectedTimeSheetEntry.id).then(function(timeSheet) {
-    $scope.timeSheet = timeSheet;
-            //$scope.timeSheetWindowSettings.apply('close');
-          });
-}
     
 
 }]);

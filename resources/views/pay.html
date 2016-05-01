@@ -56,29 +56,18 @@
 
       </div>
 
-
-
-
-
-
-
-
-
-
-
-
       <div id="userView" ng-show="userFormShowFlag">
        
             <form class="form-default">
 
-              <label id="Selectdate" ng-model="newEntry.date" class="control-label col-sm-4"> 
+              <label id="Selectdate" class="control-label col-sm-4"> 
             Date: {{date | date : 'MM/dd/yyyy'}} </label>
         <div class="row">
         <table style="float: right; margin-bottom: 80px; margin-bottom: 10px;">
           <tr>
             <td>
                <jqx-date-time-input
-                ng-model="date" id="date" jqx-settings="dateInputSettings"
+                ng-model="newEntry.date" id="date" jqx-settings="dateInputSettings"
                 style="display:inline-block;"></jqx-date-time-input>
             </td>
           </tr>
@@ -95,7 +84,7 @@
        </select>
       </div>
       <div class="col-sm-2 col-sm-offset-1">
-        <label for="Total">Total: ${{totalCalculation()}}</label>
+        <label for="Total">Total: $ <span  ng-bind="totalCalculation()" ng-model="newEntry.total"></span></label>
       </div>
     </div>
 
@@ -200,7 +189,7 @@
 
     <div class="row">
      <div class="col-md-12">         
-    <jqx-grid  id="jqxgrid" jqx-width="'100%'" jqx-settings="usertimeSheetGridSettings"> </jqx-grid>  
+    <jqx-grid  id="jqxgrid1" jqx-create="createUserPage" jqx-width="'100%'" jqx-settings="usertimeSheetGridSettings"> </jqx-grid>  
     </div>
     </div>
     </form> 

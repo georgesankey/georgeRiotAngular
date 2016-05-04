@@ -61,12 +61,12 @@
             <form class="form-default">
 
               <label id="Selectdate" class="control-label col-sm-4"> 
-            Date: {{date | date : 'MM/dd/yyyy'}} </label>
+            Date: {{newEntry.date | date : 'MM/dd/yyyy'}} </label>
         <div class="row">
         <table style="float: right; margin-bottom: 80px; margin-bottom: 10px;">
           <tr>
             <td>
-               <jqx-date-time-input
+               <jqx-date-time-input jqx-ng-model
                 ng-model="newEntry.date" id="date" jqx-settings="dateInputSettings"
                 style="display:inline-block;"></jqx-date-time-input>
             </td>

@@ -27,6 +27,8 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
     
     var userTimesheetEntries =  new $.jqx.dataAdapter(timeSheetAdapter($scope.allUserTimeSheetEntries));
     
+      
+  
     // User Grid Settings
     $scope.usertimeSheetGridSettings = {
       source: userTimesheetEntries,
@@ -53,19 +55,19 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
     { text: 'First Name',columngroup: 'Users', datafield: 'firstName', width: 100, align: 'center',cellsalign: 'center' ,editable:false},
     { text: 'Last Name', columngroup: 'Users', datafield: 'lastName', width: 100, align: 'center',  cellsalign: 'center'
     },
-    { text: 'Date', datafield: 'date', filtertype: 'date' , width: 150,align: 'center',  cellsalign: 'center', cellsformat: 'MM/dd/yyyy'},
+    { text: 'Date', datafield: 'date', filtertype: 'range' , width: 150,align: 'center',  cellsalign: 'center', cellsformat: 'MM/dd/yyyy'},
     { text: 'Venue', datafield: 'venue', align: 'center', cellsalign: 'center', width: 150 },
     { text: 'Workshop Rate', datafield: 'workShop', align: 'center', cellsalign: 'center',cellsformat: 'c2',width: 70  },
     { text: 'Travel', datafield: 'travel', cellsalign: 'right', align: 'center',cellsformat: 'c2', cellsalign: 'center',width: 70  },
     { text: 'Driver', datafield: 'driver', align: 'center', cellsalign: 'center',cellsformat: 'c2',width: 70  },
     { text: 'Suitcase', datafield: 'suitcase', cellsalign: 'right', align: 'center', cellsformat: 'c2',cellsalign: 'center',width: 70 },
 
-          { text: 'Watch </br>A Show', datafield: 'watchShow', align: 'center', cellsalign: 'center', width: 70, aggregates: ['count']},
-      { text: 'Rehersal #</br>of Hours', datafield: 'rehersalHours', align: 'center', cellsalign: 'center', width: 100 , aggregates: ['count']},
-      { text: 'Hospital</br> Compliance # of Hours', datafield: 'hospitalCompliance', align: 'center', cellsalign: 'center',width: 125 , aggregates: ['count'] },
-      { text: 'Meeting #</br> of Hours', datafield: 'meetingHours', align: 'center', cellsalign: 'center',width: 100 , aggregates: ['count'] },
-      { text: 'Total', datafield: 'total', align: 'center', cellsalign: 'center', width: 70 ,cellsformat: 'c2',
-      aggregates: ['sum', 'avg'] 
+    { text: 'Watch </br>A Show', datafield: 'watchShow', align: 'center', cellsalign: 'center', width: 70, aggregates: ['sum']},
+    { text: 'Rehersal #</br>of Hours', datafield: 'rehersalHours', align: 'center', cellsalign: 'center', width: 100 , aggregates: ['sum']},
+    { text: 'Hospital</br> Compliance # of Hours', datafield: 'hospitalCompliance', align: 'center', cellsalign: 'center',width: 125 , aggregates: ['sum'] },
+    { text: 'Meeting #</br> of Hours', datafield: 'meetingHours', align: 'center', cellsalign: 'center',width: 100 , aggregates: ['sum'] },
+    { text: 'Total', datafield: 'total', align: 'center', cellsalign: 'center', width: 70 ,cellsformat: 'c2',
+    aggregates: ['sum', 'avg'] 
   },
     { text: 'Comments', datafield: 'comments', align: 'center', cellsalign: 'center', width: 150 },
     { text: 'Submited Date', datafield: 'submitDate', align: 'center', cellsalign: 'center',width: 150  }
@@ -88,15 +90,9 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
       width: 200,
       height: 30,
       formatString: 'd',
-      animationType: 'fade'
-      
+      animationType: 'fade',
+     
     }
-    // $scope.convertedDate = $scope.date;
-    // Change the text reflecting the date picker
-    $("#date").on('change', function (event) {
-       var selection = $("#date").jqxDateTimeInput('getDate');
-                       
-                });
 
 
 
@@ -106,17 +102,16 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
     $scope.driver = [15];
     $scope.watchShow = [30];
 
-    $scope.date = new Date();
+    
     // TimeSheet Entry
           $scope.newEntry = {
-                  
           userId: $rootScope.user.id,
-          date:  $scope.date,
+          date:  Date.now(),
           venueId: "",       
           workShop:  0,
           travel:     0,
           driver:     0,
-          suitcase:   0,    
+          suitcase:   0,   
           watchShow:  0,
           rehersalHours:0,
           meetingHours: 0,                 
@@ -131,6 +126,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
           // Log details first
           $scope.submitEntry = function() {
            PayPageService.submitEntry($scope.newEntry).then(function(data) {
+                  console.log($scope.newEntry);
                   alertLog("Timesheet Entry Created");                  
                 });                   
               }
@@ -144,6 +140,10 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
             + ($scope.newEntry.hospitalCompliance*15.) + $scope.newEntry.workShop)
           };
           
+          // // Change the text reflecting the date picker
+          // $("#date").on('change', function (event) {
+          // $scope.date = $("#date").jqxDateTimeInput('getDate');
+          //       });
      
          
 
@@ -254,10 +254,10 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
       { text: 'Driver', datafield: 'driver', align: 'center', cellsalign: 'center',cellsformat: 'c2',width: 70  },
       { text: 'Suitcase', datafield: 'suitcase', cellsalign: 'right', align: 'center', cellsformat: 'c2',cellsalign: 'center',width: 70 },
 
-      { text: 'Watch </br>A Show', datafield: 'watchShow', align: 'center', cellsalign: 'center', width: 70, aggregates: ['count']},
-      { text: 'Rehersal #</br>of Hours', datafield: 'rehersalHours', align: 'center', cellsalign: 'center', width: 100 , aggregates: ['count']},
-      { text: 'Hospital</br> Compliance # of Hours', datafield: 'hospitalCompliance', align: 'center', cellsalign: 'center',width: 125 , aggregates: ['count'] },
-      { text: 'Meeting #</br> of Hours', datafield: 'meetingHours', align: 'center', cellsalign: 'center',width: 100 , aggregates: ['count'] },
+      { text: 'Watch </br>A Show', datafield: 'watchShow', align: 'center', cellsalign: 'center', width: 70, aggregates: ['sum']},
+      { text: 'Rehersal #</br>of Hours', datafield: 'rehersalHours', align: 'center', cellsalign: 'center', width: 100 , aggregates: ['sum']},
+      { text: 'Hospital</br> Compliance # of Hours', datafield: 'hospitalCompliance', align: 'center', cellsalign: 'center',width: 125 , aggregates: ['sum'] },
+      { text: 'Meeting #</br> of Hours', datafield: 'meetingHours', align: 'center', cellsalign: 'center',width: 100 , aggregates: ['sum'] },
       { text: 'Total', datafield: 'total', align: 'center', cellsalign: 'center', width: 70 ,cellsformat: 'c2',aggregates: ['sum', 'avg'] },
       { text: 'Comments', datafield: 'comments', align: 'center', cellsalign: 'center', width: 150 },
       { text: 'Submited Date', datafield: 'submitDate', align: 'center', cellsalign: 'center',width: 150  },

@@ -25,11 +25,21 @@ try {
     case 'getAllUsers' :
         getAllUsersAPI(); 
         break;
+    case 'getAllTimeSheetEntries' :
+        getAllTimeSheetEntriesAPI(); 
+        break;
+    case 'getUsersTimesheetEntries':
+          getUsersTimesheetEntriesAPI();
+        break;
     default:
-        $returnValue = 'An error has occured';
+        if(isset($_POST["data"])) {
+          $returnValue = editEntry($_POST["data"]);
+        
+        }
          break;
-} 
-  }else {
+  } 
+}
+else {
       echo "An error has occured";
   }
     
@@ -38,11 +48,25 @@ try {
 }
 
 
+
 function getAllUsersAPI(){
 $request = json_decode(file_get_contents("php://input"));
 $returnValue = getAllUsers();
 exit(json_encode($returnValue)); 
 }
+
+function getAllTimeSheetEntriesAPI(){
+$request = json_decode(file_get_contents("php://input"));
+$returnValue = getAllTimeSheetEntries();
+exit(json_encode($returnValue)); 
+}
+
+function getUsersTimesheetEntriesAPI(){
+$request = json_decode(file_get_contents("php://input"));
+$returnValue = getUsersTimesheetEntries();
+exit(json_encode($returnValue)); 
+}
+
 
 
 ?>

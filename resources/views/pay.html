@@ -1,33 +1,22 @@
 <div>
-	<div class="panel panel-info">
-		<div class="panel-heading">
-			<h4 class="panel-title">Timesheets</h4>
-		</div>
-	</div>
-	<!-- Pay View panel -->
-	<div id="half">
-		<div class="panel panel-default text-center " class="col-centered">
-			<div class="panel-heading">
-				<h2 class="panel-title">
-					<strong> Timesheet </strong>
-				</h2>
-			</div>
-			<div id="adminView" ng-show="timeSheetShowFlag" class="panel-body"
-				style="width: 100% margin-bottom:10px margin-left:38px">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Timesheets</h4>
+    </div>
+  </div>
+  <!-- Pay View panel -->
+  <div id="half">
+    <div class="panel panel-default text-center " class="col-centered">
+      <div class="panel-heading">
+        <h2 class="panel-title">
+          <strong> Timesheet </strong>
+        </h2>
+      </div>
+      <div id="adminView" ng-show="timeSheetShowFlag" class="panel-body"
+        style="width: 100% margin-bottom:10px margin-left:38px">
           
-          <label id="Selectdate" class="control-label col-sm-4"> 
-            Date: {{date | date : 'MM/dd/yyyy'}} </label>
-        
-        <table style="float: right; margin-bottom: 100px;">
-          <tr>
-            <td>
-              <!-- <label class="control-label col-sm-4" for="date"> Select Range</label> 
-     <span ng-show="date">{{date | date: "M/d/yyyy"}}s--> <jqx-date-time-input
-                ng-model="date" id="date" jqx-settings="dateInputSettings"
-                style="display:inline-block;"></jqx-date-time-input>
-            </td>
-          </tr>
-        </table>
+                  
+     
         <jqx-tabs jqx-width="'100%'">
         <ul >
                         <li>Timesheet</li>
@@ -36,8 +25,8 @@
              <div class="row">
                 <!-- Timesheet Grid and Export button    -->
                            <div class="col-md-12">
-                                <label for="Timesheet" class="control-label" style="margin: 10px">Current Timesheet:</label>
-                                <jqx-grid  id="jqxgrid" jqx-source="timeSheet" jqx-settings="timeSheetGridSettings">
+                                <label for="Timesheet" class="control-label" style="margin: 10px">Current Submitted Entries:</label>
+                                <jqx-grid  id="jqxgrid" jqx-create="createuserList" jqx-settings="timeSheetGridSettings">
                           <jqx-button
                           id="addrowbutton" style="margin: 10px" jqx-settings="addTimesheetEntrySettings">Add
                         Entry </jqx-button>
@@ -54,164 +43,159 @@
                    <div class="col-md-12">
                       <label for="Users" style="margin: 10px" class="control-label">Current Users:
                       </label>
-                      <jqx-grid  id="userGrid" jqx-source="userGrid" jqx-settings="userGridSettings">                       
+                      <jqx-grid  id="userGrid" jqx-create="createuserList" jqx-settings="userGridSettings">                       
                       </jqx-grid> 
                       <jqx-button style="margin: 10px" jqx-settings="exportUserButtonSettings">Export
                    Users to Excel</jqx-button>
                   </div>
 
 
-
             </div>
       </jqx-tabs>
    
 
-			</div>
-			<div id="userView" ng-show="userFormShowFlag">
-				<div style="overflow:hidden">
-                   <p> Please Enter Timesheet Details</p>
+      </div>
+
+      <div id="userView" ng-show="userFormShowFlag">
+       
+            <form class="form-default">
+
+              <label id="Selectdate" class="control-label col-sm-4"> 
+            Date: {{newEntry.date | date : 'MM/dd/yyyy'}} </label>
+        <div class="row">
+        <table style="float: right; margin-bottom: 80px; margin-bottom: 10px;">
+          <tr>
+            <td>
+               <jqx-date-time-input jqx-ng-model
+                ng-model="newEntry.date" id="date" jqx-settings="dateInputSettings"
+                style="display:inline-block;"></jqx-date-time-input>
+            </td>
+          </tr>
+        </table>
+      </div>
+            </hr>
+    <div class="row">
+      <div class="col-sm-2 col-sm-offset-1">
+        <label for="site">Venue</label>
+      </div>
+      <div class="col-sm-3">
+       <select class="col-sm-12"  id="repeatVenues" ng-model="newEntry.venueId" ng-options=" venue.id as venue.name for venue in allVenues" required>
+       <option value = "" disabled selected> Choose a Venue</option>
+       </select>
+      </div>
+      <div class="col-sm-2 col-sm-offset-1">
+        <label for="Total">Total: $ <span  ng-bind="totalCalculation()" ng-model="newEntry.total"></span></label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2 col-sm-offset-1">
+        <label for="travel">Travel</label>
+      </div>
+      <div class="col-sm-3">
+       <select class="col-sm-12"  id="repeatTravel" ng-model="newEntry.travel" ng-options=" travel for travel in travel">
+       <option value = "" disabled selected> Choose a Travel fee</option>
+       </select>
+      </div>
+
+
+      <div class="col-sm-2">
+        <label for="driver">Driver</label>
+      </div>
+      <div class="col-sm-3">
+       <select class="col-sm-11"  id="repeatDriver" ng-model="newEntry.driver" ng-options=" driver for driver in driver">
+       <option value = "" disabled selected> Choose a Driver fee</option>
+       </select>
+      </div>
+      </div>
+
+      
+    
+
+    <div class="row">
+
+        <div class="col-sm-2 col-sm-offset-1">
+        <label for="meetingHours">Meeting Hours</label>
+      </div>
+      <div class="col-sm-3">
+        <input type="number" step="0.01" name="meetingHours" ng-model="newEntry.meetingHours" class="form-control"/>
+      </div>
+      <div class="col-sm-2">
+        <label for="watchShow">Watch A Show</label>
+      </div>
+      <div class="col-sm-3">
+       <select class="col-sm-11"  id="repeatwatchShow" ng-model="newEntry.watchShow" ng-options=" watchShow for watchShow in watchShow">
+       <option value = "" disabled selected> Choose a Watch Show fee</option>
+       </select>
+      </div>
+</div>
+      <div class="row">
+      <div class="col-sm-2 col-sm-offset-1">
+        <label for="rehersal">Rehersal</label>
+      </div>
+      <div class="col-sm-3">
+        <input type="number" step="0.01" name="rehersal" ng-model="newEntry.rehersalHours" class="form-control"/>
+      </div>
+      <div class="col-sm-2">
+        <label for="suitcase">Suitcase</label>
+      </div>
+      <div class="col-sm-3">
+       <select class="col-sm-11"  id="repeatSuitcaseFee" ng-model="newEntry.suitcase" ng-options=" suitcase for suitcase in suitcase">
+       <option value = "" disabled selected> Choose a Suitcase Fee</option>
+       </select>
+      </div>
+
+    </div>
+
+    
+    <div class="row">
+      <div class="col-sm-2 col-sm-offset-1">
+        <label for="hospital">Hospital</label>
+      </div>
+      <div class="col-sm-3">
+        <input type="number" step="0.01" name="hospital" ng-model="newEntry.hospitalCompliance" class="form-control"/>
+      </div>
+      <div class="col-sm-2">
+        <label for="workshop">Workshop Rate</label>
+      </div>
+      <div class="col-sm-3">
+       <select class="col-sm-11"  id="workshop" ng-model="newEntry.workShop" ng-options=" workShop for workShop in workShop">
+       <option value = "" disabled selected> Choose a Workshop Fee</option>
+       </select>
+      </div>
+    </div>
+   
+  <hr/>
+      <div class="row">
+      <div class="col-sm-2 col-sm-offset-1">
+        <label for="comments">Comments</label>
+      </div>
+      <div class="col-sm-9">
+        <textarea name="description" ng-model="newEntry.comments" class="form-control"></textarea>
+      </div>
+      </div>
+      
+    <div class="row">
+      <div class="col-sm-12">
+        <input type="submit" class="btn btn-success pull-right" ng-click="submitEntry()" />
+      </div>
+    </div>
+    <hr/>
+    <div class="panel-heading">
+        <h2 class="panel-title">
+          <strong> Submit History</strong>
+        </h2>
+      </div>
+
+    <div class="row">
+     <div class="col-md-12">         
+    <jqx-grid  id="jqxgrid1" jqx-create="createUserPage" jqx-width="'100%'" jqx-settings="usertimeSheetGridSettings"> </jqx-grid>  
+    </div>
+    </div>
+    </form> 
      
-               <div class="col-xs-12">
-
-                      <form id="loginForm" method="POST" action="">
-
-                             <div class="form-group col-xs-6">
-
-                              <label class="control-label col-sm-4" for="site" class="control-label">Site:</label>
-
-                              <input type="site" class="form-control" id="site" name="site" value="" title="Please enter the Site information" required maxlength="30">
-
-                              <span class="help-block"></span>
-
-                          </div>
-
-                          <div class="form-group col-xs-6">
-
-                              <label class="control-label col-sm-4" for="hourlyRate" class="control-label">Hourly Rate</label>
-
-                              <input type="hourlyRate" class="form-control" id="hourlyRate" name="hourlyRate" value="" title="Please enter your Hourly Rate" required maxlength="30">
-
-                              <span class="help-block"></span>
-
-                          </div>
-
-
-
-                          <div class="form-group col-xs-6">
-
-                              <label class="control-label col-sm-4" for="travel" class="control-label">Travel: </label>
-
-                              <input type="text" class="form-control" id="travel" name="travel" value="" title="Please enter your travel" required maxlength="30">
-
-                              <span class="help-block"></span>
-
-                          </div>
-
-                          <div class="form-group col-xs-6">
-
-                              <label class="control-label col-sm-4" for="driver" class="control-label">Driver: </label>
-
-                              <input type="text" class="form-control" id="driver" name="driver" value="" title="Please enter your driver" required maxlength="30">
-
-                              <span class="help-block"></span>
-
-                          </div>
-
-                             <div class="form-group col-xs-6">
-
-                              <label class="control-label col-sm-4" for="suitcase" class="control-label">Suitcase</label>
-
-                              <input type="text" class="form-control" id="suitcase" name="suitcase" value="" title="Please enter your suitcase" required maxlength="30">
-
-                              <span class="help-block"></span>
-
-                          </div>  
-
-                             <div class="form-group col-xs-6">
-
-                              <label class="control-label col-sm-4" for="watchShow" class="control-label">Watch a Show</label>
-
-                              <input type="text" class="form-control" id="watchShow" name="watchShow" value="" title="Please enter your watchShow" required maxlength="30">
-
-                              <span class="help-block"></span>
-
-                          </div>
-
-                          <div class="form-group col-xs-6">
-
-                            <label class="control-label col-sm-4" for="state">State</label>
-                            <div class="control-label col-sm-5">
-                            <select class="form-control" id="state" name="state">
-                              <option value="AL">Alabama</option>
-                              <option value="AK">Alaska</option>
-                              <option value="AZ">Arizona</option>
-                              <option value="AR">Arkansas</option>
-                              <option value="CA">California</option>
-                              <option value="CO">Colorado</option>
-                              <option value="CT">Connecticut</option>
-                              <option value="DE">Delaware</option>
-                              <option value="DC">District Of Columbia</option>
-                              <option value="FL">Florida</option>
-                              <option value="GA">Georgia</option>
-                              <option value="HI">Hawaii</option>
-                              
-                            </select>
-
-                            <span class="help-block"></span>
-                            </div>
-                          </div>
-
-                          <div class="form-group col-xs-6">
-
-                              <label class="control-label col-sm-4" for="rehersal" class="control-label">Rehersal</label>
-
-                              <input type="text" class="form-control" id="rehersal" name="rehersal" value="" title="Please enter your rehersal" required maxlength="10">
-
-                              <span class="help-block"></span>
-
-                          </div>
-
-                          <div class="form-group col-xs-6">
-
-                              <label class="control-label col-sm-4" for="meetingHours" class="control-label">Meeting Hours</label>
-
-                              <input type="text" class="form-control" id="meetingHours" name="meetingHours" value="" title="Please enter your meetingHours" maxlength="30">
-
-                              <span class="help-block"></span>
-
-                          </div>
-
-
-                          <div class="form-group col-xs-6">
-
-                              <label class="control-label col-sm-4" for="hospital" class="control-label">Hospital Compliance</label>
-
-                            <select class="form-control" id="hospital" name="hospital">
-                              <option value="4">Actor</option>
-                              <option value="3">Staff</option>
-                            </select>
-                              <span class="help-block"></span>
-                          </div>                          
-
-
-                          <div class="form-group col-xs-6">
-
-                              <label class="control-label col-sm-4" for="total" class="control-label">Total</label>
-
-                          
-
-                              <span class="help-block"></span>
-
-                          </div>
-
-                          <button type="submit" class="btn btn-primary btn-norad pull-right">Submit</button>
-                          
-                      </form>
-                     </div>   
-                </div>
-                   
-                  
-               
-		</div>
-	</div>
+    </div>
+    <!-- End User View -->     
+  </div>
+</div>
 </div>

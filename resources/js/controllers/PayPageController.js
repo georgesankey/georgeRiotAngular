@@ -2,91 +2,192 @@
 var appModule = window.appModule || 
 angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
 
-/** 
+/**
  * Renders TimeSheet info & other notifications
  */
- appModule.controller('PayPageController',  [ '$scope','$rootScope', '$http', '$q','$route' ,'PayPageService',function ( $scope, $rootScope, $http,$q, $route, PayPageService) {
+ appModule.controller('PayPageController',  [ 'PayPageService', 'VenueService','$scope','$rootScope', '$http', '$q','$route' , function ( PayPageService, VenueService, $scope, $rootScope, $http,$q, $route) {
 
 
- 
+    
+    $scope.createuserList = false;
     $scope.timeSheetShowFlag = true;
     $scope.userFormShowFlag = false;
     var user = $rootScope.user.role_name;
     if(user !== "Administrator"){
 
-            // initialize the input fields.
-            $("#site").jqxInput({ theme: 'energyblue' });
-            $("#hourlyRate").jqxInput({ theme: 'energyblue' });
-            $("#travel").jqxInput({ theme: 'energyblue' });
-             $("#driver").jqxInput({ theme: 'energyblue' });
-            $("#suitcase").jqxInput({ theme: 'energyblue' });
-            $("#watchShow").jqxInput({ theme: 'energyblue' });
-             $("#rehersal").jqxInput({ theme: 'energyblue' });
-            $("#meetingHours").jqxInput({ theme: 'energyblue' });
-            $("#hospital").jqxInput({ theme: 'energyblue' });
-             
+    $scope.createUserPage = false;
+
+    var venueParam = VenueService.getAllVenues();
+    var usertimeSheetParam = PayPageService.getUsersTimesheetEntries();
+    
+    $q.all([venueParam,usertimeSheetParam])
+    .then(function(response){
+    $scope.allVenues = response[0];
+    $scope.allUserTimeSheetEntries = response[1];
+    
+    var userTimesheetEntries =  new $.jqx.dataAdapter(timeSheetAdapter($scope.allUserTimeSheetEntries));
+    
+      
+  
+    // User Grid Settings
+    $scope.usertimeSheetGridSettings = {
+      source: userTimesheetEntries,
+      altrows: true,       
+      width:  '100%',
+      height: '100%', 
+      theme: 'energyblue',
+      ready: function () {
+
+      },
+      selectionmode: 'multiplecellsadvanced',
+      sortable: true,
+      pagesizeoptions: ['20','30','40'],
+      pageable:true,
+      filterable:true,
+      showfilterrow: true,
+      showstatusbar: true,
+      statusbarheight: 50,
+      enabletooltips: true,
+      showaggregates: true,
+      pagesize: '20',
+      
+    columns: [
+    { text: 'First Name',columngroup: 'Users', datafield: 'firstName', width: 100, align: 'center',cellsalign: 'center' ,editable:false},
+    { text: 'Last Name', columngroup: 'Users', datafield: 'lastName', width: 100, align: 'center',  cellsalign: 'center'
+    },
+    { text: 'Date', datafield: 'date', filtertype: 'range' , width: 150,align: 'center',  cellsalign: 'center', cellsformat: 'MM/dd/yyyy'},
+    { text: 'Venue', datafield: 'venue', align: 'center', cellsalign: 'center', width: 150 },
+    { text: 'Workshop Rate', datafield: 'workShop', align: 'center', cellsalign: 'center',cellsformat: 'c2',width: 70  },
+    { text: 'Travel', datafield: 'travel', cellsalign: 'right', align: 'center',cellsformat: 'c2', cellsalign: 'center',width: 70  },
+    { text: 'Driver', datafield: 'driver', align: 'center', cellsalign: 'center',cellsformat: 'c2',width: 70  },
+    { text: 'Suitcase', datafield: 'suitcase', cellsalign: 'right', align: 'center', cellsformat: 'c2',cellsalign: 'center',width: 70 },
+
+    { text: 'Watch </br>A Show', datafield: 'watchShow', align: 'center', cellsalign: 'center', width: 70, aggregates: ['sum']},
+    { text: 'Rehersal #</br>of Hours', datafield: 'rehersalHours', align: 'center', cellsalign: 'center', width: 100 , aggregates: ['sum']},
+    { text: 'Hospital</br> Compliance # of Hours', datafield: 'hospitalCompliance', align: 'center', cellsalign: 'center',width: 125 , aggregates: ['sum'] },
+    { text: 'Meeting #</br> of Hours', datafield: 'meetingHours', align: 'center', cellsalign: 'center',width: 100 , aggregates: ['sum'] },
+    { text: 'Total', datafield: 'total', align: 'center', cellsalign: 'center', width: 70 ,cellsformat: 'c2',
+    aggregates: ['sum', 'avg'] 
+  },
+    { text: 'Comments', datafield: 'comments', align: 'center', cellsalign: 'center', width: 150 },
+    { text: 'Submited Date', datafield: 'submitDate', align: 'center', cellsalign: 'center',width: 150  }
+
+   
+            ],
+            columngroups: [
+            { text: 'Users', align: 'center', name: 'Users' },
+            { text: 'Venue Information', align: 'center', name: 'Venue' }
+            ],
+
+            rowselect: function (event) {
+              $scope.selectedTimeSheetEntry = event.args.row;
+              $scope.timeSheetWindowSettings.apply('open');
+            }   
+          };
+    
+    $scope.dateInputSettings =
+    {
+      width: 200,
+      height: 30,
+      formatString: 'd',
+      animationType: 'fade',
+     
+    }
+
+
+
+    $scope.suitcase = [15,20,40];
+    $scope.travel = [20,30];
+    $scope.workShop = [125,150,175];
+    $scope.driver = [15];
+    $scope.watchShow = [30];
+
+    
+    // TimeSheet Entry
+          $scope.newEntry = {
+          userId: $rootScope.user.id,
+          date:  Date.now(),
+          venueId: "",       
+          workShop:  0,
+          travel:     0,
+          driver:     0,
+          suitcase:   0,   
+          watchShow:  0,
+          rehersalHours:0,
+          meetingHours: 0,                 
+          hospitalCompliance:0, 
+          total: "",
+          comments:""
+
+        };
+         
           
-        
-            $("#site").width(150);
-            $("#site").height(23);
-            $("#hourlyRate").width(150);
-            $("#hourlyRate").height(23);
-            $("#travel").width(150);
-            $("#travel").height(23);
-            $("#driver").width(150);
-            $("#driver").height(23);
-            $("#suitcase").width(150);
-            $("#suitcase").height(23);
-            $("#watchShow").width(150);
-            $("#watchShow").height(23);
-            $("#rehersal").width(150);
-            $("#rehersal").height(23);
-            $("#meetingHours").width(150);
-            $("#meetingHours").height(23);
-             $("#hospital").width(150);
-             $("#hospital").height(23);
-             $("#driver").jqxNumberInput({spinMode: 'simple', width: 150, height: 23, min: 0, decimalDigits: 0, spinButtons: true });
-             $("#driver").jqxNumberInput({ spinMode: 'simple', symbol: '$', width: 150, min: 0, height: 23, spinButtons: true });
 
+          // Log details first
+          $scope.submitEntry = function() {
+           PayPageService.submitEntry($scope.newEntry).then(function(data) {
+                  console.log($scope.newEntry);
+                  alertLog("Timesheet Entry Created");                  
+                });                   
+              }
 
+          
 
+              // Calculation Total Logic
+            $scope.totalCalculation = function() { 
+              return $scope.newEntry.total = ($scope.newEntry.travel + $scope.newEntry.driver + ($scope.newEntry.meetingHours*15.) +
+            $scope.newEntry.watchShow + ($scope.newEntry.rehersalHours*20.) + $scope.newEntry.suitcase
+            + ($scope.newEntry.hospitalCompliance*15.) + $scope.newEntry.workShop)
+          };
+          
+          // // Change the text reflecting the date picker
+          // $("#date").on('change', function (event) {
+          // $scope.date = $("#date").jqxDateTimeInput('getDate');
+          //       });
+     
+         
 
             $scope.userFormShowFlag = true;
             $scope.timeSheetShowFlag = false;
-            $scope.timeSheetManagement =  null;
-            }
-
+            $scope.createUserPage = true;
+            })
+}
      else 
    {
-
     var userParam = PayPageService.getAllUsers();
-
-    $q.all([userParam])
+    var timeSheetParam = PayPageService.getAllTimeSheetEntries();
+   
+    $q.all([userParam,timeSheetParam])
     .then(function(response){
     $scope.allUsers = response[0];
-      
-    $scope.timeSheetWindow = {};
-    var url = "resources/js/controllers/products.xml";
-        
-
+    $scope.allTimeSheetEntries = response[1];
+    
+    
+         
     // prepare the data
     var source =
     {
-      datatype: "xml",
+      datatype: "json",
       datafields: [
-            { name: 'firstName', type: 'string'},
-            //{ name: 'siteA',columntype:'dropdownlist',editable:'false' },
-            { name: 'HourlyRate', type: 'float',aggregates: ['sum', 'avg'] },
-            //{ name: 'Travel', type: 'float' },
-            { name: 'Driver', type: 'float',aggregates: ['sum', 'avg'] },
-            { name: 'Suitcase', type: 'float' },
-            //{ name: 'WatchAShow', type: 'float' },
-            //{ name: 'Driver', type: 'bool' }
+
+
+            { name: 'First Name', type: 'string'},
+            { name: 'Last Name', type: 'string'},
+            { name: 'Venue', type: 'string'},            
+            { name: 'WorkShop', type: 'float'},
+            { name: 'Travel', type: 'float'},
+            { name: 'Driver', type: 'float'},
+            { name: 'Suitcase', type: 'float'} ,
+            { name: 'Watch Show', type: 'float' },
+            { name: 'Rehersal Hours', type: 'float' },
+            { name: 'Meeting Hours', type: 'float' },
+            { name: 'Hospital Compliance', type: 'float' },
+            { name: 'Total', type: 'float' },
+            { name: 'Comments', type: 'string' },
+            { name: 'Submitted Date', type: 'string' }
+            
             ],
-            root: "Entries",
-            record: "Entry",
-            id: 'EntryID',
-            url: url,
+            
 
           };
 
@@ -106,62 +207,12 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
    // loadError: function (xhr, status, error) { }
         });
 
-          var sites = [
-          { value: "AU", label: "Brookdale Impatient"  },
-          { value: "AT", label: "Incarnation" },
-          { value: "AZ", label: "A. Harry Moore" },
-          { value: "BS", label: "AHRC Middle/High School" },
-          { value: "BH", label: "Blythedale" },
-          { value: "BD", label: "Bronx Psych" },
-          { value: "BB", label: "morgan Stanley" },
-          { value: "BY", label: "James Martin" },
-          { value: "BE", label: "David Garcia" },
-          { value: "BZ", label: "Belize Clark" },
-          { value: "BJ", label: "Lucas Lewis" },
-          { value: "BM", label: "Bermuda Adams" },
-          { value: "CR", label: "John Young" },
-          { value: "HR", label: "Samuel King" },
-          { value: "CU", label: "Natalie Green" },
-          { value: "CY", label: "Addison Campbell" },
-          { value: "CZ", label: "Gabriel Nelson"  },
-          { value: "DK", label: "Harper Phillips" },
-
-
-          ];
-        var sitesSource =
-          {
-           datatype: "array",
-           datafields: [
-           { name: 'label', type: 'string' },
-           { name: 'value', type: 'string' }
-           ],
-           localdata: sites
-         };
-         var travel = [
-         { value: "20", label: "$20" },
-         { value: "30", label: "$30" },
-         ];
-         var travelSource =
-         {
-           datatype: "array",
-           datafields: [
-           { name: 'label', type: 'string' },
-           { name: 'value', type: 'string' }
-           ],
-           localdata: travel
-         };
-
-         var sitesAdapter = new $.jqx.dataAdapter(sitesSource, {
-        //autoBind: true
-      });
-         var travelAdapter = new $.jqx.dataAdapter(travelSource, {
-        //autoBind: true
-      });
-
-      //Timesheet Grid Settings
+      var timesheetEntries =  new $.jqx.dataAdapter(timeSheetAdapter($scope.allTimeSheetEntries));
+       
+      // Timesheet Grid Settings
       $scope.timeSheetGridSettings = {
-        source: dataAdapter,
-        altrows: true,
+        source: timesheetEntries,
+        altrows: true,       
         width:  '100%',
         height: '100%', 
         theme: 'energyblue',
@@ -169,59 +220,53 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
 
         },
         selectionmode: 'multiplecellsadvanced',
-        //source: $scope.timeSheet,
-        editable: true,
+        // source: $scope.timeSheet,
+       // editable: true,
         sortable: true,
         pagesizeoptions: ['20','30','40'],
         pageable:true,
+        showstatusbar: true,
+        statusbarheight: 41,
         filterable:true,
         showfilterrow: true,
         enabletooltips: true,
         showaggregates: true,
-        showtoolbar:true,
+        // showtoolbar:true,
         pagesize: '20',
         addrow: function (rowid, rowdata, position, commit) {
             // synchronize with the server - send insert command
-            // call commit with parameter true if the synchronization with the server is successful 
-            //and with parameter false if the synchronization failed.
-            // you can pass additional argument to the commit callback which represents the new ID if it is generated from a DB.
+            // call commit with parameter true if the synchronization with the
+			// server is successful
+            // and with parameter false if the synchronization failed.
+            // you can pass additional argument to the commit callback which
+			// represents the new ID if it is generated from a DB.
             commit(true);
           },
-        rendertoolbar: function (toolbar) {
-        var me = this;
-        var container = $("<div style='margin: 5px;'></div>");
-        toolbar.append(container);
-        container.append('<input id="addrowbutton" type="button" value="Add New Row" />');
-        container.append('<input style="margin-left: 5px;" id="deleterowbutton" type="button" value="Delete Selected Row" />');        
-        $("#addrowbutton").jqxButton({ theme: 'energyblue'});         
-        $("#deleterowbutton").jqxButton({ theme: 'energyblue'});
-         },
+         
       columns: [
-      { text: 'Name', datafield: 'firstName', width: 250, align: 'center',cellsalign: 'center' ,editable:false},
-      { text: 'Site', columngroup: 'Users', datafield: 'site', width: 200, align: 'center',  cellsalign: 'center',columntype:'dropdownlist',
-      createeditor: function (row, value, editor) {
-        editor.jqxDropDownList({ source: sitesAdapter, displayMember: 'name', valueMember: 'value', dropDownHeight:100, selectedIndex: 1, 'theme': 'energyblue'});
-      }
+      { text: 'First Name',columngroup: 'Users', datafield: 'firstName', width: 100, align: 'center',cellsalign: 'center' ,editable:false},
+      { text: 'Last Name', columngroup: 'Users', datafield: 'lastName', width: 100, align: 'center',  cellsalign: 'center'
       },
-      { text: 'Hourly Rate', columngroup: 'Users', datafield: 'HourlyRate', align: 'center', cellsalign: 'center', cellsformat: 'c2', width: 200 },
-      { text: 'Travel', datafield: 'Travel', cellsalign: 'right', align: 'center', cellsalign: 'center',cellsrenderer: cellsrenderer, width: 100 ,columntype:'dropdownlist',
-      createeditor: function (row, value, editor) {
-        editor.jqxDropDownList({ source: travelAdapter, displayMember: 'label', valueMember: 'value', dropDownHeight:100, selectedIndex: 1,  });
-      }
-      },
-      { text: 'Driver', columntype: 'checkbox', datafield: 'Driver', align: 'center', cellsalign: 'center', },
-      { text: 'Suitcase', datafield: 'Suitcase', cellsalign: 'right', align: 'center', cellsalign: 'center',cellsrenderer: cellsrenderer, width: 100 },
-      { text: 'Watch A Show', datafield: 'WatchAShow', align: 'center', cellsalign: 'center', },
+      { text: 'Date', datafield: 'date', filtertype: 'range',width: 150, align: 'center',  cellsalign: 'center', cellsformat: 'MM/dd/yyyy' },
+      { text: 'Venue', datafield: 'venue', align: 'center', cellsalign: 'center', width: 150 },
+      { text: 'Workshop Rate', datafield: 'workShop', align: 'center', cellsalign: 'center',cellsformat: 'c2',width: 70  },
+      { text: 'Travel', datafield: 'travel', cellsalign: 'right', align: 'center',cellsformat: 'c2', cellsalign: 'center',width: 70  },
+      { text: 'Driver', datafield: 'driver', align: 'center', cellsalign: 'center',cellsformat: 'c2',width: 70  },
+      { text: 'Suitcase', datafield: 'suitcase', cellsalign: 'right', align: 'center', cellsformat: 'c2',cellsalign: 'center',width: 70 },
 
-      {text: 'Total', editable: false, datafield: 'total', cellsformat: 'c2', aggregates:['sum', 'avg'],
-        cellsrenderer: function (index, datafield, value, defaultvalue, column, rowdata) {
-          var total = (parseFloat(rowdata.HourlyRate) * 1);
-          return "<div style='margin: 4px;' class='jqx-right-align'>" + dataAdapter.formatNumber(total, "c2") + "</div>";
-                }
-              }
+      { text: 'Watch </br>A Show', datafield: 'watchShow', align: 'center', cellsalign: 'center', width: 70, aggregates: ['sum']},
+      { text: 'Rehersal #</br>of Hours', datafield: 'rehersalHours', align: 'center', cellsalign: 'center', width: 100 , aggregates: ['sum']},
+      { text: 'Hospital</br> Compliance # of Hours', datafield: 'hospitalCompliance', align: 'center', cellsalign: 'center',width: 125 , aggregates: ['sum'] },
+      { text: 'Meeting #</br> of Hours', datafield: 'meetingHours', align: 'center', cellsalign: 'center',width: 100 , aggregates: ['sum'] },
+      { text: 'Total', datafield: 'total', align: 'center', cellsalign: 'center', width: 70 ,cellsformat: 'c2',aggregates: ['sum', 'avg'] },
+      { text: 'Comments', datafield: 'comments', align: 'center', cellsalign: 'center', width: 150 },
+      { text: 'Submited Date', datafield: 'submitDate', align: 'center', cellsalign: 'center',width: 150  },
+
+     
               ],
               columngroups: [
-              { text: 'Site Information', align: 'center', name: 'Users' }
+              { text: 'Users', align: 'center', name: 'Users' },
+              { text: 'Venue Information', align: 'center', name: 'Venue' }
               ],
 
               rowselect: function (event) {
@@ -229,21 +274,9 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
                 $scope.timeSheetWindowSettings.apply('open');
               }   
             };
-      $("#addrowbutton").on('click',function(){
-        var datarow =generaterow();
-        var commit = $("#jqxgrid").jqxGrid('addrow',null,datarow);
-      });
-
-      $("#deleterowbutton").on('click',function(){
-        var selectedRowIndex = $("#jqxgrid").jqxGrid('getselectedrowindex');
-        var rowscount = $("#jqxgrid").jqxGrid('getdatainformation').rowscount;
-        if (selectedRowIndex >=0 && selectedRowIndex < rowscount){
-          var id = $("#jqxgrid").jqxGrid('getrowid',selectedRowIndex );
-          var commit = $("#jqxgrid").jqxGrid('deleterow',id);
-        }
-        
-      });
-      
+    
+    
+    // ADMIN date info
     $scope.dateInputSettings =
     {
       width: 200,
@@ -255,20 +288,16 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
       
     }
     
-    // Change the text reflecting the date picker
-    $("#date").on('change', function (event) {
-       var selection = $("#date").jqxDateTimeInput('getRange');
-               if (selection.from != null) {
-          $("#Selectdate").html("<div> Date : " + selection.from.toLocaleDateString() + " - " + selection.to.toLocaleDateString() + "</div>");
-                    }
-                });
- 
+  
        
        var test =  new $.jqx.dataAdapter(userAdapter($scope.allUsers));
        
+     
 
+       
+       
     $scope.userGridSettings= {
-        source: test ,
+        source: test,
         theme: 'energyblue',
         width:  '100%',
         sortable: true,
@@ -279,31 +308,37 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
         pagesize: '20',
           columns: [
           { text: 'E-mail', datafield: 'email', width: 250, align: 'center',cellsalign: 'center' },
-          { text: 'First Name',columngroup: 'Name',columngroup: 'Users', datafield:'first_name', width: 200, align: 'center',  cellsalign: 'center'},
-          { text: 'Last Name', columngroup: 'Name',columngroup: 'Users', datafield: 'last_name', width: 250, align: 'center',cellsalign: 'center' },
+          { text: 'First Name',columngroup: 'Name', datafield:'first_name', width: 200, align: 'center',  cellsalign: 'center'},
+          { text: 'Last Name', columngroup: 'Name', datafield: 'last_name', width: 250, align: 'center',cellsalign: 'center' },
           { text: 'Role', datafield: 'role_name', width: 200, align: 'center',  cellsalign: 'center'},
-          { text: 'Cell Number', columngroup: 'Number',columngroup: 'Users',datafield: 'cell_number', width: 250, align: 'center',cellsalign: 'center' },
-          { text: 'House number', datafield: 'Number', width: 200, align: 'center',  cellsalign: 'center'},
+          { text: 'Cell Number', columngroup: 'Number',datafield: 'cell_number', width: 250, align: 'center',cellsalign: 'center' },
+          { text: 'House number', datafield: 'home_number', width: 200, align: 'center',  cellsalign: 'center'},
           ]
 };
     $scope.addTimesheetEntrySettings = {
 
        theme: 'energyblue',
         click: function(event){
-           /* if($scope.EMUser !== "" && $scope.sessionUserRole === "Administrator"){
-                EventMaintenanceService.userToEventService('addUser', Number($scope.EMUser.value.split(',')[0]), $scope.selectedEvent, $scope.selectedShowRole)
-                .then(function(addUserArray) {
-                    $scope.EMDataAdapterUsers = new $.jqx.dataAdapter(searchInputAdapter(addUserArray[0]));
-                    $scope.currentUsersResults = addUserArray[1];
-                    $scope.EMUser = "";
-                });
-            }*/
+           /*
+			 * if($scope.EMUser !== "" && $scope.sessionUserRole ===
+			 * "Administrator"){
+			 * EventMaintenanceService.userToEventService('addUser',
+			 * Number($scope.EMUser.value.split(',')[0]), $scope.selectedEvent,
+			 * $scope.selectedShowRole) .then(function(addUserArray) {
+			 * $scope.EMDataAdapterUsers = new
+			 * $.jqx.dataAdapter(searchInputAdapter(addUserArray[0]));
+			 * $scope.currentUsersResults = addUserArray[1]; $scope.EMUser = "";
+			 * }); }
+			 */
         }
     }
 
-
+$scope.createuserList = true;
 })
-    //Buttons to export grids with paypage data
+, function(error) {
+        console.log('opsssss' + error);
+    };
+    // Buttons to export grids with paypage data
     $scope.exportButtonSettings = {
     theme: 'energyblue',
     click: function(event){
@@ -320,21 +355,16 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
 }
 
 
-    $scope.date = Date.now();
+    
 
-  /*PayPageService.getAllTimeSheetEntries().then(function(timeSheet){
+  /*
+	 * PayPageService.getAllTimeSheetEntries().then(function(timeSheet){
+	 * 
+	 * $scope.timeSheet = timeSheet;
+	 * 
+	 * });
+	 */
 
-        $scope.timeSheet = timeSheet;
-
-    }); 
-                     */
-$scope.timeSheetManagement = function (service) {
-
-  PayPageService.timeSheetManagement(service, $scope.selectedTimeSheetEntry.id).then(function(timeSheet) {
-    $scope.timeSheet = timeSheet;
-            //$scope.timeSheetWindowSettings.apply('close');
-          });
-}
     
 
 }]);
@@ -352,8 +382,41 @@ $scope.timeSheetManagement = function (service) {
                         {name: 'home_number', type: 'string'}
                                           ],
 
-                    localdata: source,
+                    localdata: source
+        
                    
                 };
     
     }
+
+     // prepare TimeSheet data
+       function timeSheetAdapter(source){
+               return {                  
+                    datatype: "array",
+                    datafields: [
+
+                        {name: 'firstName', type: 'string'},
+                        {name: 'lastName', type: 'string'},
+                        {name: 'date', type: 'date'},
+                        {name: 'venue', type: 'int'},                       
+                        {name: 'workShop', type: 'int'},
+                        {name: 'travel', type: 'int'},
+                        {name: 'driver', type: 'int'},
+                        {name: 'suitcase', type: 'int'},
+                        {name: 'watchShow', type: 'int'},
+                        {name: 'rehersalHours', type: 'int'},
+                        {name: 'meetingHours', type: 'int'},
+                        {name: 'hospitalCompliance', type: 'int'},
+                        {name: 'total', type: 'int'},
+                        {name: 'comments', type: 'string'},
+                        {name: 'submitDate', type: 'date'}
+
+                                          ],
+
+                    localdata: source
+        
+                   
+                };
+    
+    }
+

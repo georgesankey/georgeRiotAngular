@@ -13,14 +13,22 @@ appModule.factory('PayPageService', function($http, $q) {
 
         var deferred = $q.defer();
 
-        if(timesheetEntry !== undefined){
-            deferred.resolve(timeSheetEntry);
-        } else {
-            $http.get(route).success(function (data){
-                timeSheetEntry = data;
-                deferred.resolve(timeSheetEntry);
-            });
-        }
+        $http.get(route + "?action=getAllTimeSheetEntries").success(function (data, status) {
+            allUsers = data;
+            deferred.resolve(allUsers);
+                    });
+        
+        return deferred.promise;
+    };
+
+     var submitEntry = function(entry) {
+        var deferred = $q.defer();
+        var postData = JSON.stringify(entry);        
+        $http.post(route + "?action=submit", $.param({data:postData}), {
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(data) {
+            deferred.resolve(data);
+        });
         return deferred.promise;
     };
 
@@ -35,9 +43,22 @@ appModule.factory('PayPageService', function($http, $q) {
         return deferred.promise;
    };
    
+   var getUsersTimesheetEntries = function() {
+        var deferred = $q.defer();
+
+        $http.get(route + "?action=getUsersTimesheetEntries").success(function (data, status) {
+            userEntries = data;
+            deferred.resolve(userEntries);
+                    });
+        
+        return deferred.promise;
+   };
+
         return {
-        getAllTimeSheetEntries: getAllTimeSheetEntries,
-        getAllUsers:getAllUsers
+        submitEntry: submitEntry,
+        getAllUsers:getAllUsers,
+        getAllTimeSheetEntries:getAllTimeSheetEntries,
+        getUsersTimesheetEntries:getUsersTimesheetEntries
 
     };
 });

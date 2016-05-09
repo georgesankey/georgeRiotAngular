@@ -5,25 +5,36 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
 /**
  * Renders TimeSheet info & other notifications
  */
- appModule.controller('PayPageController',  [ 'PayPageService', 'VenueService','$scope','$rootScope', '$http', '$q','$route' , function ( PayPageService, VenueService, $scope, $rootScope, $http,$q, $route) {
+ appModule.controller('PayPageController',  [ 'PayPageService', 'VenueService','UserService','$scope','$rootScope', '$http', '$q','$route' , function ( PayPageService, VenueService, UserService, $scope, $rootScope, $http,$q, $route) {
 
 
     
     $scope.createuserList = false;
     $scope.timeSheetShowFlag = true;
     $scope.userFormShowFlag = false;
-    var user = $rootScope.user.role_name;
+
+    var userParam = UserService.getSessionUserData();
+ 
+    $q.all([userParam])
+    .then(function(response){
+    $scope.currentUser = response[0];
+
+
+
+    var user = $scope.currentUser.role_name;
     if(user !== "Administrator"){
 
     $scope.createUserPage = false;
 
     var venueParam = VenueService.getAllVenues();
     var usertimeSheetParam = PayPageService.getUsersTimesheetEntries();
+    var userParam = UserService.getSessionUserData();
     
     $q.all([venueParam,usertimeSheetParam])
     .then(function(response){
     $scope.allVenues = response[0];
     $scope.allUserTimeSheetEntries = response[1];
+
     
     var userTimesheetEntries =  new $.jqx.dataAdapter(timeSheetAdapter($scope.allUserTimeSheetEntries));
     
@@ -55,7 +66,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
     { text: 'First Name',columngroup: 'Users', datafield: 'firstName', width: 100, align: 'center',cellsalign: 'center' ,editable:false},
     { text: 'Last Name', columngroup: 'Users', datafield: 'lastName', width: 100, align: 'center',  cellsalign: 'center'
     },
-    { text: 'Date', datafield: 'date', filtertype: 'range' , width: 150,align: 'center',  cellsalign: 'center', cellsformat: 'MM/dd/yyyy'},
+    { text: 'Date', datafield: 'date', filtertype: 'range' , width: 150,align: 'center',  cellsalign: 'center', cellsformat: 'yyyy-MM-dd'},
     { text: 'Venue', datafield: 'venue', align: 'center', cellsalign: 'center', width: 150 },
     { text: 'Workshop Rate', datafield: 'workShop', align: 'center', cellsalign: 'center',cellsformat: 'c2',width: 70  },
     { text: 'Travel', datafield: 'travel', cellsalign: 'right', align: 'center',cellsformat: 'c2', cellsalign: 'center',width: 70  },
@@ -66,7 +77,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
     { text: 'Rehersal #</br>of Hours', datafield: 'rehersalHours', align: 'center', cellsalign: 'center', width: 100 , aggregates: ['sum']},
     { text: 'Hospital</br> Compliance # of Hours', datafield: 'hospitalCompliance', align: 'center', cellsalign: 'center',width: 125 , aggregates: ['sum'] },
     { text: 'Meeting #</br> of Hours', datafield: 'meetingHours', align: 'center', cellsalign: 'center',width: 100 , aggregates: ['sum'] },
-    { text: 'Total', datafield: 'total', align: 'center', cellsalign: 'center', width: 70 ,cellsformat: 'c2',
+    { text: 'Total', datafield: 'total', align: 'center', cellsalign: 'center', width: 150 ,cellsformat: 'c2',
     aggregates: ['sum', 'avg'] 
   },
     { text: 'Comments', datafield: 'comments', align: 'center', cellsalign: 'center', width: 150 },
@@ -89,7 +100,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
     {
       width: 200,
       height: 30,
-      formatString: 'd',
+      formatString: 'MM/dd/yyyy',
       animationType: 'fade',
      
     }
@@ -106,7 +117,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
     // TimeSheet Entry
           $scope.newEntry = {
           userId: $rootScope.user.id,
-          date:  Date.now(),
+          date:  "",
           venueId: "",       
           workShop:  0,
           travel:     0,
@@ -125,6 +136,9 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
 
           // Log details first
           $scope.submitEntry = function() {
+            var date = $("#date").jqxDateTimeInput('getDate');
+            var formattedDate = $.jqx.dataFormat.formatdate(date, 'yyyy-MM-dd');
+            $scope.newEntry.date = formattedDate;
            PayPageService.submitEntry($scope.newEntry).then(function(data) {
                   console.log($scope.newEntry);
                   alertLog("Timesheet Entry Created");                  
@@ -141,17 +155,17 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
           };
           
           // // Change the text reflecting the date picker
-          // $("#date").on('change', function (event) {
-          // $scope.date = $("#date").jqxDateTimeInput('getDate');
-          //       });
-     
-         
+          $("#date").on('change', function (event) {
+           var selection  = $("#date").jqxDateTimeInput('getDate');
+           $("#Selectdate").html("<div> Date : " + selection.from.toLocaleDateString() +  "</div>");
+                    });
 
             $scope.userFormShowFlag = true;
             $scope.timeSheetShowFlag = false;
             $scope.createUserPage = true;
             })
 }
+
      else 
    {
     var userParam = PayPageService.getAllUsers();
@@ -236,10 +250,10 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
         addrow: function (rowid, rowdata, position, commit) {
             // synchronize with the server - send insert command
             // call commit with parameter true if the synchronization with the
-			// server is successful
+      // server is successful
             // and with parameter false if the synchronization failed.
             // you can pass additional argument to the commit callback which
-			// represents the new ID if it is generated from a DB.
+      // represents the new ID if it is generated from a DB.
             commit(true);
           },
          
@@ -247,7 +261,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
       { text: 'First Name',columngroup: 'Users', datafield: 'firstName', width: 100, align: 'center',cellsalign: 'center' ,editable:false},
       { text: 'Last Name', columngroup: 'Users', datafield: 'lastName', width: 100, align: 'center',  cellsalign: 'center'
       },
-      { text: 'Date', datafield: 'date', filtertype: 'range',width: 150, align: 'center',  cellsalign: 'center', cellsformat: 'MM/dd/yyyy' },
+      { text: 'Date', datafield: 'date', filtertype: 'range',width: 150, align: 'center',  cellsalign: 'center', cellsformat: 'yyyy-MM-dd' },
       { text: 'Venue', datafield: 'venue', align: 'center', cellsalign: 'center', width: 150 },
       { text: 'Workshop Rate', datafield: 'workShop', align: 'center', cellsalign: 'center',cellsformat: 'c2',width: 70  },
       { text: 'Travel', datafield: 'travel', cellsalign: 'right', align: 'center',cellsformat: 'c2', cellsalign: 'center',width: 70  },
@@ -258,7 +272,7 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
       { text: 'Rehersal #</br>of Hours', datafield: 'rehersalHours', align: 'center', cellsalign: 'center', width: 100 , aggregates: ['sum']},
       { text: 'Hospital</br> Compliance # of Hours', datafield: 'hospitalCompliance', align: 'center', cellsalign: 'center',width: 125 , aggregates: ['sum'] },
       { text: 'Meeting #</br> of Hours', datafield: 'meetingHours', align: 'center', cellsalign: 'center',width: 100 , aggregates: ['sum'] },
-      { text: 'Total', datafield: 'total', align: 'center', cellsalign: 'center', width: 70 ,cellsformat: 'c2',aggregates: ['sum', 'avg'] },
+      { text: 'Total', datafield: 'total', align: 'center', cellsalign: 'center', width: 150 ,cellsformat: 'c2',aggregates: ['sum', 'avg'] },
       { text: 'Comments', datafield: 'comments', align: 'center', cellsalign: 'center', width: 150 },
       { text: 'Submited Date', datafield: 'submitDate', align: 'center', cellsalign: 'center',width: 150  },
 
@@ -320,16 +334,16 @@ angular.module("ScheduleApp", ["ngRoute", "ngResource", "jqwidgets"]);
        theme: 'energyblue',
         click: function(event){
            /*
-			 * if($scope.EMUser !== "" && $scope.sessionUserRole ===
-			 * "Administrator"){
-			 * EventMaintenanceService.userToEventService('addUser',
-			 * Number($scope.EMUser.value.split(',')[0]), $scope.selectedEvent,
-			 * $scope.selectedShowRole) .then(function(addUserArray) {
-			 * $scope.EMDataAdapterUsers = new
-			 * $.jqx.dataAdapter(searchInputAdapter(addUserArray[0]));
-			 * $scope.currentUsersResults = addUserArray[1]; $scope.EMUser = "";
-			 * }); }
-			 */
+       * if($scope.EMUser !== "" && $scope.sessionUserRole ===
+       * "Administrator"){
+       * EventMaintenanceService.userToEventService('addUser',
+       * Number($scope.EMUser.value.split(',')[0]), $scope.selectedEvent,
+       * $scope.selectedShowRole) .then(function(addUserArray) {
+       * $scope.EMDataAdapterUsers = new
+       * $.jqx.dataAdapter(searchInputAdapter(addUserArray[0]));
+       * $scope.currentUsersResults = addUserArray[1]; $scope.EMUser = "";
+       * }); }
+       */
         }
     }
 
@@ -358,15 +372,15 @@ $scope.createuserList = true;
     
 
   /*
-	 * PayPageService.getAllTimeSheetEntries().then(function(timeSheet){
-	 * 
-	 * $scope.timeSheet = timeSheet;
-	 * 
-	 * });
-	 */
+   * PayPageService.getAllTimeSheetEntries().then(function(timeSheet){
+   * 
+   * $scope.timeSheet = timeSheet;
+   * 
+   * });
+   */
 
     
-
+})
 }]);
  // prepare the data
        function userAdapter(source){
@@ -419,4 +433,3 @@ $scope.createuserList = true;
                 };
     
     }
-

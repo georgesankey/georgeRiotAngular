@@ -49,6 +49,10 @@ appModule.config(function($routeProvider) {
             controller:'MainController',
             templateUrl:'resources/views/create/create_event.html'
         })
+        .when('/edit/u', {
+            controller:'EditProfileController',
+            templateUrl:'resources/views/editUser.html'
+        })
         .when('/v', {
             controller:'VenueController',
             templateUrl:'resources/views/venues.html'

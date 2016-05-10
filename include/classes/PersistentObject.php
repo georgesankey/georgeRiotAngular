@@ -94,7 +94,7 @@ class PersistentObject {
 		// Check row is inserted
 		$rows = $query->rowCount();
 		if($rows == 1) {
-			return true;
+			return $this->id;
 		}
 
 		// An error occurred

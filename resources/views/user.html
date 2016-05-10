@@ -20,6 +20,7 @@
 <div class="panel panel-info">
 	<div class="panel-heading">
 		<div class="panel-title">Info</div>
+		<div class="pull-right" ng-show="isEditable()"><a href="#/edit/u">Edit</a></div>
 	</div>
 	<div class="panel-body profile-body">
 
@@ -60,12 +61,10 @@
 	<div class="panel-body">
 
 		<ul class="list-min">
-			<li>
-				<a href="#">Event 1</a>
+			<li ng-repeat="event in newEvents">
+				<a href="#/e/">{{event.name}}</a>
 			</li>
-			<li>
-				Event 2
-			</li>
+			<div ng-show="newEvents.length==0">No Upcoming Events Found</div>
 		</ul>
 
 	</div>
@@ -81,12 +80,10 @@
 	<div class="panel-body">
 
 		<ul class="list-min">
-			<li>
-				Event 1
+			<li ng-repeat="event in pastEvents">
+				<a href="#/e/">{{event.name}}</a>
 			</li>
-			<li>
-				Event 2
-			</li>
+			<div ng-show="pastEvents.length==0">No Past Events Found</div>
 		</ul>
 
 	</div>

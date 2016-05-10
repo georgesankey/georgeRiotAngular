@@ -20,6 +20,10 @@ appModule.controller("ProfileController", function(
         $scope.user = user;
     });
 
+    $scope.isEditable = function() {
+    	return $rootScope.user.role == "Administrator" || $scope.userId == $rootScope.user.id;
+    };
+
 	ScriptService.getScriptsForUser($scope.userId).then(function(scripts) {
 		$scope.scripts = scripts;
 	});
